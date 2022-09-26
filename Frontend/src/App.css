@@ -1,0 +1,38 @@
+html{
+  background-color: #282c34;
+}
+
+.App{
+  min-height: 60vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  font-family: sans-serif;
+  color: aliceblue;
+}
+
+.form{
+  width: 50%;
+  height: 2em;
+}
+
+.form input{
+  width: 78%;
+  height: 100%;
+  background-color: #282c34;
+  color: white;
+  border: 3px solid #2b3553;
+  border-radius: 10px;
+  outline:none;
+  transition: all .5s ease;
+}
+
+.form input:focus{
+  border: 3px solid #b949b0;
+}
+
+.form button{
+  width: 20%;
+  height: 100%;
+}
