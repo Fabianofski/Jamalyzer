@@ -1,0 +1,15 @@
+.view{
+    border-bottom: 5px solid gray;
+    width: 100%;
+    min-height: 100vh;
+    box-sizing: border-box;
+    display:flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+}
+
+table, th, td{
+    border: 1px solid black;
+}
+

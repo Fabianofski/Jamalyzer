@@ -1,26 +1,18 @@
-import './App.css';
-
+import React from "react";
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import Home from './components/Home';
+import Jam from './components/Jam';
 
 function App() {
-
-  var input = "";
-  const onInputChange = (e) => {
-    input = e.target.value;
-  };
-  const onSubmit = () => fetch(`http://localhost:3001/api/jamid?jamurl=${input}`)
-  .then(response => response.json())
-  .then(fetchedData => {
-      alert(fetchedData);
-  });
-
   return (
-    <div className="App">
-      <h1>Jamalyzer</h1>
-      <div className="form">
-        <input type="text" placeholder="Enter Jam URL" name="JamURL" autoComplete="off" required onChange={onInputChange}/>
-        <button onClick={onSubmit}>Submit</button>
+    <Router>
+      <div>
+        <Routes>
+          <Route path="/" element={<Home/>}/>
+          <Route path="/jam/:id" element={<Jam/>}/>
+        </Routes>
       </div>
-    </div>
+    </Router>
   );
 }
 
