@@ -9,7 +9,39 @@
     align-items: center;
 }
 
+a{
+    color: white;
+    text-decoration: underline;
+}
+
+
 table, th, td{
-    border: 1px solid black;
+    border: 1px solid white;
+}
+
+table {
+    border-collapse: separate;
+    border-spacing: 0px;
+}
+
+th{
+    position: sticky;
+    top: 0px;
+
+    background-color: bisque;
+    color: black;
+}
+
+th, td{
+    padding: 10px;
+}
+
+td{
+    max-width: 15rem;
+}
+
+.table-wrapper{
+    max-height: 40rem;
+    overflow-y: scroll;
 }
 

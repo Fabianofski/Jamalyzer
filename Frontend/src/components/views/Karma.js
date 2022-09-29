@@ -1,7 +1,7 @@
 import React from "react";
 import "./View.css";
 
-function Karma ({entries, results}){
+function Karma ({jamData}){
 	return (
 	<div style={{width:"100%"}}>
 		<div className="view">

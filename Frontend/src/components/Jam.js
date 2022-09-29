@@ -5,23 +5,30 @@ import Karma from './views/Karma';
 
 function Jam() {
   const { id } = useParams();  
-  const [entries, setEntries] = useState([]);
-  const [results, setResults] = useState([]); 
+  const [jamData, setJamData] = useState([]);
+  const [dataLoaded, setdataLoaded] = useState(false);
+
 
   useEffect(()=>{
-    fetch(`https://itch.io/jam/${id}/entries.json`)
+    fetch(`http://localhost:3001/api/jamData?jamid=${id}`)
     .then(response => response.json())
-    .then(data => setEntries(data.jam_games));
-    fetch(`https://itch.io/jam/${id}/results.json`)
-    .then(response => response.json())
-    .then(data => setResults(data.results));
-  }, [id, results, entries])
+    .then(json => {
+      setJamData(json);
+      setdataLoaded(true);
+    });
+  }, [id])
   
 
   return (
     <div className="App">
-      <Ranking entries={entries} results={results}/>
-      <Karma entries={entries} results={results}/>
+      {dataLoaded ? (
+        <div>
+          <Ranking jamData={jamData}/>
+          <Karma jamData={jamData}/>
+        </div>
+      ) : (
+        <div>Hi</div>
+      )}
     </div>
   );
 }
