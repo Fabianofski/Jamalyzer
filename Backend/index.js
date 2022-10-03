@@ -61,8 +61,12 @@ app.get("/api/jamdata", async (req, res) => {
 });
 
 const joinEntriesAndResults = (entries, results) => {
-  let jamData = {"jam_games":{}, "criteria":[]};
-  results.results[0].criteria.forEach((criteria) => jamData.criteria.push(criteria.name));
+  let jamData = {"jam_games":{}, "criteria":[], "rankings":{"Overall":{}}};
+  results.results[0].criteria.forEach((criteria) => {
+    jamData.criteria.push(criteria.name);
+    jamData.rankings[criteria.name] = {};
+  });
+  jamData.criteria.push("Overall");
   extractResultData(results, jamData);
   extractEntryData(entries, jamData);
   return jamData;
@@ -79,9 +83,19 @@ function extractResultData(results, jamData) {
     overall.name = "Overall";
     criteria.push(overall);
     jamData.jam_games[id] = {};
+    jamData.jam_games[id].title = entry.title;
     jamData.jam_games[id].id = id;
     jamData.jam_games[id].rank = entry.rank;
     jamData.jam_games[id].criteria = criteria;
+    jamData.jam_games[id].contributors = entry.contributors;
+    jamData.jam_games[id].jamPageUrl = entry.url;
+    criteria.forEach((crit => {
+      if (crit.name in jamData.rankings){
+        if (!(crit.rank in jamData.rankings[crit.name]))
+          jamData.rankings[crit.name][crit.rank] = [];
+        jamData.rankings[crit.name][crit.rank].push(id);
+      }
+    }));
   });
 }
 
@@ -90,11 +104,8 @@ function extractEntryData(entries, jamData) {
     const id = entry.game.id;
     const karma = Math.log(1 + entry.coolness) - Math.log(1 + entry.rating_count) / Math.log(5);
     if (id in jamData.jam_games) {
-      jamData.jam_games[id].title = entry.game.title;
       jamData.jam_games[id].platforms = entry.game.platforms;
       jamData.jam_games[id].url = entry.game.url;
-      jamData.jam_games[id].contributors = entry.contributors;
-      jamData.jam_games[id].jamPageUrl = entry.url;
       jamData.jam_games[id].rating_count = entry.rating_count;
       jamData.jam_games[id].ratings_given = entry.coolness;
       jamData.jam_games[id].karma = karma.toFixed(2);

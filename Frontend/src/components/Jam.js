@@ -27,7 +27,7 @@ function Jam() {
           <Karma jamData={jamData}/>
         </div>
       ) : (
-        <div>Hi</div>
+        <div>Loading..</div>
       )}
     </div>
   );

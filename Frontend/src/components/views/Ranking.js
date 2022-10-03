@@ -10,20 +10,31 @@ function Ranking ({jamData}){
 			<table>
 				<Header jamData={jamData}/>
 				<tbody>
-					{Object.entries(jamData.jam_games).map(([id, entry]) => (
-						<tr key={id}>
-							<td>#{entry.rank}</td>
-							<td>
-								<a href={entry.url} target="_blank" rel="noopener noreferrer">{entry.title}</a>
-							</td>
-							{entry.criteria.slice(0, jamData.criteria.length + 1).map((criteria, index) => (
-								<td key={index}>{criteria.score.toFixed(2)}</td>
-							))}
-							<td>{entry.ratings_given}</td>
-							<td>{entry.rating_count}</td>
-							<td>{entry.karma}</td>
-						</tr>
-					))}
+					{Object.entries(jamData.rankings.Overall).map(([rank, ids]) => {
+						return(
+							ids.map((id) => {
+								const entry = jamData.jam_games[id];
+								return(
+									<tr key={id}>
+										<td>#{rank}</td>
+										<td>
+											<a href={entry.jamPageUrl} target="_blank" rel="noopener noreferrer">{entry.title}</a>
+										</td>
+										{jamData.criteria.map((criteria, index) => {
+                      const crit = entry.criteria.find(c => c.name == criteria);
+											if (crit)
+												return (<td key={index}>{crit.score.toFixed(2)}</td>);
+                      else 
+                        return (<td key={index}>-</td>);
+										})}
+										<td>{entry.ratings_given}</td>
+										<td>{entry.rating_count}</td>
+										<td>{entry.karma}</td>
+									</tr>
+								);
+							})
+						);
+					})}
 				</tbody>
 			</table>
 			</div>
@@ -41,7 +52,6 @@ function Header({jamData}){
 				{jamData.criteria.map((criteria, index) => (
 					<th key={index}>{criteria}</th>
 				))}
-				<th>Overall</th>
 				<th>Ratings given</th>
 				<th>Ratings received</th>
 				<th>Karma</th>
