@@ -1,47 +1,122 @@
-.view{
-    border-bottom: 5px solid gray;
-    width: 100%;
-    min-height: 100vh;
-    box-sizing: border-box;
-    display:flex;
-    justify-content: space-around;
-    flex-direction: column;
-    align-items: center;
+.view {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
+
+  width: 100%;
+  height: fit-content;
+  border-radius: 5em;
+  margin: 5em 0 5em 0;
+  padding: 3em;
+  background: #ffffff;
+  color: #151048;
+  box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.25);
+  border-radius: 25px;
 }
 
-a{
-    color: white;
-    text-decoration: underline;
+.card-grid {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(6, 1fr);
 }
 
+.card {
+  display: flex;
+  justify-content: center;
 
-table, th, td{
-    border: 1px solid white;
+  text-align: justify;
+  padding: 1em;
+  height: fit-content;
+  overflow-x: hidden;
+  border-radius: 25px;
+  box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.chart {
+  width: 100%;
+}
+
+.card-col-span-2 {
+  grid-column: span 2;
+}
+
+.card-col-span-3 {
+  grid-column: span 3;
+}
+
+.card-col-span-4 {
+  grid-column: span 4;
+}
+
+.card-col-span-5 {
+  grid-column: span 5;
+}
+
+.card-col-span-6 {
+  grid-column: span 6;
+}
+
+.card-row-span-2 {
+  grid-row: span 2;
+}
+
+.card-row-span-3 {
+  grid-row: span 3;
+}
+
+.card-row-span-4 {
+  grid-row: span 4;
+}
+
+.card-row-span-5 {
+  grid-row: span 5;
+}
+
+.card-row-span-6 {
+  grid-row: span 6;
+}
+
+a {
+  color: #151048;
+  text-decoration: underline;
+}
+
+a:hover {
+  color: #fa4966;
+}
+
+.table-wrapper {
+  max-height: 25rem;
+  overflow-y: scroll;
+}
+
+table,
+th,
+td {
+  border: 1px solid gray;
 }
 
 table {
-    border-collapse: separate;
-    border-spacing: 0px;
+  border-collapse: separate;
+  border-spacing: 0px;
 }
 
-th{
-    position: sticky;
-    top: 0px;
-
-    background-color: bisque;
-    color: black;
+th {
+  position: sticky;
+  top: 0px;
+  color: white;
+  background-color: #fa4966;
 }
 
-th, td{
-    padding: 10px;
+th,
+td {
+  padding: 10px;
 }
 
-td{
-    max-width: 15rem;
+td {
+  max-width: 15rem;
 }
-
-.table-wrapper{
-    max-height: 40rem;
-    overflow-y: scroll;
-}
-
