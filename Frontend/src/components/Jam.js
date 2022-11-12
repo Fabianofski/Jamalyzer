@@ -3,6 +3,12 @@ import { useParams } from "react-router-dom";
 import Ranking from "./views/Ranking";
 import Karma from "./views/Karma";
 import "./App.css";
+import Sidebar from "./Sidebar";
+import Team from "./views/Team";
+import Platform from "./views/Platform";
+import Description from "./views/Description";
+import Genre from "./views/Genre";
+import Engine from "./views/Engine";
 
 function Jam() {
   const { id } = useParams();
@@ -20,14 +26,24 @@ function Jam() {
 
   return (
     <div className="App">
-      {dataLoaded ? (
-        <div className="view-container">
-          <Ranking jamData={jamData} />
-          <Karma jamData={jamData} />
-        </div>
-      ) : (
-        <div>Loading..</div>
-      )}
+      {dataLoaded ? <JamAnalysis jamData={jamData} /> : <div>Loading..</div>}
+    </div>
+  );
+}
+
+function JamAnalysis({ jamData }) {
+  return (
+    <div className="jam-container">
+      <Sidebar />
+      <div className="view-container">
+        <Ranking jamData={jamData} />
+        <Karma jamData={jamData} />
+        <Team jamData={jamData} />
+        <Platform jamData={jamData} />
+        <Description jamData={jamData} />
+        <Genre jamData={jamData} />
+        <Engine jamData={jamData} />
+      </div>
     </div>
   );
 }

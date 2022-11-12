@@ -3,7 +3,7 @@ import "./View.css";
 
 function Ranking({ jamData }) {
   return (
-    <div className="view">
+    <div className="view" id="Ranking">
       <h1>Ranking</h1>
       <div className="table-wrapper">
         <table>
@@ -29,7 +29,11 @@ function Ranking({ jamData }) {
                         (c) => c.name == criteria
                       );
                       if (crit)
-                        return <td key={index}>{crit.score.toFixed(2)}</td>;
+                        return (
+                          <td key={index}>
+                            {crit.score.toFixed(2) + ` (#${crit.rank})`}
+                          </td>
+                        );
                       else return <td key={index}>-</td>;
                     })}
                     <td>{entry.ratings_given}</td>
