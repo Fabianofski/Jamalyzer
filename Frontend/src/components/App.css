@@ -68,11 +68,24 @@ body {
   .chapter {
     display: none;
   }
+  .jam-container {
+    padding: 0 3vh 0 3vh;
+  }
+}
+@media (min-width: 1700px) {
+  .sidebar-container {
+    display: flex;
+  }
+  .sidebar {
+    display: flex;
+  }
+  .chapter {
+    display: flex;
+  }
 }
 
 .sidebar-container {
   flex: 1;
-  display: flex;
   justify-content: center;
 }
 
@@ -81,7 +94,6 @@ body {
   top: 50%;
   transform: translateY(-50%);
   overflow-y: hidden;
-  display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
@@ -94,7 +106,6 @@ body {
 
 .chapter {
   text-decoration: none;
-  display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
