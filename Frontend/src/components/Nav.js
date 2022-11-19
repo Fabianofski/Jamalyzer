@@ -4,7 +4,7 @@ import "./App.css";
 function Nav() {
   return (
     <div className="nav">
-      <p>Jamalyzer</p>
+      <a href={"/"} className={"logo"}>Jamalyzer</a>
     </div>
   );
 }

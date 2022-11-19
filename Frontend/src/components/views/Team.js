@@ -1,12 +1,13 @@
 import React from "react";
 import "./View.css";
-import { BarChartCard, Card, ChartCard, PieChartCard } from "../Cards.js";
+import {BarChartCard, Card, PieChartCard} from "../Cards.js";
 
 const teamDescription = "Team Sizes Lorem ipsum dolor sit amet.";
 
 function Team({ jamData }) {
   const pieData = extractData(jamData);
   const barData = getBarChartData(jamData);
+  const teamStats = getTeamStats(jamData);
 
   return (
     <div className="view" id="Team">
@@ -21,17 +22,34 @@ function Team({ jamData }) {
           data={barData}
           styleClass={"card card-col-span-3 card-row-span-2"}
         />
-        <Card
-          text={"Median: 2 Collaborators"}
-          styleClass={"card card-col-span-1"}
-        />
-        <Card
-          styleClass={"card card-col-span-1"}
-          text={"Most: 5 Collaborators"}
-        />
+        {teamStats.map((element, idx) => {
+          return (
+            <Card
+                text={element}
+                styleClass={"card card-col-span-1"}
+                key={idx}
+            />
+          );
+        })}
       </div>
     </div>
   );
+}
+
+function getTeamStats(jamData){
+  let teamSize = 0;
+  let mostID = 0;
+  let biggestTeam = 0;
+  Object.entries(jamData.jam_games).map(([id, entry]) => {
+    teamSize += entry.contributors.length;
+    if(entry.contributors.length > biggestTeam){
+      mostID = entry.id;
+      biggestTeam = entry.contributors.length;
+    }
+  });
+  let median = `Average: ${(teamSize / Object.entries(jamData.jam_games).length).toFixed(2)} Members`;
+  let most = `Biggest Team: ${biggestTeam} Members (#${jamData.jam_games[mostID].rank} ${jamData.jam_games[mostID].title})`;
+  return [median, most];
 }
 
 function extractData(jamData) {
@@ -40,8 +58,8 @@ function extractData(jamData) {
     const teamSize = clamp(entry.contributors.length - 1, 0, 3);
     data[teamSize]++;
   });
-  const pieData = {
-    labels: ["Solo", "Duo", "Trio", "More than 3"],
+  return {
+    labels: ["Solo", "Duo", "Trio", ">3"],
     datasets: [
       {
         data: data,
@@ -55,7 +73,6 @@ function extractData(jamData) {
       },
     ],
   };
-  return pieData;
 }
 
 function getBarChartData(jamData) {
@@ -81,8 +98,8 @@ function getBarChartData(jamData) {
       const entry = jamData.jam_games[id];
       sums[clamp(entry.contributors.length, 1, 4) - 1]++;
     });
-    if (oldP != percentage || entryNumber == totalEntries) {
-      percentage = entryNumber == totalEntries ? 10 : percentage;
+    if (oldP !== percentage || entryNumber === totalEntries) {
+      percentage = entryNumber === totalEntries ? 10 : percentage;
       labels.push(`>${110 - percentage * 10}%`);
       solo.push(sums[0]);
       duo.push(sums[1]);
@@ -93,7 +110,7 @@ function getBarChartData(jamData) {
     oldP = percentage;
   });
 
-  const barData = {
+  return {
     labels,
     datasets: [
       {
@@ -122,7 +139,6 @@ function getBarChartData(jamData) {
       },
     ],
   };
-  return barData;
 }
 
 function clamp(number, min, max) {

@@ -1,33 +1,64 @@
 import React from "react";
 import "./View.css";
-import { Card, BarChartCard } from "../Cards.js";
+import {BarChartCard, Card, PieChartCard} from "../Cards.js";
 
 function Platform({ jamData }) {
   const barData = getBarChartData(jamData);
+  const pieData = getPieChartData(jamData);
 
   return (
     <div className="view" id="Platform">
       <h1>Platform</h1>
       <div className="card-grid">
+        <PieChartCard
+          data={pieData}
+          styleClass={"card card-col-span-2 card-row-span-3"}
+        />
         <Card
           text={"Lorem ipsum dolor sit amet."}
-          styleClass={"card card-col-span-6"}
+          styleClass={"card card-col-span-4"}
+        />
+        <Card
+          text={"Median: 2 Collaborators"}
+          styleClass={"card card-col-span-1"}
         />
         <BarChartCard
           data={barData}
           styleClass={"card card-col-span-3 card-row-span-2"}
         />
         <Card
-          text={"Median: 2 Collaborators"}
-          styleClass={"card card-col-span-2"}
-        />
-        <Card
           text={"Most: 5 Collaborators"}
-          styleClass={"card card-col-span-2"}
+          styleClass={"card card-col-span-1"}
         />
       </div>
     </div>
   );
+}
+
+function getPieChartData(jamData) {
+  let data = [0, 0, 0, 0];
+  Object.entries(jamData.jam_games).map(([id, entry]) => {
+    if (!entry.platforms) return;
+    if (entry.platforms.includes("web")) data[0]++;
+    if (entry.platforms.includes("windows")) data[1]++;
+    if (entry.platforms.includes("osx")) data[2]++;
+    if (entry.platforms.includes("linux")) data[3]++;
+  });
+  return {
+    labels: ["Web", "Windows", "MacOS", "Linux"],
+    datasets: [
+      {
+        data: data,
+        backgroundColor: [
+          "rgb(255, 99, 132)",
+          "rgb(54, 162, 235)",
+          "rgb(255, 205, 86)",
+          "rgb(132, 235, 99)",
+        ],
+        hoverOffset: 10,
+      },
+    ],
+  };
 }
 
 function getBarChartData(jamData) {
@@ -57,8 +88,8 @@ function getBarChartData(jamData) {
       if (entry.platforms.includes("osx")) sums[2]++;
       if (entry.platforms.includes("linux")) sums[3]++;
     });
-    if (oldP != percentage || entryNumber == totalEntries) {
-      percentage = entryNumber == totalEntries ? 10 : percentage;
+    if (oldP !== percentage || entryNumber === totalEntries) {
+      percentage = entryNumber === totalEntries ? 10 : percentage;
       labels.push(`>${110 - percentage * 10}%`);
       web.push(sums[0]);
       windows.push(sums[1]);
@@ -69,7 +100,7 @@ function getBarChartData(jamData) {
     oldP = percentage;
   });
 
-  const barData = {
+  return {
     labels,
     datasets: [
       {
@@ -98,7 +129,6 @@ function getBarChartData(jamData) {
       },
     ],
   };
-  return barData;
 }
 
 export default Platform;

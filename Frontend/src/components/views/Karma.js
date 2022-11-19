@@ -1,6 +1,6 @@
 import React from "react";
 import "./View.css";
-import { Card, LineChartCard } from "../Cards.js";
+import {Card, LineChartCard} from "../Cards.js";
 
 const karmaDescription =
   "Karma is a score every entry gets, based on the number of ratings received and given." +
@@ -24,7 +24,7 @@ function Karma({ jamData }) {
           return (
             <Card
               text={element}
-              styleClass={"card card-col-span-2"}
+              styleClass={"card card-col-span-1"}
               key={idx}
             />
           );
@@ -81,8 +81,8 @@ function getLineChartData(jamData) {
       const entry = jamData.jam_games[id];
       if (entry.karma) sum += entry.karma;
     });
-    if (oldP != percentage || entryNumber == totalEntries) {
-      percentage = entryNumber == totalEntries ? 10 : percentage;
+    if (oldP !== percentage || entryNumber === totalEntries) {
+      percentage = entryNumber === totalEntries ? 10 : percentage;
       labels.push(`>${110 - percentage * 10}%`);
       data.push(sum / Math.floor(totalEntries * 0.1));
       sum = 0;
@@ -90,7 +90,7 @@ function getLineChartData(jamData) {
     oldP = percentage;
   });
 
-  const dummyLineData = {
+  return {
     labels,
     datasets: [
       {
@@ -102,7 +102,6 @@ function getLineChartData(jamData) {
       },
     ],
   };
-  return dummyLineData;
 }
 
 export default Karma;

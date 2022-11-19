@@ -141,13 +141,21 @@ body {
   z-index: 1;
 }
 
+.logo{
+  text-decoration: none;
+  color: white;
+}
+
+.logo:hover{
+  color: white;
+}
+
 .footer {
   position: absolute;
   bottom: 0;
 }
 
 .loader {
-  margin: 0 0 2em;
   height: 100px;
   width: 20%;
   text-align: center;
