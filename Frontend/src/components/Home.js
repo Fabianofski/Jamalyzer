@@ -8,12 +8,11 @@ function Home() {
     input = e.target.value;
   };
   const navigate = useNavigate();
-  const onSubmit = () => 
-    fetch(`http://localhost:3001/api/jamid?jamurl=${input}`)
-    .then(response => response.json())
-    .then(fetchedData => {
-      navigate(`/jam/${fetchedData}`);
-  });
+  const onSubmit = () => {
+    if(!input.startsWith("https://itch.io/jam/")) return;
+    const jamName = input.replace("https://itch.io/jam/", "")
+    navigate(`/jam/${jamName}`);
+  }
 
   return (
     <div className="App">

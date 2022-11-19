@@ -9,20 +9,21 @@ import Platform from "./views/Platform";
 import Description from "./views/Description";
 import Genre from "./views/Genre";
 import Engine from "./views/Engine";
+import Overview from "./views/Overview";
 
 function Jam() {
-  const { id } = useParams();
+  const { jamName } = useParams();
   const [jamData, setJamData] = useState([]);
-  const [dataLoaded, setdataLoaded] = useState(false);
+  const [dataLoaded, setDataLoaded] = useState(false);
 
   useEffect(() => {
-    fetch(`http://localhost:3001/api/jamData?jamid=${id}`)
+    fetch(`http://localhost:3001/api/jamData?jamName=${jamName}`)
       .then((response) => response.json())
       .then((json) => {
         setJamData(json);
-        setdataLoaded(true);
+        setDataLoaded(true);
       });
-  }, [id]);
+  }, [jamName]);
 
   return (
     <div className="App">
@@ -36,6 +37,7 @@ function JamAnalysis({ jamData }) {
     <div className="jam-container">
       <Sidebar />
       <div className="view-container">
+        <Overview jamData={jamData}/>
         <Ranking jamData={jamData} />
         <Karma jamData={jamData} />
         <Team jamData={jamData} />

@@ -1,13 +1,18 @@
 import React from "react";
 import "./View.css";
-import {Card, LineChartCard} from "../Cards.js";
+import {Card} from "./Cards/BasicCard.js";
+import {LineChartCard} from "./Cards/LineChartCard.js";
 
-const karmaDescription =
-  "Karma is a score every entry gets, based on the number of ratings received and given." +
-  "\n" +
-  "Karma is calculated by the following formula: Log(1 + ratings_given) - Log(1 + ratings_received) / Log(5)." +
-  "\n" +
-  "Karma can have an positive impact on your games ranking. Rate more games and leave feedback to rank higher.";
+function karmaDescription(){
+  return(
+    <div>
+      Karma is a score every entry gets, based on the number of ratings received and given.
+      Karma is calculated by the following formula: <br/>
+      Karma = Log(1 + ratings_given) - Log(1 + ratings_received) / Log(5).
+      Rate more games and leave feedback to rank higher.
+    </div>);
+}
+
 
 function Karma({ jamData }) {
   let data = getLineChartData(jamData);
@@ -15,10 +20,10 @@ function Karma({ jamData }) {
     <div className="view" id="Karma">
       <h1>Karma</h1>
       <div className="card-grid">
-        <Card text={karmaDescription} styleClass={"card card-col-span-6"} />
+        <Card text={karmaDescription()} styleClass={"card card-col-span-5"} />
         <LineChartCard
           data={data}
-          styleClass={"card card-col-span-3 card-row-span-3"}
+          styleClass={"card card-col-span-3 card-row-span-2"}
         />
         {karmaStats(jamData).map((element, idx) => {
           return (

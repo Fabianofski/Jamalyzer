@@ -1,6 +1,8 @@
 import React from "react";
 import "./View.css";
-import {BarChartCard, Card, PieChartCard} from "../Cards.js";
+import {Card} from "./Cards/BasicCard.js";
+import {BarChartCard} from "./Cards/BarChartCard";
+import {PieChartCard} from "./Cards/PieChartCard";
 
 const teamDescription = "Team Sizes Lorem ipsum dolor sit amet.";
 

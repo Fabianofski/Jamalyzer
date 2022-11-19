@@ -1,6 +1,6 @@
 import React from "react";
 import "./View.css";
-import { Card, ChartCard } from "../Cards.js";
+import { Card, ChartCard } from "./Cards/BasicCard.js";
 
 function Description({ jamData }) {
   return (
