@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./components/Home";
-import Jam from "./components/Jam";
+import Home from "./Home";
+import Jam from "./Jam";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
 import "./components/App.css";

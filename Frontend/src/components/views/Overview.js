@@ -2,23 +2,35 @@ import React from "react";
 import "./View.css";
 import {Card} from "./Cards/BasicCard.js";
 
+function Hosts(jamData){
+  return(
+    <div>
+      Hosted by:
+      {jamData.jam.hosts.map((element) => {
+        return(
+          <p>
+            <a href={element.profile_link}>{element.username}</a>
+          </p>)
+      })}
+    </div>
+  );
+}
+
 function Overview({jamData}) {
-  let hosts = "";
-  jamData.jam.hosts.forEach((host) => hosts+= " " + host.username);
   return (
     <div className="view" id="Engine">
       <h1><a href={jamData.jam.url}>{jamData.jam.Title}</a></h1>
       <div className="card-grid">
         <Card
-          text={"Hosted by:" + hosts}
-          styleClass={"card card-col-span-2"}
+          text={Hosts(jamData)}
+          styleClass={"card card-col-span-1 card-row-span-2"}
         />
         <Card
-          text={jamData.jam.twitter.hashtag}
+          text={<a href={jamData.jam.twitter.twitter_link}>{jamData.jam.twitter.hashtag}</a>}
           styleClass={"card card-col-span-1"}
         />
         <Card
-          text={"Entries: " + jamData.jam.entries}
+          text={jamData.jam.entries + " Entries"}
           styleClass={"card card-col-span-1 card-row-span-1"}
         />
         <Card
