@@ -17,7 +17,7 @@ function Jam() {
   const [dataLoaded, setDataLoaded] = useState(false);
 
   useEffect(() => {
-    fetch(`http://localhost:3001/api/jamData?jamName=${jamName}`)
+    fetch(`/api/jamData?jamName=${jamName}`)
       .then((response) => response.json())
       .then((json) => {
         setJamData(json);
