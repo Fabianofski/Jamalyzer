@@ -1,8 +1,9 @@
-const functions = require("firebase-functions");
+//const functions = require("firebase-functions");
 const express = require("express");
 const axios = require("axios");
 const cheerio = require("cheerio");
 const fetch = require("node-fetch");
+const {error} = require("firebase-functions/logger");
 
 const app = express();
 const PORT = 3001; // npx kill-port 3001 (to kill process on port after firebase deploy)
@@ -10,12 +11,13 @@ const PORT = 3001; // npx kill-port 3001 (to kill process on port after firebase
 const cors = require("cors")({ origin: true });
 app.use(cors);
 
-app.get("/api/jamId", (req, res) => {
-  const jamURL = req.query.jamUrl;
-  if (jamURL.startsWith("https://itch.io/jam")) {
-    fetchJamID(jamURL).then((id) => res.json(id));
-  } else {
-    res.json("Invalid URL!");
+app.get("/api/jamId", async (req, res, next) => {
+  const jamUrl = req.query.jamUrl;
+  try {
+    const id = await fetchJamID(jamUrl)
+    res.json(id);
+  } catch (e) {
+    res.json({errors: [e],});
   }
 });
 
@@ -28,8 +30,8 @@ const fetchJamID = async (jamURL) => {
       'div[class="jam_page_wrap"] > script[type="text/javascript"]'
     ).text();
     return extractJamID(scriptStr);
-  } catch (error) {
-    throw error;
+  } catch (e) {
+    throw e;
   }
 };
 
@@ -49,9 +51,8 @@ const extractJamID = (scriptStr) => {
 app.get("/api/jamData", async (req, res) => {
   const jamName = req.query.jamName;
   const jamUrl = `https://itch.io/jam/${jamName}`;
-  const jamId = await fetchJamID(jamUrl)
-  console.log(`Jam Name: ${jamName} URL: ${jamUrl} ID: ${jamId}`)
   try {
+    const jamId = await fetchJamID(jamUrl)
     const [resEntries, resResults] = await Promise.all([
       fetch(`https://itch.io/jam/${jamId}/entries.json`),
       fetch(`https://itch.io/jam/${jamId}/results.json`),
@@ -62,8 +63,8 @@ app.get("/api/jamData", async (req, res) => {
     const data = joinEntriesAndResults(entries, results);
     data["jam"] = jamInfo;
     res.send(data);
-  } catch (err) {
-    res.send(err);
+  } catch (e) {
+    res.json({errors: [e.message],});
   }
 });
 
@@ -87,12 +88,13 @@ const fetchJamPage = async (jamURL, jamId) => {
         data["twitter"] = {hashtag: $(el).text(), twitter_link: $(el).attr("href")}
     });
     return data;
-  } catch (error) {
-    throw error;
+  } catch (e) {
+    throw e;
   }
 };
 
 const joinEntriesAndResults = (entries, results) => {
+  if (results.results.length === 0) throw Error("Jam hasn't ended yet!")
   let jamData = { jam: {}, jam_games: {}, criteria: [], rankings: { Overall: {} } };
   results.results[0].criteria.forEach((criteria) => {
     jamData.criteria.push(criteria.name);
@@ -148,7 +150,5 @@ function extractEntryData(entries, jamData) {
   });
 }
 
-//app.listen(PORT, () => {
-//  console.log("Listening ...");
-//});
-exports.app = functions.https.onRequest(app);
+app.listen(PORT, () => console.log("Listening ..."));
+//exports.app = functions.https.onRequest(app);
