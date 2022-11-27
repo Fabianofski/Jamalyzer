@@ -15,24 +15,34 @@ function Jam() {
   const { jamName } = useParams();
   const [jamData, setJamData] = useState([]);
   const [dataLoaded, setDataLoaded] = useState(false);
+  const [errors, setErrors] = useState([]);
 
   useEffect(() => {
     fetch(`/api/jamData?jamName=${jamName}`)
       .then((response) => response.json())
       .then((json) => {
-        setJamData(json);
+        if("errors" in json) setErrors(json.errors);
+        else setJamData(json);
         setDataLoaded(true);
       });
   }, [jamName]);
 
   return (
     <div className="App">
-      {dataLoaded ? <JamAnalysis jamData={jamData} /> : <Loader />}
+      {dataLoaded ? <JamAnalysis jamData={jamData} errors={errors}/> : <Loader />}
     </div>
   );
 }
 
-function JamAnalysis({ jamData }) {
+function JamAnalysis({ jamData, errors }) {
+  console.log(errors)
+  if(errors.length > 0)
+    return (
+      errors.map((e) => {
+        return(<p> {e} </p>);
+      })
+    );
+    
   return (
     <div className="jam-container">
       <Sidebar />

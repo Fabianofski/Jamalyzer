@@ -1,9 +1,9 @@
-//const functions = require("firebase-functions");
+const functions = require("firebase-functions");
 const express = require("express");
 const axios = require("axios");
 const cheerio = require("cheerio");
 const fetch = require("node-fetch");
-const {error} = require("firebase-functions/logger");
+//const {error} = require("firebase-functions/logger");
 
 const app = express();
 const PORT = 3001; // npx kill-port 3001 (to kill process on port after firebase deploy)
