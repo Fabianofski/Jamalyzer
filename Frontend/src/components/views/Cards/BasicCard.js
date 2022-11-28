@@ -8,3 +8,11 @@ export function Card({ text, styleClass }) {
     </div>
   );
 }
+
+export function JsxCard({ jsx, styleClass }) {
+  return (
+    <div className={styleClass}>
+      {jsx}
+    </div>
+  );
+}

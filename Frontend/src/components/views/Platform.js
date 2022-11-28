@@ -39,7 +39,7 @@ function Platform({ jamData }) {
 
 function getPieChartData(jamData) {
   let data = [0, 0, 0, 0];
-  Object.entries(jamData.jam_games).map(([id, entry]) => {
+  Object.entries(jamData.jam_games).forEach(([id, entry]) => {
     if (!entry.platforms) return;
     if (entry.platforms.includes("web")) data[0]++;
     if (entry.platforms.includes("windows")) data[1]++;
@@ -72,16 +72,16 @@ function getBarChartData(jamData) {
   const entries = Object.entries(jamData.rankings.Overall).reverse();
   let totalEntries = 0;
 
-  entries.map(([, ids]) => {
-    ids.map(() => totalEntries++);
+  entries.forEach(([, ids]) => {
+    ids.forEach(() => totalEntries++);
   });
 
   let oldP = 0;
   let sums = [0, 0, 0, 0];
   let entryNumber = 0;
-  entries.map(([, ids]) => {
+  entries.forEach(([, ids]) => {
     let percentage = Math.floor(entryNumber / Math.ceil(totalEntries * 0.1));
-    ids.map((id) => {
+    ids.forEach((id) => {
       entryNumber++;
       const entry = jamData.jam_games[id];
       if (!entry.platforms) return;

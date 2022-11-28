@@ -1,6 +1,6 @@
 import React from "react";
 import "./View.css";
-import {Card} from "./Cards/BasicCard.js";
+import {Card, JsxCard} from "./Cards/BasicCard.js";
 import {LineChartCard} from "./Cards/LineChartCard.js";
 
 function karmaDescription(){
@@ -20,7 +20,7 @@ function Karma({ jamData }) {
     <div className="view" id="Karma">
       <h1>Karma</h1>
       <div className="card-grid">
-        <Card text={karmaDescription()} styleClass={"card card-col-span-5"} />
+        <JsxCard jsx={karmaDescription()} styleClass={"card card-col-span-5"} />
         <LineChartCard
           data={data}
           styleClass={"card card-col-span-3 card-row-span-2"}
@@ -45,7 +45,7 @@ function karmaStats(jamData) {
   let mostKarma = 0;
   let mostID;
   let karmaSum = 0;
-  Object.entries(jamData.jam_games).map(([id, entry]) => {
+  Object.entries(jamData.jam_games).forEach(([id, entry]) => {
     if ("karma" in entry) {
       if (leastKarma > entry.karma) {
         leastID = id;
@@ -72,16 +72,16 @@ function getLineChartData(jamData) {
   const entries = Object.entries(jamData.rankings.Overall).reverse();
   let totalEntries = 0;
 
-  entries.map(([, ids]) => {
-    ids.map(() => totalEntries++);
+  entries.forEach(([, ids]) => {
+    ids.forEach(() => totalEntries++);
   });
 
   let oldP = 0;
   let sum = 0;
   let entryNumber = 0;
-  entries.map(([, ids]) => {
+  entries.forEach(([, ids]) => {
     let percentage = Math.floor(entryNumber / Math.ceil(totalEntries * 0.1));
-    ids.map((id) => {
+    ids.forEach((id) => {
       entryNumber++;
       const entry = jamData.jam_games[id];
       if (entry.karma) sum += entry.karma;
