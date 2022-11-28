@@ -21,8 +21,14 @@ function Jam() {
     fetch(`/api/jamData?jamName=${jamName}`)
       .then((response) => response.json())
       .then((json) => {
-        if("errors" in json) setErrors(json.errors);
-        else setJamData(json);
+        if("errors" in json) {
+          setErrors(json.errors);
+          document.title = `Jamalyzer | Error`;
+        }
+        else {
+          setJamData(json);
+          document.title = `Jamalyzer | ${json.jam.Title}`;
+        }
         setDataLoaded(true);
       });
   }, [jamName]);
@@ -35,7 +41,6 @@ function Jam() {
 }
 
 function JamAnalysis({ jamData, errors }) {
-  console.log(errors)
   if(errors.length > 0)
     return (
       errors.map((e) => {
