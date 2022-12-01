@@ -10,6 +10,43 @@ const PORT = 3001; // npx kill-port 3001 (to kill process on port after firebase
 const cors = require("cors")({ origin: true });
 app.use(cors);
 
+app.get("/api/jams", async (req, res) => {
+  try {
+    const jams = await fetchJamsWithMostEntries();
+    res.json({ "jams":jams })
+  } catch (e) {
+    res.json({errors: [e],});
+  }
+});
+
+const fetchJamsWithMostEntries = async () => {
+  try {
+    const url = "https://itch.io/jams/past/sort-submissions";
+    const response = await axios.get(url);
+    const html = response.data;
+    const $ = cheerio.load(html);
+    const data = []
+    $(".jam_grid_widget").children().each(function (idx, el) {
+      const hosts = [];
+      $(".hosted_by", el).children().each(function (idxHost, elHost) {
+        hosts.push({"name": $(elHost).text(), "profile_link": $(elHost).attr("href")})
+      });
+      data.push({
+        "name" : $(".primary_info a", el).text(),
+        "icon" : $(".jam_cover", el).attr("data-background_image"),
+        "link": "https://itch.io" + $(".primary_info a", el).attr("href"),
+        "hosts": hosts,
+        "time": $(".date_countdown", el).text(),
+        "joined": $(`.stat:contains("joined") .number`, el).text(),
+        "submitted": $(`.stat:contains("submissions") .number`, el).text(),
+      });
+    });
+    return data;
+  } catch (e) {
+    throw e;
+  }
+};
+
 app.get("/api/jamId", async (req, res) => {
   const jamUrl = req.query.jamUrl;
   try {
@@ -147,5 +184,5 @@ function extractEntryData(entries, jamData) {
   });
 }
 
-//app.listen(PORT, () => console.log("Listening ..."));
-exports.app = functions.https.onRequest(app);
+app.listen(PORT, () => console.log("Listening ..."));
+//exports.app = functions.https.onRequest(app);
