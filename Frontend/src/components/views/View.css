@@ -9,8 +9,8 @@
   height: fit-content;
   margin: 5em 0 5em 0;
   padding: 3em;
-  background: #ffffff;
-  color: #151048;
+  background: var(--background-color);
+  color:  var(--secondary-color);
   box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.25);
   border-radius: 25px;
 }
@@ -24,145 +24,11 @@
   grid-auto-rows: 1fr;
 }
 
-.card {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  padding: 1em;
-  overflow-x: hidden;
-  border-radius: 25px;
-  box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.25);
-}
-
-.chart {
-  width: 100%;
-}
-
-.card-col-span-2 {
-  grid-column: span 2;
-}
-
-.card-col-span-3 {
-  grid-column: span 3;
-}
-
-.card-col-span-4 {
-  grid-column: span 4;
-}
-
-.card-col-span-5 {
-  grid-column: span 5;
-}
-
-.card-col-span-6 {
-  grid-column: span 6;
-}
-
-.card-row-span-2 {
-  grid-row: span 2;
-}
-
-.card-row-span-3 {
-  grid-row: span 3;
-}
-
-.card-row-span-4 {
-  grid-row: span 4;
-}
-
-.card-row-span-5 {
-  grid-row: span 5;
-}
-
-.card-row-span-6 {
-  grid-row: span 6;
-}
-
 a {
-  color: #151048;
+  color: var(--secondary-color);
   text-decoration: underline;
 }
 
 a:hover {
-  color: #fa4966;
-}
-
-.table-wrapper {
-  width: 100%;
-  overflow-x: auto;
-}
-
-table,
-th,
-td {
-  border-bottom: 1px solid gray;
-  overflow: hidden;
-}
-
-table {
-  border-collapse: separate;
-  border-spacing: 0;
-  white-space: nowrap;
-  width: 100%;
-}
-
-table tr:nth-child(even) {
-  background-color: #f1f1f1;
-}
-
-th {
-  position: sticky;
-  top: 0;
-  color: white;
-  background-color: #fa4966;
-  text-align: start;
-  max-width: 120px;
-}
-
-th,
-td {
-  padding: 10px;
-}
-
-td {
-  max-width: 120px;
-}
-
-.pagination button {
-  background-color: white;
-  border-radius: 5px;
-  border: 1px solid #151048;
-  color: #151048;
-  transition: all 0.2s ease;
-}
-
-.pagination button:hover {
-  background-color: #fa4966;
-  color: white;
-}
-
-.pagination input {
-  outline: none;
-  box-sizing: border-box;
-  text-align: center;
-  width: 2rem;
-  border-radius: 5px;
-  border: 1px solid white;
-  font-size: small;
-  color: #151048;
-  transition: all 0.2s ease;
-}
-
-.pagination input:hover {
-  border: 1px solid #151048;
-}
-
-.pagination input:focus {
-  border: 1px solid #fa4966;
-}
-
-ul > li {
-  margin: 1em;
-  display: inline-block;
+  color: var(--primary-color);
 }

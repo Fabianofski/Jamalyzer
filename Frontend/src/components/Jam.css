@@ -1,0 +1,50 @@
+.jam-container {
+    display: flex;
+    padding: 0 10vh 0 0vh;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+}
+
+.view-container {
+    width: 100%;
+    height: 100%;
+    flex: 4;
+}
+
+@media (max-width: 1500px) {
+    .sidebar-container {
+        display: none;
+    }
+    .sidebar {
+        display: none;
+    }
+    .chapter {
+        display: none;
+    }
+    .view-container {
+        max-width: none;
+    }
+    .jam-container {
+        padding: 0 3vh 0 3vh;
+    }
+}
+
+.loader {
+    height: 100px;
+    width: 20%;
+    text-align: center;
+    padding: 1em;
+    margin: 0 auto 1em;
+    display: inline-block;
+    vertical-align: top;
+}
+
+svg path,
+svg rect {
+    fill: var(--primary-color);
+}
+
+.loader p {
+    color: var(--primary-color);
+}

@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import Ranking from "./components/views/Ranking";
 import Karma from "./components/views/Karma";
 import "./components/App.css";
+import "./components/Jam.css";
 import Sidebar from "./components/Sidebar";
 import Team from "./components/views/Team";
 import Platform from "./components/views/Platform";

@@ -1,0 +1,54 @@
+.card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 1em;
+    overflow-x: hidden;
+    border-radius: 25px;
+    box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.chart {
+    width: 100%;
+}
+
+.card-col-span-2 {
+    grid-column: span 2;
+}
+
+.card-col-span-3 {
+    grid-column: span 3;
+}
+
+.card-col-span-4 {
+    grid-column: span 4;
+}
+
+.card-col-span-5 {
+    grid-column: span 5;
+}
+
+.card-col-span-6 {
+    grid-column: span 6;
+}
+
+.card-row-span-2 {
+    grid-row: span 2;
+}
+
+.card-row-span-3 {
+    grid-row: span 3;
+}
+
+.card-row-span-4 {
+    grid-row: span 4;
+}
+
+.card-row-span-5 {
+    grid-row: span 5;
+}
+
+.card-row-span-6 {
+    grid-row: span 6;
+}

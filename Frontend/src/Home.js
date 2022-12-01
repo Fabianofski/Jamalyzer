@@ -1,4 +1,5 @@
 import './components/App.css';
+import "./components/Home.css";
 import { useNavigate } from "react-router-dom";
 
 function Home() {

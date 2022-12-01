@@ -1,6 +1,7 @@
 import {Bar} from "react-chartjs-2";
 import React from "react";
 import "../View.css";
+import "./Card.css";
 
 import {
   Chart as ChartJS,

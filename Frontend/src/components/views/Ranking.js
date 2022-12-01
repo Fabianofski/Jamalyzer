@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Pagination from "./Pagination";
 import "./View.css";
+import "./PaginationTable.css";
 
 function Ranking({ jamData }) {
   const [currentPage, setCurrentPage] = useState(1);
