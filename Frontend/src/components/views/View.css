@@ -102,7 +102,7 @@ td {
 
 table {
   border-collapse: separate;
-  border-spacing: 0px;
+  border-spacing: 0;
   white-space: nowrap;
   width: 100%;
 }
@@ -113,10 +113,11 @@ table tr:nth-child(even) {
 
 th {
   position: sticky;
-  top: 0px;
+  top: 0;
   color: white;
   background-color: #fa4966;
   text-align: start;
+  max-width: 120px;
 }
 
 th,

@@ -20,28 +20,6 @@ ChartJS.register(
 const labels = [];
 for (let i = 0; i < 10; i++) labels.push(i);
 
-const barOptions = {
-  plugins: {
-    title: {
-      display: true,
-      text: "Team Distribution",
-    },
-  },
-  responsive: true,
-  interaction: {
-    mode: "index",
-    intersect: false,
-  },
-  scales: {
-    x: {
-      stacked: true,
-    },
-    y: {
-      stacked: false,
-    },
-  },
-};
-
 const dummyBarData = {
   labels,
   datasets: [
@@ -66,7 +44,31 @@ const dummyBarData = {
   ],
 };
 
-export function BarChartCard({ styleClass, data = dummyBarData }) {
+export function BarChartCard({ styleClass, data = dummyBarData, title="Dummy Title" }) {
+  
+  const barOptions = {
+    plugins: {
+      title: {
+        display: true,
+        text: title,
+      },
+    },
+    
+    responsive: true,
+    interaction: {
+      mode: "index",
+      intersect: false,
+    },
+    scales: {
+      x: {
+        stacked: true,
+      },
+      y: {
+        stacked: false,
+      },
+    },
+  };
+  
   return (
     <div className={styleClass}>
       <div className="chart">

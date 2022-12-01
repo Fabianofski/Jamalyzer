@@ -2,7 +2,7 @@ import './components/App.css';
 import { useNavigate } from "react-router-dom";
 
 function Home() {
-
+  document.title = `Jamalyzer | Home`;
   var input = "";
   const onInputChange = (e) => {
     input = e.target.value;

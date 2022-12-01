@@ -57,7 +57,7 @@ body {
   height: 100%;
 }
 
-@media (max-width: 1700px) {
+@media (max-width: 1500px) {
   .sidebar-container {
     display: none;
   }
@@ -67,11 +67,14 @@ body {
   .chapter {
     display: none;
   }
+  .view-container {
+    max-width: none;
+  }
   .jam-container {
     padding: 0 3vh 0 3vh;
   }
 }
-@media (min-width: 1700px) {
+@media (min-width: 1500px) {
   .sidebar-container {
     display: flex;
   }

@@ -24,6 +24,7 @@ function Karma({ jamData }) {
         <LineChartCard
           data={data}
           styleClass={"card card-col-span-3 card-row-span-2"}
+          title={"Karma Distribution"}
         />
         {karmaStats(jamData).map((element, idx) => {
           return (

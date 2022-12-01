@@ -19,10 +19,12 @@ function Team({ jamData }) {
         <PieChartCard
           data={pieData}
           styleClass={"card card-col-span-2 card-row-span-3"}
+          title={"Team Size Distribution"}
         />
         <BarChartCard
           data={barData}
           styleClass={"card card-col-span-3 card-row-span-2"}
+          title={"Team Size Distribution"}
         />
         {teamStats.map((element, idx) => {
           return (

@@ -17,20 +17,6 @@ ChartJS.register(
   ArcElement,
 );
 
-export const pieOptions = {
-  responsive: true,
-  plugins: {
-    legend: {
-      display: true,
-      position: "bottom",
-    },
-    title: {
-      display: true,
-      text: "Team Size",
-    },
-  },
-};
-
 export const dummyPieData = {
   labels: ["Solo", "Duo", "More than 3"],
   datasets: [
@@ -46,7 +32,22 @@ export const dummyPieData = {
   ],
 };
 
-export function PieChartCard({ styleClass, data = dummyPieData }) {
+export function PieChartCard({ styleClass, data = dummyPieData, title="Dummy Title" }) {
+  
+  const pieOptions = {
+    responsive: true,
+    plugins: {
+      legend: {
+        display: true,
+        position: "bottom",
+      },
+      title: {
+        display: true,
+        text: title,
+      },
+    },
+  };
+  
   return (
     <div className={styleClass}>
       <div className="chart">

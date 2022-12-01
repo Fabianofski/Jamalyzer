@@ -22,33 +22,6 @@ ChartJS.register(
   Legend,
 );
 
-export const lineOptions = {
-  responsive: true,
-  plugins: {
-    legend: {
-      display: false,
-    },
-    title: {
-      display: true,
-      text: "Karma Distribution",
-    },
-  },
-  scales: {
-    y: {
-      grid: {
-        borderColor: "black",
-      },
-      position: "left",
-    },
-    x: {
-      grid: {
-        borderColor: "black",
-      },
-      position: "center",
-    },
-  },
-};
-
 const labels = [];
 for (let i = 0; i < 10; i++) labels.push(i);
 
@@ -66,7 +39,35 @@ export const dummyLineData = {
 };
 
 
-export function LineChartCard({ styleClass, data = dummyLineData }) {
+export function LineChartCard({ styleClass, data = dummyLineData, title = "Dummy Title" }) {
+  
+  const lineOptions = {
+    responsive: true,
+    plugins: {
+      legend: {
+        display: false,
+      },
+      title: {
+        display: true,
+        text: title,
+      },
+    },
+    scales: {
+      y: {
+        grid: {
+          borderColor: "black",
+        },
+        position: "left",
+      },
+      x: {
+        grid: {
+          borderColor: "black",
+        },
+        position: "center",
+      },
+    },
+  };
+  
   return (
     <div className={styleClass}>
       <div className="chart">

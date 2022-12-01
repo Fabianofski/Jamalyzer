@@ -15,6 +15,7 @@ function Platform({ jamData }) {
         <PieChartCard
           data={pieData}
           styleClass={"card card-col-span-2 card-row-span-3"}
+          title={"Platform Distribution"}
         />
         <Card
           text={"Lorem ipsum dolor sit amet."}
@@ -27,6 +28,7 @@ function Platform({ jamData }) {
         <BarChartCard
           data={barData}
           styleClass={"card card-col-span-3 card-row-span-2"}
+          title={"Platform Distribution"}
         />
         <Card
           text={"Most: 5 Collaborators"}

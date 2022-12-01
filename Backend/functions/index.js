@@ -3,7 +3,6 @@ const express = require("express");
 const axios = require("axios");
 const cheerio = require("cheerio");
 const fetch = require("node-fetch");
-const {error} = require("firebase-functions/logger");
 
 const app = express();
 const PORT = 3001; // npx kill-port 3001 (to kill process on port after firebase deploy)
@@ -11,7 +10,7 @@ const PORT = 3001; // npx kill-port 3001 (to kill process on port after firebase
 const cors = require("cors")({ origin: true });
 app.use(cors);
 
-app.get("/api/jamId", async (req, res, next) => {
+app.get("/api/jamId", async (req, res) => {
   const jamUrl = req.query.jamUrl;
   try {
     const id = await fetchJamID(jamUrl)
@@ -57,11 +56,10 @@ app.get("/api/jamData", async (req, res) => {
       fetch(`https://itch.io/jam/${jamId}/entries.json`),
       fetch(`https://itch.io/jam/${jamId}/results.json`),
     ]);
-    const jamInfo = await fetchJamPage(jamUrl, jamId)
     const entries = await resEntries.json();
     const results = await resResults.json();
     const data = joinEntriesAndResults(entries, results);
-    data["jam"] = jamInfo;
+    data["jam"] = await fetchJamPage(jamUrl, jamId);
     res.send(data);
   } catch (e) {
     res.json({errors: [e.message],});
@@ -69,32 +67,31 @@ app.get("/api/jamData", async (req, res) => {
 });
 
 const fetchJamPage = async (jamURL, jamId) => {
-  try {
-    const response = await axios.get(jamURL);
-    const html = response.data;
-    const $ = cheerio.load(html);
-    const data = {};
-    data["Title"] = $(".jam_title_header a").text();
-    data["id"] = Number(jamId);
-    data["url"] = jamURL;
-    data["hosts"] = [];
-    $(".stats_container .stat_value").each(function (idx, el) {
-      data[$(el).next().text().toLowerCase()] = $(el).text();
-    });
-    $(".jam_host_header a").each(function (idx, el) {
-      if (idx !== $(".jam_host_header a").length - 1)
-        data["hosts"].push({username: $(el).text(), profile_link: $(el).attr("href")})
-      else
-        data["twitter"] = {hashtag: $(el).text(), twitter_link: $(el).attr("href")}
-    });
-    return data;
-  } catch (e) {
-    throw e;
-  }
+  const response = await axios.get(jamURL);
+  const html = response.data;
+  const $ = cheerio.load(html);
+  const data = {};
+  data["Title"] = $(".jam_title_header a").text();
+  data["id"] = Number(jamId);
+  data["url"] = jamURL;
+  data["hosts"] = [];
+  $(".stats_container .stat_value").each(function (idx, el) {
+    data[$(el).next().text().toLowerCase()] = $(el).text();
+  });
+  $(".jam_host_header a").each(function (idx, el) {
+    if (idx !== $(".jam_host_header a").length - 1)
+      data["hosts"].push({username: $(el).text(), profile_link: $(el).attr("href")})
+    else
+      data["twitter"] = {hashtag: $(el).text(), twitter_link: $(el).attr("href")}
+  });
+  if(data.entries < 10)
+    throw Error("This Jam has less than 10 Entries!")
+  return data;
 };
 
 const joinEntriesAndResults = (entries, results) => {
-  if (results.results.length === 0) throw Error("Jam hasn't ended yet!")
+  if (results["results"] === undefined || results.results.length === 0)
+    throw Error("This Jam hasn't ended or the results haven't been published yet!")
   let jamData = { jam: {}, jam_games: {}, criteria: [], rankings: { Overall: {} } };
   results.results[0].criteria.forEach((criteria) => {
     jamData.criteria.push(criteria.name);

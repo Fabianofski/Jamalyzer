@@ -17,6 +17,7 @@ function Jam() {
   const [dataLoaded, setDataLoaded] = useState(false);
   const [errors, setErrors] = useState([]);
 
+  if (!dataLoaded) document.title = `Jamalyzer | Loading..`;
   useEffect(() => {
     fetch(`/api/jamData?jamName=${jamName}`)
       .then((response) => response.json())
@@ -32,7 +33,7 @@ function Jam() {
         setDataLoaded(true);
       });
   }, [jamName]);
-
+  
   return (
     <div className="App">
       {dataLoaded ? <JamAnalysis jamData={jamData} errors={errors}/> : <Loader />}
