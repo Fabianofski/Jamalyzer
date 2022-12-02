@@ -1,58 +1,58 @@
 .table-wrapper {
-    width: 100%;
-    overflow-x: auto;
+  width: 100%;
+  overflow-x: auto;
 }
 
 table {
-    border-collapse: separate;
-    border-spacing: 0;
-    white-space: nowrap;
-    width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  white-space: nowrap;
+  width: 100%;
 }
 
 table tr:nth-child(even) {
-    background-color: var(--darker-background-color);
+  background-color: var(--darker-background-color);
 }
 
 table,
 th,
 td {
-    border-bottom: 1px solid var(--secondary-color);
-    overflow: hidden;
+  border-bottom: 1px solid var(--secondary-color);
+  overflow: hidden;
 }
 
 th,
 td {
-    padding: 10px;
+  padding: 10px;
 }
 
 th {
-    position: sticky;
-    top: 0;
-    color: white;
-    background-color: var(--primary-color);
-    text-align: start;
-    max-width: 120px;
+  position: sticky;
+  top: 0;
+  color: white;
+  background-color: var(--primary-color);
+  text-align: start;
+  max-width: 120px;
 }
 
 td {
-    max-width: 120px;
+  max-width: 120px;
 }
 
 .pagination button {
-    background-color: var(--background-color);
-    border-radius: 5px;
-    border: 1px solid var(--secondary-color);
-    color: var(--secondary-color);
-    transition: all 0.2s ease;
+  background-color: var(--background-color);
+  border-radius: 5px;
+  border: 1px solid var(--secondary-color);
+  color: var(--secondary-color);
+  transition: all 0.2s ease;
 }
 
 .pagination button:hover {
-    background-color: var(--primary-color);
-    color: white;
+  background-color: var(--primary-color);
+  color: white;
 }
 
 ul > li {
-    margin: 1em;
-    display: inline-block;
+  margin: 1em;
+  display: inline-block;
 }

@@ -36,7 +36,7 @@ function Jam() {
   }, [jamName]);
   
   return (
-    <div className="App">
+    <div className="Jam">
       {dataLoaded ? <JamAnalysis jamData={jamData} errors={errors}/> : <Loader />}
     </div>
   );

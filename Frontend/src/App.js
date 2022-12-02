@@ -9,12 +9,15 @@ import "./components/App.css";
 function App() {
   return (
     <Router>
-      <Nav />
-      <div className="router">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/jam/:jamName" element={<Jam />} />
-        </Routes>
+      <div className="App">
+        <Nav />
+        <div className="Router">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/jam/:jamName" element={<Jam />} />
+          </Routes>
+        </div>
+        <Footer />
       </div>
     </Router>
   );

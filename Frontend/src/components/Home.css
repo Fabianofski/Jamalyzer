@@ -1,23 +1,31 @@
+.Home{
+  flex: 1;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+}
+
 .form {
-    width: 50%;
-    height: 2em;
+  width: 50%;
+  height: 2em;
 }
 
 .form input {
-    width: 78%;
-    height: 100%;
-    color:  var(--secondary-color);
-    border: 3px solid var(--secondary-color);
-    border-radius: 10px;
-    outline: none;
-    transition: all 0.5s ease;
+  width: 78%;
+  height: 100%;
+  color:  var(--secondary-color);
+  border: 3px solid var(--secondary-color);
+  border-radius: 10px;
+  outline: none;
+  transition: all 0.5s ease;
 }
 
 .form input:focus {
-    border: 3px solid var(--primary-color);
+  border: 3px solid var(--primary-color);
 }
 
 .form button {
-    width: 20%;
-    height: 100%;
+  width: 20%;
+  height: 100%;
 }

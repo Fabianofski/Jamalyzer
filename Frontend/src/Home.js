@@ -16,7 +16,7 @@ function Home() {
   }
 
   return (
-    <div className="App">
+    <div className="Home">
       <h1>Jamalyzer</h1>
       <div className="form">
         <input type="text" placeholder="Enter Jam URL" name="JamURL" autoComplete="off" required onChange={onInputChange}/>
