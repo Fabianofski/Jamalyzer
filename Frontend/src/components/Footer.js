@@ -4,7 +4,7 @@ import "./App.css";
 function Footer() {
   return (
     <div className="footer">
-      <p>Footer</p>
+      <a href={"https://www.github.com/Fabianofski"} target="_blank" rel="noopener noreferrer">Made by Fabianofski</a>
     </div>
   );
 }

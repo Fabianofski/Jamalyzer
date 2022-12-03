@@ -184,5 +184,5 @@ function extractEntryData(entries, jamData) {
   });
 }
 
-app.listen(PORT, () => console.log("Listening ..."));
-//exports.app = functions.https.onRequest(app);
+//app.listen(PORT, () => console.log("Listening ..."));
+exports.app = functions.https.onRequest(app);

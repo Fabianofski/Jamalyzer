@@ -1,27 +1,118 @@
 import './components/App.css';
 import "./components/Home.css";
 import { useNavigate } from "react-router-dom";
+import {useEffect, useState} from "react";
+
+  const dummyJam = {
+    "name":"Loading..",
+    "icon":"jam-loading.png",
+    "link":"f4b1.itch.io",
+    "hosts":[{"name":"F4B1","profile_link":"f4b1.itch.io"}],
+    "time":"2022-07-24T19:00:00Z",
+    "joined":"69k",
+    "submitted":"69,420"}
+  const dummyJamArray = [];
+  for (let i = 1; i <= 50; i++) {
+    dummyJamArray.push(dummyJam);
+  }
 
 function Home() {
   document.title = `Jamalyzer | Home`;
-  var input = "";
+  let input = "";
+  const [error, setError] = useState("");
+  const [jams, setJams] = useState(dummyJamArray);
+  
+  useEffect(()=>{
+    fetch("/api/jams")
+      .then((response) => response.json())
+      .then((json) =>
+        setJams(json.jams.sort((a, b) => 0.5 - Math.random()))
+      )
+  }, []);
+  
   const onInputChange = (e) => {
     input = e.target.value;
   };
   const navigate = useNavigate();
   const onSubmit = () => {
-    if(!input.startsWith("https://itch.io/jam/")) return;
+    if(!input.startsWith("https://itch.io/jam/")) {
+      setError("Invalid URL");
+      return;
+    }
     const jamName = input.replace("https://itch.io/jam/", "")
     navigate(`/jam/${jamName}`);
   }
 
   return (
     <div className="Home">
-      <h1>Jamalyzer</h1>
       <div className="form">
-        <input type="text" placeholder="Enter Jam URL" name="JamURL" autoComplete="off" required onChange={onInputChange}/>
-        <button onClick={onSubmit}>Submit</button>
+        <h1>Analyze your Jam!</h1>
+        <input type="text" placeholder="https://itch.io/jam/..." name="JamURL" autoComplete="off" required onChange={onInputChange}/>
+        <div className="error">
+          <p> {error} </p>
+        </div>
+        <button onClick={onSubmit} className="submit">
+          <div>
+            <p>ANALYZE</p>
+          </div>
+        </button>
       </div>
+      <div className="recommended-container">
+        <h1>Recommended:</h1>
+        <div className="recommended-mask">
+          <div className="recommended">
+            {
+              jams.map((element, idx)=>{
+                return ( <Jam jamInfo={element} key={idx}/> );
+              })
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Jam({jamInfo}) {
+  const navigate = useNavigate();
+  const onSubmit = () => {
+    navigate(`/jam/${jamInfo.link.replace("https://itch.io/jam/", "")}`);
+  }
+  
+  return(
+    <div className="recommended-jam">
+      <div className="primary-info">
+        <a href={jamInfo.link} target="_blank" rel="noopener noreferrer" className="jam-icon">
+          <img className="jam_cover"
+           src={jamInfo.icon} alt={`Icon: ${jamInfo.name}`} />
+        </a>
+        <a href={jamInfo.link} target="_blank" rel="noopener noreferrer" className="title">
+          <h3>{jamInfo.name}</h3>
+        </a>
+      </div>
+      <div className="host">
+        Hosted by&nbsp;
+        {
+          jamInfo.hosts.map((element, idx) => {
+            return(
+              <a href={element.profile_link} target="_blank" rel="noopener noreferrer" key={idx}>{element.name}</a>
+            );
+          }).reduce((prev, curr) => [prev, ', ', curr])
+        }
+      </div>
+      <div className="stats">
+        <div className="joined">
+          <p> {jamInfo.joined} joined</p>
+        </div>
+        <div className="submissions">
+          <p> {jamInfo.submitted} Submissions</p>
+        </div>
+      </div>
+      <button onClick={onSubmit} className="submit">
+        <div>
+          <p>ANALYZE</p>
+        </div>
+      </button>
     </div>
   );
 }

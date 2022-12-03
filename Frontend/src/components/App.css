@@ -61,3 +61,8 @@ html {
   justify-content: center;
   color: white;
 }
+
+.footer a, .footer a:hover{
+  text-decoration: none;
+  color: white;
+}
