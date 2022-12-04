@@ -1,6 +1,6 @@
 import React from "react";
 import "./View.css";
-import {Card, JsxCard} from "./Cards/BasicCard.js";
+import {JsxCard} from "./Cards/BasicCard.js";
 import {LineChartCard} from "./Cards/LineChartCard.js";
 
 function karmaDescription(){
@@ -20,7 +20,7 @@ function Karma({ jamData }) {
     <div className="view" id="Karma">
       <h1>Karma</h1>
       <div className="card-grid">
-        <JsxCard jsx={karmaDescription()} styleClass={"card card-col-span-5"} />
+        <JsxCard jsx={karmaDescription()} styleClass={"card card-col-span-6"} />
         <LineChartCard
           data={data}
           styleClass={"card card-col-span-3 card-row-span-2"}
@@ -28,8 +28,8 @@ function Karma({ jamData }) {
         />
         {karmaStats(jamData).map((element, idx) => {
           return (
-            <Card
-              text={element}
+            <JsxCard
+              jsx={element}
               styleClass={"card card-col-span-1"}
               key={idx}
             />
@@ -59,12 +59,27 @@ function karmaStats(jamData) {
       karmaSum += entry.karma;
     }
   });
-  let least = `Least Karma: ${leastKarma} (#${jamData.jam_games[leastID].rank} ${jamData.jam_games[leastID].title})`;
-  let average = `Average Karma: ${(
-    karmaSum / Object.entries(jamData.jam_games).length
-  ).toFixed(2)}`;
-  let most = `Most Karma: ${mostKarma} (#${jamData.jam_games[mostID].rank} ${jamData.jam_games[mostID].title})`;
+  
+  const least = <KarmaStat jamData={jamData} category={"Least Karma"} amount={leastKarma} id={leastID}/>;
+  const average = <KarmaStat jamData={jamData} category={"Average Karma"} amount={karmaSum / Object.entries(jamData.jam_games).length}/>
+  const most = <KarmaStat jamData={jamData} category={"Most Karma"} amount={mostKarma} id={mostID}/>
+  
   return [least, average, most];
+}
+
+function KarmaStat({jamData, category, amount, id = -1}){
+  const game = jamData.jam_games[id];
+  return(
+    <div >
+      <p>{category}: {amount.toFixed(2)}</p>
+      {id !== -1 ?
+        <p>
+          <a href={game.jamPageUrl} target="_blank" rel="noopener noreferrer">#{game.rank} {game.title}</a>
+          &nbsp;({game.ratings_given} /{game.rating_count})
+        </p>
+        : ""}
+    </div>
+  );
 }
 
 function getLineChartData(jamData) {

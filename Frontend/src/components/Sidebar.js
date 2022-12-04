@@ -6,6 +6,7 @@ function Sidebar() {
   return (
     <div className="sidebar-container">
       <div className="sidebar">
+        <Chapter id={"Overview"} />
         <Chapter id={"Ranking"} />
         <Chapter id={"Karma"} />
         <Chapter id={"Team"} />

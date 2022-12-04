@@ -5,28 +5,25 @@ import {Card, JsxCard} from "./Cards/BasicCard.js";
 function Hosts(jamData){
   return(
     <div>
-      Hosted by:
-      {jamData.jam.hosts.map((element, index) => {
-        return(
-          <p key={index}>
-            <a href={element.profile_link}>{element.username}</a>
-          </p>)
-      })}
+      Hosted by:&nbsp;
+      {jamData.jam.hosts.map((element, index) =>
+        (<a href={element.profile_link} key={index}>{element.username}</a>)
+      ).reduce((prev, curr) => [prev, ', ', curr])}
     </div>
   );
 }
 
 function Overview({jamData}) {
   return (
-    <div className="view" id="Engine">
-      <h1><a href={jamData.jam.url}>{jamData.jam.Title}</a></h1>
+    <div className="view" id="Overview">
+      <h1><a href={jamData.jam.url} target="_blank" rel="noopener noreferrer">{jamData.jam.Title}</a></h1>
       <div className="card-grid">
         <JsxCard
           jsx={Hosts(jamData)}
-          styleClass={"card card-col-span-1 card-row-span-2"}
+          styleClass={"card card-col-span-2"}
         />
         <Card
-          text={<a href={jamData.jam.twitter.twitter_link}>{jamData.jam.twitter.hashtag}</a>}
+          text={<a href={jamData.jam.twitter.twitter_link} target="_blank" rel="noopener noreferrer">{jamData.jam.twitter.hashtag}</a>}
           styleClass={"card card-col-span-1"}
         />
         <Card

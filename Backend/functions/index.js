@@ -9,6 +9,35 @@ const PORT = 3001; // npx kill-port 3001 (to kill process on port after firebase
 
 const cors = require("cors")({ origin: true });
 app.use(cors);
+const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
+app.get("/api/test", async (req, res) => {
+  try {
+    const data = await fetchJson(100);
+    res.json({"data": data})
+  } catch (e) {
+    res.json({errors: [e],});
+  }
+});
+
+const fetchJson = async (requests) => {
+  const url = "https://f4b1.itch.io/golf-yes";
+  const fetches = [];
+  for (let i = 0; i < requests; i++) {
+    fetches.push(axios.get(url));
+    await delay(80);
+  }
+  const data = []
+  await Promise.all(fetches)
+    .then(async (values) => {
+      for (const value of values) {
+        const html = value.data;
+        const $ = cheerio.load(html);
+        data.push({description: $(".formatted_description").text()})
+      }
+    })
+    .catch((err)=>console.log(err));
+  return data;
+}
 
 app.get("/api/jams", async (req, res) => {
   try {
@@ -115,8 +144,9 @@ const fetchJamPage = async (jamURL, jamId) => {
   $(".stats_container .stat_value").each(function (idx, el) {
     data[$(el).next().text().toLowerCase()] = $(el).text();
   });
+  data["twitter"] = {hashtag: "#undefined", twitter_link: "https://www.twitter.com"}
   $(".jam_host_header a").each(function (idx, el) {
-    if (idx !== $(".jam_host_header a").length - 1)
+    if (!$(el).text().startsWith("#"))
       data["hosts"].push({username: $(el).text(), profile_link: $(el).attr("href")})
     else
       data["twitter"] = {hashtag: $(el).text(), twitter_link: $(el).attr("href")}
@@ -184,5 +214,5 @@ function extractEntryData(entries, jamData) {
   });
 }
 
-//app.listen(PORT, () => console.log("Listening ..."));
-exports.app = functions.https.onRequest(app);
+app.listen(PORT, () => console.log("Listening ..."));
+//exports.app = functions.https.onRequest(app);

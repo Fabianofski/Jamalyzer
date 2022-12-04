@@ -44,21 +44,34 @@ function getTeamStats(jamData){
   let teamSize = 0;
   let mostID = 0;
   let biggestTeam = 0;
-  Object.entries(jamData.jam_games).map(([id, entry]) => {
+  Object.entries(jamData.jam_games).forEach(([id, entry]) => {
     teamSize += entry.contributors.length;
     if(entry.contributors.length > biggestTeam){
       mostID = entry.id;
       biggestTeam = entry.contributors.length;
     }
   });
-  let median = `Average: ${(teamSize / Object.entries(jamData.jam_games).length).toFixed(2)} Members`;
-  let most = `Biggest Team: ${biggestTeam} Members (#${jamData.jam_games[mostID].rank} ${jamData.jam_games[mostID].title})`;
+  const median = <TeamStat jamData={jamData} category={"Median:"}
+                           amount={(teamSize / Object.entries(jamData.jam_games).length).toFixed(2) + " Members"}/>
+  const most = <TeamStat jamData={jamData} category={"Biggest Team"} amount={biggestTeam + " Members"} id={mostID}/>
   return [median, most];
+}
+
+function TeamStat({jamData, category, amount, id = -1}){
+  const game = jamData.jam_games[id];
+  return(
+    <div >
+      <p>{category}: <br /> {amount}</p>
+      {id !== -1 ?
+          <a href={game.jamPageUrl} target="_blank" rel="noopener noreferrer">#{game.rank} {game.title}</a>
+        : ""}
+    </div>
+  );
 }
 
 function extractData(jamData) {
   let data = [0, 0, 0, 0];
-  Object.entries(jamData.jam_games).map(([id, entry]) => {
+  Object.entries(jamData.jam_games).forEach(([id, entry]) => {
     const teamSize = clamp(entry.contributors.length - 1, 0, 3);
     data[teamSize]++;
   });
@@ -88,16 +101,16 @@ function getBarChartData(jamData) {
   const entries = Object.entries(jamData.rankings.Overall).reverse();
   let totalEntries = 0;
 
-  entries.map(([, ids]) => {
+  entries.forEach(([, ids]) => {
     ids.map(() => totalEntries++);
   });
 
   let oldP = 0;
   let sums = [0, 0, 0, 0];
   let entryNumber = 0;
-  entries.map(([, ids]) => {
+  entries.forEach(([, ids]) => {
     let percentage = Math.floor(entryNumber / Math.ceil(totalEntries * 0.1));
-    ids.map((id) => {
+    ids.forEach((id) => {
       entryNumber++;
       const entry = jamData.jam_games[id];
       sums[clamp(entry.contributors.length, 1, 4) - 1]++;

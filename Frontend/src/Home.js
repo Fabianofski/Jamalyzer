@@ -3,18 +3,26 @@ import "./components/Home.css";
 import { useNavigate } from "react-router-dom";
 import {useEffect, useState} from "react";
 
-  const dummyJam = {
-    "name":"Loading..",
-    "icon":"jam-loading.png",
-    "link":"f4b1.itch.io",
-    "hosts":[{"name":"F4B1","profile_link":"f4b1.itch.io"}],
-    "time":"2022-07-24T19:00:00Z",
-    "joined":"69k",
-    "submitted":"69,420"}
-  const dummyJamArray = [];
-  for (let i = 1; i <= 50; i++) {
-    dummyJamArray.push(dummyJam);
+const dummyJam = {
+  "name":"Loading..",
+  "icon":"jam-loading.png",
+  "link":"f4b1.itch.io",
+  "hosts":[{"name":"F4B1","profile_link":"f4b1.itch.io"}],
+  "time":"2022-07-24T19:00:00Z",
+  "joined":"69k",
+  "submitted":"69,420"}
+const dummyJamArray = [];
+for (let i = 1; i <= 50; i++) {
+  dummyJamArray.push(dummyJam);
+}
+
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    let j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
   }
+  return array
+}
 
 function Home() {
   document.title = `Jamalyzer | Home`;
@@ -26,7 +34,7 @@ function Home() {
     fetch("/api/jams")
       .then((response) => response.json())
       .then((json) =>
-        setJams(json.jams.sort((a, b) => 0.5 - Math.random()))
+        setJams(shuffle(json.jams))
       )
   }, []);
   

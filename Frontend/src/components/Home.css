@@ -8,7 +8,8 @@
 }
 
 .form {
-  width: 40%;
+  width: 90vw;
+  max-width: 50rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -131,6 +132,8 @@
 
 .host{
   text-align: center;
+  overflow: hidden;
+  max-height: 5em;
 }
 
 .stats{
