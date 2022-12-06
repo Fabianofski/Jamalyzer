@@ -21,15 +21,6 @@
 }
 
 @media (max-width: 1500px) {
-  .sidebar-container {
-    display: none;
-  }
-  .sidebar {
-    display: none;
-  }
-  .chapter {
-    display: none;
-  }
   .view-container {
     max-width: none;
   }
