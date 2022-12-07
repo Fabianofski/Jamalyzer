@@ -49,7 +49,9 @@ function JamAnalysis({ jamData, errors }) {
         return(<p> {e} </p>);
       })
     );
-    
+  
+  setJamTheme(jamData);
+  
   return (
     <div className="jam-container">
       <Sidebar />
@@ -65,6 +67,19 @@ function JamAnalysis({ jamData, errors }) {
       </div>
     </div>
   );
+}
+
+function setJamTheme(jamData){
+  
+  if (!jamData.jam.secondary_color || !jamData.jam.color) return;
+  
+  if (jamData.jam.color !== "#ffffff") {
+    document.documentElement.style.setProperty('--primary-color', jamData.jam.color);
+    document.documentElement.style.setProperty('--secondary-color', jamData.jam.secondary_color);
+  }
+  else{
+    document.documentElement.style.setProperty('--primary-color', jamData.jam.secondary_color);
+  }
 }
 
 function Loader() {

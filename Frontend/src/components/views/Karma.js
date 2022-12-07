@@ -118,7 +118,7 @@ function getLineChartData(jamData) {
         label: "Karma",
         data: data,
         lineTension: 0.4,
-        borderColor: "rgb(255, 99, 132)",
+        borderColor: document.documentElement.style.getPropertyValue('--primary-color'),
         backgroundColor: "white",
       },
     ],

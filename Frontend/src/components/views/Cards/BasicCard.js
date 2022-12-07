@@ -4,7 +4,7 @@ import "./Card.css";
 
 export function Card({ text, styleClass }) {
   return (
-    <div className={styleClass}>
+    <div className={styleClass} >
       <p>{text}</p>
     </div>
   );

@@ -26,6 +26,8 @@ function shuffle(array) {
 
 function Home() {
   document.title = `Jamalyzer | Home`;
+  document.documentElement.style.setProperty('--primary-color', "#f55a5b");
+  document.documentElement.style.setProperty('--secondary-color', "#151048");
   let input = "";
   const [error, setError] = useState("");
   const [jams, setJams] = useState(dummyJamArray);

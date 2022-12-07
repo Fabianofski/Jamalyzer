@@ -81,7 +81,7 @@ function extractData(jamData) {
       {
         data: data,
         backgroundColor: [
-          "rgb(255, 99, 132)",
+          document.documentElement.style.getPropertyValue('--primary-color'),
           "rgb(54, 162, 235)",
           "rgb(255, 205, 86)",
           "rgb(132, 235, 99)",
@@ -133,7 +133,7 @@ function getBarChartData(jamData) {
       {
         label: "Solo",
         data: solo,
-        backgroundColor: "rgb(255, 99, 132)",
+        backgroundColor: document.documentElement.style.getPropertyValue('--primary-color'),
         stack: "Stack 0",
       },
       {

@@ -138,6 +138,15 @@ const fetchJamPage = async (jamURL, jamId) => {
   const $ = cheerio.load(html);
   const data = {};
   data["Title"] = $(".jam_title_header a").text();
+  data["banner"] = $(".jam_banner").attr("src");
+  const jam_theme = $("style[id=\"jam_theme\"]").text();
+  let startIndex = jam_theme.indexOf('color: ') + 7;
+  data["color"] = jam_theme.substring(startIndex, startIndex + 7);
+  startIndex = jam_theme.indexOf('.view_jam_page .stats_container a:hover {\n' +
+                                 '  color: ') + 51;
+  data["secondary_color"] = jam_theme.substring(startIndex, startIndex + 7);
+  startIndex = jam_theme.indexOf('background-color: ') + 18;
+  data["bg_color"] = jam_theme.substring(startIndex, startIndex + 7);
   data["id"] = Number(jamId);
   data["url"] = jamURL;
   data["hosts"] = [];
