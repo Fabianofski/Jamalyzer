@@ -11,6 +11,7 @@ import Description from "./components/views/Description";
 import Genre from "./components/views/Genre";
 import Engine from "./components/views/Engine";
 import Overview from "./components/views/Overview";
+import {SetJamTheme} from "./ColorManager";
 
 function Jam() {
   const { jamName } = useParams();
@@ -50,7 +51,8 @@ function JamAnalysis({ jamData, errors }) {
       })
     );
   
-  setJamTheme(jamData);
+  if (!jamData.jam.secondary_color || !jamData.jam.color) return;
+  SetJamTheme(jamData.jam.color, jamData.jam.secondary_color);
   
   return (
     <div className="jam-container">
@@ -67,19 +69,6 @@ function JamAnalysis({ jamData, errors }) {
       </div>
     </div>
   );
-}
-
-function setJamTheme(jamData){
-  
-  if (!jamData.jam.secondary_color || !jamData.jam.color) return;
-  
-  if (jamData.jam.color !== "#ffffff") {
-    document.documentElement.style.setProperty('--primary-color', jamData.jam.color);
-    document.documentElement.style.setProperty('--secondary-color', jamData.jam.secondary_color);
-  }
-  else{
-    document.documentElement.style.setProperty('--primary-color', jamData.jam.secondary_color);
-  }
 }
 
 function Loader() {

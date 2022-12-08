@@ -2,6 +2,7 @@ import './components/App.css';
 import "./components/Home.css";
 import { useNavigate } from "react-router-dom";
 import {useEffect, useState} from "react";
+import {ResetToDefaultColors} from "./ColorManager";
 
 const dummyJam = {
   "name":"Loading..",
@@ -26,8 +27,7 @@ function shuffle(array) {
 
 function Home() {
   document.title = `Jamalyzer | Home`;
-  document.documentElement.style.setProperty('--primary-color', "#f55a5b");
-  document.documentElement.style.setProperty('--secondary-color', "#151048");
+  ResetToDefaultColors();
   let input = "";
   const [error, setError] = useState("");
   const [jams, setJams] = useState(dummyJamArray);

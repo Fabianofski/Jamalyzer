@@ -2,6 +2,7 @@ import React from "react";
 import "./View.css";
 import {JsxCard} from "./Cards/BasicCard.js";
 import {LineChartCard} from "./Cards/LineChartCard.js";
+import {GetJamPrimary} from "../../ColorManager";
 
 function karmaDescription(){
   return(
@@ -118,7 +119,7 @@ function getLineChartData(jamData) {
         label: "Karma",
         data: data,
         lineTension: 0.4,
-        borderColor: document.documentElement.style.getPropertyValue('--primary-color'),
+        borderColor: GetJamPrimary(),
         backgroundColor: "white",
       },
     ],

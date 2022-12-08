@@ -3,6 +3,7 @@ import "./View.css";
 import {Card} from "./Cards/BasicCard.js";
 import {BarChartCard} from "./Cards/BarChartCard";
 import {PieChartCard} from "./Cards/PieChartCard";
+import {GetJamPrimaryVariations} from "../../ColorManager";
 
 function Platform({ jamData }) {
   const barData = getBarChartData(jamData);
@@ -48,16 +49,17 @@ function getPieChartData(jamData) {
     if (entry.platforms.includes("osx")) data[2]++;
     if (entry.platforms.includes("linux")) data[3]++;
   });
+  const colors = GetJamPrimaryVariations(4);
   return {
     labels: ["Web", "Windows", "MacOS", "Linux"],
     datasets: [
       {
         data: data,
         backgroundColor: [
-          document.documentElement.style.getPropertyValue('--primary-color'),
-          "rgb(54, 162, 235)",
-          "rgb(255, 205, 86)",
-          "rgb(132, 235, 99)",
+          colors[0],
+          colors[1],
+          colors[2],
+          colors[3],
         ],
         hoverOffset: 10,
       },
@@ -103,32 +105,32 @@ function getBarChartData(jamData) {
     }
     oldP = percentage;
   });
-
+  const colors = GetJamPrimaryVariations(4);
   return {
     labels,
     datasets: [
       {
         label: "Web",
         data: web,
-        backgroundColor: document.documentElement.style.getPropertyValue('--primary-color'),
+        backgroundColor: colors[0],
         stack: "Stack 0",
       },
       {
         label: "Windows",
         data: windows,
-        backgroundColor: "rgb(54, 162, 235)",
+        backgroundColor: colors[1],
         stack: "Stack 1",
       },
       {
         label: "MacOS",
         data: mac,
-        backgroundColor: "rgb(255, 205, 86)",
+        backgroundColor: colors[2],
         stack: "Stack 2",
       },
       {
         label: "Linux",
         data: linux,
-        backgroundColor: "rgb(132, 235, 99)",
+        backgroundColor: colors[3],
         stack: "Stack 3",
       },
     ],
