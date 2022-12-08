@@ -14,7 +14,7 @@ let jamPrimaryColor = "#f55a5b";
 let jamSecondaryColor = "#151048";
 
 export function SetJamTheme(primary, secondary){
-  if (primary === "#ffffff") primary = changeHue(secondary, 10);
+  if (primary === "#ffffff") primary = secondary;
   if (secondary === "#ffffff") secondary = changeHue(primary, 10);
   let primaryHsl = rgbToHSL(primary);
   let secondaryHsl = rgbToHSL(secondary);
