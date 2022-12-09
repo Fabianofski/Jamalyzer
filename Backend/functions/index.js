@@ -57,6 +57,7 @@ const fetchJamsWithMostEntries = async () => {
     const data = []
     $(".jam_grid_widget").children().each(function (idx, el) {
       const hosts = [];
+      if($(".jam_ranked", el).length === 0) return;
       $(".hosted_by", el).children().each(function (idxHost, elHost) {
         hosts.push({"name": $(elHost).text(), "profile_link": $(elHost).attr("href")})
       });
