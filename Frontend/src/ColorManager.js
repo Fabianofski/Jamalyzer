@@ -18,7 +18,7 @@ export function SetJamTheme(primary, secondary){
   if (secondary === "#ffffff") secondary = changeHue(primary, 10);
   let primaryHsl = rgbToHSL(primary);
   let secondaryHsl = rgbToHSL(secondary);
-  primaryHsl.s = Math.max(.8, primaryHsl.s);
+  primaryHsl.s = Math.max(.6, primaryHsl.s);
   secondaryHsl.s = Math.max(.8, secondaryHsl.s);
   primaryHsl.l = Math.min(.4, primaryHsl.l);
   secondaryHsl.l = Math.min(.2, secondaryHsl.l);
@@ -34,7 +34,9 @@ export function GetJamPrimary(){
 }
 
 export function GetJamPrimaryVariations(amount){
-  return GetColorVariations(jamPrimaryColor, amount, 60);
+  let hslColor = rgbToHSL(jamPrimaryColor);
+  hslColor.l = Math.max(.4, hslColor.l);
+  return GetColorVariations(hslToRGB(hslColor), amount, 60);
 }
 
 export function GetJamSecondary(){
