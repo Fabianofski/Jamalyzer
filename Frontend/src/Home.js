@@ -33,7 +33,7 @@ function Home() {
   const [jams, setJams] = useState(dummyJamArray);
   
   useEffect(()=>{
-    fetch("/api/jams")
+    fetch("/api/jamList")
       .then((response) => response.json())
       .then((json) =>
         setJams(shuffle(json.jams))

@@ -92,17 +92,22 @@ function Header({ jamData }) {
   return (
     <thead>
       <tr>
-        <th>Rank</th>
-        <th>Title</th>
+        <th>RANK</th>
+        <th>TITLE</th>
         {jamData.criteria.map((criteria, index) => (
-          <th key={index}>{criteria}</th>
+          <th key={index}>{Trim(criteria.toUpperCase())}</th>
         ))}
-        <th>Ratings</th>
-        <th>Rated</th>
-        <th>Karma</th>
+        <th>RATINGS</th>
+        <th>RATED</th>
+        <th>KARMA</th>
       </tr>
     </thead>
   );
+}
+
+function Trim(s){
+  if(s.length > 21) s = s.substring(0, 18) + "...";
+  return s;
 }
 
 export default Ranking;
