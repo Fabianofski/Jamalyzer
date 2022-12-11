@@ -7,7 +7,8 @@ const fetchJamPage = async (jamURL, jamId) => {
   const $ = cheerio.load(html);
   const data = {};
   data["Title"] = $(".jam_title_header a").text();
-  data["banner"] = $(".jam_banner").attr("src");
+  const banner = $(".jam_banner").attr("src");
+  data["banner"] = banner ? banner : "";
   const jam_theme = $("style[id=\"jam_theme\"]").text();
   let startIndex = jam_theme.indexOf('color: ') + 7;
   data["color"] = jam_theme.substring(startIndex, startIndex + 7);

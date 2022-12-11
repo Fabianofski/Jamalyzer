@@ -28,7 +28,8 @@ app.get("/api/jamId", async (req, res) => {
 
 app.get("/api/jamData", async (req, res) => {
   try {
-    res.send(await jamData.fetchJamData(req.query.jamName));
+    const jamName = req.query.jamName;
+    res.json(await jamData.fetchJamData(jamName));
   } catch (e) {
     res.json({errors: [e.message],});
   }

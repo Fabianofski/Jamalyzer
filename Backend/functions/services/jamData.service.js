@@ -1,10 +1,25 @@
 const jamID = require("./jamID.service");
 const fetch = require("node-fetch");
 const jamPage = require("./jamPage.service");
+const db = require("./db.service");
 
 async function fetchJamData(jamName){
   const jamUrl = `https://itch.io/jam/${jamName}`;
   const jamId = await jamID.fetchJamID(jamUrl)
+  
+  const dbData = await db.getJamData(jamId);
+  if (dbData !== null){
+    console.log("Found cached data in database");
+    return dbData
+  }
+  console.log("Couldn't fetch data from database scrape itch.io");
+  
+  const data = await fetchItchServers(jamId, jamUrl);
+  await db.postJamData(jamId, data);
+  return data;
+}
+
+async function fetchItchServers(jamId, jamUrl){
   const [resEntries, resResults] = await Promise.all([
     fetch(`https://itch.io/jam/${jamId}/entries.json`),
     fetch(`https://itch.io/jam/${jamId}/results.json`),
@@ -12,6 +27,7 @@ async function fetchJamData(jamName){
   const entries = await resEntries.json();
   const results = await resResults.json();
   const data = joinEntriesAndResults(entries, results);
+  data["_id"] = jamId;
   data["jam"] = await jamPage.fetchJamPage(jamUrl, jamId);
   return data;
 }
@@ -33,28 +49,39 @@ const joinEntriesAndResults = (entries, results) => {
 function extractResultData(results, jamData) {
   results.results.forEach((entry) => {
     const id = entry.id;
-    const criteriaList = entry.criteria;
-    const overall = {};
-    overall.raw_score = entry.raw_score;
-    overall.score = entry.score;
-    overall.rank = entry.rank;
-    overall.name = "Overall";
-    criteriaList.push(overall);
-    jamData.jam_games[id] = {};
-    jamData.jam_games[id].title = entry.title;
-    jamData.jam_games[id].id = id;
-    jamData.jam_games[id].rank = entry.rank;
-    jamData.jam_games[id].criteria = criteriaList;
-    jamData.jam_games[id].contributors = entry.contributors;
-    jamData.jam_games[id].jamPageUrl = entry.url;
-    criteriaList.forEach((criteria) => {
-      if (criteria.name in jamData.rankings) {
-        if (!(criteria.rank in jamData.rankings[criteria.name]))
-          jamData.rankings[criteria.name][criteria.rank] = [];
-        if (!jamData.rankings[criteria.name][criteria.rank].includes(id))
-          jamData.rankings[criteria.name][criteria.rank].push(id);
-      }
-    });
+    const criteriaList = getCriteriaList(jamData, entry);
+    jamData.jam_games[id] = {
+      title : entry.title,
+      id : id,
+      rank : entry.rank,
+      criteria : criteriaList,
+      contributors : entry.contributors,
+      jamPageUrl : entry.url,
+    }
+    addGameToRanking(jamData, criteriaList, id);
+  });
+}
+
+function getCriteriaList(jamData, entry){
+  const criteriaList = entry.criteria;
+  const overall = {
+    raw_score : entry.raw_score,
+    score : entry.score,
+    rank : entry.rank,
+    name : "Overall",
+  };
+  criteriaList.push(overall);
+  return criteriaList;
+}
+
+function addGameToRanking(jamData, criteriaList, id){
+  criteriaList.forEach((criteria) => {
+    if (criteria.name in jamData.rankings) {
+      if (!(criteria.rank in jamData.rankings[criteria.name]))
+        jamData.rankings[criteria.name][criteria.rank] = [];
+      if (!jamData.rankings[criteria.name][criteria.rank].includes(id))
+        jamData.rankings[criteria.name][criteria.rank].push(id);
+    }
   });
 }
 
@@ -65,7 +92,7 @@ function extractEntryData(entries, jamData) {
       Math.log(1 + entry.coolness) -
       Math.log(1 + entry.rating_count) / Math.log(5);
     if (id in jamData.jam_games) {
-      jamData.jam_games[id].platforms = entry.game.platforms;
+      jamData.jam_games[id].platforms = entry.game.platforms ? entry.game.platforms : [];
       jamData.jam_games[id].url = entry.game.url;
       jamData.jam_games[id].rating_count = entry.rating_count;
       jamData.jam_games[id].ratings_given = entry.coolness;
