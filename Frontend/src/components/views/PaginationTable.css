@@ -53,6 +53,6 @@ td {
 }
 
 ul > li {
-  margin: 1em;
+  margin: .5em;
   display: inline-block;
 }

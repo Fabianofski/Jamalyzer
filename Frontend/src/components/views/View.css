@@ -6,8 +6,9 @@
   align-items: center;
 
   width: 100%;
+  max-width: 86vw;
   height: fit-content;
-  margin: 5em 0 5em 0;
+  margin: 5em 0 0 0;
   padding: 3em;
   background: var(--background-color);
   color:  var(--secondary-color);
