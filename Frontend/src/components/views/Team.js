@@ -30,7 +30,7 @@ function Team({ jamData }) {
         {teamStats.map((element, idx) => {
           return (
             <JsxCard
-                text={element}
+                jsx={element}
                 styleClass={"card card-col-span-1"}
                 key={idx}
             />
