@@ -8,6 +8,7 @@
 
 .profile{
   max-width: 10rem;
+  border-radius: 1rem;
 }
 
 .information{
@@ -32,7 +33,6 @@
 
 .link img{
   width: 2rem;
-  transition: all 0.2s ease;
 }
 
 .link:hover img{
