@@ -4,7 +4,10 @@ import Home from "./Home";
 import Jam from "./Jam";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
+import Credits from "./Credits";
 import "./components/App.css";
+import PrivacyPolicy from "./PrivacyPolicy";
+import About from "./About";
 
 function App() {
   return (
@@ -15,6 +18,9 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/jam/:jamName" element={<Jam />} />
+            <Route path="/credits" element={<Credits />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/about" element={<About />} />
           </Routes>
         </div>
         <Footer />

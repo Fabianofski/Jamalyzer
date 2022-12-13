@@ -52,7 +52,7 @@ td {
   color: white;
 }
 
-ul > li {
+.pagination li {
   margin: .5em;
   display: inline-block;
 }

@@ -4,7 +4,9 @@ import "./App.css";
 function Footer() {
   return (
     <div className="footer">
-      <a href={"https://www.github.com/Fabianofski"} target="_blank" rel="noopener noreferrer">Made by Fabianofski</a>
+      <a href="/credits">Credits</a>
+      <a href="/about">About</a>
+      <a href="/privacy-policy">Privacy Policy</a>
     </div>
   );
 }
