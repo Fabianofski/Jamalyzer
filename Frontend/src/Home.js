@@ -7,8 +7,8 @@ import {ResetToDefaultColors} from "./ColorManager";
 const dummyJam = {
   "name":"Loading..",
   "icon":"jam-loading.png",
-  "link":"f4b1.itch.io",
-  "hosts":[{"name":"F4B1","profile_link":"f4b1.itch.io"}],
+  "link":"https://f4b1.itch.io",
+  "hosts":[{"name":"F4B1","profile_link":"https://f4b1.itch.io"}],
   "time":"2022-07-24T19:00:00Z",
   "joined":"69k",
   "submitted":"69,420"}

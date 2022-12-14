@@ -6,6 +6,12 @@
   align-items: center;
 }
 
+@media (max-width: 800px) {
+  .credits-wrapper {
+    flex-direction: column;
+  }
+}
+
 .profile{
   max-width: 10rem;
   border-radius: 1rem;

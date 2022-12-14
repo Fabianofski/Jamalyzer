@@ -62,11 +62,18 @@ html {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 2em;
   color: var(--secondary-color);
 }
 
-.footer a, .footer a:hover{
+.footer a{
   text-decoration: none;
   color: white;
+  width: 10em;
+  text-align: center;
+  border-right: 1px solid white;
+  border-left: 1px solid white;
+}
+
+.footer a:hover{
+  color: var(--secondary-color);
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./Home";
 import Jam from "./Jam";
@@ -8,10 +8,17 @@ import Credits from "./Credits";
 import "./components/App.css";
 import PrivacyPolicy from "./PrivacyPolicy";
 import About from "./About";
+import CookieConsentBanner from "./components/CookieConsent";
 
 function App() {
+  const isCookieConsentBannerAnswered = localStorage.getItem('isCookieConsentBannerAnswered') === 'true';
+  const isCookieConsentBannerAccepted = localStorage.getItem('isCookieConsentBannerAccepted');
+  console.log(isCookieConsentBannerAccepted);
+  const [isCookieAnswered, setIsCookieAnswered] = useState(isCookieConsentBannerAnswered);
+  
   return (
     <Router>
+      { !isCookieAnswered ? <CookieConsentBanner setIsCookieAnswered={setIsCookieAnswered}/> : null}
       <div className="App">
         <Nav />
         <div className="Router">
@@ -23,7 +30,7 @@ function App() {
             <Route path="/about" element={<About />} />
           </Routes>
         </div>
-        <Footer />
+        <Footer setIsCookieAnswered={setIsCookieAnswered}/>
       </div>
     </Router>
   );
