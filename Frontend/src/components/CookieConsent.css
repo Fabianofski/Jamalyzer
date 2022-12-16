@@ -23,6 +23,7 @@
   border: 1px solid var(--primary-color);
   border-radius: 25px;
   padding: 2rem;
+  transition: height 1s ease;
 }
 
 .cookie-buttons{
@@ -51,16 +52,43 @@
   border: 1px solid var(--primary-color);
 }
 
+.cookie-info p{
+  text-align: justify;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
 .toggles{
   width: 100%;
 }
 
 .toggle{
   display: flex;
-  height: 3em;
+  height: 3rem;
   width: 100%;
   justify-content: space-between;
-  gap: 3em;
+  gap: 3rem;
   align-items: center;
   border-top: 1px solid var(--primary-color);
+}
+
+.toggle-info{
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.collapse-button{
+  height: 2rem;
+  width: 2rem;
+  background-color: transparent;
+  border: none;
+}
+
+.collapse-button-icon{
+  color: var(--primary-color);
+}
+
+.collapse-button-icon:hover{
+  color: var(--secondary-color);
 }

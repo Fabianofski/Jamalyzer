@@ -1,10 +1,10 @@
 import React from "react";
 import "./ToggleSwitch.css";
 
-export default function ToggleSwitch({setOption}){
+export default function ToggleSwitch({option, setOption}){
   return(
     <label className="switch">
-      <input type="checkbox" onClick={setOption(this)} defaultChecked/>
+      <input type="checkbox" onClick={()=>setOption(!option)} defaultChecked/>
       <span className="slider round"></span>
     </label>
   );

@@ -12,13 +12,11 @@ import CookieConsentBanner from "./components/CookieConsent";
 
 function App() {
   const isCookieConsentBannerAnswered = localStorage.getItem('isCookieConsentBannerAnswered') === 'true';
-  const isCookieConsentBannerAccepted = localStorage.getItem('isCookieConsentBannerAccepted');
-  console.log(isCookieConsentBannerAccepted);
   const [isCookieAnswered, setIsCookieAnswered] = useState(isCookieConsentBannerAnswered);
   
   return (
     <Router>
-      { !isCookieAnswered ? <CookieConsentBanner setIsCookieAnswered={setIsCookieAnswered}/> : null}
+      { !isCookieAnswered && <CookieConsentBanner setIsCookieAnswered={setIsCookieAnswered}/>}
       <div className="App">
         <Nav />
         <div className="Router">
