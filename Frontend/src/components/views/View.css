@@ -31,6 +31,18 @@
   grid-auto-rows: 1fr;
 }
 
+@media (max-width: 1200px) {
+  .card-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+@media (max-width: 1000px) {
+  .card-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
 .jam-title-link {
   color: var(--primary-color);
 }
