@@ -54,8 +54,8 @@ export function BarChartCard({ styleClass, data = dummyBarData, title="Dummy Tit
         text: title,
       },
     },
-    
     responsive: true,
+    maintainAspectRatio: false,
     interaction: {
       mode: "index",
       intersect: false,
@@ -72,8 +72,8 @@ export function BarChartCard({ styleClass, data = dummyBarData, title="Dummy Tit
   
   return (
     <div className={styleClass}>
-      <div className="chart">
-        <Bar options={barOptions} data={data} />
+      <div className="chart" style={{height:"100%", width:"100%", overflow:"auto"}}>
+        <Bar options={barOptions} data={data} style={{height:"100%", width:"100%"}}/>
       </div>
     </div>
   );

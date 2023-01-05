@@ -28,7 +28,7 @@
   display: grid;
   gap: 1.5rem;
   grid-template-columns: repeat(6, 1fr);
-  grid-auto-rows: 1fr;
+  grid-auto-flow: dense;
 }
 
 @media (max-width: 1200px) {
@@ -40,6 +40,12 @@
 @media (max-width: 1000px) {
   .card-grid {
     grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 800px) {
+  .card-grid {
+    grid-template-columns: repeat(1, 1fr);
   }
 }
 
