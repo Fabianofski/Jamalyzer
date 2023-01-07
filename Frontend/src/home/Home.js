@@ -1,8 +1,8 @@
-import './components/App.css';
-import "./components/Home.css";
+import '../App.css';
+import "./Home.css";
 import { useNavigate } from "react-router-dom";
 import {useEffect, useState} from "react";
-import {ResetToDefaultColors} from "./ColorManager";
+import {ResetToDefaultColors} from "../components/ColorManager";
 
 const dummyJam = {
   "name":"Loading..",

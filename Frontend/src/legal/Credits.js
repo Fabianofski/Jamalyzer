@@ -1,6 +1,6 @@
 import React from "react";
-import  "./components/Credits.css";
-import "./components/Legal.css";
+import  "./Credits.css";
+import "./Legal.css";
 
 function Credits () {
   return(

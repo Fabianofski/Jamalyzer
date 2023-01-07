@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import Ranking from "./components/views/Ranking";
-import Karma from "./components/views/Karma";
-import "./components/App.css";
-import "./components/Jam.css";
+import Ranking from "./views/Ranking";
+import Karma from "./views/Karma";
+import "../App.css";
+import "./Jam.css";
 import Sidebar from "./components/Sidebar";
-import Team from "./components/views/Team";
-import Platform from "./components/views/Platform";
-import Description from "./components/views/Description";
-import Genre from "./components/views/Genre";
-import Engine from "./components/views/Engine";
-import Overview from "./components/views/Overview";
-import {SetJamTheme} from "./ColorManager";
+import Team from "./views/Team";
+import Platform from "./views/Platform";
+import Description from "./views/Description";
+import Genre from "./views/Genre";
+import Engine from "./views/Engine";
+import Overview from "./views/Overview";
+import {SetJamTheme} from "../components/ColorManager";
 
 function Jam() {
   const { jamName } = useParams();

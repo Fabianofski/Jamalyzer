@@ -34,7 +34,7 @@ async function fetchItchServers(jamId, jamUrl){
 
 const joinEntriesAndResults = (entries, results) => {
   if (results["results"] === undefined || results.results.length === 0)
-    throw Error("This Jam hasn't ended or the results haven't been published yet!")
+    throw Error("This jam hasn't ended or the results haven't been published yet!")
   let jamData = { jam: {}, jam_games: {}, criteria: [], rankings: { Overall: {} } };
   results.results[0].criteria.forEach((criteria) => {
     jamData.criteria.push(criteria.name);

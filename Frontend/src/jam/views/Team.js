@@ -1,9 +1,9 @@
 import React from "react";
 import "./View.css";
-import {Card, JsxCard} from "./Cards/BasicCard.js";
-import {BarChartCard} from "./Cards/BarChartCard";
-import {PieChartCard} from "./Cards/PieChartCard";
-import {GetJamPrimaryVariations} from "../../ColorManager";
+import {Card, JsxCard} from "../cards/BasicCard.js";
+import {BarChartCard} from "../cards/BarChartCard";
+import {PieChartCard} from "../cards/PieChartCard";
+import {GetJamPrimaryVariations} from "../../components/ColorManager";
 
 const teamDescription = "Team Sizes Lorem ipsum dolor sit amet.";
 

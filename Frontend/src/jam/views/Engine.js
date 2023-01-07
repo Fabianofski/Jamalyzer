@@ -1,11 +1,11 @@
 import React from "react";
 import "./View.css";
-import { Card, ChartCard } from "./Cards/BasicCard.js";
+import { Card } from "../cards/BasicCard.js";
 
-function Genre({ jamData }) {
+function Engine({ jamData }) {
   return (
-    <div className="view" id="Genre">
-      <h1>Genre</h1>
+    <div className="view" id="Engine">
+      <h1>Engine</h1>
       <div className="card-grid">
         <Card
           text={"Lorem ipsum dolor sit amet."}
@@ -28,4 +28,4 @@ function Genre({ jamData }) {
   );
 }
 
-export default Genre;
+export default Engine;

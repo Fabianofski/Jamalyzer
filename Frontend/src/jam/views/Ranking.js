@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Pagination from "./Pagination";
+import Pagination from "../components/Pagination";
 import "./View.css";
-import "./PaginationTable.css";
+import "../components/PaginationTable.css";
 
 function Ranking({ jamData }) {
   const [currentPage, setCurrentPage] = useState(1);
@@ -42,7 +42,7 @@ function TableBody({ jamData, indexOfFirstPost, indexOfLastPost }) {
     return ids.map((id) => {
       tableEntry++;
       if (tableEntry <= indexOfFirstPost || tableEntry > indexOfLastPost)
-        return;
+        return "";
       const entry = jamData.jam_games[id];
       return (
         <TableEntry
@@ -82,7 +82,7 @@ function Title({ entry }) {
 
 function CriteriaScores({ jamData, entry }) {
   return jamData.criteria.map((criteria, index) => {
-    const crit = entry.criteria.find((c) => c.name == criteria);
+    const crit = entry.criteria.find((c) => c.name === criteria);
     if (crit) return <td key={index}>{crit.score.toFixed(2)}</td>;
     else return <td key={index}>-</td>;
   });

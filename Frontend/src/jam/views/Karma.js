@@ -1,8 +1,8 @@
 import React from "react";
 import "./View.css";
-import {JsxCard} from "./Cards/BasicCard.js";
-import {LineChartCard} from "./Cards/LineChartCard.js";
-import {GetJamPrimary} from "../../ColorManager";
+import {JsxCard} from "../cards/BasicCard.js";
+import {LineChartCard} from "../cards/LineChartCard.js";
+import {GetJamPrimary} from "../../components/ColorManager";
 
 function karmaDescription(){
   return(

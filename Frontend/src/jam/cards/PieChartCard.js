@@ -1,6 +1,6 @@
 import {Pie} from "react-chartjs-2";
 import React from "react";
-import "../View.css";
+import "../views/View.css";
 import "./Card.css";
 
 import {

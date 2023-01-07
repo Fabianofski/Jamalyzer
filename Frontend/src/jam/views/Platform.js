@@ -1,9 +1,9 @@
 import React from "react";
 import "./View.css";
-import {Card} from "./Cards/BasicCard.js";
-import {BarChartCard} from "./Cards/BarChartCard";
-import {PieChartCard} from "./Cards/PieChartCard";
-import {GetJamPrimaryVariations} from "../../ColorManager";
+import {Card} from "../cards/BasicCard.js";
+import {BarChartCard} from "../cards/BarChartCard";
+import {PieChartCard} from "../cards/PieChartCard";
+import {GetJamPrimaryVariations} from "../../components/ColorManager";
 
 function Platform({ jamData }) {
   const barData = getBarChartData(jamData);

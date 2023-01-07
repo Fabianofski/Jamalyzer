@@ -36,7 +36,7 @@ function MainBanner({setIsCookieAnswered}){
       <div className="toggles">
         <Toggle
           cookieName={"Marketing cookies"}
-          description={"These Cookies are used to display personalized advertisements"}
+          description={"These cookies are used to display personalized advertisements"}
           option={marketing}
           setOption={setMarketing}  />
         <Toggle

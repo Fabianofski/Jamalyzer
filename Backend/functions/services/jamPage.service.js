@@ -31,7 +31,7 @@ const fetchJamPage = async (jamURL, jamId) => {
       data["twitter"] = {hashtag: $(el).text(), twitter_link: $(el).attr("href")}
   });
   if(data.entries < 10)
-    throw Error("This Jam has less than 10 Entries!")
+    throw Error("This jam has less than 10 Entries!")
   return data;
 };
 

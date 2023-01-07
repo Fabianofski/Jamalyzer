@@ -1,6 +1,6 @@
 import React from "react";
 import "./View.css";
-import {Card, JsxCard} from "./Cards/BasicCard.js";
+import {Card, JsxCard} from "../cards/BasicCard.js";
 
 function Hosts(jamData){
   return(
