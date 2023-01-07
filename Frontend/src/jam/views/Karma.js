@@ -3,17 +3,41 @@ import "./View.css";
 import {JsxCard} from "../cards/BasicCard.js";
 import {LineChartCard} from "../cards/LineChartCard.js";
 import {GetJamPrimary} from "../../components/ColorManager";
+import {Tex} from "react-tex";
+import {pearsonCorrelation} from "../../components/Utilities";
 
 function karmaDescription(){
   return(
-    <div>
+    <div style={{lineHeight: "2rem"}}>
       Karma is a score every entry gets, based on the number of ratings received and given.
       Karma is calculated by the following formula: <br/>
-      Karma = Log(1 + ratings_given) - Log(1 + ratings_received) / Log(5).
+      <Tex texContent="Karma = \frac {Log(1 + ratings\_given) - Log(1 + ratings\_received)}{Log(5)}"/> <br/>
       Rate more games and leave feedback to rank higher.
     </div>);
 }
 
+function Correlation({jamData}){
+  
+  let ranking = [];
+  let karma = [];
+  Object.entries(jamData.rankings.Overall).forEach(([rank, ids]) => {
+    ids.forEach((id)=>{
+      let game = jamData.jam_games[id];
+      if(game.karma === undefined) return;
+      ranking.push(game.rank);
+      karma.push(game.karma);
+    })
+  })
+  console.log(ranking);
+  console.log(karma);
+  let c = -pearsonCorrelation(ranking, karma);
+  
+  return(
+    <div >
+      <p> Pearson-Correlation: r = {c.toFixed(2)} </p>
+    </div>
+  );
+}
 
 function Karma({ jamData }) {
   let data = getLineChartData(jamData);
@@ -25,7 +49,7 @@ function Karma({ jamData }) {
         <LineChartCard
           data={data}
           styleClass={"card card-col-span-3 card-row-span-2"}
-          title={"Karma Distribution"}
+          title={"Ranking - Karma Correlation"}
         />
         {karmaStats(jamData).map((element, idx) => {
           return (
@@ -36,6 +60,10 @@ function Karma({ jamData }) {
             />
           );
         })}
+        <JsxCard
+          jsx={<Correlation jamData={jamData}/>}
+          styleClass={"card card-col-span-1"}
+        />
       </div>
     </div>
   );
