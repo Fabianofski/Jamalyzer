@@ -1,5 +1,6 @@
 .cookie-container{
   position: fixed;
+  z-index: 99;
   background-color: rgba(30,30,30,.5);
   width: 100vw;
   height: 100vh;

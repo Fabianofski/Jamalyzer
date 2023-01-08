@@ -55,7 +55,6 @@ export function BarChartCard({ styleClass, data = dummyBarData, title="Dummy Tit
       },
     },
     responsive: true,
-    maintainAspectRatio: false,
     interaction: {
       mode: "index",
       intersect: false,

@@ -16,7 +16,7 @@ function Hosts(jamData){
 function Overview({jamData}) {
   return (
     <div className="view" id="Overview" style={{backgroundColor: `${jamData.jam.bg_color}`}}>
-      <h1>
+      <h1 className="jam-title">
         <a href={jamData.jam.url} target="_blank" rel="noopener noreferrer" className="jam-title-link">{jamData.jam.Title} </a>
       </h1>
       <img className="jam-banner" src={jamData.jam.banner} alt="Game Jam Banner"/>

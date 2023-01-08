@@ -5,7 +5,14 @@ import {BarChartCard} from "../cards/BarChartCard";
 import {PieChartCard} from "../cards/PieChartCard";
 import {GetJamPrimaryVariations} from "../../components/ColorManager";
 
-const teamDescription = "Team Sizes Lorem ipsum dolor sit amet.";
+function TeamDescription(){
+  return(
+    <p style={{hyphens:"auto"}}>
+      Bigger Teams are capable of producing games with more content and higher quality. <br/>
+      Working in a larger team can help to increase the score of your entry.
+    </p>
+  );
+}
 
 function Team({ jamData }) {
   const pieData = extractData(jamData);
@@ -16,7 +23,7 @@ function Team({ jamData }) {
     <div className="view" id="Team">
       <h1>Team</h1>
       <div className="card-grid">
-        <Card text={teamDescription} styleClass={"card card-col-span-4"} />
+        <Card text={TeamDescription()} styleClass={"card card-col-span-4"} />
         <PieChartCard
           data={pieData}
           styleClass={"card card-col-span-2 card-row-span-3"}
@@ -52,7 +59,7 @@ function getTeamStats(jamData){
       biggestTeam = entry.contributors.length;
     }
   });
-  const median = <TeamStat jamData={jamData} category={"Median:"}
+  const median = <TeamStat jamData={jamData} category={"Average:"}
                            amount={(teamSize / Object.entries(jamData.jam_games).length).toFixed(2) + " Members"}/>
   const most = <TeamStat jamData={jamData} category={"Biggest Team"} amount={biggestTeam + " Members"} id={mostID}/>
   return [median, most];

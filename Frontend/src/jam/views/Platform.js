@@ -1,9 +1,18 @@
 import React from "react";
 import "./View.css";
-import {Card} from "../cards/BasicCard.js";
+import {Card, JsxCard} from "../cards/BasicCard.js";
 import {BarChartCard} from "../cards/BarChartCard";
 import {PieChartCard} from "../cards/PieChartCard";
 import {GetJamPrimaryVariations} from "../../components/ColorManager";
+
+function PlatformDescription(){
+  return(
+    <p>
+      Making your game available to players on multiple or specific platforms can increase your visibility and
+      give you a higher score.
+    </p>
+  );
+}
 
 function Platform({ jamData }) {
   const barData = getBarChartData(jamData);
@@ -18,8 +27,8 @@ function Platform({ jamData }) {
           styleClass={"card card-col-span-2 card-row-span-3"}
           title={"Platform Distribution"}
         />
-        <Card
-          text={"Lorem ipsum dolor sit amet."}
+        <JsxCard
+          jsx={PlatformDescription()}
           styleClass={"card card-col-span-4"}
         />
         <Card

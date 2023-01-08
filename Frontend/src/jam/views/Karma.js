@@ -8,12 +8,23 @@ import {pearsonCorrelation} from "../../components/Utilities";
 
 function karmaDescription(){
   return(
-    <div style={{lineHeight: "2rem"}}>
+    <div style={{lineHeight: "2rem", hyphens:"auto"}}>
       Karma is a score every entry gets, based on the number of ratings received and given.
       Karma is calculated by the following formula: <br/>
       <Tex texContent="Karma = \frac {Log(1 + ratings\_given) - Log(1 + ratings\_received)}{Log(5)}"/> <br/>
       Rate more games and leave feedback to rank higher.
     </div>);
+}
+
+function PearsonTooltip(){
+  return(
+    <p style={{lineHeight: "1.5rem"}}>
+      The Pearson correlation coefficient is a measure of the linear relationship between two variables. <br />
+      -1 = negative relationship <br />
+      0 = no relationship <br />
+      1 = positive relationship
+    </p>
+  );
 }
 
 function Correlation({jamData}){
@@ -28,9 +39,7 @@ function Correlation({jamData}){
       karma.push(game.karma);
     })
   })
-  console.log(ranking);
-  console.log(karma);
-  let c = -pearsonCorrelation(ranking, karma);
+  let c = pearsonCorrelation(ranking, karma);
   
   return(
     <div >
@@ -63,6 +72,7 @@ function Karma({ jamData }) {
         <JsxCard
           jsx={<Correlation jamData={jamData}/>}
           styleClass={"card card-col-span-1"}
+          tooltip={PearsonTooltip()}
         />
       </div>
     </div>

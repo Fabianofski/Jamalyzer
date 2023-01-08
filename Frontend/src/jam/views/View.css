@@ -49,6 +49,10 @@
   }
 }
 
+.jam-title{
+  text-align: center;
+}
+
 .jam-title-link {
   color: var(--primary-color);
 }
