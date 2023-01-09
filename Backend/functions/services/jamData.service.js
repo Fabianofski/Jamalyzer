@@ -10,7 +10,10 @@ async function fetchJamData(jamName){
   const dbData = await db.getJamData(jamId);
   if (dbData !== null){
     console.log("Found cached data in database");
-    return dbData
+    if(dbData.version !== process.env.VERSION)
+      console.log("Cached Data is deprecated")
+    else
+      return dbData
   }
   console.log("Couldn't fetch data from database scrape itch.io");
   
@@ -28,6 +31,7 @@ async function fetchItchServers(jamId, jamUrl){
   const results = await resResults.json();
   const data = joinEntriesAndResults(entries, results);
   data["_id"] = jamId;
+  data["version"] = process.env.VERSION;
   data["jam"] = await jamPage.fetchJamPage(jamUrl, jamId);
   return data;
 }
