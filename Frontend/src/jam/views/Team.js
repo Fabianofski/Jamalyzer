@@ -8,8 +8,7 @@ import {GetJamPrimaryVariations} from "../../components/ColorManager";
 function TeamDescription(){
   return(
     <p style={{hyphens:"auto"}}>
-      Bigger Teams are capable of producing games with more content and higher quality. <br/>
-      Working in a larger team can help to increase the score of your entry.
+      Teams with more members are able to create games with a larger amount of content and a higher level of quality. By working on a bigger team, you may be able to increase the score of your game.
     </p>
   );
 }
@@ -32,7 +31,7 @@ function Team({ jamData }) {
         <BarChartCard
           data={barData}
           styleClass={"card card-col-span-3 card-row-span-2"}
-          title={"Team Size Distribution"}
+          title={"Ranking - Team Size Distribution"}
         />
         {teamStats.map((element, idx) => {
           return (

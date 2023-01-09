@@ -7,9 +7,9 @@ import {GetJamPrimaryVariations} from "../../components/ColorManager";
 
 function PlatformDescription(){
   return(
-    <p>
-      Making your game available to players on multiple or specific platforms can increase your visibility and
-      give you a higher score.
+    <p style={{textAlign:"justify", hyphens:"auto"}}>
+      Making your game available to players on multiple or specific platforms can increase your visibility and give you a higher score.
+      By releasing your game on a variety of platforms, you can reach a wider audience and potentially achieve a higher score as more players discover and play your game.
     </p>
   );
 }
@@ -32,16 +32,16 @@ function Platform({ jamData }) {
           styleClass={"card card-col-span-4"}
         />
         <Card
-          text={"Median: 2 Collaborators"}
+          text={":)"}
           styleClass={"card card-col-span-1"}
         />
         <BarChartCard
           data={barData}
           styleClass={"card card-col-span-3 card-row-span-2"}
-          title={"Platform Distribution"}
+          title={"Ranking - Platform Distribution"}
         />
         <Card
-          text={"Most: 5 Collaborators"}
+          text={"(:"}
           styleClass={"card card-col-span-1"}
         />
       </div>

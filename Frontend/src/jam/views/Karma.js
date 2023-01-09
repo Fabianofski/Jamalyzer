@@ -9,10 +9,9 @@ import {pearsonCorrelation} from "../../components/Utilities";
 function karmaDescription(){
   return(
     <div style={{lineHeight: "2rem", hyphens:"auto"}}>
-      Karma is a score every entry gets, based on the number of ratings received and given.
-      Karma is calculated by the following formula: <br/>
+      Karma is a numerical score that reflects the number of ratings an entry has received and given. It is calculated using the formula: <br/>
       <Tex texContent="Karma = \frac {Log(1 + ratings\_given) - Log(1 + ratings\_received)}{Log(5)}"/> <br/>
-      Rate more games and leave feedback to rank higher.
+      To increase your karma score, you should rate more games and leave feedback.
     </div>);
 }
 
@@ -114,9 +113,9 @@ function KarmaStat({jamData, category, amount, id = -1}){
       {id !== -1 ?
         <p>
           <a href={game.jamPageUrl} target="_blank" rel="noopener noreferrer">#{game.rank} {game.title}</a>
-          &nbsp;({game.ratings_given} /{game.rating_count})
+          &nbsp;<strong>({game.ratings_given} /{game.rating_count})</strong>
         </p>
-        : ""}
+        : (<p>-<br/>-</p>)}
     </div>
   );
 }
