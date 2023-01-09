@@ -10,6 +10,7 @@ import {
   Legend,
   BarElement,
 } from "chart.js";
+import {tr} from "date-fns/locale";
 
 ChartJS.register(
   Title,
@@ -73,7 +74,7 @@ export function BarChartCard({ styleClass, data = dummyBarData, title="Dummy Tit
   return (
     <div className={styleClass + " chart-card"}>
       <div className="chart">
-        <Bar options={barOptions} data={data} style={{minHeight:"15rem"}}/>
+        <Bar options={barOptions} data={data} style={{minHeight:"20rem"}}/>
       </div>
     </div>
   );

@@ -73,7 +73,7 @@ export function LineChartCard({ styleClass, data = dummyLineData, title = "Dummy
   return (
     <div className={styleClass + " chart-card"}>
       <div className="chart">
-        <Line options={lineOptions} data={data} style={{minHeight:"13rem"}}/>
+        <Line options={lineOptions} data={data} style={{minHeight:"20rem"}}/>
       </div>
     </div>
   );
