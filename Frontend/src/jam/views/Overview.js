@@ -21,10 +21,9 @@ function JamDate(jamData){
   const endPeriodDuration = intervalToDuration({ start: 0, end: endPeriod * 60 * 60 * 1000 })
   return (
     <div>
-        {format(parseISO(jamData.jam.started), 'dd.MM.yyyy')}-
-        {format(parseISO(jamData.jam.ended), 'dd.MM.yyyy')} <br />
-        This Jam ran for {formatDuration(timePeriodDuration)} <br />
-        Ended {formatDuration(endPeriodDuration)} ago
+        This Jam ran from <strong>{format(parseISO(jamData.jam.started), 'dd.MM.yyyy')} to {format(parseISO(jamData.jam.ended), 'dd.MM.yyyy')},</strong> <br />
+        ended <strong> {formatDuration(endPeriodDuration)} </strong> ago, <br />
+        and ran for <strong> {formatDuration(timePeriodDuration)} </strong>
     </div>
   );
 }
@@ -32,8 +31,8 @@ function JamDate(jamData){
 function JamStats(jamData){
   return (
     <div>
-      {jamData.jam.ratings + " Ratings"} <br />
-      {jamData.jam.entries + " Entries"}
+      <strong>{jamData.jam.ratings}</strong> Ratings<br />
+      <strong>{jamData.jam.entries}</strong> Entries
     </div>
   );
 }

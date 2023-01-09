@@ -43,7 +43,7 @@ function Correlation({jamData}){
   
   return(
     <div >
-      <p> Pearson-Correlation: r = {c.toFixed(2)} </p>
+      <p> Pearson-Correlation: <strong>r = {c.toFixed(2)}</strong> </p>
     </div>
   );
 }
@@ -110,7 +110,7 @@ function KarmaStat({jamData, category, amount, id = -1}){
   const game = jamData.jam_games[id];
   return(
     <div >
-      <p>{category}: {amount.toFixed(2)}</p>
+      <p>{category}: <strong>{amount.toFixed(2)}</strong></p>
       {id !== -1 ?
         <p>
           <a href={game.jamPageUrl} target="_blank" rel="noopener noreferrer">#{game.rank} {game.title}</a>

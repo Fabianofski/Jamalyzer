@@ -69,7 +69,7 @@ function TeamStat({jamData, category, amount, id = -1}){
   const game = jamData.jam_games[id];
   return(
     <div >
-      <p>{category}: <br /> {amount}</p>
+      <p>{category}: <br /> <strong>{amount}</strong></p>
       {id !== -1 ?
           <a href={game.jamPageUrl} target="_blank" rel="noopener noreferrer">#{game.rank} {game.title}</a>
         : ""}
