@@ -13,9 +13,10 @@
 .cookie-banner{
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   max-width: 30rem;
+  min-height: 30rem;
   width: 90vw;
   gap: 1em;
   background: var(--background-color);
@@ -61,7 +62,7 @@
 
 .toggles{
   width: 100%;
-  height: 10rem;
+  height: 15rem;
   overflow-y: auto;
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
@@ -79,7 +80,7 @@
   justify-content: space-between;
   gap: 3rem;
   align-items: center;
-  border-top: 1px solid var(--primary-color);
+  border-bottom: 1px solid var(--primary-color);
 }
 
 .toggle-info{
