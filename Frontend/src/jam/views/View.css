@@ -8,8 +8,8 @@
   width: 100%;
   max-width: 86vw;
   height: fit-content;
-  margin: 5em 0 0 0;
-  padding: 3em;
+  margin: 5rem 0 0 0;
+  padding: 3rem;
   background: var(--background-color);
   color:  var(--secondary-color);
   box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.25);
@@ -35,17 +35,29 @@
   .card-grid {
     grid-template-columns: repeat(5, 1fr);
   }
+
+  .view {
+    padding: 2rem;
+  }
 }
 
 @media (max-width: 1000px) {
   .card-grid {
     grid-template-columns: repeat(3, 1fr);
   }
+
+  .view {
+    padding: 1.5rem;
+  }
 }
 
 @media (max-width: 800px) {
   .card-grid {
     grid-template-columns: repeat(1, 1fr);
+  }
+
+  .view {
+    padding: 1rem;
   }
 }
 

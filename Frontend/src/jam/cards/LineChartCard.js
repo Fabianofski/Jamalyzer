@@ -44,6 +44,7 @@ export function LineChartCard({ styleClass, data = dummyLineData, title = "Dummy
   
   const lineOptions = {
     responsive: true,
+    maintainAspectRatio: false,
     plugins: {
       legend: {
         display: false,
@@ -72,7 +73,7 @@ export function LineChartCard({ styleClass, data = dummyLineData, title = "Dummy
   return (
     <div className={styleClass + " chart-card"}>
       <div className="chart">
-        <Line options={lineOptions} data={data} />
+        <Line options={lineOptions} data={data} style={{minHeight:"13rem"}}/>
       </div>
     </div>
   );
