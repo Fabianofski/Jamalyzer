@@ -29,12 +29,7 @@ function MainBanner({setIsCookieAnswered}){
   
   return(
     <div className="cookie-banner">
-      <div>
-        <h1 style={{textAlign:"center"}}>🍪 We use Cookies!</h1>
-        <p>
-          This website uses cookies to improve your user experience.
-        </p>
-      </div>
+      <h1 style={{textAlign:"center"}}>🍪 We use Cookies!</h1>
       <div className="toggles">
         <Toggle
           cookieName={"Targeted Advertising Cookies"}
