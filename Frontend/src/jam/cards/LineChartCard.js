@@ -70,7 +70,7 @@ export function LineChartCard({ styleClass, data = dummyLineData, title = "Dummy
   };
   
   return (
-    <div className={styleClass}>
+    <div className={styleClass + " chart-card"}>
       <div className="chart">
         <Line options={lineOptions} data={data} />
       </div>

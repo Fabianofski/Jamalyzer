@@ -70,7 +70,7 @@ export function BarChartCard({ styleClass, data = dummyBarData, title="Dummy Tit
   };
   
   return (
-    <div className={styleClass}>
+    <div className={styleClass + " chart-card"}>
       <div className="chart" style={{height:"100%", width:"100%", overflow:"auto"}}>
         <Bar options={barOptions} data={data} style={{height:"100%", width:"100%"}}/>
       </div>

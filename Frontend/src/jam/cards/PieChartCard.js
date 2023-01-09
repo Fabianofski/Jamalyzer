@@ -50,7 +50,7 @@ export function PieChartCard({ styleClass, data = dummyPieData, title="Dummy Tit
   };
   
   return (
-    <div className={styleClass}>
+    <div className={styleClass + " chart-card"}>
       <div className="chart">
         <Pie options={pieOptions} data={data} />
       </div>

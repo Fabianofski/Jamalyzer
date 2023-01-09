@@ -36,6 +36,12 @@
   hyphens: auto;
 }
 
+@media (max-width: 800px) {
+  .tooltip-text{
+    right: 100%;
+  }
+}
+
 .tooltip-icon:hover .tooltip-text{
   visibility: visible;
   opacity: 1;
