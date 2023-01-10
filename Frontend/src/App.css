@@ -40,7 +40,7 @@ html {
   background-color: var(--primary-color);
   transition: background-color .4s ease;
   width: 100%;
-  height: 3em;
+  min-height: 3rem;
 }
 
 .nav {
@@ -60,9 +60,15 @@ html {
   mask: var(--mask);
 }
 
-.logo, .logo:hover{
+.logo{
   text-decoration: none;
   color: white;
+  font-family: "Rancho", cursive;
+  font-size: 1.5rem;
+}
+
+.logo:hover{
+  color: var(--secondary-color);
 }
 
 .footer{
@@ -75,7 +81,7 @@ html {
 .footer a{
   text-decoration: none;
   color: white;
-  width: 10em;
+  width: 10rem;
   text-align: center;
   border-right: 1px solid white;
   border-left: 1px solid white;
@@ -83,4 +89,19 @@ html {
 
 .footer a:hover{
   color: var(--secondary-color);
+}
+
+@media (max-width: 600px) {
+  .footer{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    padding: 1rem 0 1rem 0;
+  }
+
+  .footer a{
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
 }
