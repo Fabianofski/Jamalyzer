@@ -1,5 +1,6 @@
 .table-wrapper {
   width: 100%;
+  max-width: 70vw;
   overflow-x: auto;
 }
 
@@ -17,26 +18,27 @@ table tr:nth-child(even) {
 table,
 th,
 td {
-  border-bottom: 1px solid var(--secondary-color);
+  border-left: 1px solid var(--secondary-color);
+  border-right: 1px solid var(--secondary-color);
   overflow: hidden;
+}
+
+table{
+  border-bottom: 2px solid var(--secondary-color);
+  border-top: 2px solid var(--secondary-color);
 }
 
 th,
 td {
   padding: 10px;
+  max-width: 180px;
 }
 
 th {
-  position: sticky;
-  top: 0;
   color: white;
   background-color: var(--primary-color);
-  text-align: start;
-  max-width: 120px;
-}
-
-td {
-  max-width: 120px;
+  vertical-align: bottom;
+  white-space: normal;
 }
 
 .pagination button {

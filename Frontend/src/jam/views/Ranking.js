@@ -95,7 +95,7 @@ function Header({ jamData }) {
         <th>RANK</th>
         <th>TITLE</th>
         {jamData.criteria.map((criteria, index) => (
-          <th key={index}>{Trim(criteria.toUpperCase())}</th>
+          <th key={index}>{criteria.toUpperCase()}</th>
         ))}
         <th>RATINGS</th>
         <th>RATED</th>
@@ -103,11 +103,6 @@ function Header({ jamData }) {
       </tr>
     </thead>
   );
-}
-
-function Trim(s){
-  if(s.length > 21) s = s.substring(0, 18) + "...";
-  return s;
 }
 
 export default Ranking;
