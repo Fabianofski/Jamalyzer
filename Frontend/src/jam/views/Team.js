@@ -7,7 +7,7 @@ import {GetJamPrimaryVariations} from "../../components/ColorManager";
 
 function TeamDescription(){
   return(
-    <p style={{hyphens:"auto"}}>
+    <p style={{textAlign:"justify", hyphens:"auto"}}>
       Teams with more members are able to create games with a larger amount of content and a higher level of quality. By working on a bigger team, you may be able to increase the score of your game.
     </p>
   );
