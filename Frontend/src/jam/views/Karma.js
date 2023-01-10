@@ -11,7 +11,7 @@ function karmaDescription(){
     <div style={{lineHeight: "2rem", hyphens:"auto"}}>
       Karma is a numerical score that reflects the number of ratings an entry has received and given. It is calculated using the formula: <br/>
       <Tex texContent="Karma = \frac {Log(1 + ratings\_given) - Log(1 + ratings\_received)}{Log(5)}"/> <br/>
-      To increase your karma score, you should rate more games and leave feedback.
+      To possibly increase your score, you should rate more games and leave feedback.
     </div>);
 }
 

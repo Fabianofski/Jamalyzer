@@ -11,11 +11,10 @@ function CookieConsentBanner({setIsCookieAnswered}) {
 }
 
 function MainBanner({setIsCookieAnswered}){
-  const [functional, setFunctional] = useState(true);
   const [marketing, setMarketing] = useState(true);
   const [analytical, setAnalytical] = useState(true);
   
-  const answerBanner = (functional, marketing, analytical) => {
+  const answerBanner = (marketing, analytical) => {
     localStorage.setItem('isCookieConsentBannerAnswered', 'true');
     localStorage.setItem('isCookieTargetedAdvertisingAccepted', String(marketing));
     localStorage.setItem('isCookieAnalyticalAccepted', String(analytical));
@@ -24,7 +23,7 @@ function MainBanner({setIsCookieAnswered}){
   
   const acceptAll = () => answerBanner(true, true, true);
   const rejectAll = () => answerBanner(false, false, false);
-  const applyOptions = () => answerBanner(functional, marketing, analytical);
+  const applyOptions = () => answerBanner(marketing, analytical);
   
   
   return(

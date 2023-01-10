@@ -10,7 +10,6 @@ import {
   Legend,
   BarElement,
 } from "chart.js";
-import {tr} from "date-fns/locale";
 
 ChartJS.register(
   Title,

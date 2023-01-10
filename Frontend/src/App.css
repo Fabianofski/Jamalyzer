@@ -48,9 +48,16 @@ html {
   display: flex;
   align-items: center;
   justify-content: center;
+  padding-bottom: 1.5rem;
   color: white;
   top: 0;
   z-index: 1;
+
+  --mask:
+    radial-gradient(46.36px at 50% calc(100% - 63.25px),#000 99%,#0000 101%) calc(50% - 46px) 0/92px 100%,
+    radial-gradient(46.36px at 50% calc(100% + 40.25px),#0000 99%,#000 101%) 50% calc(100% - 23px)/92px 100% repeat-x;
+    -webkit-mask: var(--mask);
+  mask: var(--mask);
 }
 
 .logo, .logo:hover{
