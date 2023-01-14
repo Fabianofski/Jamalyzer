@@ -1,7 +1,7 @@
 .Home{
   flex: 1;
   display: flex;
-  margin-top: 5em;
+  margin-top: 1rem;
   justify-content: center;
   align-items: center;
   flex-direction: column;
@@ -65,7 +65,7 @@
 
 .recommended-container{
   margin-top: 10vh;
-  margin-bottom: 5rem;
+  margin-bottom: 10rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -81,6 +81,16 @@
   justify-content: flex-start;
   scrollbar-color: var(--primary-color) var(--darker-background-color);
   scrollbar-width: thin;
+}
+
+.recommended-mask::-webkit-scrollbar {
+  height: 8px;
+  width: 12px;
+  background: var(--darker-background-color);
+}
+
+.recommended-mask::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
 }
 
 .recommended{
