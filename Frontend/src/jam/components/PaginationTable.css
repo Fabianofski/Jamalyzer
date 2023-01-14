@@ -41,6 +41,10 @@ th {
   white-space: normal;
 }
 
+.long-criteria{
+  min-width: 180px;
+}
+
 .pagination button {
   background-color: var(--background-color);
   border-radius: 5px;

@@ -95,7 +95,11 @@ function Header({ jamData }) {
         <th>RANK</th>
         <th>TITLE</th>
         {jamData.criteria.map((criteria, index) => (
-          <th key={index}>{criteria.toUpperCase()}</th>
+          <th
+            className={criteria.length > 30 ? "long-criteria" : ""}
+            key={index}>
+            {criteria.toUpperCase()}
+          </th>
         ))}
         <th>RATINGS</th>
         <th>RATED</th>
