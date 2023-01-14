@@ -1,12 +1,12 @@
 .legal-container{
   width: 100vw;
   display: flex;
-  margin-top: 5rem;
   justify-content: flex-start;
   gap: 2rem;
   align-items: center;
   flex-direction: column;
   padding: 2rem;
+  box-sizing: border-box;
 }
 
 .legal-view {
@@ -31,4 +31,5 @@
 }
 .legal-view p{
   text-align: justify;
+  hyphens: auto;
 }
