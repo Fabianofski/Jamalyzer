@@ -5,7 +5,7 @@ import { Card } from "../cards/BasicCard.js";
 function Description({ jamData }) {
   return (
     <div className="view" id="Description">
-      <h1>Description</h1>
+      <h1>Description (WIP)</h1>
       <div className="card-grid">
         <Card
           text={"Lorem ipsum dolor sit amet."}

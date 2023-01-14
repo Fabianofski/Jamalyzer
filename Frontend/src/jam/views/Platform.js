@@ -31,18 +31,10 @@ function Platform({ jamData }) {
           jsx={PlatformDescription()}
           styleClass={"card card-col-span-4"}
         />
-        <Card
-          text={":)"}
-          styleClass={"card card-col-span-1"}
-        />
         <BarChartCard
           data={barData}
-          styleClass={"card card-col-span-3 card-row-span-2"}
+          styleClass={"card card-col-span-4 card-row-span-2"}
           title={"Ranking - Platform Distribution"}
-        />
-        <Card
-          text={"(:"}
-          styleClass={"card card-col-span-1"}
         />
       </div>
     </div>
