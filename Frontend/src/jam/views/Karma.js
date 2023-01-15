@@ -142,7 +142,7 @@ function getLineChartData(jamData) {
     });
     if (oldP !== percentage || entryNumber === totalEntries) {
       percentage = entryNumber === totalEntries ? 10 : percentage;
-      labels.push(`>${110 - percentage * 10}%`);
+      labels.push(`<${110 - percentage * 10}%`);
       data.push(sum / Math.floor(totalEntries * 0.1));
       sum = 0;
     }

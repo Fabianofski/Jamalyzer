@@ -1,6 +1,6 @@
 import React from "react";
 import "./View.css";
-import {Card, JsxCard} from "../cards/BasicCard.js";
+import {JsxCard} from "../cards/BasicCard.js";
 import {BarChartCard} from "../cards/BarChartCard";
 import {PieChartCard} from "../cards/PieChartCard";
 import {GetJamPrimaryVariations} from "../../components/ColorManager";
@@ -97,7 +97,7 @@ function getBarChartData(jamData) {
     });
     if (oldP !== percentage || entryNumber === totalEntries) {
       percentage = entryNumber === totalEntries ? 10 : percentage;
-      labels.push(`>${110 - percentage * 10}%`);
+      labels.push(`<${110 - percentage * 10}%`);
       web.push(sums[0]);
       windows.push(sums[1]);
       mac.push(sums[2]);
