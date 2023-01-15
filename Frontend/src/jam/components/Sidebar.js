@@ -25,8 +25,9 @@ function Chapter({ id }) {
   const sendChapterGAEvent = () => {
     if(ReactGA.isInitialized)
       ReactGA.event({
-        category: "chapter",
-        action: `Clicked: ${id}`,
+        category: "Chapter",
+        action: "Switched Chapter",
+        label: id,
       })
   }
   

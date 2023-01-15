@@ -3,6 +3,7 @@ import "./Home.css";
 import { useNavigate } from "react-router-dom";
 import {useEffect, useState} from "react";
 import {ResetToDefaultColors} from "../components/ColorManager";
+import ReactGA from "react-ga4";
 
 const dummyJam = {
   "name":"Loading..",
@@ -50,6 +51,12 @@ function Home() {
       return;
     }
     const jamName = input.replace("https://itch.io/jam/", "")
+    if(ReactGA.isInitialized)
+      ReactGA.event({
+        category: "Jam Analysis",
+        action: "Analyze custom jam",
+        label: jamName,
+      })
     navigate(`/jam/${jamName}`);
   }
 
@@ -86,6 +93,12 @@ function Home() {
 function Jam({jamInfo}) {
   const navigate = useNavigate();
   const onSubmit = () => {
+    if(ReactGA.isInitialized)
+      ReactGA.event({
+        category: "Jam Analysis",
+        action: "Analyze recommended jam",
+        label: jamInfo.name,
+      })
     navigate(`/jam/${jamInfo.link.replace("https://itch.io/jam/", "")}`);
   }
   
