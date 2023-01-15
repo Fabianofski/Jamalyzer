@@ -1,6 +1,9 @@
 import React from "react";
 
 function About () {
+  
+  document.title = `Jamalyzer | About`;
+  
   return(
     <div className="legal-container">
       <div className="legal-view">

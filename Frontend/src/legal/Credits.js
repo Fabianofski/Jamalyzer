@@ -3,6 +3,9 @@ import  "./Credits.css";
 import "./Legal.css";
 
 function Credits () {
+  
+  document.title = `Jamalyzer | Credits`;
+  
   return(
     <div className="legal-container">
       <h1>Credits</h1>

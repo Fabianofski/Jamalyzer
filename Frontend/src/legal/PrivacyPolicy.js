@@ -2,6 +2,9 @@ import React from "react";
 import "./Legal.css";
 
 function PrivacyPolicy(){
+  
+  document.title = `Jamalyzer | Privacy Policy`;
+  
   return(
     <div className="legal-container">
       <div className="legal-view">
