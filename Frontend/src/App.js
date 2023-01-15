@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./home/Home";
 import Jam from "./jam/Jam";
@@ -9,10 +9,17 @@ import "./App.css";
 import PrivacyPolicy from "./legal/PrivacyPolicy";
 import About from "./legal/About";
 import CookieConsentBanner from "./cookies/CookieConsent";
+import ReactGA from "react-ga4";
+const MESS_ID = "G-SW2RQ0Q5JJ";
 
 function App() {
-  const isCookieConsentBannerAnswered = localStorage.getItem('isCookieConsentBannerAnswered') === 'true';
-  const [isCookieAnswered, setIsCookieAnswered] = useState(isCookieConsentBannerAnswered);
+  const [isCookieAnswered, setIsCookieAnswered] = useState(localStorage.getItem('isCookieConsentBannerAnswered') === 'true');
+  
+  useEffect( () =>{
+    if(localStorage.getItem('isCookieAnalyticalAccepted') === "true" && isCookieAnswered){
+      initGA();
+    }
+  }, [isCookieAnswered])
   
   return (
     <Router>
@@ -32,6 +39,16 @@ function App() {
       </div>
     </Router>
   );
+}
+
+function initGA(){
+  try {
+    if (ReactGA.isInitialized) return;
+    ReactGA.initialize(MESS_ID);
+    console.log("initialized");
+  } catch (err) {
+    console.error(err);
+  }
 }
 
 export default App;

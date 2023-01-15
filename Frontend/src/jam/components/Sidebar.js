@@ -1,6 +1,7 @@
 import React from "react";
 import "../../App.css";
 import "./Sidebar.css";
+import ReactGA from "react-ga4";
 
 function Sidebar() {
   return (
@@ -20,8 +21,17 @@ function Sidebar() {
 }
 
 function Chapter({ id }) {
+  
+  const sendChapterGAEvent = () => {
+    if(ReactGA.isInitialized)
+      ReactGA.event({
+        category: "chapter",
+        action: `Clicked: ${id}`,
+      })
+  }
+  
   return (
-    <a href={`#${id}`} className="chapter">
+    <a href={`#${id}`} className="chapter" onClick={sendChapterGAEvent}>
       <div>
         <p>{id}</p>
       </div>

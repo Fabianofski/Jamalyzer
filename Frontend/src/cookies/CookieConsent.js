@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import "./CookieConsent.css";
 import ToggleSwitch from "./ToggleSwitch";
+import ReactGA from "react-ga4";
 
 function CookieConsentBanner({setIsCookieAnswered}) {
   return (
@@ -11,18 +12,20 @@ function CookieConsentBanner({setIsCookieAnswered}) {
 }
 
 function MainBanner({setIsCookieAnswered}){
-  const [marketing, setMarketing] = useState(true);
-  const [analytical, setAnalytical] = useState(true);
+  const [marketing, setMarketing] = useState(false);
+  const [analytical, setAnalytical] = useState(false);
   
   const answerBanner = (marketing, analytical) => {
     localStorage.setItem('isCookieConsentBannerAnswered', 'true');
     localStorage.setItem('isCookieTargetedAdvertisingAccepted', String(marketing));
     localStorage.setItem('isCookieAnalyticalAccepted', String(analytical));
     setIsCookieAnswered(true);
+    if(!analytical && ReactGA.isInitialized)
+      window.location.reload();
   };
   
-  const acceptAll = () => answerBanner(true, true, true);
-  const rejectAll = () => answerBanner(false, false, false);
+  const acceptAll = () => answerBanner(true, true);
+  const rejectAll = () => answerBanner(false, false);
   const applyOptions = () => answerBanner(marketing, analytical);
   
   

@@ -12,6 +12,7 @@ import Genre from "./views/Genre";
 import Engine from "./views/Engine";
 import Overview from "./views/Overview";
 import {SetJamTheme} from "../components/ColorManager";
+import ReactGA from "react-ga4";
 
 function Jam() {
   const { jamName } = useParams();
@@ -31,6 +32,8 @@ function Jam() {
         else {
           setJamData(json);
           document.title = `Jamalyzer | ${json.jam.Title}`;
+          if(ReactGA.isInitialized)
+            ReactGA.send({hitType: "pageview", page: window.location.pathname});
         }
         setDataLoaded(true);
       });
