@@ -20,7 +20,7 @@ function Sidebar() {
   );
 }
 
-function Chapter({ id }) {
+function Chapter({ id }:{id:string}) {
   
   const sendChapterGAEvent = () => {
     if(ReactGA.isInitialized)
