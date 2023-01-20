@@ -29,7 +29,13 @@ function Credits () {
   );
 }
 
-function Link({site, link, icon}){
+type Props = {
+  site : string,
+  link : string,
+  icon : string,
+}
+
+function Link({site, link, icon}:Props){
   return (
     <a className="link" href={link} target="_blank" rel="noopener noreferrer">
       <img src={icon} alt={`${site} Icon`} />
