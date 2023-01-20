@@ -13,7 +13,7 @@ export function ResetToDefaultColors(){
 let jamPrimaryColor = "#f55a5b";
 let jamSecondaryColor = "#151048";
 
-export function SetJamTheme(primary, secondary){
+export function SetJamTheme(primary:string, secondary:string){
   if (primary === "#ffffff") primary = secondary;
   if (secondary === "#ffffff") secondary = changeHue(primary, 10);
   let primaryHsl = rgbToHSL(primary);
@@ -33,7 +33,7 @@ export function GetJamPrimary(){
   return jamPrimaryColor;
 }
 
-export function GetJamPrimaryVariations(amount){
+export function GetJamPrimaryVariations(amount:number){
   let hslColor = rgbToHSL(jamPrimaryColor);
   hslColor.l = Math.max(.4, hslColor.l);
   return GetColorVariations(hslToRGB(hslColor), amount, 60);
@@ -43,7 +43,7 @@ export function GetJamSecondary(){
   return jamSecondaryColor;
 }
 
-function GetColorVariations(color, amount, degree){
+function GetColorVariations(color:string, amount:number, degree:number){
   if(!color) return;
   let colors = [];
   let oldColor = color;

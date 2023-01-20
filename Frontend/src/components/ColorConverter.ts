@@ -1,4 +1,4 @@
-export function changeHue(rgb, degree) {
+export function changeHue(rgb:string, degree:number) {
   var hsl = rgbToHSL(rgb);
   hsl.h += degree;
   if (hsl.h > 360) {
@@ -11,7 +11,7 @@ export function changeHue(rgb, degree) {
 }
 
 // exepcts a string and returns an object
-export function rgbToHSL(rgb) {
+export function rgbToHSL(rgb:string) {
   // strip the leading # if it's there
   rgb = rgb.replace(/^\s*#|\s*$/g, '');
   
@@ -56,9 +56,13 @@ export function rgbToHSL(rgb) {
     l: l
   }
 }
-
+type hslObject = {
+  h: number,
+  s: number,
+  l: number,
+}
 // expects an object and returns a string
-export function hslToRGB(hsl) {
+export function hslToRGB(hsl:hslObject) {
   let h = hsl.h,
     s = hsl.s,
     l = hsl.l,
@@ -105,7 +109,7 @@ export function hslToRGB(hsl) {
   return rgbToHex(r,g,b);
 }
 
-function normalize_rgb_value(color, m) {
+function normalize_rgb_value(color:number, m:number) {
   color = Math.floor((color + m) * 255);
   if (color < 0) {
     color = 0;
@@ -113,7 +117,7 @@ function normalize_rgb_value(color, m) {
   return color;
 }
 
-function rgbToHex(r, g, b) {
+function rgbToHex(r:number, g:number, b:number) {
   r = Math.max(0, Math.min(255, r));
   g = Math.max(0, Math.min(255, g));
   b = Math.max(0, Math.min(255, b));
