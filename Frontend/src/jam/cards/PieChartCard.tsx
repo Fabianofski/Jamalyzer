@@ -8,7 +8,7 @@ import {
   Title,
   Tooltip,
   Legend,
-  ArcElement,
+  ArcElement, ChartData,
 } from "chart.js";
 
 ChartJS.register(
@@ -33,9 +33,15 @@ export const dummyPieData = {
   ],
 };
 
-export function PieChartCard({ styleClass, data = dummyPieData, title="Dummy Title" }) {
+type Props = {
+  styleClass : string,
+  data : ChartData<"pie", any>,
+  title : string,
+}
+
+export function PieChartCard({ styleClass, data = dummyPieData, title="Dummy Title" }:Props) {
   
-  const pieOptions = {
+  const pieOptions : object = {
     responsive: true,
     plugins: {
       legend: {

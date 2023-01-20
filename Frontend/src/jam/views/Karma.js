@@ -1,7 +1,7 @@
 import React from "react";
 import "./View.css";
-import {JsxCard} from "../cards/BasicCard.js";
-import {LineChartCard} from "../cards/LineChartCard.js";
+import {JsxCard} from "../cards/BasicCard.tsx";
+import {LineChartCard} from "../cards/LineChartCard.tsx";
 import {GetJamPrimary} from "../../components/ColorManager";
 import {Tex} from "react-tex";
 import {pearsonCorrelation} from "../../components/Utilities";

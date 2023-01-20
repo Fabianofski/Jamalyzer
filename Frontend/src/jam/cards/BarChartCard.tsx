@@ -8,7 +8,7 @@ import {
   Title,
   Tooltip,
   Legend,
-  BarElement,
+  BarElement, ChartData,
 } from "chart.js";
 
 ChartJS.register(
@@ -45,9 +45,15 @@ const dummyBarData = {
   ],
 };
 
-export function BarChartCard({ styleClass, data = dummyBarData, title="Dummy Title" }) {
+type Props = {
+  styleClass : string,
+  data : ChartData<"bar", any>,
+  title : string,
+}
+
+export function BarChartCard({ styleClass, data = dummyBarData, title="Dummy Title" } : Props) {
   
-  const barOptions = {
+  const barOptions : object = {
     plugins: {
       title: {
         display: true,

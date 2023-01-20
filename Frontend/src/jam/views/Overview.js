@@ -1,6 +1,6 @@
 import React from "react";
 import "./View.css";
-import {Card, JsxCard} from "../cards/BasicCard.js";
+import {Card, JsxCard} from "../cards/BasicCard.tsx";
 import {format, parseISO, differenceInHours, intervalToDuration, formatDuration} from "date-fns";
 
 function JamHosts(jamData){

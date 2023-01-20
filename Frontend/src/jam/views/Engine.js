@@ -1,6 +1,6 @@
 import React from "react";
 import "./View.css";
-import { Card } from "../cards/BasicCard.js";
+import { Card } from "../cards/BasicCard.tsx";
 
 function Engine({ jamData }) {
   return (

@@ -9,7 +9,7 @@ import {
   LineElement,
   Title,
   Tooltip,
-  Legend, CategoryScale,
+  Legend, CategoryScale, ChartData,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 
@@ -39,10 +39,15 @@ export const dummyLineData = {
   ],
 };
 
+type Props = {
+  styleClass : string,
+  data : ChartData<"line", any>,
+  title : string,
+}
 
-export function LineChartCard({ styleClass, data = dummyLineData, title = "Dummy Title" }) {
+export function LineChartCard({ styleClass, data = dummyLineData, title = "Dummy Title" }:Props) {
   
-  const lineOptions = {
+  const lineOptions : object = {
     responsive: true,
     maintainAspectRatio: false,
     plugins: {

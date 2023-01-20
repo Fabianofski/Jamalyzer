@@ -1,6 +1,6 @@
 import React from "react";
 import "./View.css";
-import {JsxCard} from "../cards/BasicCard.js";
+import {JsxCard} from "../cards/BasicCard.tsx";
 import {BarChartCard} from "../cards/BarChartCard";
 import {PieChartCard} from "../cards/PieChartCard";
 import {GetJamPrimaryVariations} from "../../components/ColorManager";
