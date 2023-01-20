@@ -1,4 +1,4 @@
-function pearsonCorrelation(x, y) {
+function pearsonCorrelation(x:number[], y:number[]) {
   // Ensure that both arrays have the same length
   if (x.length !== y.length) {
     throw new Error('Arrays have different lengths');
