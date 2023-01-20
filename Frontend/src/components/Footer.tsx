@@ -1,7 +1,11 @@
 import React from "react";
 import "../App.css";
 
-function Footer({setIsCookieAnswered}) {
+type Props = {
+    setIsCookieAnswered : React.Dispatch<boolean>
+}
+
+function Footer({setIsCookieAnswered}:Props) {
   
   const openCookies =  () => {
     localStorage.setItem('isCookieConsentBannerAnswered', 'false');
