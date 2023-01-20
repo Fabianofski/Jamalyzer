@@ -3,7 +3,11 @@ import "./CookieConsent.css";
 import ToggleSwitch from "./ToggleSwitch";
 import ReactGA from "react-ga4";
 
-function CookieConsentBanner({setIsCookieAnswered}) {
+type Props = {
+  setIsCookieAnswered: React.Dispatch<boolean>
+}
+
+function CookieConsentBanner({setIsCookieAnswered}:Props) {
   return (
     <div className="cookie-container">
       <MainBanner setIsCookieAnswered={setIsCookieAnswered}/>
@@ -11,11 +15,11 @@ function CookieConsentBanner({setIsCookieAnswered}) {
   );
 }
 
-function MainBanner({setIsCookieAnswered}){
+function MainBanner({setIsCookieAnswered}:Props){
   const [marketing, setMarketing] = useState(false);
   const [analytical, setAnalytical] = useState(false);
   
-  const answerBanner = (marketing, analytical) => {
+  const answerBanner = (marketing:boolean, analytical:boolean) => {
     localStorage.setItem('isCookieConsentBannerAnswered', 'true');
     localStorage.setItem('isCookieTargetedAdvertisingAccepted', String(marketing));
     localStorage.setItem('isCookieAnalyticalAccepted', String(analytical));
@@ -53,7 +57,14 @@ function MainBanner({setIsCookieAnswered}){
   );
 }
 
-function Toggle({cookieName, description, option, setOption}){
+type ToggleProps = {
+  cookieName:string,
+  description:string,
+  option:boolean,
+  setOption: React.Dispatch<boolean>,
+}
+
+function Toggle({cookieName, description, option, setOption}:ToggleProps){
   
   const [infoShown, setInfoShown] = useState(true);
   

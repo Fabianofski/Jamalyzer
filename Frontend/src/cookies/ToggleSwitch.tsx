@@ -1,7 +1,12 @@
 import React from "react";
 import "./ToggleSwitch.css";
 
-export default function ToggleSwitch({option, setOption}){
+type Props = {
+    option : boolean,
+    setOption : React.Dispatch<boolean>,
+}
+
+export default function ToggleSwitch({option, setOption}:Props){
   return(
     <div className={"switch-container"}>
       <label className="switch">
