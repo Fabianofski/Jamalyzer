@@ -1,24 +1,26 @@
 import '../App.css';
 import "./Home.css";
 import { useNavigate } from "react-router-dom";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {ResetToDefaultColors} from "../components/ColorManager";
 import ReactGA from "react-ga4";
+import {jam} from "../model/jam";
 
-const dummyJam = {
-  "name":"Loading..",
-  "icon":"jam-loading.png",
-  "link":"https://f4b1.itch.io",
-  "hosts":[{"name":"F4B1","profile_link":"https://f4b1.itch.io"}],
-  "time":"2022-07-24T19:00:00Z",
-  "joined":"69k",
-  "submitted":"69,420"}
-const dummyJamArray = [];
+const dummyJam : jam = {
+  name:"Loading..",
+  icon:"jam-loading.png",
+  link:"https://f4b1.itch.io",
+  hosts:[{"name":"F4B1","profile_link":"https://f4b1.itch.io"}],
+  time:"2022-07-24T19:00:00Z",
+  joined:"69k",
+  submitted:"69,420"
+}
+const dummyJamArray:jam[] = [];
 for (let i = 1; i <= 50; i++) {
   dummyJamArray.push(dummyJam);
 }
 
-function shuffle(array) {
+function shuffle(array:[]) {
   for (let i = array.length - 1; i > 0; i--) {
     let j = Math.floor(Math.random() * (i + 1));
     [array[i], array[j]] = [array[j], array[i]];
@@ -30,8 +32,8 @@ function Home() {
   document.title = `Jamalyzer | Home`;
   ResetToDefaultColors();
   let input = "";
-  const [error, setError] = useState("");
-  const [jams, setJams] = useState(dummyJamArray);
+  const [error, setError] = useState<string>("");
+  const [jams, setJams] = useState<jam[]>(dummyJamArray);
   
   useEffect(()=>{
     fetch("/api/jamList")
@@ -41,7 +43,7 @@ function Home() {
       )
   }, []);
   
-  const onInputChange = (e) => {
+  const onInputChange = (e:React.ChangeEvent<HTMLInputElement>) => {
     input = e.target.value;
   };
   const navigate = useNavigate();
@@ -79,7 +81,7 @@ function Home() {
         <div className="recommended-mask">
           <div className="recommended">
             {
-              jams.map((element, idx)=>{
+              jams.map((element : jam, idx : number)=>{
                 return ( <Jam jamInfo={element} key={idx}/> );
               })
             }
@@ -90,7 +92,7 @@ function Home() {
   );
 }
 
-function Jam({jamInfo}) {
+function Jam({jamInfo}:{jamInfo:jam}) {
   const navigate = useNavigate();
   const onSubmit = () => {
     if(ReactGA.isInitialized)
@@ -101,7 +103,7 @@ function Jam({jamInfo}) {
       })
     navigate(`/jam/${jamInfo.link.replace("https://itch.io/jam/", "")}`);
   }
-  
+
   return(
     <div className="recommended-jam">
       <div className="primary-info">
@@ -120,7 +122,7 @@ function Jam({jamInfo}) {
             return(
               <a href={element.profile_link} target="_blank" rel="noopener noreferrer" key={idx}>{element.name}</a>
             );
-          }).reduce((prev, curr) => [prev, ', ', curr])
+          }).reduce((prev, curr) => <>{[prev, ', ', curr]}</>)
         }
       </div>
       <div className="stats">
