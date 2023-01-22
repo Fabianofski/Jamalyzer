@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import {ResetToDefaultColors} from "../components/ColorManager";
 import ReactGA from "react-ga4";
-import {jam} from "../model/jam";
 import {jamCard} from "../model/jamCard";
 
 const dummyJam : jamCard = {
