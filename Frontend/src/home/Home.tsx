@@ -5,8 +5,9 @@ import React, {useEffect, useState} from "react";
 import {ResetToDefaultColors} from "../components/ColorManager";
 import ReactGA from "react-ga4";
 import {jam} from "../model/jam";
+import {jamCard} from "../model/jamCard";
 
-const dummyJam : jam = {
+const dummyJam : jamCard = {
   name:"Loading..",
   icon:"jam-loading.png",
   link:"https://f4b1.itch.io",
@@ -15,7 +16,7 @@ const dummyJam : jam = {
   joined:"69k",
   submitted:"69,420"
 }
-const dummyJamArray:jam[] = [];
+const dummyJamArray:jamCard[] = [];
 for (let i = 1; i <= 50; i++) {
   dummyJamArray.push(dummyJam);
 }
@@ -33,7 +34,7 @@ function Home() {
   ResetToDefaultColors();
   let input = "";
   const [error, setError] = useState<string>("");
-  const [jams, setJams] = useState<jam[]>(dummyJamArray);
+  const [jams, setJams] = useState<jamCard[]>(dummyJamArray);
   
   useEffect(()=>{
     fetch("/api/jamList")
@@ -81,7 +82,7 @@ function Home() {
         <div className="recommended-mask">
           <div className="recommended">
             {
-              jams.map((element : jam, idx : number)=>{
+              jams.map((element : jamCard, idx : number)=>{
                 return ( <Jam jamInfo={element} key={idx}/> );
               })
             }
@@ -92,7 +93,7 @@ function Home() {
   );
 }
 
-function Jam({jamInfo}:{jamInfo:jam}) {
+function Jam({jamInfo}:{jamInfo:jamCard}) {
   const navigate = useNavigate();
   const onSubmit = () => {
     if(ReactGA.isInitialized)

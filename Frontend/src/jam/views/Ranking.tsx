@@ -2,14 +2,16 @@ import React, { useState } from "react";
 import Pagination from "../components/Pagination";
 import "./View.css";
 import "../components/PaginationTable.css";
+import {jamData} from "../../model/jamData";
+import {entry, entry_criteria} from "../../model/entry";
 
-function Ranking({ jamData }) {
+function Ranking({ jamData } : {jamData : jamData}) {
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(10);
 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const paginate = (pageNumber:number) => setCurrentPage(pageNumber);
 
   return (
     <div className="view" id="Ranking">
@@ -36,13 +38,20 @@ function Ranking({ jamData }) {
   );
 }
 
-function TableBody({ jamData, indexOfFirstPost, indexOfLastPost }) {
+type TableBodyProps = {
+  jamData : jamData,
+  indexOfFirstPost : number,
+  indexOfLastPost : number,
+}
+
+function TableBody({ jamData, indexOfFirstPost, indexOfLastPost } : TableBodyProps) {
   let tableEntry = 0;
-  return Object.entries(jamData.rankings.Overall).map(([rank, ids]) => {
-    return ids.map((id) => {
+  return (<>
+    {Object.entries(jamData.rankings.Overall).map(([rank, ids]) => {
+      return ids.map((id) => {
       tableEntry++;
       if (tableEntry <= indexOfFirstPost || tableEntry > indexOfLastPost)
-        return "";
+        return <></>;
       const entry = jamData.jam_games[id];
       return (
         <TableEntry
@@ -54,10 +63,17 @@ function TableBody({ jamData, indexOfFirstPost, indexOfLastPost }) {
         />
       );
     });
-  });
+  })}</>)
 }
 
-function TableEntry({ jamData, entry, id, rank }) {
+type TableEntryProps = {
+  jamData : jamData,
+  entry : entry,
+  id : number,
+  rank : string,
+}
+
+function TableEntry({ jamData, entry, id, rank } : TableEntryProps) {
   return (
     <tr key={id}>
       <td>#{rank}</td>
@@ -70,7 +86,7 @@ function TableEntry({ jamData, entry, id, rank }) {
   );
 }
 
-function Title({ entry }) {
+function Title({ entry } : {entry : entry}) {
   return (
     <td>
       <a href={entry.jamPageUrl} target="_blank" rel="noopener noreferrer">
@@ -80,15 +96,20 @@ function Title({ entry }) {
   );
 }
 
-function CriteriaScores({ jamData, entry }) {
-  return jamData.criteria.map((criteria, index) => {
-    const crit = entry.criteria.find((c) => c.name === criteria);
-    if (crit) return <td key={index}>{crit.score.toFixed(2)}</td>;
-    else return <td key={index}>-</td>;
-  });
+type CriteriaScoresProps = {
+  jamData : jamData,
+  entry : entry,
 }
 
-function Header({ jamData }) {
+function CriteriaScores({ jamData, entry } : CriteriaScoresProps) {
+  return <>{jamData.criteria.map((criteria, index) => {
+    const crit = entry.criteria.find((c:entry_criteria) => c.name === criteria);
+    if (crit) return <td key={index}>{crit.score.toFixed(2)}</td>;
+    else return <td key={index}>-</td>;
+  })}</>
+}
+
+function Header({ jamData } : {jamData : jamData}) {
   return (
     <thead>
       <tr>
