@@ -13,14 +13,14 @@ import Engine from "./views/Engine";
 import Overview from "./views/Overview";
 import {SetJamTheme} from "../components/ColorManager";
 import ReactGA from "react-ga4";
+import {jamData} from "../model/jamData";
 
 function Jam() {
   const { jamName } = useParams();
-  const [jamData, setJamData] = useState([]);
-  const [dataLoaded, setDataLoaded] = useState(false);
+  const [jamData, setJamData] = useState<jamData>();
   const [errors, setErrors] = useState([]);
 
-  if (!dataLoaded) document.title = `Jamalyzer | Loading..`;
+  if (jamData === undefined) document.title = `Jamalyzer | Loading..`;
   useEffect(() => {
     fetch(`/api/jamData?jamName=${jamName}`)
       .then((response) => response.json())
@@ -35,26 +35,30 @@ function Jam() {
           if(ReactGA.isInitialized)
             ReactGA.send({hitType: "pageview", page: window.location.pathname});
         }
-        setDataLoaded(true);
       });
   }, [jamName]);
   
   return (
     <div className="Jam">
-      {dataLoaded ? <JamAnalysis jamData={jamData} errors={errors}/> : <Loader />}
+      {jamData !== undefined ? <JamAnalysis jamData={jamData} errors={errors}/> : <Loader />}
     </div>
   );
 }
 
-function JamAnalysis({ jamData, errors }) {
+type JamAnalysisProps = {
+  jamData : jamData,
+  errors : string[],
+}
+
+function JamAnalysis({ jamData, errors } : JamAnalysisProps) {
   if(errors.length > 0)
-    return (
+    return (<>{
       errors.map((e) => {
         return(<p> {e} </p>);
       })
-    );
+    }</>);
   
-  if (!jamData.jam.secondary_color || !jamData.jam.color) return;
+  if (!jamData.jam.secondary_color || !jamData.jam.color) return <></>;
   SetJamTheme(jamData.jam.color, jamData.jam.secondary_color);
   
   return (
