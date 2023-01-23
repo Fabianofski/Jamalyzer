@@ -6,7 +6,7 @@ import ToolTip from "./ToolTip";
 type CardProps = {
   text:string,
   styleClass:string,
-  tooltip:ReactElement|null,
+  tooltip?:ReactElement | null,
 }
 
 export function Card({ text, styleClass, tooltip = null }:CardProps) {
@@ -21,7 +21,7 @@ export function Card({ text, styleClass, tooltip = null }:CardProps) {
 type JsxCardProps = {
   jsx:ReactElement,
   styleClass:string,
-  tooltip:ReactElement|null,
+  tooltip?:ReactElement|null,
 }
 
 export function JsxCard({ jsx, styleClass, tooltip = null }:JsxCardProps) {
