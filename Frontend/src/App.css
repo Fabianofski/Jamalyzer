@@ -14,7 +14,7 @@
   font-style: normal;
 }
 
-:root{
+:root {
   --primary-color: #f55a5b;
   --secondary-color: #151048;
   --html-bg-color: white;
@@ -24,7 +24,7 @@
   --darkmode-background-color: #1d1d2a;
 }
 
-*{
+* {
   font-family: "Poppins", sans-serif;
 }
 
@@ -33,14 +33,14 @@ html {
   scroll-behavior: smooth;
 }
 
-.App{
+.App {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
-.Router{
+.Router {
   display: flex;
   flex: 1;
 }
@@ -58,7 +58,7 @@ html {
   width: 100%;
 }
 
-.footer{
+.footer {
   min-height: 6rem;
 }
 
@@ -70,25 +70,25 @@ html {
   color: white;
 }
 
-.logo{
+.logo {
   text-decoration: none;
   color: white;
   font-family: "Rancho", cursive;
   font-size: 1.5rem;
 }
 
-.logo:hover{
+.logo:hover {
   color: var(--secondary-color);
 }
 
-.footer{
+.footer {
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--secondary-color);
 }
 
-.footer a{
+.footer a {
   text-decoration: none;
   color: white;
   width: 10rem;
@@ -98,14 +98,14 @@ html {
   box-sizing: border-box;
 }
 
-.footer a:hover{
+.footer a:hover {
   color: var(--secondary-color);
   border-top: 1px solid var(--secondary-color);
   border-bottom: 1px solid var(--secondary-color);
 }
 
 @media (max-width: 600px) {
-  .footer{
+  .footer {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
@@ -118,7 +118,7 @@ html {
     border: none;
   }
 
-  .footer a:hover{
+  .footer a:hover {
     border: none;
   }
 }

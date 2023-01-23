@@ -1,59 +1,63 @@
 import React from "react";
 import "./View.css";
-import {JsxCard} from "../cards/BasicCard.js";
-import {LineChartCard} from "../cards/LineChartCard.js";
+import {JsxCard} from "../cards/BasicCard";
+import {LineChartCard} from "../cards/LineChartCard";
 import {GetJamPrimary} from "../../components/ColorManager";
-import {Tex} from "react-tex";
 import {pearsonCorrelation} from "../../components/Utilities";
+import {jamData} from "../../model/jamData";
 
-function karmaDescription(){
-  return(
-    <div style={{lineHeight: "2rem", hyphens:"auto"}}>
-      Karma is a numerical score that reflects the number of ratings an entry has received and given. It is calculated using the formula: <br/>
-      <Tex texContent="Karma = \frac {Log(1 + ratings\_given) - Log(1 + ratings\_received)}{Log(5)}"/> <br/>
+const reactTex = require("react-tex");
+
+function karmaDescription() {
+  return (
+    <div style={{lineHeight: "2rem", hyphens: "auto"}}>
+      Karma is a numerical score that reflects the number of ratings an entry has received and given. It is calculated
+      using the formula: <br/>
+      <reactTex.Tex texContent="Karma = \frac {Log(1 + ratings\_given) - Log(1 + ratings\_received)}{Log(5)}"/>
+      <br/>
       To possibly increase your score, you should rate more games and leave feedback.
     </div>);
 }
 
-function PearsonTooltip(){
-  return(
+function PearsonTooltip() {
+  return (
     <p style={{lineHeight: "1.5rem"}}>
-      The Pearson correlation coefficient is a measure of the linear relationship between two variables. <br />
-      -1 = negative relationship <br />
-      0 = no relationship <br />
+      The Pearson correlation coefficient is a measure of the linear relationship between two variables. <br/>
+      -1 = negative relationship <br/>
+      0 = no relationship <br/>
       1 = positive relationship
     </p>
   );
 }
 
-function Correlation({jamData}){
-  
-  let ranking = [];
-  let karma = [];
+function Correlation({jamData}: { jamData: jamData }) {
+
+  let ranking: number[] = [];
+  let karma: number[] = [];
   Object.entries(jamData.rankings.Overall).forEach(([rank, ids]) => {
-    ids.forEach((id)=>{
+    ids.forEach((id) => {
       let game = jamData.jam_games[id];
-      if(game.karma === undefined) return;
+      if (game.karma === undefined) return;
       ranking.push(game.rank);
       karma.push(game.karma);
     })
   })
   let c = pearsonCorrelation(ranking, karma);
-  
-  return(
-    <div >
-      <p> Pearson-Correlation: <strong>r = {c.toFixed(2)}</strong> </p>
+
+  return (
+    <div>
+      <p> Pearson-Correlation: <strong>r = {c.toFixed(2)}</strong></p>
     </div>
   );
 }
 
-function Karma({ jamData }) {
+function Karma({jamData}: { jamData: jamData }) {
   let data = getLineChartData(jamData);
   return (
     <div className="view" id="Karma">
       <h1>Karma</h1>
       <div className="card-grid">
-        <JsxCard jsx={karmaDescription()} styleClass={"card card-col-span-6"} />
+        <JsxCard jsx={karmaDescription()} styleClass={"card card-col-span-6"}/>
         <LineChartCard
           data={data}
           styleClass={"card card-col-span-3 card-row-span-2"}
@@ -78,7 +82,7 @@ function Karma({ jamData }) {
   );
 }
 
-function karmaStats(jamData) {
+function karmaStats(jamData: jamData) {
   let leastKarma = 999999;
   let leastID;
   let mostKarma = 0;
@@ -97,18 +101,26 @@ function karmaStats(jamData) {
       karmaSum += entry.karma;
     }
   });
-  
+
   const least = <KarmaStat jamData={jamData} category={"Least Karma"} amount={leastKarma} id={leastID}/>;
-  const average = <KarmaStat jamData={jamData} category={"Average Karma"} amount={karmaSum / Object.entries(jamData.jam_games).length}/>
+  const average = <KarmaStat jamData={jamData} category={"Average Karma"}
+                             amount={karmaSum / Object.entries(jamData.jam_games).length}/>
   const most = <KarmaStat jamData={jamData} category={"Most Karma"} amount={mostKarma} id={mostID}/>
-  
+
   return [least, average, most];
 }
 
-function KarmaStat({jamData, category, amount, id = -1}){
+type KarmaStatProps = {
+  jamData: jamData,
+  category: string,
+  amount: number,
+  id?: number,
+}
+
+function KarmaStat({jamData, category, amount, id = -1}: KarmaStatProps) {
   const game = jamData.jam_games[id];
-  return(
-    <div >
+  return (
+    <div>
       <p>{category}: <strong>{amount.toFixed(2)}</strong></p>
       {id !== -1 ?
         <p>
@@ -120,9 +132,9 @@ function KarmaStat({jamData, category, amount, id = -1}){
   );
 }
 
-function getLineChartData(jamData) {
-  const labels = [];
-  const data = [];
+function getLineChartData(jamData: jamData) {
+  const labels: string[] = [];
+  const data: number[] = [];
   const entries = Object.entries(jamData.rankings.Overall).reverse();
   let totalEntries = 0;
 

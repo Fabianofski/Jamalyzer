@@ -1,4 +1,4 @@
-.legal-container{
+.legal-container {
   width: 100vw;
   display: flex;
   justify-content: flex-start;
@@ -21,15 +21,16 @@
   height: fit-content;
   padding: 0 3em 3em 3em;
   background: var(--background-color);
-  color:  var(--secondary-color);
+  color: var(--secondary-color);
   box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.25);
   border-radius: 25px;
 }
 
-.legal-view h1, h2{
+.legal-view h1, h2 {
   text-align: center;
 }
-.legal-view p{
+
+.legal-view p {
   text-align: justify;
   hyphens: auto;
 }

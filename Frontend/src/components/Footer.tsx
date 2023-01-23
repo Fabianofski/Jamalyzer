@@ -1,13 +1,17 @@
 import React from "react";
 import "../App.css";
 
-function Footer({setIsCookieAnswered}) {
-  
-  const openCookies =  () => {
+type Props = {
+  setIsCookieAnswered: React.Dispatch<boolean>
+}
+
+function Footer({setIsCookieAnswered}: Props) {
+
+  const openCookies = () => {
     localStorage.setItem('isCookieConsentBannerAnswered', 'false');
     setIsCookieAnswered(false);
   }
-  
+
   return (
     <div className="footer">
       <a href="/credits">Credits</a>

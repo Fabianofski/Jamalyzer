@@ -1,4 +1,4 @@
-.credits-wrapper{
+.credits-wrapper {
   width: 100%;
   height: 100%;
   display: flex;
@@ -12,12 +12,12 @@
   }
 }
 
-.profile{
+.profile {
   max-width: 10rem;
   border-radius: 1rem;
 }
 
-.information{
+.information {
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -28,7 +28,7 @@
   padding: 0 3em 0 3em;
 }
 
-.link{
+.link {
   width: 100%;
   height: fit-content;
   display: flex;
@@ -37,10 +37,10 @@
   gap: 1em;
 }
 
-.link img{
+.link img {
   width: 2rem;
 }
 
-.link:hover img{
+.link:hover img {
   filter: invert(48%) sepia(84%) saturate(3421%) hue-rotate(328deg) brightness(108%) contrast(94%);
 }

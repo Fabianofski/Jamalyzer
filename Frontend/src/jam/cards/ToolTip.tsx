@@ -1,8 +1,8 @@
-import React from "react";
+import React, {ReactElement} from "react";
 import "./ToolTip.css";
 
-function ToolTip({jsx}){
-  return(
+function ToolTip({jsx}: { jsx: ReactElement }) {
+  return (
     <div className="tooltip">
       <i className={`tooltip-icon fa fa-info-circle`}>
         <div className="tooltip-text">

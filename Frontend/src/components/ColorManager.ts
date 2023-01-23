@@ -5,7 +5,7 @@ const defaultSecondaryColor = "#151048";
 
 //const primaryTextColor = "#151048";
 
-export function ResetToDefaultColors(){
+export function ResetToDefaultColors() {
   document.documentElement.style.setProperty('--primary-color', defaultPrimaryColor);
   document.documentElement.style.setProperty('--secondary-color', defaultSecondaryColor);
 }
@@ -13,7 +13,7 @@ export function ResetToDefaultColors(){
 let jamPrimaryColor = "#f55a5b";
 let jamSecondaryColor = "#151048";
 
-export function SetJamTheme(primary, secondary){
+export function SetJamTheme(primary: string, secondary: string) {
   if (primary === "#ffffff") primary = secondary;
   if (secondary === "#ffffff") secondary = changeHue(primary, 10);
   let primaryHsl = rgbToHSL(primary);
@@ -22,29 +22,29 @@ export function SetJamTheme(primary, secondary){
   secondaryHsl.s = Math.max(.8, secondaryHsl.s);
   primaryHsl.l = Math.min(.4, primaryHsl.l);
   secondaryHsl.l = Math.min(.2, secondaryHsl.l);
-  
+
   jamPrimaryColor = hslToRGB(primaryHsl);
   jamSecondaryColor = hslToRGB(secondaryHsl);
   document.documentElement.style.setProperty('--primary-color', jamPrimaryColor);
   document.documentElement.style.setProperty('--secondary-color', jamSecondaryColor);
 }
 
-export function GetJamPrimary(){
+export function GetJamPrimary() {
   return jamPrimaryColor;
 }
 
-export function GetJamPrimaryVariations(amount){
+export function GetJamPrimaryVariations(amount: number) {
   let hslColor = rgbToHSL(jamPrimaryColor);
   hslColor.l = Math.max(.4, hslColor.l);
   return GetColorVariations(hslToRGB(hslColor), amount, 60);
 }
 
-export function GetJamSecondary(){
+export function GetJamSecondary() {
   return jamSecondaryColor;
 }
 
-function GetColorVariations(color, amount, degree){
-  if(!color) return;
+function GetColorVariations(color: string, amount: number, degree: number) {
+  if (!color) return;
   let colors = [];
   let oldColor = color;
   for (let i = 0; i < amount; i++) {

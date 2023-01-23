@@ -1,19 +1,21 @@
 import React from "react";
 import "./View.css";
-import {Card, JsxCard} from "../cards/BasicCard.js";
+import {JsxCard} from "../cards/BasicCard";
 import {BarChartCard} from "../cards/BarChartCard";
 import {PieChartCard} from "../cards/PieChartCard";
 import {GetJamPrimaryVariations} from "../../components/ColorManager";
+import {jamData} from "../../model/jamData";
 
-function TeamDescription(){
-  return(
-    <p style={{textAlign:"justify", hyphens:"auto"}}>
-      Teams with more members are able to create games with a larger amount of content and a higher level of quality. By working on a bigger team, you may be able to increase the score of your game.
+function TeamDescription() {
+  return (
+    <p style={{textAlign: "justify", hyphens: "auto"}}>
+      Teams with more members are able to create games with a larger amount of content and a higher level of quality. By
+      working on a bigger team, you may be able to increase the score of your game.
     </p>
   );
 }
 
-function Team({ jamData }) {
+function Team({jamData}: { jamData: jamData }) {
   const pieData = extractData(jamData);
   const barData = getBarChartData(jamData);
   const teamStats = getTeamStats(jamData);
@@ -22,7 +24,7 @@ function Team({ jamData }) {
     <div className="view" id="Team">
       <h1>Team</h1>
       <div className="card-grid">
-        <Card text={TeamDescription()} styleClass={"card card-col-span-4"} />
+        <JsxCard jsx={TeamDescription()} styleClass={"card card-col-span-4"}/>
         <PieChartCard
           data={pieData}
           styleClass={"card card-col-span-2 card-row-span-3"}
@@ -36,9 +38,9 @@ function Team({ jamData }) {
         {teamStats.map((element, idx) => {
           return (
             <JsxCard
-                jsx={element}
-                styleClass={"card card-col-span-1"}
-                key={idx}
+              jsx={element}
+              styleClass={"card card-col-span-1"}
+              key={idx}
             />
           );
         })}
@@ -47,13 +49,13 @@ function Team({ jamData }) {
   );
 }
 
-function getTeamStats(jamData){
+function getTeamStats(jamData: jamData) {
   let teamSize = 0;
   let mostID = 0;
   let biggestTeam = 0;
   Object.entries(jamData.jam_games).forEach(([id, entry]) => {
     teamSize += entry.contributors.length;
-    if(entry.contributors.length > biggestTeam){
+    if (entry.contributors.length > biggestTeam) {
       mostID = entry.id;
       biggestTeam = entry.contributors.length;
     }
@@ -64,19 +66,26 @@ function getTeamStats(jamData){
   return [median, most];
 }
 
-function TeamStat({jamData, category, amount, id = -1}){
+type TeamStatProps = {
+  jamData: jamData,
+  category: string,
+  amount: string,
+  id?: number,
+}
+
+function TeamStat({jamData, category, amount, id = -1}: TeamStatProps) {
   const game = jamData.jam_games[id];
-  return(
-    <div >
-      <p>{category}: <br /> <strong>{amount}</strong></p>
+  return (
+    <div>
+      <p>{category}: <br/> <strong>{amount}</strong></p>
       {id !== -1 ?
-          <a href={game.jamPageUrl} target="_blank" rel="noopener noreferrer">#{game.rank} {game.title}</a>
+        <a href={game.jamPageUrl} target="_blank" rel="noopener noreferrer">#{game.rank} {game.title}</a>
         : ""}
     </div>
   );
 }
 
-function extractData(jamData) {
+function extractData(jamData: jamData) {
   let data = [0, 0, 0, 0];
   Object.entries(jamData.jam_games).forEach(([id, entry]) => {
     const teamSize = clamp(entry.contributors.length - 1, 0, 3);
@@ -89,10 +98,10 @@ function extractData(jamData) {
       {
         data: data,
         backgroundColor: [
-          colors[0],
-          colors[1],
-          colors[2],
-          colors[3],
+          colors?.[0],
+          colors?.[1],
+          colors?.[2],
+          colors?.[3],
         ],
         hoverOffset: 10,
       },
@@ -100,12 +109,12 @@ function extractData(jamData) {
   };
 }
 
-function getBarChartData(jamData) {
-  const labels = [];
-  const solo = [],
-    duo = [],
-    trio = [],
-    more = [];
+function getBarChartData(jamData: jamData) {
+  const labels: string[] = [];
+  const solo: number[] = [],
+    duo: number[] = [],
+    trio: number[] = [],
+    more: number[] = [];
   const entries = Object.entries(jamData.rankings.Overall).reverse();
   let totalEntries = 0;
 
@@ -141,33 +150,33 @@ function getBarChartData(jamData) {
       {
         label: "Solo",
         data: solo,
-        backgroundColor: colors[0],
+        backgroundColor: colors?.[0],
         stack: "Stack 0",
       },
       {
         label: "Duo",
         data: duo,
-        backgroundColor: colors[1],
+        backgroundColor: colors?.[1],
         stack: "Stack 1",
       },
       {
         label: "Trio",
         data: trio,
-        backgroundColor: colors[2],
+        backgroundColor: colors?.[2],
         stack: "Stack 2",
       },
       {
         label: ">3",
         data: more,
-        backgroundColor: colors[3],
+        backgroundColor: colors?.[3],
         stack: "Stack 3",
       },
     ],
   };
 }
 
-function clamp(number, min, max) {
-  return Math.max(min, Math.min(number, max));
+function clamp(value: number, min: number, max: number) {
+  return Math.max(min, Math.min(value, max));
 }
 
 export default Team;

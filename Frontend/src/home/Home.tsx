@@ -1,24 +1,26 @@
 import '../App.css';
 import "./Home.css";
-import { useNavigate } from "react-router-dom";
-import {useEffect, useState} from "react";
+import {useNavigate} from "react-router-dom";
+import React, {useEffect, useState} from "react";
 import {ResetToDefaultColors} from "../components/ColorManager";
 import ReactGA from "react-ga4";
+import {jamCard} from "../model/jamCard";
 
-const dummyJam = {
-  "name":"Loading..",
-  "icon":"jam-loading.png",
-  "link":"https://f4b1.itch.io",
-  "hosts":[{"name":"F4B1","profile_link":"https://f4b1.itch.io"}],
-  "time":"2022-07-24T19:00:00Z",
-  "joined":"69k",
-  "submitted":"69,420"}
-const dummyJamArray = [];
+const dummyJam: jamCard = {
+  name: "Loading..",
+  icon: "jam-loading.png",
+  link: "https://f4b1.itch.io",
+  hosts: [{"name": "F4B1", "profile_link": "https://f4b1.itch.io"}],
+  time: "2022-07-24T19:00:00Z",
+  joined: "69k",
+  submitted: "69,420"
+}
+const dummyJamArray: jamCard[] = [];
 for (let i = 1; i <= 50; i++) {
   dummyJamArray.push(dummyJam);
 }
 
-function shuffle(array) {
+function shuffle(array: []) {
   for (let i = array.length - 1; i > 0; i--) {
     let j = Math.floor(Math.random() * (i + 1));
     [array[i], array[j]] = [array[j], array[i]];
@@ -30,28 +32,28 @@ function Home() {
   document.title = `Jamalyzer | Home`;
   ResetToDefaultColors();
   let input = "";
-  const [error, setError] = useState("");
-  const [jams, setJams] = useState(dummyJamArray);
-  
-  useEffect(()=>{
+  const [error, setError] = useState<string>("");
+  const [jams, setJams] = useState<jamCard[]>(dummyJamArray);
+
+  useEffect(() => {
     fetch("/api/jamList")
       .then((response) => response.json())
       .then((json) =>
         setJams(shuffle(json.jams))
       )
   }, []);
-  
-  const onInputChange = (e) => {
+
+  const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     input = e.target.value;
   };
   const navigate = useNavigate();
   const onSubmit = () => {
-    if(!input.startsWith("https://itch.io/jam/")) {
+    if (!input.startsWith("https://itch.io/jam/")) {
       setError("Invalid URL");
       return;
     }
     const jamName = input.replace("https://itch.io/jam/", "")
-    if(ReactGA.isInitialized)
+    if (ReactGA.isInitialized)
       ReactGA.event({
         category: "Jam Analysis",
         action: "Analyze custom jam",
@@ -64,7 +66,8 @@ function Home() {
     <div className="Home">
       <div className="form">
         <h1>Analyze your Jam!</h1>
-        <input type="text" placeholder="https://itch.io/jam/..." name="JamURL" autoComplete="off" required onChange={onInputChange}/>
+        <input type="text" placeholder="https://itch.io/jam/..." name="JamURL" autoComplete="off" required
+               onChange={onInputChange}/>
         <div className="error">
           <p> {error} </p>
         </div>
@@ -79,8 +82,8 @@ function Home() {
         <div className="recommended-mask">
           <div className="recommended">
             {
-              jams.map((element, idx)=>{
-                return ( <Jam jamInfo={element} key={idx}/> );
+              jams.map((element: jamCard, idx: number) => {
+                return (<Jam jamInfo={element} key={idx}/>);
               })
             }
           </div>
@@ -90,10 +93,10 @@ function Home() {
   );
 }
 
-function Jam({jamInfo}) {
+function Jam({jamInfo}: { jamInfo: jamCard }) {
   const navigate = useNavigate();
   const onSubmit = () => {
-    if(ReactGA.isInitialized)
+    if (ReactGA.isInitialized)
       ReactGA.event({
         category: "Jam Analysis",
         action: "Analyze recommended jam",
@@ -101,13 +104,13 @@ function Jam({jamInfo}) {
       })
     navigate(`/jam/${jamInfo.link.replace("https://itch.io/jam/", "")}`);
   }
-  
-  return(
+
+  return (
     <div className="recommended-jam">
       <div className="primary-info">
         <a href={jamInfo.link} target="_blank" rel="noopener noreferrer" className="jam-icon">
           <img className="jam_cover"
-           src={jamInfo.icon} alt={`Icon: ${jamInfo.name}`} />
+               src={jamInfo.icon} alt={`Icon: ${jamInfo.name}`}/>
         </a>
         <a href={jamInfo.link} target="_blank" rel="noopener noreferrer" className="title">
           <h3>{jamInfo.name}</h3>
@@ -117,10 +120,10 @@ function Jam({jamInfo}) {
         Hosted by&nbsp;
         {
           jamInfo.hosts.map((element, idx) => {
-            return(
+            return (
               <a href={element.profile_link} target="_blank" rel="noopener noreferrer" key={idx}>{element.name}</a>
             );
-          }).reduce((prev, curr) => [prev, ', ', curr])
+          }).reduce((prev, curr) => <>{[prev, ', ', curr]}</>)
         }
       </div>
       <div className="stats">

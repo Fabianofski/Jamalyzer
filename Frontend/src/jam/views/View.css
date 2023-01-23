@@ -11,12 +11,12 @@
   margin: 5rem 0 0 0;
   padding: 3rem;
   background: var(--background-color);
-  color:  var(--secondary-color);
+  color: var(--secondary-color);
   box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.25);
   border-radius: 25px;
 }
 
-.jam-banner{
+.jam-banner {
   max-height: 25rem;
   max-width: 100%;
   margin-bottom: 5vh;
@@ -61,7 +61,7 @@
   }
 }
 
-.jam-title{
+.jam-title {
   text-align: center;
 }
 

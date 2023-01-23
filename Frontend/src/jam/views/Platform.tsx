@@ -1,20 +1,23 @@
 import React from "react";
 import "./View.css";
-import {JsxCard} from "../cards/BasicCard.js";
+import {JsxCard} from "../cards/BasicCard";
 import {BarChartCard} from "../cards/BarChartCard";
 import {PieChartCard} from "../cards/PieChartCard";
 import {GetJamPrimaryVariations} from "../../components/ColorManager";
+import {jamData} from "../../model/jamData";
 
-function PlatformDescription(){
-  return(
-    <p style={{textAlign:"justify", hyphens:"auto"}}>
-      Making your game available to players on multiple or specific platforms can increase your visibility and give you a higher score.
-      By releasing your game on a variety of platforms, you can reach a wider audience and potentially achieve a higher score as more players discover and play your game.
+function PlatformDescription() {
+  return (
+    <p style={{textAlign: "justify", hyphens: "auto"}}>
+      Making your game available to players on multiple or specific platforms can increase your visibility and give you
+      a higher score.
+      By releasing your game on a variety of platforms, you can reach a wider audience and potentially achieve a higher
+      score as more players discover and play your game.
     </p>
   );
 }
 
-function Platform({ jamData }) {
+function Platform({jamData}: { jamData: jamData }) {
   const barData = getBarChartData(jamData);
   const pieData = getPieChartData(jamData);
 
@@ -41,7 +44,7 @@ function Platform({ jamData }) {
   );
 }
 
-function getPieChartData(jamData) {
+function getPieChartData(jamData: jamData) {
   let data = [0, 0, 0, 0];
   Object.entries(jamData.jam_games).forEach(([id, entry]) => {
     if (!entry.platforms) return;
@@ -57,10 +60,10 @@ function getPieChartData(jamData) {
       {
         data: data,
         backgroundColor: [
-          colors[0],
-          colors[1],
-          colors[2],
-          colors[3],
+          colors?.[0],
+          colors?.[1],
+          colors?.[2],
+          colors?.[3],
         ],
         hoverOffset: 10,
       },
@@ -68,12 +71,12 @@ function getPieChartData(jamData) {
   };
 }
 
-function getBarChartData(jamData) {
-  const labels = [];
-  const web = [],
-    windows = [],
-    mac = [],
-    linux = [];
+function getBarChartData(jamData: jamData) {
+  const labels: string[] = [];
+  const web: number[] = [],
+    windows: number[] = [],
+    mac: number[] = [],
+    linux: number[] = [];
   const entries = Object.entries(jamData.rankings.Overall).reverse();
   let totalEntries = 0;
 
@@ -113,25 +116,25 @@ function getBarChartData(jamData) {
       {
         label: "Web",
         data: web,
-        backgroundColor: colors[0],
+        backgroundColor: colors?.[0],
         stack: "Stack 0",
       },
       {
         label: "Windows",
         data: windows,
-        backgroundColor: colors[1],
+        backgroundColor: colors?.[1],
         stack: "Stack 1",
       },
       {
         label: "MacOS",
         data: mac,
-        backgroundColor: colors[2],
+        backgroundColor: colors?.[2],
         stack: "Stack 2",
       },
       {
         label: "Linux",
         data: linux,
-        backgroundColor: colors[3],
+        backgroundColor: colors?.[3],
         stack: "Stack 3",
       },
     ],
