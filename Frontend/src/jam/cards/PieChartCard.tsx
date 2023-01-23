@@ -3,13 +3,7 @@ import React from "react";
 import "../views/View.css";
 import "./Card.css";
 
-import {
-  Chart as ChartJS,
-  Title,
-  Tooltip,
-  Legend,
-  ArcElement, ChartData,
-} from "chart.js";
+import {ArcElement, Chart as ChartJS, ChartData, Legend, Title, Tooltip,} from "chart.js";
 
 ChartJS.register(
   Title,
@@ -34,14 +28,14 @@ export const dummyPieData = {
 };
 
 type Props = {
-  styleClass : string,
-  data : ChartData<"pie", any>,
-  title : string,
+  styleClass: string,
+  data: ChartData<"pie", any>,
+  title: string,
 }
 
-export function PieChartCard({ styleClass, data = dummyPieData, title="Dummy Title" }:Props) {
-  
-  const pieOptions : object = {
+export function PieChartCard({styleClass, data = dummyPieData, title = "Dummy Title"}: Props) {
+
+  const pieOptions: object = {
     responsive: true,
     plugins: {
       legend: {
@@ -54,11 +48,11 @@ export function PieChartCard({ styleClass, data = dummyPieData, title="Dummy Tit
       },
     },
   };
-  
+
   return (
     <div className={styleClass + " chart-card"}>
       <div className="chart">
-        <Pie options={pieOptions} data={data} />
+        <Pie options={pieOptions} data={data}/>
       </div>
     </div>
   );

@@ -3,13 +3,7 @@ import React from "react";
 import "../views/View.css";
 import "./Card.css";
 
-import {
-  Chart as ChartJS,
-  Title,
-  Tooltip,
-  Legend,
-  BarElement, ChartData,
-} from "chart.js";
+import {BarElement, Chart as ChartJS, ChartData, Legend, Title, Tooltip,} from "chart.js";
 
 ChartJS.register(
   Title,
@@ -46,14 +40,14 @@ const dummyBarData = {
 };
 
 type Props = {
-  styleClass : string,
-  data : ChartData<"bar", any>,
-  title : string,
+  styleClass: string,
+  data: ChartData<"bar", any>,
+  title: string,
 }
 
-export function BarChartCard({ styleClass, data = dummyBarData, title="Dummy Title" } : Props) {
-  
-  const barOptions : object = {
+export function BarChartCard({styleClass, data = dummyBarData, title = "Dummy Title"}: Props) {
+
+  const barOptions: object = {
     plugins: {
       title: {
         display: true,
@@ -75,11 +69,11 @@ export function BarChartCard({ styleClass, data = dummyBarData, title="Dummy Tit
       },
     },
   };
-  
+
   return (
     <div className={styleClass + " chart-card"}>
       <div className="chart">
-        <Bar options={barOptions} data={data} style={{minHeight:"20rem"}}/>
+        <Bar options={barOptions} data={data} style={{minHeight: "20rem"}}/>
       </div>
     </div>
   );

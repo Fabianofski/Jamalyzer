@@ -1,4 +1,4 @@
-.Home{
+.Home {
   flex: 1;
   display: flex;
   margin-top: 1rem;
@@ -21,7 +21,7 @@
   height: 2.5rem;
   box-sizing: border-box;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-  color:  var(--secondary-color);
+  color: var(--secondary-color);
   border: 1px solid var(--primary-color);
   border-radius: 10px;
   outline: none;
@@ -32,7 +32,7 @@
   border: 1px solid var(--primary-color);
 }
 
-.error{
+.error {
   width: 100%;
   height: 3em;
   display: flex;
@@ -42,7 +42,7 @@
   color: var(--primary-color);
 }
 
-.submit{
+.submit {
   background-color: var(--primary-color);
   color: white;
   text-decoration: none;
@@ -63,7 +63,7 @@
   background-color: var(--background-color);
 }
 
-.recommended-container{
+.recommended-container {
   margin-top: 10vh;
   margin-bottom: 10rem;
   display: flex;
@@ -72,7 +72,7 @@
   align-items: center;
 }
 
-.recommended-mask{
+.recommended-mask {
   width: 70vw;
   height: 20rem;
   overflow-x: scroll;
@@ -93,7 +93,7 @@
   background: var(--primary-color);
 }
 
-.recommended{
+.recommended {
   box-sizing: border-box;
   padding-bottom: 1em;
   width: fit-content;
@@ -102,7 +102,7 @@
   justify-content: flex-start;
 }
 
-.recommended-jam{
+.recommended-jam {
   width: 20rem;
   height: 100%;
   margin-right: 1em;
@@ -118,21 +118,21 @@
   align-items: center;
 }
 
-.primary-info{
+.primary-info {
   display: flex;
   align-items: flex-start;
   width: 100%;
 }
 
-.jam-icon{
+.jam-icon {
   flex: 1;
 }
 
-.jam-icon img{
+.jam-icon img {
   width: 100%;
 }
 
-.title{
+.title {
   padding-left: .5em;
   flex: 2;
   overflow: hidden;
@@ -141,19 +141,19 @@
   height: fit-content;
 }
 
-.host{
+.host {
   text-align: center;
   overflow: hidden;
   max-height: 5em;
 }
 
-.stats{
+.stats {
   display: flex;
   justify-content: space-evenly;
   width: 100%;
   height: fit-content;
 }
 
-.submissions, .joined{
+.submissions, .joined {
   height: fit-content;
 }

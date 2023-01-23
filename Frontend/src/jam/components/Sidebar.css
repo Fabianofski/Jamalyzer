@@ -42,9 +42,11 @@ a {
   .sidebar-container {
     display: flex;
   }
+
   .sidebar {
     display: flex;
   }
+
   .chapter {
     display: flex;
   }
@@ -54,9 +56,11 @@ a {
   .sidebar-container {
     display: none;
   }
+
   .sidebar {
     display: none;
   }
+
   .chapter {
     display: none;
   }

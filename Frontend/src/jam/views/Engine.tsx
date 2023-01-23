@@ -1,9 +1,9 @@
 import React from "react";
 import "./View.css";
-import { Card } from "../cards/BasicCard";
+import {Card} from "../cards/BasicCard";
 import {jamData} from "../../model/jamData";
 
-function Engine({ jamData } : {jamData : jamData}) {
+function Engine({jamData}: { jamData: jamData }) {
   return (
     <div className="view" id="Engine">
       <h1>Engine (WIP)</h1>

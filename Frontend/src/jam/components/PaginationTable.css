@@ -23,7 +23,7 @@ td {
   overflow: hidden;
 }
 
-table{
+table {
   border-bottom: 2px solid var(--secondary-color);
   border-top: 2px solid var(--secondary-color);
 }
@@ -41,7 +41,7 @@ th {
   white-space: normal;
 }
 
-.long-criteria{
+.long-criteria {
   min-width: 180px;
 }
 

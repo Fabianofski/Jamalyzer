@@ -4,14 +4,14 @@ import "./Card.css";
 import ToolTip from "./ToolTip";
 
 type CardProps = {
-  text:string,
-  styleClass:string,
-  tooltip?:ReactElement | null,
+  text: string,
+  styleClass: string,
+  tooltip?: ReactElement | null,
 }
 
-export function Card({ text, styleClass, tooltip = null }:CardProps) {
+export function Card({text, styleClass, tooltip = null}: CardProps) {
   return (
-    <div className={styleClass} >
+    <div className={styleClass}>
       {tooltip !== null ? <ToolTip jsx={tooltip}/> : ""}
       <p>{text}</p>
     </div>
@@ -19,12 +19,12 @@ export function Card({ text, styleClass, tooltip = null }:CardProps) {
 }
 
 type JsxCardProps = {
-  jsx:ReactElement,
-  styleClass:string,
-  tooltip?:ReactElement|null,
+  jsx: ReactElement,
+  styleClass: string,
+  tooltip?: ReactElement | null,
 }
 
-export function JsxCard({ jsx, styleClass, tooltip = null }:JsxCardProps) {
+export function JsxCard({jsx, styleClass, tooltip = null}: JsxCardProps) {
   return (
     <div className={styleClass}>
       {tooltip !== null ? <ToolTip jsx={tooltip}/> : ""}

@@ -1,21 +1,21 @@
-.tooltip{
+.tooltip {
   position: absolute;
   top: 1rem;
   right: 1rem;
   z-index: 1;
 }
 
-.tooltip-icon{
+.tooltip-icon {
   color: var(--primary-color);
   position: relative;
   right: 0;
 }
 
-.tooltip-icon:hover{
+.tooltip-icon:hover {
   color: var(--secondary-color);
 }
 
-.tooltip-text{
+.tooltip-text {
   position: absolute;
   bottom: 100%;
   visibility: hidden;
@@ -37,12 +37,12 @@
 }
 
 @media (max-width: 1200px) {
-  .tooltip-text{
+  .tooltip-text {
     right: 100%;
   }
 }
 
-.tooltip-icon:hover .tooltip-text{
+.tooltip-icon:hover .tooltip-text {
   visibility: visible;
   opacity: 1;
 }

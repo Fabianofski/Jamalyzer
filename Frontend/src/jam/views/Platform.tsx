@@ -6,16 +6,18 @@ import {PieChartCard} from "../cards/PieChartCard";
 import {GetJamPrimaryVariations} from "../../components/ColorManager";
 import {jamData} from "../../model/jamData";
 
-function PlatformDescription(){
-  return(
-    <p style={{textAlign:"justify", hyphens:"auto"}}>
-      Making your game available to players on multiple or specific platforms can increase your visibility and give you a higher score.
-      By releasing your game on a variety of platforms, you can reach a wider audience and potentially achieve a higher score as more players discover and play your game.
+function PlatformDescription() {
+  return (
+    <p style={{textAlign: "justify", hyphens: "auto"}}>
+      Making your game available to players on multiple or specific platforms can increase your visibility and give you
+      a higher score.
+      By releasing your game on a variety of platforms, you can reach a wider audience and potentially achieve a higher
+      score as more players discover and play your game.
     </p>
   );
 }
 
-function Platform({ jamData } : { jamData : jamData }) {
+function Platform({jamData}: { jamData: jamData }) {
   const barData = getBarChartData(jamData);
   const pieData = getPieChartData(jamData);
 
@@ -42,7 +44,7 @@ function Platform({ jamData } : { jamData : jamData }) {
   );
 }
 
-function getPieChartData(jamData : jamData) {
+function getPieChartData(jamData: jamData) {
   let data = [0, 0, 0, 0];
   Object.entries(jamData.jam_games).forEach(([id, entry]) => {
     if (!entry.platforms) return;
@@ -69,12 +71,12 @@ function getPieChartData(jamData : jamData) {
   };
 }
 
-function getBarChartData(jamData : jamData) {
-  const labels : string[] = [];
-  const web : number[] = [],
-    windows : number[] = [],
-    mac : number[] = [],
-    linux : number[] = [];
+function getBarChartData(jamData: jamData) {
+  const labels: string[] = [];
+  const web: number[] = [],
+    windows: number[] = [],
+    mac: number[] = [],
+    linux: number[] = [];
   const entries = Object.entries(jamData.rankings.Overall).reverse();
   let totalEntries = 0;
 

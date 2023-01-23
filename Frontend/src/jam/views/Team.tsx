@@ -6,15 +6,16 @@ import {PieChartCard} from "../cards/PieChartCard";
 import {GetJamPrimaryVariations} from "../../components/ColorManager";
 import {jamData} from "../../model/jamData";
 
-function TeamDescription(){
-  return(
-    <p style={{textAlign:"justify", hyphens:"auto"}}>
-      Teams with more members are able to create games with a larger amount of content and a higher level of quality. By working on a bigger team, you may be able to increase the score of your game.
+function TeamDescription() {
+  return (
+    <p style={{textAlign: "justify", hyphens: "auto"}}>
+      Teams with more members are able to create games with a larger amount of content and a higher level of quality. By
+      working on a bigger team, you may be able to increase the score of your game.
     </p>
   );
 }
 
-function Team({ jamData } : { jamData : jamData }) {
+function Team({jamData}: { jamData: jamData }) {
   const pieData = extractData(jamData);
   const barData = getBarChartData(jamData);
   const teamStats = getTeamStats(jamData);
@@ -23,7 +24,7 @@ function Team({ jamData } : { jamData : jamData }) {
     <div className="view" id="Team">
       <h1>Team</h1>
       <div className="card-grid">
-        <JsxCard jsx={TeamDescription()} styleClass={"card card-col-span-4"} />
+        <JsxCard jsx={TeamDescription()} styleClass={"card card-col-span-4"}/>
         <PieChartCard
           data={pieData}
           styleClass={"card card-col-span-2 card-row-span-3"}
@@ -37,9 +38,9 @@ function Team({ jamData } : { jamData : jamData }) {
         {teamStats.map((element, idx) => {
           return (
             <JsxCard
-                jsx={element}
-                styleClass={"card card-col-span-1"}
-                key={idx}
+              jsx={element}
+              styleClass={"card card-col-span-1"}
+              key={idx}
             />
           );
         })}
@@ -48,13 +49,13 @@ function Team({ jamData } : { jamData : jamData }) {
   );
 }
 
-function getTeamStats(jamData : jamData){
+function getTeamStats(jamData: jamData) {
   let teamSize = 0;
   let mostID = 0;
   let biggestTeam = 0;
   Object.entries(jamData.jam_games).forEach(([id, entry]) => {
     teamSize += entry.contributors.length;
-    if(entry.contributors.length > biggestTeam){
+    if (entry.contributors.length > biggestTeam) {
       mostID = entry.id;
       biggestTeam = entry.contributors.length;
     }
@@ -66,25 +67,25 @@ function getTeamStats(jamData : jamData){
 }
 
 type TeamStatProps = {
-  jamData : jamData,
-  category : string,
-  amount : string,
-  id? : number,
+  jamData: jamData,
+  category: string,
+  amount: string,
+  id?: number,
 }
 
-function TeamStat({jamData, category, amount, id = -1} : TeamStatProps){
+function TeamStat({jamData, category, amount, id = -1}: TeamStatProps) {
   const game = jamData.jam_games[id];
-  return(
-    <div >
-      <p>{category}: <br /> <strong>{amount}</strong></p>
+  return (
+    <div>
+      <p>{category}: <br/> <strong>{amount}</strong></p>
       {id !== -1 ?
-          <a href={game.jamPageUrl} target="_blank" rel="noopener noreferrer">#{game.rank} {game.title}</a>
+        <a href={game.jamPageUrl} target="_blank" rel="noopener noreferrer">#{game.rank} {game.title}</a>
         : ""}
     </div>
   );
 }
 
-function extractData(jamData : jamData) {
+function extractData(jamData: jamData) {
   let data = [0, 0, 0, 0];
   Object.entries(jamData.jam_games).forEach(([id, entry]) => {
     const teamSize = clamp(entry.contributors.length - 1, 0, 3);
@@ -108,12 +109,12 @@ function extractData(jamData : jamData) {
   };
 }
 
-function getBarChartData(jamData : jamData) {
-  const labels : string[] = [];
-  const solo : number[] = [],
-    duo : number[] = [],
-    trio : number[] = [],
-    more : number[] = [];
+function getBarChartData(jamData: jamData) {
+  const labels: string[] = [];
+  const solo: number[] = [],
+    duo: number[] = [],
+    trio: number[] = [],
+    more: number[] = [];
   const entries = Object.entries(jamData.rankings.Overall).reverse();
   let totalEntries = 0;
 
@@ -174,7 +175,7 @@ function getBarChartData(jamData : jamData) {
   };
 }
 
-function clamp(value : number, min : number, max : number) {
+function clamp(value: number, min: number, max: number) {
   return Math.max(min, Math.min(value, max));
 }
 

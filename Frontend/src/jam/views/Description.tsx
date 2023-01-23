@@ -1,9 +1,9 @@
 import React from "react";
 import "./View.css";
-import { Card } from "../cards/BasicCard";
+import {Card} from "../cards/BasicCard";
 import {jamData} from "../../model/jamData";
 
-function Description({ jamData }  : {jamData : jamData}) {
+function Description({jamData}: { jamData: jamData }) {
   return (
     <div className="view" id="Description">
       <h1>Description (WIP)</h1>

@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import React, {useEffect, useState} from "react";
+import {useParams} from "react-router-dom";
 import Ranking from "./views/Ranking";
 import Karma from "./views/Karma";
 import "../App.css";
@@ -16,7 +16,7 @@ import ReactGA from "react-ga4";
 import {jamData} from "../model/jamData";
 
 function Jam() {
-  const { jamName } = useParams();
+  const {jamName} = useParams();
   const [jamData, setJamData] = useState<jamData>();
   const [errors, setErrors] = useState([]);
 
@@ -25,54 +25,53 @@ function Jam() {
     fetch(`/api/jamData?jamName=${jamName}`)
       .then((response) => response.json())
       .then((json) => {
-        if("errors" in json) {
+        if ("errors" in json) {
           setErrors(json.errors);
           document.title = `Jamalyzer | Error`;
-        }
-        else {
+        } else {
           setJamData(json);
           document.title = `Jamalyzer | ${json.jam.Title}`;
-          if(ReactGA.isInitialized)
+          if (ReactGA.isInitialized)
             ReactGA.send({hitType: "pageview", page: window.location.pathname});
         }
       });
   }, [jamName]);
-  
+
   return (
     <div className="Jam">
-      {jamData !== undefined ? <JamAnalysis jamData={jamData} errors={errors}/> : <Loader />}
+      {jamData !== undefined ? <JamAnalysis jamData={jamData} errors={errors}/> : <Loader/>}
     </div>
   );
 }
 
 type JamAnalysisProps = {
-  jamData : jamData,
-  errors : string[],
+  jamData: jamData,
+  errors: string[],
 }
 
-function JamAnalysis({ jamData, errors } : JamAnalysisProps) {
-  if(errors.length > 0)
+function JamAnalysis({jamData, errors}: JamAnalysisProps) {
+  if (errors.length > 0)
     return (<>{
       errors.map((e) => {
-        return(<p> {e} </p>);
+        return (<p> {e} </p>);
       })
     }</>);
-  
+
   if (!jamData.jam.secondary_color || !jamData.jam.color) return <></>;
   SetJamTheme(jamData.jam.color, jamData.jam.secondary_color);
-  
+
   return (
     <div className="jam-container">
-      <Sidebar />
+      <Sidebar/>
       <div className="view-container">
         <Overview jamData={jamData}/>
-        <Ranking jamData={jamData} />
-        <Karma jamData={jamData} />
-        <Team jamData={jamData} />
-        <Platform jamData={jamData} />
-        <Description jamData={jamData} />
-        <Genre jamData={jamData} />
-        <Engine jamData={jamData} />
+        <Ranking jamData={jamData}/>
+        <Karma jamData={jamData}/>
+        <Team jamData={jamData}/>
+        <Platform jamData={jamData}/>
+        <Description jamData={jamData}/>
+        <Genre jamData={jamData}/>
+        <Engine jamData={jamData}/>
       </div>
     </div>
   );

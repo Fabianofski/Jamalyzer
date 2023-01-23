@@ -1,13 +1,13 @@
 import React from "react";
 
 type Props = {
-  postsPerPage : number,
-  totalPosts : number,
-  currentPage : number,
-  paginate : Function,
+  postsPerPage: number,
+  totalPosts: number,
+  currentPage: number,
+  paginate: Function,
 }
 
-const Pagination = ({ postsPerPage, totalPosts, currentPage, paginate } : Props) => {
+const Pagination = ({postsPerPage, totalPosts, currentPage, paginate}: Props) => {
   const maxPages = Math.ceil(totalPosts / postsPerPage);
 
   return (
@@ -47,7 +47,7 @@ const Pagination = ({ postsPerPage, totalPosts, currentPage, paginate } : Props)
   );
 };
 
-function clamp(number:number, min:number, max:number) {
+function clamp(number: number, min: number, max: number) {
   return Math.max(min, Math.min(number, max));
 }
 
