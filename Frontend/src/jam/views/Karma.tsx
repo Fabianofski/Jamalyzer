@@ -150,7 +150,20 @@ function KarmaStat({ jamData, category, amount, id = -1 }: KarmaStatProps): Reac
   );
 }
 
-function getLineChartData(jamData: jamData): ChartData<"line", any> {
+interface LineChartData {
+  datasets: [
+    {
+      borderColor: string;
+      backgroundColor: string;
+      data: number[];
+      label: string;
+      lineTension: number;
+    }
+  ];
+  labels: string[];
+}
+
+function getLineChartData(jamData: jamData): LineChartData {
   const labels: string[] = [];
   const data: number[] = [];
   const entries = Object.entries(jamData.rankings.Overall).reverse();
@@ -185,7 +198,7 @@ function getLineChartData(jamData: jamData): ChartData<"line", any> {
       {
         label: "Karma",
         data: data,
-        //  lineTension: 0.4,
+        lineTension: 0.4,
         borderColor: GetJamPrimary(),
         backgroundColor: "white"
       }
