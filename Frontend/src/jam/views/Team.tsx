@@ -1,21 +1,23 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import "./View.css";
-import {JsxCard} from "../cards/BasicCard";
-import {BarChartCard} from "../cards/BarChartCard";
-import {PieChartCard} from "../cards/PieChartCard";
-import {GetJamPrimaryVariations} from "../../components/ColorManager";
-import {jamData} from "../../model/jamData";
+import { JsxCard } from "../cards/BasicCard";
+import { BarChartCard } from "../cards/BarChartCard";
+import { PieChartCard } from "../cards/PieChartCard";
+import { GetJamPrimaryVariations } from "../../components/ColorManager";
+import { jamData } from "../../model/jamData";
+import { ChartData } from "chart.js";
 
-function TeamDescription() {
+function TeamDescription(): ReactElement {
   return (
-    <p style={{textAlign: "justify", hyphens: "auto"}}>
-      Teams with more members are able to create games with a larger amount of content and a higher level of quality. By
-      working on a bigger team, you may be able to increase the score of your game.
+    <p style={{ textAlign: "justify", hyphens: "auto" }}>
+      Teams with more members are able to create games with a larger amount of content and a higher
+      level of quality. By working on a bigger team, you may be able to increase the score of your
+      game.
     </p>
   );
 }
 
-function Team({jamData}: { jamData: jamData }) {
+function Team({ jamData }: { jamData: jamData }): ReactElement {
   const pieData = extractData(jamData);
   const barData = getBarChartData(jamData);
   const teamStats = getTeamStats(jamData);
@@ -24,7 +26,7 @@ function Team({jamData}: { jamData: jamData }) {
     <div className="view" id="Team">
       <h1>Team</h1>
       <div className="card-grid">
-        <JsxCard jsx={TeamDescription()} styleClass={"card card-col-span-4"}/>
+        <JsxCard jsx={TeamDescription()} styleClass={"card card-col-span-4"} />
         <PieChartCard
           data={pieData}
           styleClass={"card card-col-span-2 card-row-span-3"}
@@ -36,20 +38,14 @@ function Team({jamData}: { jamData: jamData }) {
           title={"Ranking - Team Size Distribution"}
         />
         {teamStats.map((element, idx) => {
-          return (
-            <JsxCard
-              jsx={element}
-              styleClass={"card card-col-span-1"}
-              key={idx}
-            />
-          );
+          return <JsxCard jsx={element} styleClass={"card card-col-span-1"} key={idx} />;
         })}
       </div>
     </div>
   );
 }
 
-function getTeamStats(jamData: jamData) {
+function getTeamStats(jamData: jamData): ReactElement[] {
   let teamSize = 0;
   let mostID = 0;
   let biggestTeam = 0;
@@ -60,33 +56,51 @@ function getTeamStats(jamData: jamData) {
       biggestTeam = entry.contributors.length;
     }
   });
-  const median = <TeamStat jamData={jamData} category={"Average:"}
-                           amount={(teamSize / Object.entries(jamData.jam_games).length).toFixed(2) + " Members"}/>
-  const most = <TeamStat jamData={jamData} category={"Biggest Team"} amount={biggestTeam + " Members"} id={mostID}/>
+  const median = (
+    <TeamStat
+      jamData={jamData}
+      category={"Average:"}
+      amount={(teamSize / Object.entries(jamData.jam_games).length).toFixed(2) + " Members"}
+    />
+  );
+  const most = (
+    <TeamStat
+      jamData={jamData}
+      category={"Biggest Team"}
+      amount={biggestTeam.toString() + " Members"}
+      id={mostID}
+    />
+  );
   return [median, most];
 }
 
-type TeamStatProps = {
-  jamData: jamData,
-  category: string,
-  amount: string,
-  id?: number,
+interface TeamStatProps {
+  jamData: jamData;
+  category: string;
+  amount: string;
+  id?: number;
 }
 
-function TeamStat({jamData, category, amount, id = -1}: TeamStatProps) {
+function TeamStat({ jamData, category, amount, id = -1 }: TeamStatProps): ReactElement {
   const game = jamData.jam_games[id];
   return (
     <div>
-      <p>{category}: <br/> <strong>{amount}</strong></p>
-      {id !== -1 ?
-        <a href={game.jamPageUrl} target="_blank" rel="noopener noreferrer">#{game.rank} {game.title}</a>
-        : ""}
+      <p>
+        {category}: <br /> <strong>{amount}</strong>
+      </p>
+      {id !== -1 ? (
+        <a href={game.jamPageUrl} target="_blank" rel="noopener noreferrer">
+          #{game.rank} {game.title}
+        </a>
+      ) : (
+        ""
+      )}
     </div>
   );
 }
 
-function extractData(jamData: jamData) {
-  let data = [0, 0, 0, 0];
+function extractData(jamData: jamData): ChartData<"pie", any> {
+  const data = [0, 0, 0, 0];
   Object.entries(jamData.jam_games).forEach(([id, entry]) => {
     const teamSize = clamp(entry.contributors.length - 1, 0, 3);
     data[teamSize]++;
@@ -97,24 +111,19 @@ function extractData(jamData: jamData) {
     datasets: [
       {
         data: data,
-        backgroundColor: [
-          colors?.[0],
-          colors?.[1],
-          colors?.[2],
-          colors?.[3],
-        ],
-        hoverOffset: 10,
-      },
-    ],
+        backgroundColor: [colors?.[0], colors?.[1], colors?.[2], colors?.[3]],
+        hoverOffset: 10
+      }
+    ]
   };
 }
 
-function getBarChartData(jamData: jamData) {
+function getBarChartData(jamData: jamData): ChartData<"bar", any> {
   const labels: string[] = [];
-  const solo: number[] = [],
-    duo: number[] = [],
-    trio: number[] = [],
-    more: number[] = [];
+  const solo: number[] = [];
+  const duo: number[] = [];
+  const trio: number[] = [];
+  const more: number[] = [];
   const entries = Object.entries(jamData.rankings.Overall).reverse();
   let totalEntries = 0;
 
@@ -151,31 +160,31 @@ function getBarChartData(jamData: jamData) {
         label: "Solo",
         data: solo,
         backgroundColor: colors?.[0],
-        stack: "Stack 0",
+        stack: "Stack 0"
       },
       {
         label: "Duo",
         data: duo,
         backgroundColor: colors?.[1],
-        stack: "Stack 1",
+        stack: "Stack 1"
       },
       {
         label: "Trio",
         data: trio,
         backgroundColor: colors?.[2],
-        stack: "Stack 2",
+        stack: "Stack 2"
       },
       {
         label: ">3",
         data: more,
         backgroundColor: colors?.[3],
-        stack: "Stack 3",
-      },
-    ],
+        stack: "Stack 3"
+      }
+    ]
   };
 }
 
-function clamp(value: number, min: number, max: number) {
+function clamp(value: number, min: number, max: number): number {
   return Math.max(min, Math.min(value, max));
 }
 

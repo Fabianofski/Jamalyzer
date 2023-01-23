@@ -1,7 +1,7 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import "../App.css";
 
-function Nav() {
+function Nav(): ReactElement {
   return (
     <div className="nav">
       <a href={"/"} className={"logo"}>
