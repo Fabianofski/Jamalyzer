@@ -11,7 +11,7 @@ function JamHosts(jamData : jamData){
       Hosted by:&nbsp;
       {jamData.jam.hosts.map((element, index) =>
         (<a href={element.profile_link} key={index}>{element.username}</a>)
-      ).reduce((prev, curr) => <>[prev, ', ', curr]</>)}
+      ).reduce((prev, curr) => <>{[prev, ', ', curr]}</>)}
     </div>
   );
 }
@@ -43,7 +43,7 @@ function Overview({jamData} : {jamData : jamData}) {
   return (
     <div className="view" id="Overview" style={{backgroundColor: `${jamData.jam.bg_color}`}}>
       <h1 className="jam-title">
-        <a href={jamData.jam.url} target="_blank" rel="noopener noreferrer" className="jam-title-link">{jamData.jam.title} </a>
+        <a href={jamData.jam.url} target="_blank" rel="noopener noreferrer" className="jam-title-link">{jamData.jam.Title} </a>
       </h1>
       <img className="jam-banner" src={jamData.jam.banner} alt="Game Jam Banner"/>
       <div className="card-grid">

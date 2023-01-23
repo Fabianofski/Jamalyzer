@@ -1,5 +1,5 @@
 export type jam = {
-  title : string,
+  Title : string,
   banner : string,
   id : number,
   url : string,

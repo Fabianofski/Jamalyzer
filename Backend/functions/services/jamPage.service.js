@@ -16,7 +16,7 @@ const fetchJamPage = async (jamURL, jamId) => {
 };
 
 function extractGeneralInfo(data, $, jamId, jamURL) {
-  data["title"] = $(".jam_title_header a").text();
+  data["Title"] = $(".jam_title_header a").text();
   const banner = $(".jam_banner").attr("src");
   data["banner"] = banner ? banner : "";
   data["id"] = Number(jamId);
