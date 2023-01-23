@@ -1,11 +1,12 @@
 import React from "react";
 import "./View.css";
-import { Card } from "../cards/BasicCard.tsx";
+import { Card } from "../cards/BasicCard";
+import {jamData} from "../../model/jamData";
 
-function Description({ jamData }) {
+function Genre({ jamData }  : {jamData : jamData}) {
   return (
-    <div className="view" id="Description">
-      <h1>Description (WIP)</h1>
+    <div className="view" id="Genre">
+      <h1>Genre (WIP)</h1>
       <div className="card-grid">
         <Card
           text={"Lorem ipsum dolor sit amet."}
@@ -28,4 +29,4 @@ function Description({ jamData }) {
   );
 }
 
-export default Description;
+export default Genre;
