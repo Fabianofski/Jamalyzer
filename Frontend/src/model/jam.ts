@@ -9,8 +9,8 @@ export type jam = {
   bg_color : string,
   entries : string,
   ratings : string,
-  started : Date,
-  ended : Date,
+  started : string,
+  ended : string,
   twitter : {hashtag:string, twitter_link:string}
 }
 
