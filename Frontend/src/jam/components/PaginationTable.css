@@ -1,64 +1,64 @@
 .table-wrapper {
-  width: 100%;
-  max-width: 70vw;
-  overflow-x: auto;
+    width: 100%;
+    max-width: 70vw;
+    overflow-x: auto;
 }
 
 table {
-  border-collapse: separate;
-  border-spacing: 0;
-  white-space: nowrap;
-  width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    white-space: nowrap;
+    width: 100%;
 }
 
 table tr:nth-child(even) {
-  background-color: var(--darker-background-color);
+    background-color: var(--darker-background-color);
 }
 
 table,
 th,
 td {
-  border-left: 1px solid var(--secondary-color);
-  border-right: 1px solid var(--secondary-color);
-  overflow: hidden;
+    border-left: 1px solid var(--secondary-color);
+    border-right: 1px solid var(--secondary-color);
+    overflow: hidden;
 }
 
 table {
-  border-bottom: 2px solid var(--secondary-color);
-  border-top: 2px solid var(--secondary-color);
+    border-bottom: 2px solid var(--secondary-color);
+    border-top: 2px solid var(--secondary-color);
 }
 
 th,
 td {
-  padding: 10px;
-  max-width: 180px;
+    padding: 10px;
+    max-width: 180px;
 }
 
 th {
-  color: white;
-  background-color: var(--primary-color);
-  vertical-align: bottom;
-  white-space: normal;
+    color: white;
+    background-color: var(--primary-color);
+    vertical-align: bottom;
+    white-space: normal;
 }
 
 .long-criteria {
-  min-width: 180px;
+    min-width: 180px;
 }
 
 .pagination button {
-  background-color: var(--background-color);
-  border-radius: 5px;
-  border: 1px solid var(--secondary-color);
-  color: var(--secondary-color);
-  transition: all 0.2s ease;
+    background-color: var(--background-color);
+    border-radius: 5px;
+    border: 1px solid var(--secondary-color);
+    color: var(--secondary-color);
+    transition: all 0.2s ease;
 }
 
 .pagination button:hover {
-  background-color: var(--primary-color);
-  color: white;
+    background-color: var(--primary-color);
+    color: white;
 }
 
 .pagination li {
-  margin: .5em;
-  display: inline-block;
+    margin: .5em;
+    display: inline-block;
 }

@@ -1,7 +1,7 @@
-function pearsonCorrelation(x: number[], y: number[]) {
+function pearsonCorrelation(x: number[], y: number[]): number {
   // Ensure that both arrays have the same length
   if (x.length !== y.length) {
-    throw new Error('Arrays have different lengths');
+    throw new Error("Arrays have different lengths");
   }
 
   // Calculate the means of the arrays
@@ -22,4 +22,4 @@ function pearsonCorrelation(x: number[], y: number[]) {
   return sumOfProducts / Math.sqrt(xSumOfSquares * ySumOfSquares);
 }
 
-export {pearsonCorrelation}
+export { pearsonCorrelation };

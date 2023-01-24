@@ -1,36 +1,36 @@
 .legal-container {
-  width: 100vw;
-  display: flex;
-  justify-content: flex-start;
-  gap: 2rem;
-  align-items: center;
-  flex-direction: column;
-  padding: 2rem;
-  box-sizing: border-box;
+    width: 100vw;
+    display: flex;
+    justify-content: flex-start;
+    gap: 2rem;
+    align-items: center;
+    flex-direction: column;
+    padding: 2rem;
+    box-sizing: border-box;
 }
 
 .legal-view {
-  box-sizing: border-box;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 
-  width: 100%;
-  max-width: 50rem;
-  height: fit-content;
-  padding: 0 3em 3em 3em;
-  background: var(--background-color);
-  color: var(--secondary-color);
-  box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.25);
-  border-radius: 25px;
+    width: 100%;
+    max-width: 50rem;
+    height: fit-content;
+    padding: 0 3em 3em 3em;
+    background: var(--background-color);
+    color: var(--secondary-color);
+    box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.25);
+    border-radius: 25px;
 }
 
 .legal-view h1, h2 {
-  text-align: center;
+    text-align: center;
 }
 
 .legal-view p {
-  text-align: justify;
-  hyphens: auto;
+    text-align: justify;
+    hyphens: auto;
 }

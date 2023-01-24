@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import "../views/View.css";
 import "./Card.css";
 
@@ -11,19 +11,11 @@ import {
   LineElement,
   PointElement,
   Title,
-  Tooltip,
+  Tooltip
 } from "chart.js";
-import {Line} from "react-chartjs-2";
+import { Line } from "react-chartjs-2";
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend,
-);
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 const labels = [];
 for (let i = 0; i < 10; i++) labels.push(i);
@@ -36,51 +28,54 @@ export const dummyLineData = {
       data: labels.map(() => Math.random() * 200),
       lineTension: 0.4,
       borderColor: "rgb(255, 99, 132)",
-      backgroundColor: "white",
-    },
-  ],
+      backgroundColor: "white"
+    }
+  ]
 };
 
-type Props = {
-  styleClass: string,
-  data: ChartData<"line", any>,
-  title: string,
+interface Props {
+  styleClass: string;
+  data: ChartData<"line", any>;
+  title: string;
 }
 
-export function LineChartCard({styleClass, data = dummyLineData, title = "Dummy Title"}: Props) {
-
+export function LineChartCard({
+  styleClass,
+  data = dummyLineData,
+  title = "Dummy Title"
+}: Props): ReactElement {
   const lineOptions: object = {
     responsive: true,
     maintainAspectRatio: false,
     plugins: {
       legend: {
-        display: false,
+        display: false
       },
       title: {
         display: true,
-        text: title,
-      },
+        text: title
+      }
     },
     scales: {
       y: {
         grid: {
-          borderColor: "black",
+          borderColor: "black"
         },
-        position: "left",
+        position: "left"
       },
       x: {
         grid: {
-          borderColor: "black",
+          borderColor: "black"
         },
-        position: "center",
-      },
-    },
+        position: "center"
+      }
+    }
   };
 
   return (
     <div className={styleClass + " chart-card"}>
       <div className="chart">
-        <Line options={lineOptions} data={data} style={{minHeight: "20rem"}}/>
+        <Line options={lineOptions} data={data} style={{ minHeight: "20rem" }} />
       </div>
     </div>
   );

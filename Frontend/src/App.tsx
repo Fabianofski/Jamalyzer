@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from "react";
-import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
+import React, { ReactElement, useEffect, useState } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./home/Home";
 import Jam from "./jam/Jam";
 import Nav from "./components/Nav";
@@ -13,36 +13,38 @@ import ReactGA from "react-ga4";
 
 const MESS_ID = "G-SW2RQ0Q5JJ";
 
-function App() {
-  const [isCookieAnswered, setIsCookieAnswered] = useState(localStorage.getItem('isCookieConsentBannerAnswered') === 'true');
+function App(): ReactElement {
+  const [isCookieAnswered, setIsCookieAnswered] = useState(
+    localStorage.getItem("isCookieConsentBannerAnswered") === "true"
+  );
 
   useEffect(() => {
-    if (localStorage.getItem('isCookieAnalyticalAccepted') === "true" && isCookieAnswered) {
+    if (localStorage.getItem("isCookieAnalyticalAccepted") === "true" && isCookieAnswered) {
       initGA();
     }
-  }, [isCookieAnswered])
+  }, [isCookieAnswered]);
 
   return (
     <Router>
-      {!isCookieAnswered && <CookieConsentBanner setIsCookieAnswered={setIsCookieAnswered}/>}
+      {!isCookieAnswered && <CookieConsentBanner setIsCookieAnswered={setIsCookieAnswered} />}
       <div className="App">
-        <Nav/>
+        <Nav />
         <div className="Router">
           <Routes>
-            <Route path="/" element={<Home/>}/>
-            <Route path="/jam/:jamName" element={<Jam/>}/>
-            <Route path="/credits" element={<Credits/>}/>
-            <Route path="/privacy-policy" element={<PrivacyPolicy/>}/>
-            <Route path="/about" element={<About/>}/>
+            <Route path="/" element={<Home />} />
+            <Route path="/jam/:jamName" element={<Jam />} />
+            <Route path="/credits" element={<Credits />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/about" element={<About />} />
           </Routes>
         </div>
-        <Footer setIsCookieAnswered={setIsCookieAnswered}/>
+        <Footer setIsCookieAnswered={setIsCookieAnswered} />
       </div>
     </Router>
   );
 }
 
-function initGA() {
+function initGA(): void {
   try {
     if (ReactGA.isInitialized) return;
     ReactGA.initialize(MESS_ID);
