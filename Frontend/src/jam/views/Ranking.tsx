@@ -99,7 +99,7 @@ function CriteriaScores({ jamData, entry }: CriteriaScoresProps): ReactElement {
     <>
       {jamData.criteria.map((criteria, index) => {
         const crit = entry.criteria.find((c: entry_criteria) => c.name === criteria);
-        if (crit) return <td key={index}>{crit.score.toFixed(2)}</td>;
+        if (crit !== undefined) return <td key={index}>{crit.score.toFixed(2)}</td>;
         else return <td key={index}>-</td>;
       })}
     </>
