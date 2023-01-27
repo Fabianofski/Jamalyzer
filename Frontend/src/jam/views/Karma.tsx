@@ -5,16 +5,17 @@ import { LineChartCard } from "../cards/LineChartCard";
 import { GetJamPrimary } from "../../components/ColorManager";
 import { pearsonCorrelation } from "../../components/Utilities";
 import { jamData } from "../../model/jamData";
-import { BlockMath } from "react-katex";
+import { InlineMath } from "react-katex";
 
 function karmaDescription(): ReactElement {
   return (
     <div style={{ lineHeight: "2rem", hyphens: "auto" }}>
       Karma is a numerical score that reflects the number of ratings an entry has received and
       given. It is calculated using the formula: <br />
-      <BlockMath>
+      <InlineMath>
         {"Karma = \\frac {Log(1 + ratings\\_given) - Log(1 + ratings\\_received)}{Log(5)}"}
-      </BlockMath>
+      </InlineMath>
+      <br />
       To possibly increase your score, you should rate more games and leave feedback.
     </div>
   );
