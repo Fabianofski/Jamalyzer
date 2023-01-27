@@ -19,47 +19,35 @@ function Pagination({
   };
 
   return (
-    <nav>
-      <ul className="pagination">
-        <li>
-          <button
-            onClick={() => {
-              paginate(clamp(currentPage - 10, 1, maxPages));
-            }}>
-            {"<<"}
-          </button>
-        </li>
-        <li>
-          <button
-            onClick={() => {
-              paginate(clamp(currentPage - 1, 1, maxPages));
-            }}>
-            {"<"}
-          </button>
-        </li>
-        <li>
-          <p>
-            {currentPage} / {maxPages}
-          </p>
-        </li>
-        <li>
-          <button
-            onClick={() => {
-              paginate(clamp(currentPage + 1, 1, maxPages));
-            }}>
-            {">"}
-          </button>
-        </li>
-        <li>
-          <button
-            onClick={() => {
-              paginate(clamp(currentPage + 10, 1, maxPages));
-            }}>
-            {">>"}
-          </button>
-        </li>
-      </ul>
-    </nav>
+    <div className="pagination">
+      <button
+        onClick={() => {
+          paginate(clamp(currentPage - 10, 1, maxPages));
+        }}>
+        {"<<"}
+      </button>
+      <button
+        onClick={() => {
+          paginate(clamp(currentPage - 1, 1, maxPages));
+        }}>
+        {"<"}
+      </button>
+      <p className={"page-number"}>
+        {currentPage} / {maxPages}
+      </p>
+      <button
+        onClick={() => {
+          paginate(clamp(currentPage + 1, 1, maxPages));
+        }}>
+        {">"}
+      </button>
+      <button
+        onClick={() => {
+          paginate(clamp(currentPage + 10, 1, maxPages));
+        }}>
+        {">>"}
+      </button>
+    </div>
   );
 }
 

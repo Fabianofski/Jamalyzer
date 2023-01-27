@@ -7,6 +7,8 @@
 table {
     border-collapse: separate;
     border-spacing: 0;
+    border: 2px solid var(--secondary-color);
+    border-radius: 10px;
     white-space: nowrap;
     width: 100%;
 }
@@ -21,11 +23,6 @@ td {
     border-left: 1px solid var(--secondary-color);
     border-right: 1px solid var(--secondary-color);
     overflow: hidden;
-}
-
-table {
-    border-bottom: 2px solid var(--secondary-color);
-    border-top: 2px solid var(--secondary-color);
 }
 
 th,
@@ -45,12 +42,21 @@ th {
     min-width: 180px;
 }
 
+.pagination {
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .pagination button {
     background-color: var(--background-color);
     border-radius: 5px;
     border: 1px solid var(--secondary-color);
     color: var(--secondary-color);
     transition: all 0.2s ease;
+    margin: .5rem;
 }
 
 .pagination button:hover {
@@ -58,7 +64,7 @@ th {
     color: white;
 }
 
-.pagination li {
-    margin: .5em;
-    display: inline-block;
+.pagination .page-number {
+    text-align: center;
+    width: 5rem;
 }
