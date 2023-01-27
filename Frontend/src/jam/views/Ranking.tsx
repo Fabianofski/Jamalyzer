@@ -44,17 +44,28 @@ interface TableBodyProps {
 }
 
 function TableBody({ jamData, indexOfFirstPost, indexOfLastPost }: TableBodyProps): ReactElement {
-  let tableEntry = 0;
+  let mappedIds = 0;
+  let tableEntries = 0;
+  const fillMissingRows = (tableEntries: number): ReactElement[] => {
+    const rows = [];
+    for (let i = tableEntries; i < 10; i++) {
+      rows.push(<EmptyTableEntry jamData={jamData} />);
+    }
+    return rows;
+  };
+
   return (
     <>
       {Object.entries(jamData.rankings.Overall).map(([rank, ids]) => {
         return ids.map((id) => {
-          tableEntry++;
-          if (tableEntry <= indexOfFirstPost || tableEntry > indexOfLastPost) return <></>;
+          mappedIds++;
+          if (mappedIds <= indexOfFirstPost || mappedIds > indexOfLastPost) return <></>;
           const entry = jamData.jam_games[id];
+          tableEntries++;
           return <TableEntry key={id} jamData={jamData} entry={entry} id={id} rank={rank} />;
         });
       })}
+      {fillMissingRows(tableEntries)}
     </>
   );
 }
@@ -75,6 +86,21 @@ function TableEntry({ jamData, entry, id, rank }: TableEntryProps): ReactElement
       <td>{entry.rating_count}</td>
       <td>{entry.ratings_given}</td>
       <td>{entry.karma}</td>
+    </tr>
+  );
+}
+
+function EmptyTableEntry({ jamData }: { jamData: jamData }): ReactElement {
+  return (
+    <tr>
+      <td>-</td>
+      <td>-</td>
+      {jamData.criteria.map((criteria, index) => {
+        return <td>-</td>;
+      })}
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
     </tr>
   );
 }
