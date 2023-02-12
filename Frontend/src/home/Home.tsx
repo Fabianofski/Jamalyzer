@@ -1,7 +1,9 @@
 import "../App.css";
-import "./Home.css";
+import "./HomeForm.css";
+import "./HomeInfo.css";
+import "./HomeRecommended.css";
 import { useNavigate } from "react-router-dom";
-import React, { ReactElement, useEffect, useState } from "react";
+import React, { ReactElement, useState } from "react";
 import { ResetToDefaultColors } from "../components/ColorManager";
 import ReactGA from "react-ga4";
 import { jamCard } from "../model/jamCard";
@@ -44,6 +46,7 @@ function Home(): ReactElement {
 
   return (
     <div className="Home">
+      <div className="banner"></div>
       <div className="form">
         <h1>Analyze your Jam!</h1>
         <input
@@ -64,15 +67,28 @@ function Home(): ReactElement {
         </button>
       </div>
       <div className="recommended-container">
-        <h1>Recommended:</h1>
         <div className="recommended-mask">
-          <div className="recommended">
-            {jams.map((element: jamCard, idx: number) => {
+          <div className="recommended jam-left-slide">
+            {jams.slice(0, jams.length / 2).map((element: jamCard, idx: number) => {
+              return <Jam jamInfo={element} key={idx} />;
+            })}
+            {jams.slice(0, jams.length / 2).map((element: jamCard, idx: number) => {
+              return <Jam jamInfo={element} key={idx} />;
+            })}
+          </div>
+        </div>
+        <div className="recommended-mask">
+          <div className="recommended jam-right-slide">
+            {jams.slice(jams.length / 2, jams.length).map((element: jamCard, idx: number) => {
+              return <Jam jamInfo={element} key={idx} />;
+            })}
+            {jams.slice(jams.length / 2, jams.length).map((element: jamCard, idx: number) => {
               return <Jam jamInfo={element} key={idx} />;
             })}
           </div>
         </div>
       </div>
+      <AboutSection />
     </div>
   );
 }
@@ -126,6 +142,57 @@ function Jam({ jamInfo }: { jamInfo: jamCard }): ReactElement {
           <p>ANALYZE</p>
         </div>
       </button>
+    </div>
+  );
+}
+
+function AboutSection() {
+  return (
+    <div className="about-container">
+      <div className="about-row">
+        <div className={"about-image"}>
+          <img
+            className="jam_cover"
+            src="https://img.itch.zone/aW1nLzY1ODQ2NDUucG5n/140x111%23/%2FqT7FN.png"
+            alt="Icon: Brackeys Game Jam 2021.2"></img>
+        </div>
+        <div className="about-text">
+          <h2>Jamalyzer</h2>
+          <p>
+            With Jamalyzer, you can browse through the latest game jams, view the top-ranked games
+            and discover a range of different statistics about the games and the teams.
+            <br />
+            <br />
+            Whether you&#39;re a game developer, a player, or just a fan of the game jam scene,
+            Jamalyzer is the perfect tool for getting a deeper understanding of the games and the
+            people that make them.
+          </p>
+        </div>
+      </div>
+      <div className="about-row">
+        <div className="about-text">
+          <h2>Game Jam</h2>
+          <p>
+            A &#34;Game Jam&#34; is a gathering of game developers for the purpose of planning,
+            designing, and creating one or more games within a short period of time, typically
+            ranging from 24 to 72 hours. These events often take place over a weekend and are
+            usually organized by a group of individuals or a game development community.
+            <br />
+            <br />
+            Participants in a game jam will often form teams, and each team is typically made up of
+            programmers, artists, and designers. They&#39;ll usually have a theme or a set of
+            constraints to inspire the creation of the games. Game Jams is a way to learn, practice
+            and test oneself in a short amount of time and also a perfect opportunity to network
+            with other game developers and build camaraderie within the industry.
+          </p>
+        </div>
+        <div className={"about-image"}>
+          <img
+            className="jam_cover"
+            src="https://img.itch.zone/aW1nLzY1ODQ2NDUucG5n/140x111%23/%2FqT7FN.png"
+            alt="Icon: Brackeys Game Jam 2021.2"></img>
+        </div>
+      </div>
     </div>
   );
 }
