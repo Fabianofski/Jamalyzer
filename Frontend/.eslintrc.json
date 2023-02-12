@@ -23,6 +23,11 @@
             }
         }
     ],
+    "compilerOptions": {
+        "module": "commonjs",
+        "resolveJsonModule": true,
+        "esModuleInterop": true
+    },
     "parserOptions": {
         "ecmaVersion": "latest",
         "sourceType": "module"

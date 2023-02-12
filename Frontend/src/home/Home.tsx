@@ -5,20 +5,8 @@ import React, { ReactElement, useEffect, useState } from "react";
 import { ResetToDefaultColors } from "../components/ColorManager";
 import ReactGA from "react-ga4";
 import { jamCard } from "../model/jamCard";
-
-const dummyJam: jamCard = {
-  name: "Loading..",
-  icon: "jam-loading.png",
-  link: "https://f4b1.itch.io",
-  hosts: [{ name: "F4B1", profile_link: "https://f4b1.itch.io" }],
-  time: "2022-07-24T19:00:00Z",
-  joined: "69k",
-  submitted: "69,420"
-};
-const dummyJamArray: jamCard[] = [];
-for (let i = 1; i <= 50; i++) {
-  dummyJamArray.push(dummyJam);
-}
+// @ts-ignore
+import jamList from "./jamList.json";
 
 function shuffle(array: jamCard[]): jamCard[] {
   for (let i = array.length - 1; i > 0; i--) {
@@ -27,25 +15,13 @@ function shuffle(array: jamCard[]): jamCard[] {
   }
   return array;
 }
+const jams = shuffle(jamList.jams);
 
 function Home(): ReactElement {
   document.title = `Jamalyzer | Home`;
   ResetToDefaultColors();
   let input = "";
   const [error, setError] = useState<string>("");
-  const [jams, setJams] = useState<jamCard[]>(dummyJamArray);
-
-  useEffect(() => {
-    fetch("/api/jamList")
-      .then(async (response) => {
-        await response.json().then((json: { jams: jamCard[] }) => {
-          setJams(shuffle(json.jams));
-        });
-      })
-      .catch((e) => {
-        console.error(e);
-      });
-  }, []);
 
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     input = e.target.value;
@@ -133,8 +109,8 @@ function Jam({ jamInfo }: { jamInfo: jamCard }): ReactElement {
               </a>
             );
           })
-          .reduce((prev, curr) => (
-            <>{[prev, ", ", curr]}</>
+          .reduce((prev, curr, idx) => (
+            <React.Fragment key={idx}>{[prev, ", ", curr]}</React.Fragment>
           ))}
       </div>
       <div className="stats">
