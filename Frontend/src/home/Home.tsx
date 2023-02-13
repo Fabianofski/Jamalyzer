@@ -48,7 +48,6 @@ function Home(): ReactElement {
     <div className="Home">
       <div className="banner"></div>
       <div className="form">
-        <h1>Analyze your Jam!</h1>
         <input
           type="text"
           placeholder="https://itch.io/jam/..."

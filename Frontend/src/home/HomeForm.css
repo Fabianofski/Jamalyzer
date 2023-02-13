@@ -8,13 +8,14 @@
 
 .form {
   width: 100%;
+  height: 15rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   padding: 1rem 0 1rem 0;
   margin-bottom: 1rem;
-  background-color: #e5860d;
+  background-image: url("https://img.itch.zone/aW1hZ2UyL2phbS8zMTE5OTQvNjY5ODUyMi5wbmc=/original/UVI%2FZb.png");
 }
 
 .form input {
