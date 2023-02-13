@@ -69,23 +69,14 @@ function Home(): ReactElement {
       <div className="recommended-container">
         <div className="recommended-mask">
           <div className="recommended jam-left-slide">
-            {jams.slice(0, jams.length / 2).map((element: jamCard, idx: number) => {
+            {jams.map((element: jamCard, idx: number) => {
               return <Jam jamInfo={element} key={idx} />;
             })}
-            {jams.slice(0, jams.length / 2).map((element: jamCard, idx: number) => {
-              return <Jam jamInfo={element} key={idx} />;
-            })}
-          </div>
-        </div>
-        <div className="recommended-mask">
-          <div className="recommended jam-right-slide">
-            {jams.slice(jams.length / 2, jams.length).map((element: jamCard, idx: number) => {
-              return <Jam jamInfo={element} key={idx} />;
-            })}
-            {jams.slice(jams.length / 2, jams.length).map((element: jamCard, idx: number) => {
+            {jams.slice(0, 20).map((element: jamCard, idx: number) => {
               return <Jam jamInfo={element} key={idx} />;
             })}
           </div>
+          <div className="recommended-gradient"></div>
         </div>
       </div>
       <AboutSection />
@@ -94,7 +85,6 @@ function Home(): ReactElement {
 }
 
 function Jam({ jamInfo }: { jamInfo: jamCard }): ReactElement {
-  const navigate = useNavigate();
   const onSubmit = (): void => {
     if (ReactGA.isInitialized)
       ReactGA.event({
@@ -102,7 +92,6 @@ function Jam({ jamInfo }: { jamInfo: jamCard }): ReactElement {
         action: "Analyze recommended jam",
         label: jamInfo.name
       });
-    navigate(`/jam/${jamInfo.link.replace("https://itch.io/jam/", "")}`);
   };
 
   return (
@@ -137,11 +126,12 @@ function Jam({ jamInfo }: { jamInfo: jamCard }): ReactElement {
           <p> {jamInfo.submitted} Submissions</p>
         </div>
       </div>
-      <button onClick={onSubmit} className="submit">
-        <div>
-          <p>ANALYZE</p>
-        </div>
-      </button>
+      <a
+        href={`/jam/${jamInfo.link.replace("https://itch.io/jam/", "")}`}
+        onClick={onSubmit}
+        className="submit">
+        ANALYZE
+      </a>
     </div>
   );
 }

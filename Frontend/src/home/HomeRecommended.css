@@ -13,13 +13,29 @@
   width: 95vw;
   max-width: 100rem;
   overflow-x: hidden;
-  margin-bottom: 1rem;
+  position: relative;
+}
+
+.recommended-gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 0) 3%,
+    rgba(255, 255, 255, 0) 97%,
+    rgba(255, 255, 255, 1) 100%
+  );
 }
 
 .recommended {
   position: relative;
+  top: 0;
   box-sizing: border-box;
-  padding-bottom: 1em;
   width: fit-content;
   height: 100%;
   display: flex;
@@ -31,7 +47,7 @@
 }
 
 .jam-left-slide {
-  animation: left-slide linear 60s infinite;
+  animation: left-slide linear 80s infinite;
 }
 
 .recommended-mask:hover > .recommended {
@@ -49,10 +65,10 @@
 
 @keyframes left-slide {
   from {
-    left: -613%;
+    left: 0;
   }
   to {
-    left: -256%;
+    left: -714%;
   }
 }
 
@@ -62,6 +78,7 @@
   padding: 0.5rem;
   box-sizing: border-box;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  margin-bottom: 4px;
   background-color: var(--background-color);
   border: 1px solid var(--primary-color);
   border-radius: 10px;
