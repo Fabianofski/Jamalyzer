@@ -23,8 +23,8 @@
   max-width: 50rem;
   height: 2.5rem;
   box-sizing: border-box;
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-  color: var(--secondary-color);
+  box-shadow: var(--box-shadow);
+  color: black;
   border: 1px solid var(--primary-color);
   border-radius: 10px;
   outline: none;
@@ -49,7 +49,7 @@
   background-color: var(--primary-color);
   color: white;
   text-decoration: none;
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  box-shadow: var(--box-shadow);
   border-radius: 10px;
   width: 10rem;
   height: 3rem;

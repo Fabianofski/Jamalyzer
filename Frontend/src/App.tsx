@@ -17,6 +17,7 @@ function App(): ReactElement {
   const [isCookieAnswered, setIsCookieAnswered] = useState(
     localStorage.getItem("isCookieConsentBannerAnswered") === "true"
   );
+  const [darkMode, setDarkMode] = useState(false);
 
   useEffect(() => {
     if (localStorage.getItem("isCookieAnalyticalAccepted") === "true" && isCookieAnswered) {
@@ -27,8 +28,8 @@ function App(): ReactElement {
   return (
     <Router>
       {!isCookieAnswered && <CookieConsentBanner setIsCookieAnswered={setIsCookieAnswered} />}
-      <div className="App">
-        <Nav />
+      <div className="App" id={darkMode ? "dark" : "light"}>
+        <Nav darkMode={darkMode} setDarkMode={setDarkMode} />
         <div className="Router">
           <Routes>
             <Route path="/" element={<Home />} />
