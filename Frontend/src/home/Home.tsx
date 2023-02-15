@@ -17,6 +17,7 @@ function shuffle(array: jamCard[]): jamCard[] {
   }
   return array;
 }
+
 const jams = shuffle(jamList.jams);
 
 function Home(): ReactElement {

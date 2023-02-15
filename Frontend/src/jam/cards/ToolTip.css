@@ -1,48 +1,48 @@
 .tooltip {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    z-index: 1;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1;
 }
 
 .tooltip-icon {
-    color: var(--primary-color);
-    position: relative;
-    right: 0;
+  color: var(--primary-color);
+  position: relative;
+  right: 0;
 }
 
 .tooltip-icon:hover {
-    color: var(--secondary-color);
+  color: var(--secondary-color);
 }
 
 .tooltip-text {
-    position: absolute;
-    bottom: 100%;
-    visibility: hidden;
-    opacity: 0;
-    margin: .5rem;
-    padding-left: .5rem;
-    padding-right: .5rem;
+  position: absolute;
+  bottom: 100%;
+  visibility: hidden;
+  opacity: 0;
+  margin: 0.5rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
 
-    min-width: 15rem;
+  min-width: 15rem;
 
-    box-sizing: border-box;
-    background-color: var(--background-color);
-    color: var(--secondary-color);
-    border: 1px solid var(--primary-color);
-    border-radius: 5px;
-    transition: opacity 0.2s ease-in;
-    text-align: justify;
-    hyphens: auto;
+  box-sizing: border-box;
+  background-color: var(--background-color);
+  color: var(--secondary-color);
+  border: 1px solid var(--primary-color);
+  border-radius: 5px;
+  transition: opacity 0.2s ease-in;
+  text-align: justify;
+  hyphens: auto;
 }
 
 @media (max-width: 1200px) {
-    .tooltip-text {
-        right: 100%;
-    }
+  .tooltip-text {
+    right: 100%;
+  }
 }
 
 .tooltip-icon:hover .tooltip-text {
-    visibility: visible;
-    opacity: 1;
+  visibility: visible;
+  opacity: 1;
 }
