@@ -40,8 +40,8 @@
   --secondary-background-color: #1d1d2a;
   --text-color: white;
   --darker-background-color: #0a0a10;
-  --box-shadow-color: rgba(125, 125, 125, 0.25);
-  --box-shadow: 5px 5px 15px var(--box-shadow-color);
+  --box-shadow-color: rgba(0, 0, 0, 0.6);
+  --box-shadow: 10px 10px 30px var(--box-shadow-color);
   --home-jam-gradient: linear-gradient(
     90deg,
     rgba(29, 29, 42, 1) 0%,

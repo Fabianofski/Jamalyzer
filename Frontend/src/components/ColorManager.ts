@@ -41,11 +41,12 @@ export function SetJamTheme(primary: string, secondary: string): void {
   const secondaryHsl = rgbToHSL(secondary);
   primaryHsl.s = Math.max(0.6, primaryHsl.s);
   secondaryHsl.s = Math.max(0.8, secondaryHsl.s);
-  primaryHsl.l = Math.min(0.4, primaryHsl.l);
   if (colorScheme === "light") {
-    secondaryHsl.l = Math.min(0.2, secondaryHsl.l);
+    secondaryHsl.l = Math.max(0.2, Math.min(secondaryHsl.l, 0.4));
+    primaryHsl.l = Math.min(0.4, primaryHsl.l);
   } else {
     secondaryHsl.l = Math.max(0.2, secondaryHsl.l);
+    primaryHsl.l = Math.max(0.4, primaryHsl.l);
   }
 
   jamPrimaryColor = hslToRGB(primaryHsl);
