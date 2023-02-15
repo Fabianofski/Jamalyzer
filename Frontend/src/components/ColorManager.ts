@@ -1,5 +1,24 @@
 import { changeHue, hslToRGB, rgbToHSL } from "./ColorConverter";
 
+let colorScheme = "light";
+
+export function setPreferredColorScheme() {
+  if (localStorage.getItem("theme")) {
+    colorScheme = localStorage.getItem("theme") || colorScheme;
+  } else if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+    colorScheme = "dark";
+  }
+
+  document.documentElement.setAttribute("data-theme", colorScheme);
+}
+
+export function toggleTheme() {
+  colorScheme = colorScheme === "dark" ? "light" : "dark";
+  localStorage.setItem("theme", colorScheme);
+  document.documentElement.setAttribute("data-theme", colorScheme);
+  if (document.URL.includes("/jam/")) SetJamTheme(jamDefaultPrimaryColor, jamDefaultSecondaryColor);
+}
+
 const defaultPrimaryColor = "#f55a5b";
 const defaultSecondaryColor = "#151048";
 
@@ -8,10 +27,14 @@ export function ResetToDefaultColors(): void {
   document.documentElement.style.setProperty("--secondary-color", defaultSecondaryColor);
 }
 
+let jamDefaultPrimaryColor = "#f55a5b";
+let jamDefaultSecondaryColor = "#151048";
 let jamPrimaryColor = "#f55a5b";
 let jamSecondaryColor = "#151048";
 
 export function SetJamTheme(primary: string, secondary: string): void {
+  jamDefaultPrimaryColor = primary;
+  jamDefaultSecondaryColor = secondary;
   if (primary === "#ffffff") primary = secondary;
   if (secondary === "#ffffff") secondary = changeHue(primary, 10);
   const primaryHsl = rgbToHSL(primary);
@@ -19,7 +42,11 @@ export function SetJamTheme(primary: string, secondary: string): void {
   primaryHsl.s = Math.max(0.6, primaryHsl.s);
   secondaryHsl.s = Math.max(0.8, secondaryHsl.s);
   primaryHsl.l = Math.min(0.4, primaryHsl.l);
-  secondaryHsl.l = Math.min(0.2, secondaryHsl.l);
+  if (colorScheme === "light") {
+    secondaryHsl.l = Math.min(0.2, secondaryHsl.l);
+  } else {
+    secondaryHsl.l = Math.max(0.2, secondaryHsl.l);
+  }
 
   jamPrimaryColor = hslToRGB(primaryHsl);
   jamSecondaryColor = hslToRGB(secondaryHsl);

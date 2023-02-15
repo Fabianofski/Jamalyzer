@@ -10,6 +10,7 @@ import PrivacyPolicy from "./legal/PrivacyPolicy";
 import About from "./legal/About";
 import CookieConsentBanner from "./cookies/CookieConsent";
 import ReactGA from "react-ga4";
+import { setPreferredColorScheme } from "./components/ColorManager";
 
 const MESS_ID = "G-SW2RQ0Q5JJ";
 
@@ -17,7 +18,7 @@ function App(): ReactElement {
   const [isCookieAnswered, setIsCookieAnswered] = useState(
     localStorage.getItem("isCookieConsentBannerAnswered") === "true"
   );
-  const [darkMode, setDarkMode] = useState(false);
+  setPreferredColorScheme();
 
   useEffect(() => {
     if (localStorage.getItem("isCookieAnalyticalAccepted") === "true" && isCookieAnswered) {
@@ -28,8 +29,8 @@ function App(): ReactElement {
   return (
     <Router>
       {!isCookieAnswered && <CookieConsentBanner setIsCookieAnswered={setIsCookieAnswered} />}
-      <div className="App" id={darkMode ? "dark" : "light"}>
-        <Nav darkMode={darkMode} setDarkMode={setDarkMode} />
+      <div className="App">
+        <Nav />
         <div className="Router">
           <Routes>
             <Route path="/" element={<Home />} />

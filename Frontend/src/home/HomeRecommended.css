@@ -83,11 +83,13 @@
   align-items: center;
 }
 
-.recommended-jam a {
+.recommended-jam .host a,
+.recommended-jam .primary-info a {
   color: var(--text-color);
 }
 
-.recommended-jam a:hover {
+.recommended-jam .host a:hover,
+.recommended-jam .primary-info a:hover {
   color: var(--primary-color);
 }
 

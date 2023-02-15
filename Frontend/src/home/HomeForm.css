@@ -62,10 +62,6 @@
 }
 
 .submit:hover {
-  color: white;
-}
-
-.submit:active {
   color: var(--primary-color);
   background-color: var(--background-color);
 }

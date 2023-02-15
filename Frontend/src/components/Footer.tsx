@@ -1,5 +1,6 @@
 import React, { ReactElement } from "react";
 import "../App.css";
+import "./Wireframe.css";
 
 interface Props {
   setIsCookieAnswered: React.Dispatch<boolean>;
