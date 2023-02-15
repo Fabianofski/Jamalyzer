@@ -1,5 +1,4 @@
 .view {
-  box-sizing: border-box;
   display: flex;
   justify-content: space-around;
   flex-direction: column;
@@ -11,8 +10,11 @@
   margin: 5rem 0 0 0;
   padding: 3rem;
   background: var(--background-color);
+
   color: var(--secondary-color);
+
   box-shadow: var(--box-shadow);
+
   border-radius: 25px;
 }
 
@@ -23,12 +25,13 @@
 }
 
 .card-grid {
-  width: 100%;
-  height: 100%;
   display: grid;
   gap: 1.5rem;
   grid-template-columns: repeat(6, 1fr);
   grid-auto-flow: dense;
+
+  width: 100%;
+  height: 100%;
 }
 
 @media (max-width: 1200px) {

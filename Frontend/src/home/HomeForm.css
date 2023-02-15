@@ -7,12 +7,13 @@
 }
 
 .form {
-  width: 100%;
-  height: 15rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
+
+  width: 100%;
+  height: 15rem;
   padding: 1rem 0 1rem 0;
   margin-bottom: 1rem;
   background-image: url("https://img.itch.zone/aW1hZ2UyL2phbS8zMTE5OTQvNjY5ODUyMi5wbmc=/original/UVI%2FZb.png");
@@ -22,13 +23,16 @@
   width: 90vw;
   max-width: 50rem;
   height: 2.5rem;
-  box-sizing: border-box;
-  box-shadow: var(--box-shadow);
+
   color: black;
+
   border: 1px solid var(--primary-color);
   border-radius: 10px;
   outline: none;
+
   transition: border 0.5s ease;
+
+  box-shadow: var(--box-shadow);
 }
 
 .form input:focus {
@@ -36,32 +40,39 @@
 }
 
 .error {
-  width: 100%;
-  height: 3em;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 10px;
+
+  width: 100%;
+  height: 3em;
+
   color: var(--primary-color);
+
+  border-radius: 10px;
 }
 
 .submit {
-  background-color: var(--primary-color);
-  color: white;
-  text-decoration: none;
-  box-shadow: var(--box-shadow);
-  border-radius: 10px;
-  width: 10rem;
-  height: 3rem;
-  box-sizing: border-box;
-  border: 1px solid var(--primary-color);
   display: flex;
   justify-content: center;
   align-items: center;
+
+  width: 10rem;
+  height: 3rem;
+  background-color: var(--primary-color);
+
+  color: white;
   font-size: medium;
+  text-decoration: none;
+
+  border-radius: 10px;
+  border: 1px solid var(--primary-color);
+
+  box-shadow: var(--box-shadow);
 }
 
 .submit:hover {
   color: var(--primary-color);
+
   background-color: var(--background-color);
 }

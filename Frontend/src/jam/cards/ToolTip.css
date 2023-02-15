@@ -6,9 +6,10 @@
 }
 
 .tooltip-icon {
-  color: var(--primary-color);
   position: relative;
   right: 0;
+
+  color: var(--primary-color);
 }
 
 .tooltip-icon:hover {
@@ -18,22 +19,24 @@
 .tooltip-text {
   position: absolute;
   bottom: 100%;
-  visibility: hidden;
-  opacity: 0;
+
+  min-width: 15rem;
   margin: 0.5rem;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
-
-  min-width: 15rem;
-
-  box-sizing: border-box;
   background-color: var(--background-color);
+
   color: var(--secondary-color);
-  border: 1px solid var(--primary-color);
-  border-radius: 5px;
-  transition: opacity 0.2s ease-in;
   text-align: justify;
   hyphens: auto;
+
+  border: 1px solid var(--primary-color);
+  border-radius: 5px;
+
+  visibility: hidden;
+  opacity: 0;
+
+  transition: opacity 0.2s ease-in;
 }
 
 @media (max-width: 1200px) {

@@ -1,5 +1,6 @@
 import React, { ReactElement, useState } from "react";
 import "./CookieConsent.css";
+import "../App.css";
 import ToggleSwitch from "./ToggleSwitch";
 import ReactGA from "react-ga4";
 

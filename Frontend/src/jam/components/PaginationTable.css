@@ -5,12 +5,13 @@
 }
 
 table {
+  width: 100%;
+
   border-collapse: separate;
   border-spacing: 0;
   border: 2px solid var(--secondary-color);
   border-radius: 10px;
   white-space: nowrap;
-  width: 100%;
 }
 
 table tr:nth-child(even) {
@@ -22,20 +23,22 @@ th,
 td {
   border-left: 1px solid var(--secondary-color);
   border-right: 1px solid var(--secondary-color);
+
   overflow: hidden;
 }
 
 th,
 td {
-  padding: 10px;
   max-width: 180px;
+  padding: 10px;
 }
 
 th {
   color: white;
+  white-space: normal;
+
   background-color: var(--primary-color);
   vertical-align: bottom;
-  white-space: normal;
 }
 
 .long-criteria {
@@ -43,28 +46,33 @@ th {
 }
 
 .pagination {
-  width: 100%;
-  box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: center;
+
+  width: 100%;
 }
 
 .pagination button {
   background-color: var(--background-color);
+  margin: 0.5rem;
+
+  color: var(--secondary-color);
+
   border-radius: 5px;
   border: 1px solid var(--secondary-color);
-  color: var(--secondary-color);
+
   transition: all 0.2s ease;
-  margin: 0.5rem;
 }
 
 .pagination button:hover {
   background-color: var(--primary-color);
+
   color: white;
 }
 
 .pagination .page-number {
-  text-align: center;
   width: 5rem;
+
+  text-align: center;
 }

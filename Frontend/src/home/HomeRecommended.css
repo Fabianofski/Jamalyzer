@@ -3,18 +3,22 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
   padding: 1rem 0 1rem 0;
   width: 95vw;
 
-  border-top: 1px solid var(--primary-color);
   color: var(--text-color);
+
+  border-top: 1px solid var(--primary-color);
 }
 
 .recommended-mask {
   width: 95vw;
   max-width: 100rem;
-  overflow-x: hidden;
+
   position: relative;
+
+  overflow-x: hidden;
 }
 
 .recommended-gradient {
@@ -23,18 +27,21 @@
   left: 0;
   height: 100%;
   width: 100%;
-  pointer-events: none;
+
   background: var(--home-jam-gradient);
+
+  pointer-events: none;
 }
 
 .recommended {
-  position: relative;
-  top: 0;
-  box-sizing: border-box;
-  width: fit-content;
-  height: 100%;
   display: flex;
   gap: 1rem;
+
+  position: relative;
+  top: 0;
+
+  width: fit-content;
+  height: 100%;
 }
 
 .jam-right-slide {
@@ -68,19 +75,21 @@
 }
 
 .recommended-jam {
-  width: 20rem;
-  height: 18rem;
-  padding: 0.5rem;
-  box-sizing: border-box;
-  box-shadow: 0 4px 4px var(--box-shadow-color);
-  margin-bottom: 4px;
-  background-color: var(--background-color);
-  border: 1px solid var(--primary-color);
-  border-radius: 10px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+
+  width: 20rem;
+  height: 18rem;
+  padding: 0.5rem;
+  margin-bottom: 4px;
+  background-color: var(--background-color);
+
+  border: 1px solid var(--primary-color);
+  border-radius: 10px;
+
+  box-shadow: 0 4px 4px var(--box-shadow-color);
 }
 
 .recommended-jam .host a,
@@ -96,6 +105,7 @@
 .primary-info {
   display: flex;
   align-items: flex-start;
+
   width: 100%;
 }
 
@@ -105,27 +115,34 @@
 
 .jam-icon img {
   width: 100%;
+
   border-radius: 5px;
 }
 
 .title {
-  padding-left: 0.5em;
   flex: 2;
-  overflow: hidden;
-  max-height: 5em;
-  text-align: center;
+
   height: fit-content;
+  max-height: 5em;
+  padding-left: 0.5em;
+
+  text-align: center;
+
+  overflow: hidden;
 }
 
 .host {
-  text-align: center;
-  overflow: hidden;
   max-height: 5em;
+
+  text-align: center;
+
+  overflow: hidden;
 }
 
 .stats {
   display: flex;
   justify-content: space-evenly;
+
   width: 100%;
   height: fit-content;
 }

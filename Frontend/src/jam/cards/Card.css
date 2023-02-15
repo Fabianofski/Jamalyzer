@@ -2,14 +2,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
+
   position: relative;
 
-  padding: 1em;
-  border-radius: 25px;
-  box-shadow: var(--box-shadow);
-  background: var(--background-color);
   min-height: 5rem;
+  padding: 1rem;
+  background: var(--background-color);
+
+  text-align: center;
+
+  border-radius: 25px;
+
+  box-shadow: var(--box-shadow);
 }
 
 .chart-card {
