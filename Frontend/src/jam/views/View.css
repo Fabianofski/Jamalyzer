@@ -73,11 +73,11 @@
   color: var(--secondary-color);
 }
 
-a {
+.view a {
   color: var(--secondary-color);
   text-decoration: underline;
 }
 
-a:hover {
+.view a:hover {
   color: var(--primary-color);
 }

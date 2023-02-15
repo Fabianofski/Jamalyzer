@@ -21,7 +21,7 @@
   width: 90vw;
   gap: 1em;
   background: var(--background-color);
-  color: var(--secondary-color);
+  color: var(--text-color);
   box-shadow: var(--box-shadow);
   border: 1px solid var(--primary-color);
   border-radius: 25px;
@@ -102,5 +102,5 @@
 }
 
 .collapse-button-icon:hover {
-  color: var(--secondary-color);
+  color: var(--text-color);
 }

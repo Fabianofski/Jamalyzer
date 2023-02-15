@@ -7,7 +7,7 @@
   width: 95vw;
 
   border-top: 1px solid var(--primary-color);
-  color: var(--secondary-color);
+  color: var(--text-color);
 }
 
 .recommended-mask {
@@ -81,6 +81,14 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+}
+
+.recommended-jam a {
+  color: var(--text-color);
+}
+
+.recommended-jam a:hover {
+  color: var(--primary-color);
 }
 
 .primary-info {

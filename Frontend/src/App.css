@@ -17,37 +17,42 @@
   --secondary-color: #151048;
 }
 
-#light {
-  --html-bg-color: white;
-  --background-color: white;
-  --secondary-background-color: white;
-  --darker-background-color: #f1f1f1;
-  --box-shadow-color: rgba(0, 0, 0, 0.25);
-  --box-shadow: 10px 10px 30px var(--box-shadow-color);
-  --home-jam-gradient: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 1) 0%,
-    rgba(255, 255, 255, 0) 3%,
-    rgba(255, 255, 255, 0) 97%,
-    rgba(255, 255, 255, 1) 100%
-  );
+@media (prefers-color-scheme: light) {
+  :root {
+    --html-bg-color: white;
+    --background-color: white;
+    --secondary-background-color: white;
+    --text-color: white;
+    --darker-background-color: #f1f1f1;
+    --box-shadow-color: rgba(0, 0, 0, 0.25);
+    --box-shadow: 10px 10px 30px var(--box-shadow-color);
+    --home-jam-gradient: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(255, 255, 255, 0) 3%,
+      rgba(255, 255, 255, 0) 97%,
+      rgba(255, 255, 255, 1) 100%
+    );
+  }
 }
 
-#dark {
-  --html-bg-color: #1d1d2a;
-  --background-color: #1d1d2a;
-  --secondary-background-color: #1d1d2a;
-  --secondary-color: white;
-  --darker-background-color: #0a0a10;
-  --box-shadow-color: rgba(125, 125, 125, 0.25);
-  --box-shadow: 5px 5px 15px var(--box-shadow-color);
-  --home-jam-gradient: linear-gradient(
-    90deg,
-    rgba(29, 29, 42, 1) 0%,
-    rgba(29, 29, 42, 0) 3%,
-    rgba(29, 29, 42, 0) 97%,
-    rgba(29, 29, 42, 1) 100%
-  );
+@media (prefers-color-scheme: dark) {
+  :root {
+    --html-bg-color: #1d1d2a;
+    --background-color: #1d1d2a;
+    --secondary-background-color: #1d1d2a;
+    --text-color: white;
+    --darker-background-color: #0a0a10;
+    --box-shadow-color: rgba(125, 125, 125, 0.25);
+    --box-shadow: 5px 5px 15px var(--box-shadow-color);
+    --home-jam-gradient: linear-gradient(
+      90deg,
+      rgba(29, 29, 42, 1) 0%,
+      rgba(29, 29, 42, 0) 3%,
+      rgba(29, 29, 42, 0) 97%,
+      rgba(29, 29, 42, 1) 100%
+    );
+  }
 }
 
 * {
@@ -103,15 +108,10 @@ html {
   font-size: 1.5rem;
 }
 
-.logo:hover {
-  color: var(--secondary-color);
-}
-
 .footer {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--secondary-color);
 }
 
 .footer a {
