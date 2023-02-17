@@ -1,6 +1,6 @@
 import React, { ReactElement } from "react";
-import "../App.css";
-import "./Wireframe.css";
+import "../../App.css";
+import "./Footer.css";
 
 interface Props {
   setIsCookieAnswered: React.Dispatch<boolean>;
@@ -16,7 +16,7 @@ function Footer({ setIsCookieAnswered }: Props): ReactElement {
     <div className="footer">
       <a href="/credits">Credits</a>
       <a href="/about">About</a>
-      <a onClick={openCookies} href="#cookies">
+      <a onClick={openCookies} href="Frontend/src/components#cookies">
         Cookies
       </a>
       <a href="/privacy-policy">Privacy Policy</a>

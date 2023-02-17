@@ -1,45 +1,12 @@
-.nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  min-height: 3rem;
-
-  color: white;
-}
-
-.logo {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-
-  text-decoration: none;
-  color: white;
-  font-family: "Rancho", cursive;
-  font-size: 1.5rem;
-}
-
-.toggle-theme-btn {
-  background-color: transparent;
-  outline-color: transparent;
-  border: none;
-  color: var(--background-color);
-}
-
-.footer,
-.nav {
-  width: 100%;
-
-  background-color: var(--primary-color);
-  transition: background-color 0.4s ease;
-}
-
 .footer {
   display: flex;
   align-items: center;
   justify-content: center;
 
   min-height: 6rem;
+  background-color: var(--primary-color);
+
+  transition: background-color 0.4s ease;
 }
 
 .footer a {
