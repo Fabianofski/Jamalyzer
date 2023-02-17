@@ -46,8 +46,8 @@
   vertical-align: top;
 }
 
-svg path,
-svg rect {
+.loader svg path,
+.loader svg rect {
   fill: var(--primary-color);
 }
 

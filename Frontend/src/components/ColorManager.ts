@@ -19,6 +19,10 @@ export function toggleTheme() {
   if (document.URL.includes("/jam/")) SetJamTheme(jamDefaultPrimaryColor, jamDefaultSecondaryColor);
 }
 
+export function getTheme() {
+  return colorScheme;
+}
+
 const defaultPrimaryColor = "#f55a5b";
 const defaultSecondaryColor = "#151048";
 
