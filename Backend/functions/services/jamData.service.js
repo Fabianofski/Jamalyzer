@@ -19,7 +19,11 @@ async function fetchJamData(jamName) {
 
   const data = await fetchItchServers(jamId, jamUrl);
   await db.postJamData(jamId, data);
-  await queue.add(`Jam: ${jamId}`, data, { jobId: `ID:${jamId}` });
+  await queue.add(`Jam: ${jamId}`, data, {
+    jobId: `jam_${jamId}`,
+    removeOnComplete: true,
+    removeOnFail: true,
+  });
   return data;
 }
 

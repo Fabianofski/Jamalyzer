@@ -1,7 +1,7 @@
 const { Queue, Worker, QueueEvents } = require("bullmq");
 const { fetchExtendedJamData } = require("./extendedJamData.service");
 
-const MAX_JOBS = 3;
+const MAX_JOBS = 1;
 
 const REDIS_CONFIG = {
   connection: {
@@ -54,5 +54,8 @@ queueEvents.on("failed", ({ jobId, failedReason }) => {
 queueEvents.on("progress", ({ jobId, data }, timestamp) => {
   console.log(`${jobId} reported progress ${data} at ${timestamp}`);
 });
+
+queue.clean(0, 50).then((e) => console.log(e));
+queue.getJobs().then((e) => console.log(e));
 
 module.exports = { worker, queue };
