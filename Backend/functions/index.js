@@ -19,11 +19,6 @@ app.get("/api/jamList", async (req, res) => {
   }
 });
 
-app.get("/api/job", async (req, res) => {
-  const job = await queue.add("job", { name: "hi", id: "456" });
-  res.json({ job: job });
-});
-
 app.get("/api/jamId", async (req, res) => {
   try {
     res.json(await jamId.fetchJamID(req.query.jamUrl));

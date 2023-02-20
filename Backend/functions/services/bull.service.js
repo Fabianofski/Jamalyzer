@@ -1,13 +1,18 @@
 const { Queue, Worker, QueueEvents } = require("bullmq");
+const { fetchExtendedJamData } = require("./extendedJamData.service");
 
 const MAX_JOBS = 3;
 
-const queue = new Queue("todo", {
+const REDIS_CONFIG = {
   connection: {
     port: process.env.REDIS_PORT,
     host: process.env.REDIS_HOST,
     password: process.env.REDIS_PASSWORD,
   },
+};
+
+const queue = new Queue("todo", {
+  connection: REDIS_CONFIG.connection,
   defaultJobOptions: {
     attempts: 3,
     backoff: {
@@ -17,13 +22,18 @@ const queue = new Queue("todo", {
   },
 });
 
-const queueEvents = new QueueEvents("todo", {
-  connection: {
-    port: process.env.REDIS_PORT,
-    host: process.env.REDIS_HOST,
-    password: process.env.REDIS_PASSWORD,
+const worker = new Worker(
+  "todo",
+  async (job) => {
+    await fetchExtendedJamData(job);
   },
-});
+  {
+    concurrency: MAX_JOBS,
+    connection: REDIS_CONFIG.connection,
+  }
+);
+
+const queueEvents = new QueueEvents("todo", REDIS_CONFIG);
 
 queueEvents.on("waiting", ({ jobId }) => {
   console.log(`A job with ID ${jobId} is waiting`);
@@ -43,29 +53,6 @@ queueEvents.on("failed", ({ jobId, failedReason }) => {
 
 queueEvents.on("progress", ({ jobId, data }, timestamp) => {
   console.log(`${jobId} reported progress ${data} at ${timestamp}`);
-});
-
-const worker = new Worker(
-  "todo",
-  async (job) => {
-    console.log(job.data);
-  },
-  {
-    concurrency: MAX_JOBS,
-    connection: {
-      port: process.env.REDIS_PORT,
-      host: process.env.REDIS_HOST,
-      password: process.env.REDIS_PASSWORD,
-    },
-  }
-);
-
-worker.on("completed", (job) => {
-  console.log(`${job.id} has completed!`);
-});
-
-worker.on("failed", (job, err) => {
-  console.log(`${job.id} has failed with ${err.message}`);
 });
 
 module.exports = { worker, queue };

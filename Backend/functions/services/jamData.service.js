@@ -2,27 +2,28 @@ const jamID = require("./jamID.service");
 const fetch = require("node-fetch");
 const jamPage = require("./jamPage.service");
 const db = require("./db.service");
+const { queue } = require("./bull.service");
 
-async function fetchJamData(jamName){
+async function fetchJamData(jamName) {
   const jamUrl = `https://itch.io/jam/${jamName}`;
-  const jamId = await jamID.fetchJamID(jamUrl)
-  
+  const jamId = await jamID.fetchJamID(jamUrl);
+
   const dbData = await db.getJamData(jamId);
-  if (dbData !== null){
+  if (dbData !== null) {
     console.log("Found cached data in database");
-    if(dbData.version !== process.env.VERSION)
-      console.log("Cached Data is deprecated")
-    else
-      return dbData
+    if (dbData.version !== process.env.VERSION)
+      console.log("Cached Data is deprecated");
+    else return dbData;
   }
   console.log("Couldn't fetch data from database scrape itch.io");
-  
+
   const data = await fetchItchServers(jamId, jamUrl);
   await db.postJamData(jamId, data);
+  await queue.add(`Jam: ${jamId}`, data, { jobId: `ID:${jamId}` });
   return data;
 }
 
-async function fetchItchServers(jamId, jamUrl){
+async function fetchItchServers(jamId, jamUrl) {
   const [resEntries, resResults] = await Promise.all([
     fetch(`https://itch.io/jam/${jamId}/entries.json`),
     fetch(`https://itch.io/jam/${jamId}/results.json`),
@@ -38,8 +39,15 @@ async function fetchItchServers(jamId, jamUrl){
 
 const joinEntriesAndResults = (entries, results) => {
   if (results["results"] === undefined || results.results.length === 0)
-    throw Error("This jam hasn't ended or the results haven't been published yet!")
-  let jamData = { jam: {}, jam_games: {}, criteria: [], rankings: { Overall: {} } };
+    throw Error(
+      "This jam hasn't ended or the results haven't been published yet!"
+    );
+  let jamData = {
+    jam: {},
+    jam_games: {},
+    criteria: [],
+    rankings: { Overall: {} },
+  };
   results.results[0].criteria.forEach((criteria) => {
     jamData.criteria.push(criteria.name);
     jamData.rankings[criteria.name] = {};
@@ -55,30 +63,30 @@ function extractResultData(results, jamData) {
     const id = entry.id;
     const criteriaList = getCriteriaList(jamData, entry);
     jamData.jam_games[id] = {
-      title : entry.title,
-      id : id,
-      rank : entry.rank,
-      criteria : criteriaList,
-      contributors : entry.contributors,
-      jamPageUrl : entry.url,
-    }
+      title: entry.title,
+      id: id,
+      rank: entry.rank,
+      criteria: criteriaList,
+      contributors: entry.contributors,
+      jamPageUrl: entry.url,
+    };
     addGameToRanking(jamData, criteriaList, id);
   });
 }
 
-function getCriteriaList(jamData, entry){
+function getCriteriaList(jamData, entry) {
   const criteriaList = entry.criteria;
   const overall = {
-    raw_score : entry.raw_score,
-    score : entry.score,
-    rank : entry.rank,
-    name : "Overall",
+    raw_score: entry.raw_score,
+    score: entry.score,
+    rank: entry.rank,
+    name: "Overall",
   };
   criteriaList.push(overall);
   return criteriaList;
 }
 
-function addGameToRanking(jamData, criteriaList, id){
+function addGameToRanking(jamData, criteriaList, id) {
   criteriaList.forEach((criteria) => {
     if (criteria.name in jamData.rankings) {
       if (!(criteria.rank in jamData.rankings[criteria.name]))
@@ -96,7 +104,9 @@ function extractEntryData(entries, jamData) {
       Math.log(1 + entry.coolness) -
       Math.log(1 + entry.rating_count) / Math.log(5);
     if (id in jamData.jam_games) {
-      jamData.jam_games[id].platforms = entry.game.platforms ? entry.game.platforms : [];
+      jamData.jam_games[id].platforms = entry.game.platforms
+        ? entry.game.platforms
+        : [];
       jamData.jam_games[id].url = entry.game.url;
       jamData.jam_games[id].rating_count = entry.rating_count;
       jamData.jam_games[id].ratings_given = entry.coolness;
@@ -105,6 +115,6 @@ function extractEntryData(entries, jamData) {
   });
 }
 
-module.exports =  {
+module.exports = {
   fetchJamData,
-}
+};
