@@ -9,6 +9,16 @@ async function fetchGamePage(entry) {
   const html = response.data;
   const $ = cheerio.load(html);
 
+  $(".game_info_panel_widget table tbody")
+    .children()
+    .each(function (idx, tr) {
+      $(tr)
+        .children()
+        .each(function (idx, td) {
+          console.log($(td).text() + "\n");
+        });
+    });
+
   return entry;
 }
 

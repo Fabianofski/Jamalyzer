@@ -8,7 +8,7 @@ async function fetchJamData(jamName) {
   const jamUrl = `https://itch.io/jam/${jamName}`;
   const jamId = await jamID.fetchJamID(jamUrl);
 
-  const dbData = await db.getJamData(jamId);
+  const dbData = null; //await db.getJamData(jamId);
   if (dbData !== null) {
     console.log("Found cached data in database");
     if (dbData.version !== process.env.VERSION)
