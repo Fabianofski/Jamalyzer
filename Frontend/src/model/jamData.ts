@@ -4,7 +4,7 @@ import { entry } from "./entry";
 
 export type jamData = {
   _id: string;
-  errors: string[] | undefined;
+  errors?: string[];
   version: string;
   criteria: string[];
   jam: jam;

@@ -14,7 +14,6 @@ const { queue } = require("./bull.service");
 
 let jamData: jamData = {
   _id: "",
-  errors: undefined,
   version: "0.1",
   jam: {
     Title: "",

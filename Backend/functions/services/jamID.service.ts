@@ -6,9 +6,7 @@ const fetchJamID = async (jamURL: string) => {
     const response = await axios.get(jamURL);
     const html = response.data;
     const $ = cheerio.load(html);
-    const scriptStr = $(
-      'div[class="jam_page_wrap"] > script[type="text/javascript"]'
-    ).text();
+    const scriptStr = $('body > script[type="text/javascript"]').text();
     return extractJamID(scriptStr);
   } catch (e) {
     throw e;

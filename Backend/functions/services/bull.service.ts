@@ -61,8 +61,10 @@ queueEvents.on(
 
 queueEvents.on(
   "progress",
-  ({ jobId, data }: { jobId: string; data: string }, timestamp: string) => {
-    console.log(`${jobId} reported progress ${data} at ${timestamp}`);
+  ({ jobId, data }: { jobId: string; data: string }) => {
+    console.log(
+      `${jobId} reported progress ${(Number(data) * 100).toFixed(2)}%`
+    );
   }
 );
 
