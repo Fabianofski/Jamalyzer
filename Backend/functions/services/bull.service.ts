@@ -1,3 +1,5 @@
+import { Job } from "bullmq";
+
 const { Queue, Worker, QueueEvents } = require("bullmq");
 const { fetchExtendedJamData } = require("./extendedJamData.service");
 
@@ -24,7 +26,7 @@ const queue = new Queue("todo", {
 
 const worker = new Worker(
   "todo",
-  async (job) => {
+  async (job: Job) => {
     await fetchExtendedJamData(job);
   },
   {
@@ -35,27 +37,36 @@ const worker = new Worker(
 
 const queueEvents = new QueueEvents("todo", REDIS_CONFIG);
 
-queueEvents.on("waiting", ({ jobId }) => {
+queueEvents.on("waiting", ({ jobId }: { jobId: string }) => {
   console.log(`A job with ID ${jobId} is waiting`);
 });
 
-queueEvents.on("active", ({ jobId, prev }) => {
+queueEvents.on("active", ({ jobId, prev }: { jobId: string; prev: string }) => {
   console.log(`Job ${jobId} is now active; previous status was ${prev}`);
 });
 
-queueEvents.on("completed", ({ jobId, returnvalue }) => {
-  console.log(`${jobId} has completed and returned ${returnvalue}`);
-});
+queueEvents.on(
+  "completed",
+  ({ jobId, returnvalue }: { jobId: string; returnvalue: string }) => {
+    console.log(`${jobId} has completed and returned ${returnvalue}`);
+  }
+);
 
-queueEvents.on("failed", ({ jobId, failedReason }) => {
-  console.log(`${jobId} has failed with reason ${failedReason}`);
-});
+queueEvents.on(
+  "failed",
+  ({ jobId, failedReason }: { jobId: string; failedReason: string }) => {
+    console.log(`${jobId} has failed with reason ${failedReason}`);
+  }
+);
 
-queueEvents.on("progress", ({ jobId, data }, timestamp) => {
-  console.log(`${jobId} reported progress ${data} at ${timestamp}`);
-});
+queueEvents.on(
+  "progress",
+  ({ jobId, data }: { jobId: string; data: string }, timestamp: string) => {
+    console.log(`${jobId} reported progress ${data} at ${timestamp}`);
+  }
+);
 
-queue.clean(0, 50).then((e) => console.log(e));
-queue.getJobs().then((e) => console.log(e));
+queue.clean(0, 50).then((e: any) => console.log(e));
+queue.getJobs().then((e: any) => console.log(e));
 
 module.exports = { worker, queue };

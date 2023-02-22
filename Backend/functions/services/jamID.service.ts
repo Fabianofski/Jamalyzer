@@ -1,7 +1,7 @@
 const axios = require("axios");
 const cheerio = require("cheerio");
 
-const fetchJamID = async (jamURL) => {
+const fetchJamID = async (jamURL: string) => {
   try {
     const response = await axios.get(jamURL);
     const html = response.data;
@@ -15,7 +15,7 @@ const fetchJamID = async (jamURL) => {
   }
 };
 
-const extractJamID = (scriptStr) => {
+const extractJamID = (scriptStr: string) => {
   const idIndex = scriptStr.indexOf('"id":') + 5;
   let idEnd;
   for (let i = idIndex; i < scriptStr.length; i++) {
@@ -30,4 +30,4 @@ const extractJamID = (scriptStr) => {
 
 module.exports = {
   fetchJamID,
-}
+};

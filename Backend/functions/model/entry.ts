@@ -10,6 +10,7 @@ export type entry = {
   rating_count: number;
   ratings_given: number;
   karma: number;
+  game_info_panel: object;
 };
 
 export type entry_criteria = {

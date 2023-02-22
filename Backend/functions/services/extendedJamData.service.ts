@@ -1,13 +1,16 @@
+import { Job } from "bullmq";
+
 const { fetchGamePage } = require("./gamePage.service");
 const { postJamData } = require("./db.service");
 
-async function fetchExtendedJamData(job) {
+async function fetchExtendedJamData(job: Job) {
   console.log("fetch data for: " + job.data.jam.Title);
 
   const jamData = job.data;
   const gameIds = Object.keys(jamData.jam_games);
   for (let i = 0; i < gameIds.length; i += 5) {
-    job.updateProgress((i / gameIds.length).toFixed(2));
+    const progress: number = Number((i / gameIds.length).toFixed(2));
+    await job.updateProgress(progress);
     await Promise.all([
       ...gameIds.slice(i, i + 5).map(async (id) => {
         jamData.jam_games[id] =
