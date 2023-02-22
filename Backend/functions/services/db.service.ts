@@ -1,4 +1,4 @@
-import { jamData } from "../model/jamData";
+import { jamData } from "../model/jamData/jamData";
 
 const { MongoClient } = require("mongodb");
 require("dotenv").config();

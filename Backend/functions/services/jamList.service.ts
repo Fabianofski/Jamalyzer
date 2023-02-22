@@ -1,4 +1,4 @@
-import { jamCard } from "../model/jamCard";
+import { jamCard } from "../model/jamData/jamCard";
 import { CheerioAPI } from "cheerio";
 const axios = require("axios");
 const cheerio = require("cheerio");

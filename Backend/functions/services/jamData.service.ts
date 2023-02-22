@@ -1,10 +1,42 @@
+import { jamData } from "../model/jamData/jamData";
+import { entryList, entryListObject } from "../model/itch/entryList";
+import {
+  resultList,
+  resultListCriteria,
+  resultListObject,
+} from "../model/itch/resultList";
+
 const jamID = require("./jamID.service");
 const fetch = require("node-fetch");
 const jamPage = require("./jamPage.service");
 const db = require("./db.service");
 const { queue } = require("./bull.service");
 
-async function fetchJamData(jamName) {
+let jamData: jamData = {
+  _id: "",
+  errors: undefined,
+  version: "0.1",
+  jam: {
+    Title: "",
+    banner: "",
+    bg_color: "",
+    color: "",
+    ended: "",
+    entries: "",
+    hosts: [],
+    id: 0,
+    ratings: "",
+    secondary_color: "",
+    started: "",
+    twitter: { hashtag: "", twitter_link: "" },
+    url: "",
+  },
+  jam_games: {},
+  criteria: [],
+  rankings: { Overall: {} },
+};
+
+async function fetchJamData(jamName: string) {
   const jamUrl = `https://itch.io/jam/${jamName}`;
   const jamId = await jamID.fetchJamID(jamUrl);
 
@@ -17,7 +49,7 @@ async function fetchJamData(jamName) {
   }
   console.log("Couldn't fetch data from database scrape itch.io");
 
-  const data = await fetchItchServers(jamId, jamUrl);
+  const data: jamData = await fetchItchServers(jamId, jamUrl);
   await db.postJamData(jamId, data);
   await queue.add(`Jam: ${jamId}`, data, {
     jobId: `jam_${jamId}`,
@@ -27,32 +59,26 @@ async function fetchJamData(jamName) {
   return data;
 }
 
-async function fetchItchServers(jamId, jamUrl) {
+async function fetchItchServers(jamId: string, jamUrl: string) {
   const [resEntries, resResults] = await Promise.all([
     fetch(`https://itch.io/jam/${jamId}/entries.json`),
     fetch(`https://itch.io/jam/${jamId}/results.json`),
   ]);
-  const entries = await resEntries.json();
-  const results = await resResults.json();
-  const data = joinEntriesAndResults(entries, results);
+  const entries: entryList = await resEntries.json();
+  const results: resultList = await resResults.json();
+  const data: jamData = joinEntriesAndResults(entries, results);
   data["_id"] = jamId;
-  data["version"] = process.env.VERSION;
+  data["version"] = process.env.VERSION || "undefined";
   data["jam"] = await jamPage.fetchJamPage(jamUrl, jamId);
   return data;
 }
 
-const joinEntriesAndResults = (entries, results) => {
+const joinEntriesAndResults = (entries: entryList, results: resultList) => {
   if (results["results"] === undefined || results.results.length === 0)
     throw Error(
       "This jam hasn't ended or the results haven't been published yet!"
     );
-  let jamData = {
-    jam: {},
-    jam_games: {},
-    criteria: [],
-    rankings: { Overall: {} },
-  };
-  results.results[0].criteria.forEach((criteria) => {
+  results.results[0].criteria.forEach((criteria: resultListCriteria) => {
     jamData.criteria.push(criteria.name);
     jamData.rankings[criteria.name] = {};
   });
@@ -62,11 +88,17 @@ const joinEntriesAndResults = (entries, results) => {
   return jamData;
 };
 
-function extractResultData(results, jamData) {
-  results.results.forEach((entry) => {
+function extractResultData(results: resultList, jamData: jamData) {
+  results.results.forEach((entry: resultListObject) => {
     const id = entry.id;
     const criteriaList = getCriteriaList(jamData, entry);
     jamData.jam_games[id] = {
+      game_info_panel: {},
+      karma: 0,
+      platforms: [],
+      rating_count: 0,
+      ratings_given: 0,
+      url: "",
       title: entry.title,
       id: id,
       rank: entry.rank,
@@ -78,7 +110,7 @@ function extractResultData(results, jamData) {
   });
 }
 
-function getCriteriaList(jamData, entry) {
+function getCriteriaList(jamData: jamData, entry: resultListObject) {
   const criteriaList = entry.criteria;
   const overall = {
     raw_score: entry.raw_score,
@@ -90,7 +122,11 @@ function getCriteriaList(jamData, entry) {
   return criteriaList;
 }
 
-function addGameToRanking(jamData, criteriaList, id) {
+function addGameToRanking(
+  jamData: jamData,
+  criteriaList: resultListCriteria[],
+  id: number
+) {
   criteriaList.forEach((criteria) => {
     if (criteria.name in jamData.rankings) {
       if (!(criteria.rank in jamData.rankings[criteria.name]))
@@ -101,7 +137,7 @@ function addGameToRanking(jamData, criteriaList, id) {
   });
 }
 
-function extractEntryData(entries, jamData) {
+function extractEntryData(entries: entryList, jamData: jamData) {
   entries.jam_games.forEach((entry) => {
     const id = entry.game.id;
     const karma =

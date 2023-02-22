@@ -1,4 +1,4 @@
-import { jam } from "../model/jam";
+import { jam } from "../model/jamData/jam";
 import { CheerioAPI } from "cheerio";
 
 const axios = require("axios");
