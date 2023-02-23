@@ -11,7 +11,7 @@
   padding: 3rem;
   background: var(--background-color);
 
-  color: var(--secondary-color);
+  color: var(--text-color);
 
   box-shadow: var(--box-shadow);
 
@@ -77,7 +77,7 @@
 }
 
 .view a {
-  color: var(--secondary-color);
+  color: var(--text-color);
   text-decoration: underline;
 }
 

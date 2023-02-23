@@ -2,6 +2,31 @@
   width: 100%;
   max-width: 70vw;
   overflow-x: auto;
+
+  scrollbar-color: var(--secondary-color) var(--darker-background-color);
+  scrollbar-width: thin;
+
+  border-radius: 10px;
+}
+
+/* width */
+.table-wrapper::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+.table-wrapper::-webkit-scrollbar-track {
+  background: var(--primary-color);
+}
+
+/* Handle */
+.table-wrapper::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+}
+
+/* Handle on hover */
+.table-wrapper::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-color);
 }
 
 table {
@@ -9,7 +34,7 @@ table {
 
   border-collapse: separate;
   border-spacing: 0;
-  border: 2px solid var(--secondary-color);
+  border: 2px solid var(--text-color);
   border-radius: 10px;
   white-space: nowrap;
 }
@@ -21,8 +46,8 @@ table tr:nth-child(even) {
 table,
 th,
 td {
-  border-left: 1px solid var(--secondary-color);
-  border-right: 1px solid var(--secondary-color);
+  border-left: 1px solid var(--text-color);
+  border-right: 1px solid var(--text-color);
 
   overflow: hidden;
 }

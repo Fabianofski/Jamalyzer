@@ -26,7 +26,7 @@ function Jam(): ReactElement {
     fetch(`/api/jamData?jamName=${jamName}`)
       .then(async (response) => {
         await response.json().then((json: jamData) => {
-          if (json.errors === undefined) {
+          if (!json.errors) {
             setJamData(json);
             document.title = `Jamalyzer | ${json.jam.Title}`;
             if (ReactGA.isInitialized)

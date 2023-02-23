@@ -29,7 +29,7 @@ a {
   height: 5em;
 
   text-decoration: none;
-  color: var(--secondary-color);
+  color: var(--text-color);
 
   border-bottom: 1px solid var(--secondary-color);
 }

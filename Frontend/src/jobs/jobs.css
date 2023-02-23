@@ -18,6 +18,8 @@
   max-width: 60rem;
   padding: 1rem 0 1rem 0;
 
+  color: var(--text-color);
+
   border-top: 3px solid var(--darker-background-color);
   border-bottom: 3px solid var(--darker-background-color);
 }
