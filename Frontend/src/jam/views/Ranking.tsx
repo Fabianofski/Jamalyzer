@@ -2,8 +2,8 @@ import React, { ReactElement, useState } from "react";
 import Pagination from "../components/Pagination";
 import "./View.css";
 import "../components/PaginationTable.css";
-import { jamData } from "../../model/jamData";
-import { entry, entry_criteria } from "../../model/entry";
+import { jamData } from "../../model/jamData/jamData";
+import { entry, entry_criteria } from "../../model/jamData/entry";
 
 function Ranking({ jamData }: { jamData: jamData }): ReactElement {
   const [currentPage, setCurrentPage] = useState(1);

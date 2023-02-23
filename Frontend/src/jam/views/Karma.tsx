@@ -4,7 +4,7 @@ import { JsxCard } from "../cards/BasicCard";
 import { LineChartCard } from "../cards/LineChartCard";
 import { GetJamPrimary } from "../../components/ColorManager";
 import { pearsonCorrelation } from "../../components/Utilities";
-import { jamData } from "../../model/jamData";
+import { jamData } from "../../model/jamData/jamData";
 import { InlineMath } from "react-katex";
 
 function karmaDescription(): ReactElement {

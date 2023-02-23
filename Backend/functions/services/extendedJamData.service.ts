@@ -9,7 +9,7 @@ async function fetchExtendedJamData(job: Job) {
   const jamData = job.data;
   const gameIds = Object.keys(jamData.jam_games);
   for (let i = 0; i < gameIds.length; i += 5) {
-    const progress: number = Number((i / gameIds.length).toFixed(2));
+    const progress: number = i / gameIds.length;
     await job.updateProgress(progress);
     await Promise.all([
       ...gameIds.slice(i, i + 5).map(async (id) => {

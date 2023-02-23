@@ -14,14 +14,32 @@
   align-items: center;
   justify-content: space-between;
 
-  width: 60rem;
+  width: 95vw;
+  max-width: 60rem;
   padding: 1rem 0 1rem 0;
 
   border-top: 3px solid var(--darker-background-color);
   border-bottom: 3px solid var(--darker-background-color);
 }
 
+@media (max-width: 900px) {
+  .job {
+    flex-direction: column;
+  }
+}
+
+.job img {
+  max-height: 10rem;
+  max-width: 10rem;
+}
+
 .job-progress {
   display: flex;
+  justify-content: flex-end;
   gap: 1rem;
+}
+
+.job-percentage {
+  width: 5rem;
+  text-align: right;
 }

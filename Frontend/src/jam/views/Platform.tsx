@@ -4,7 +4,7 @@ import { JsxCard } from "../cards/BasicCard";
 import { BarChartCard } from "../cards/BarChartCard";
 import { PieChartCard } from "../cards/PieChartCard";
 import { GetJamPrimaryVariations } from "../../components/ColorManager";
-import { jamData } from "../../model/jamData";
+import { jamData } from "../../model/jamData/jamData";
 import { ChartData } from "chart.js";
 
 function PlatformDescription(): ReactElement {

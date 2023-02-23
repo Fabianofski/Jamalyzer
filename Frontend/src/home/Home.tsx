@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import React, { ReactElement, useState } from "react";
 import { ResetToDefaultColors } from "../components/ColorManager";
 import ReactGA from "react-ga4";
-import { jamCard } from "../model/jamCard";
+import { jamCard } from "../model/jamData/jamCard";
 // @ts-ignore
 import jamList from "./jamList.json";
 

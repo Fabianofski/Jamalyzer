@@ -1,7 +1,7 @@
 import React, { ReactElement } from "react";
 import "./View.css";
 import { Card } from "../cards/BasicCard";
-import { jamData } from "../../model/jamData";
+import { jamData } from "../../model/jamData/jamData";
 
 function Engine({ jamData }: { jamData: jamData }): ReactElement {
   return (

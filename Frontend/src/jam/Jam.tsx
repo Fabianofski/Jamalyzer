@@ -13,7 +13,7 @@ import Engine from "./views/Engine";
 import Overview from "./views/Overview";
 import { SetJamTheme } from "../components/ColorManager";
 import ReactGA from "react-ga4";
-import { jamData } from "../model/jamData";
+import { jamData } from "../model/jamData/jamData";
 
 function Jam(): ReactElement {
   const { jamName } = useParams();

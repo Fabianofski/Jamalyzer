@@ -2,8 +2,8 @@ import React, { ReactElement } from "react";
 import "./View.css";
 import { JsxCard } from "../cards/BasicCard";
 import { differenceInHours, format, formatDuration, intervalToDuration, parseISO } from "date-fns";
-import { jamData } from "../../model/jamData";
-import { jam } from "../../model/jam";
+import { jamData } from "../../model/jamData/jamData";
+import { jam } from "../../model/jamData/jam";
 
 function JamHosts(jamData: jamData): ReactElement {
   return (
