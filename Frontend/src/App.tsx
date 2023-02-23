@@ -11,6 +11,7 @@ import About from "./legal/About";
 import CookieConsentBanner from "./cookies/CookieConsent";
 import ReactGA from "react-ga4";
 import { setPreferredColorScheme } from "./components/ColorManager";
+import Jobs from "./jobs/Jobs";
 
 const MESS_ID = "G-SW2RQ0Q5JJ";
 
@@ -35,6 +36,7 @@ function App(): ReactElement {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/jam/:jamName" element={<Jam />} />
+            <Route path="/jobs" element={<Jobs />} />
             <Route path="/credits" element={<Credits />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/about" element={<About />} />

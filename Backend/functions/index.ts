@@ -1,10 +1,11 @@
 import { Response, Request } from "express";
 
+const { sendJobs } = require("./services/bull.service");
 const functions = require("firebase-functions");
 const express = require("express");
-const jamList = require("./services/jamList.service");
-const jamId = require("./services/jamID.service");
-const jamData = require("./services/jamData.service");
+const jamListService = require("./services/jamList.service");
+const jamIdService = require("./services/jamID.service");
+const jamDataService = require("./services/jamData.service");
 
 const app = express();
 const PORT = 3001;
@@ -14,7 +15,7 @@ app.use(cors);
 
 app.get("/api/jamList", async (_: Request, res: Response) => {
   try {
-    res.json(await jamList.fetchJamList());
+    res.json(await jamListService.fetchJamList());
   } catch (e: any) {
     res.json({ errors: [e.message] });
   }
@@ -24,7 +25,7 @@ app.get(
   "/api/jamId",
   async (req: Request<{ jamUrl: string }>, res: Response) => {
     try {
-      res.json(await jamId.fetchJamID(req.query.jamUrl));
+      res.json(await jamIdService.fetchJamID(req.query.jamUrl));
     } catch (e: any) {
       res.json({ errors: [e.message] });
     }
@@ -36,12 +37,21 @@ app.get(
   async (req: Request<{ jamName: string }>, res: Response) => {
     try {
       const jamName = req.query.jamName;
-      res.json(await jamData.fetchJamData(jamName));
+      res.json(await jamDataService.fetchJamData(jamName));
     } catch (e: any) {
       res.json({ errors: [e.message] });
     }
   }
 );
+
+app.get("/api/jobs", function (req: Request, res: Response) {
+  res.writeHead(200, {
+    "Content-Type": "text/event-stream",
+    "Cache-Control": "no-cache",
+    Connection: "keep-alive",
+  });
+  sendJobs(res);
+});
 
 app.listen(PORT, () => console.log("Listening ..."));
 exports.app = functions.https.onRequest(app);

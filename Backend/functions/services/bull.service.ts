@@ -1,4 +1,7 @@
 import { Job } from "bullmq";
+import { Response } from "express";
+import { jamJob, jobList } from "../model/jamJobs/jobList";
+import { jamData } from "../model/jamData/jamData";
 
 const { Queue, Worker, QueueEvents } = require("bullmq");
 const { fetchExtendedJamData } = require("./extendedJamData.service");
@@ -68,7 +71,23 @@ queueEvents.on(
   }
 );
 
-queue.clean(0, 50).then((e: any) => console.log(e));
-queue.getJobs().then((e: any) => console.log(e));
+function sendJobs(res: Response) {
+  queue.getJobs().then((jobs: Job[]) => {
+    const jamJobs: jobList = { jobs: [] };
+    jobs.forEach((job: Job) => {
+      const jamData: jamData = job.data;
+      const jamJob: jamJob = {
+        jamLogo: jamData.jam.banner,
+        jamTitle: jamData.jam.Title,
+        jobProgress: (Number(job.progress) * 100).toFixed(2) + "%",
+        jobState: String(job.getState()),
+      };
+      jamJobs.jobs.push(jamJob);
+    });
 
-module.exports = { worker, queue };
+    res.write("data: " + JSON.stringify(jamJobs) + "\n\n");
+    setTimeout(() => sendJobs(res), 1000);
+  });
+}
+
+module.exports = { worker, queue, sendJobs };

@@ -1,0 +1,27 @@
+.jobs {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 3px;
+
+  width: 100%;
+  padding: 5rem 0 1rem 0;
+}
+
+.job {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 60rem;
+  padding: 1rem 0 1rem 0;
+
+  border-top: 3px solid var(--darker-background-color);
+  border-bottom: 3px solid var(--darker-background-color);
+}
+
+.job-progress {
+  display: flex;
+  gap: 1rem;
+}
