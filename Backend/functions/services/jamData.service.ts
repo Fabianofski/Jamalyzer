@@ -12,29 +12,6 @@ const jamPage = require("./jamPage.service");
 const db = require("./db.service");
 const { queue } = require("./bull.service");
 
-let jamData: jamData = {
-  _id: "",
-  version: "0.1",
-  jam: {
-    Title: "",
-    banner: "",
-    bg_color: "",
-    color: "",
-    ended: "",
-    entries: "",
-    hosts: [],
-    id: 0,
-    ratings: "",
-    secondary_color: "",
-    started: "",
-    twitter: { hashtag: "", twitter_link: "" },
-    url: "",
-  },
-  jam_games: {},
-  criteria: [],
-  rankings: { Overall: {} },
-};
-
 async function fetchJamData(jamName: string) {
   const jamUrl = `https://itch.io/jam/${jamName}`;
   const jamId = await jamID.fetchJamID(jamUrl);
@@ -73,6 +50,29 @@ async function fetchItchServers(jamId: string, jamUrl: string) {
 }
 
 const joinEntriesAndResults = (entries: entryList, results: resultList) => {
+  const jamData: jamData = {
+    _id: "",
+    version: "0.1",
+    jam: {
+      Title: "",
+      banner: "",
+      bg_color: "",
+      color: "",
+      ended: "",
+      entries: "",
+      hosts: [],
+      id: 0,
+      ratings: "",
+      secondary_color: "",
+      started: "",
+      twitter: { hashtag: "", twitter_link: "" },
+      url: "",
+    },
+    jam_games: {},
+    criteria: [],
+    rankings: { Overall: {} },
+  };
+
   if (results["results"] === undefined || results.results.length === 0)
     throw Error(
       "This jam hasn't ended or the results haven't been published yet!"
