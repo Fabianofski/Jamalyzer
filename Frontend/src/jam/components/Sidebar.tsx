@@ -12,9 +12,9 @@ function Sidebar(): ReactElement {
         <Chapter id={"Karma"} />
         <Chapter id={"Team"} />
         <Chapter id={"Platform"} />
+        <Chapter id={"Tools"} />
         <Chapter id={"Description"} />
         <Chapter id={"Genre"} />
-        <Chapter id={"Engine"} />
       </div>
     </div>
   );

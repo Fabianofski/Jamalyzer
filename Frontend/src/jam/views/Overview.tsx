@@ -4,8 +4,6 @@ import { JsxCard } from "../cards/BasicCard";
 import { differenceInHours, format, formatDuration, intervalToDuration, parseISO } from "date-fns";
 import { jamData } from "../../model/jamData/jamData";
 import { jam } from "../../model/jamData/jam";
-import { GetJamPrimary } from "../../components/Color/ColorManager";
-import { hslToRGB, rgbToHSL } from "../../components/Color/ColorConverter";
 
 function JamHosts(jamData: jamData): ReactElement {
   return (

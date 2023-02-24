@@ -83,3 +83,35 @@
 .view a:hover {
   color: var(--primary-color);
 }
+
+.tool-table-wrapper {
+  width: 100%;
+}
+
+.tool-table {
+  width: 100%;
+
+  text-align: left;
+
+  border-collapse: collapse;
+  border-radius: 30px;
+}
+
+.tool-table tr:nth-child(even) {
+  background-color: var(--darker-background-color);
+}
+
+.tool-table td {
+  height: 2rem;
+  padding: 0 0 0 1rem;
+}
+
+.tool-table .rank {
+  padding: 0;
+  text-align: right;
+}
+
+.tool-table td:nth-child(2) {
+  border-right: 1px solid var(--text-color);
+  width: 75%;
+}

@@ -9,12 +9,12 @@ import Team from "./views/Team";
 import Platform from "./views/Platform";
 import Description from "./views/Description";
 import Genre from "./views/Genre";
-import Engine from "./views/Engine";
 import Overview from "./views/Overview";
 import { SetJamTheme } from "../components/Color/ColorManager";
 import ReactGA from "react-ga4";
 import { jamData } from "../model/jamData/jamData";
 import { observeStyle } from "../components/Color/ChartColorObserver";
+import Tools from "./views/Tools";
 
 function Jam(): ReactElement {
   const { jamName } = useParams();
@@ -78,6 +78,7 @@ function JamAnalysis({ jamData, errors }: JamAnalysisProps): ReactElement {
     <div className="jam-container">
       <Sidebar />
       <div className="view-container">
+        <Tools jamData={jamData} />
         <Overview jamData={jamData} />
         <Ranking jamData={jamData} />
         <Karma jamData={jamData} />
@@ -85,7 +86,6 @@ function JamAnalysis({ jamData, errors }: JamAnalysisProps): ReactElement {
         <Platform jamData={jamData} />
         <Description jamData={jamData} />
         <Genre jamData={jamData} />
-        <Engine jamData={jamData} />
       </div>
     </div>
   );

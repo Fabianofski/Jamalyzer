@@ -23,24 +23,28 @@ function karmaDescription(): ReactElement {
 
 function PearsonTooltip(): ReactElement {
   return (
-    <p style={{ lineHeight: "1.5rem", hyphens: "auto" }}>
-      The correlation coefficient is a measure of the linear relationship between two variables.{" "}
-      <br />
+    <>
+      <p style={{ lineHeight: "1.5rem", hyphens: "auto" }}>
+        The correlation coefficient is a measure of the linear relationship between two variables.{" "}
+        <br />
+      </p>
       <table>
-        <tr>
-          <td style={{ textAlign: "right" }}>-1 = </td>
-          <td>negative relationship</td>
-        </tr>
-        <tr>
-          <td style={{ textAlign: "right" }}>0 = </td>
-          <td>no relationship</td>
-        </tr>
-        <tr>
-          <td style={{ textAlign: "right" }}>1 = </td>
-          <td>positive relationship</td>
-        </tr>
+        <tbody>
+          <tr>
+            <td style={{ textAlign: "right" }}>-1 = </td>
+            <td>negative relationship</td>
+          </tr>
+          <tr>
+            <td style={{ textAlign: "right" }}>0 = </td>
+            <td>no relationship</td>
+          </tr>
+          <tr>
+            <td style={{ textAlign: "right" }}>1 = </td>
+            <td>positive relationship</td>
+          </tr>
+        </tbody>
       </table>
-    </p>
+    </>
   );
 }
 

@@ -10,7 +10,7 @@ export type entry = {
   rating_count: number;
   ratings_given: number;
   karma: number;
-  game_info_panel: object;
+  game_info_panel: game_info_panel;
 };
 
 export type entry_criteria = {
@@ -23,4 +23,18 @@ export type entry_criteria = {
 export type contributor = {
   name: string;
   id: number;
+};
+
+export type game_info_panel = {
+  status?: string[];
+  rating?: string[];
+  genre?: string[];
+  madeWith?: string[];
+  tags?: string[];
+  codeLicense?: string[];
+  assetLicense?: string[];
+  averageSession?: string[];
+  languages?: string[];
+  inputs?: string[];
+  accessibility?: string[];
 };

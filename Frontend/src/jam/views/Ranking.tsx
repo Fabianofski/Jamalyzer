@@ -51,7 +51,7 @@ function TableBody({ jamData, indexOfFirstPost, indexOfLastPost }: TableBodyProp
   const fillMissingRows = (tableEntries: number): ReactElement[] => {
     const rows = [];
     for (let i = tableEntries; i < 10; i++) {
-      rows.push(<EmptyTableEntry jamData={jamData} />);
+      rows.push(<EmptyTableEntry jamData={jamData} key={i} />);
     }
     return rows;
   };
@@ -61,7 +61,7 @@ function TableBody({ jamData, indexOfFirstPost, indexOfLastPost }: TableBodyProp
       {Object.entries(jamData.rankings.Overall).map(([rank, ids]) => {
         return ids.map((id) => {
           mappedIds++;
-          if (mappedIds <= indexOfFirstPost || mappedIds > indexOfLastPost) return <></>;
+          if (mappedIds <= indexOfFirstPost || mappedIds > indexOfLastPost) return "";
           const entry = jamData.jam_games[id];
           tableEntries++;
           return <TableEntry key={id} jamData={jamData} entry={entry} id={id} rank={rank} />;

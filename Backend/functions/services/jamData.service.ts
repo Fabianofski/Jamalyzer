@@ -53,6 +53,7 @@ const joinEntriesAndResults = (entries: entryList, results: resultList) => {
   const jamData: jamData = {
     _id: "",
     version: "0.1",
+    extendedData: false,
     jam: {
       Title: "",
       banner: "",

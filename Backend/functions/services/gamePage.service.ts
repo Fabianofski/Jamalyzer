@@ -19,7 +19,7 @@ async function fetchGamePage(entry: entry) {
   $(".game_info_panel_widget tbody")
     .children()
     .each(function (idx: number, tr: CheerioAPI) {
-      const title = $(tr).children().first().text().toLowerCase();
+      const title = camelCase($(tr).children().first().text());
       const content = $(tr).children().first().next().text().toLowerCase();
       if (!skippedParameters.includes(title)) {
         // @ts-ignore
@@ -27,6 +27,15 @@ async function fetchGamePage(entry: entry) {
       }
     });
   return entry;
+}
+
+function camelCase(str: string) {
+  let splitStr = str.toLowerCase().split(" ");
+  for (let i = 1; i < splitStr.length; i++) {
+    splitStr[i] =
+      splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);
+  }
+  return splitStr.join("");
 }
 
 module.exports = { fetchGamePage };
