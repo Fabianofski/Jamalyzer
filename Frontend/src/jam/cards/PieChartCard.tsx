@@ -1,5 +1,5 @@
 import { Pie } from "react-chartjs-2";
-import React, { ReactElement } from "react";
+import React, { ReactElement, useEffect, useState } from "react";
 import "../views/View.css";
 import "./Card.css";
 
@@ -29,16 +29,27 @@ export function PieChartCard({
   data = dummyPieData,
   title = "Dummy Title"
 }: Props): ReactElement {
+  const [chartColor, setChartColor] = useState(
+    getComputedStyle(document.documentElement).getPropertyValue("--text-color")
+  );
+  useEffect(() => {
+    document.addEventListener("textColorChanged", (e: any) => setChartColor(e.detail));
+  }, []);
+
   const pieOptions: object = {
     responsive: true,
     plugins: {
       legend: {
         display: true,
-        position: "bottom"
+        position: "bottom",
+        labels: {
+          color: chartColor
+        }
       },
       title: {
         display: true,
-        text: title
+        text: title,
+        color: chartColor
       }
     }
   };

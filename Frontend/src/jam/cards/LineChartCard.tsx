@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, useEffect, useState } from "react";
 import "../views/View.css";
 import "./Card.css";
 
@@ -14,6 +14,7 @@ import {
   Tooltip
 } from "chart.js";
 import { Line } from "react-chartjs-2";
+import { updateStyle } from "./ChartColorObserver";
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
@@ -44,6 +45,11 @@ export function LineChartCard({
   data = dummyLineData,
   title = "Dummy Title"
 }: Props): ReactElement {
+  const style = getComputedStyle(document.documentElement);
+  const [chartColor, setChartColor] = useState(style.getPropertyValue("--text-color"));
+  const [gridColor, setGridColor] = useState(style.getPropertyValue("--darker-background-color"));
+  updateStyle(setChartColor, setGridColor);
+
   const lineOptions: object = {
     responsive: true,
     maintainAspectRatio: false,
@@ -53,19 +59,28 @@ export function LineChartCard({
       },
       title: {
         display: true,
-        text: title
+        text: title,
+        color: chartColor
       }
     },
     scales: {
       y: {
         grid: {
-          borderColor: "black"
+          color: gridColor,
+          borderColor: gridColor
+        },
+        ticks: {
+          color: chartColor
         },
         position: "left"
       },
       x: {
         grid: {
-          borderColor: "black"
+          color: gridColor,
+          borderColor: gridColor
+        },
+        ticks: {
+          color: chartColor
         },
         position: "center"
       }
@@ -75,7 +90,7 @@ export function LineChartCard({
   return (
     <div className={styleClass + " chart-card"}>
       <div className="chart">
-        <Line options={lineOptions} data={data} style={{ minHeight: "20rem" }} />
+        <Line options={lineOptions} data={data} style={{ minHeight: "20rem", color: "white" }} />
       </div>
     </div>
   );

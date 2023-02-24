@@ -1,9 +1,10 @@
 import { Bar } from "react-chartjs-2";
-import React, { ReactElement } from "react";
+import React, { ReactElement, useEffect, useState } from "react";
 import "../views/View.css";
 import "./Card.css";
 
 import { BarElement, Chart as ChartJS, ChartData, Legend, Title, Tooltip } from "chart.js";
+import { updateStyle } from "./ChartColorObserver";
 
 ChartJS.register(Title, Tooltip, Legend, BarElement);
 
@@ -45,11 +46,22 @@ export function BarChartCard({
   data = dummyBarData,
   title = "Dummy Title"
 }: Props): ReactElement {
+  const style = getComputedStyle(document.documentElement);
+  const [chartColor, setChartColor] = useState(style.getPropertyValue("--text-color"));
+  const [gridColor, setGridColor] = useState(style.getPropertyValue("--darker-background-color"));
+  updateStyle(setChartColor, setGridColor);
+
   const barOptions: object = {
     plugins: {
       title: {
         display: true,
-        text: title
+        text: title,
+        color: chartColor
+      },
+      legend: {
+        labels: {
+          color: chartColor
+        }
       }
     },
     responsive: true,
@@ -60,10 +72,24 @@ export function BarChartCard({
     },
     scales: {
       x: {
-        stacked: true
+        stacked: true,
+        grid: {
+          color: gridColor,
+          borderColor: gridColor
+        },
+        ticks: {
+          color: chartColor
+        }
       },
       y: {
-        stacked: false
+        stacked: false,
+        grid: {
+          color: gridColor,
+          borderColor: gridColor
+        },
+        ticks: {
+          color: chartColor
+        }
       }
     }
   };

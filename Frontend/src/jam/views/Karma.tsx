@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, useState } from "react";
 import "./View.css";
 import { JsxCard } from "../cards/BasicCard";
 import { LineChartCard } from "../cards/LineChartCard";
@@ -57,6 +57,7 @@ function Correlation({ jamData }: { jamData: jamData }): ReactElement {
 
 function Karma({ jamData }: { jamData: jamData }): ReactElement {
   const data = getLineChartData(jamData);
+
   return (
     <div className="view" id="Karma">
       <h1>Karma</h1>

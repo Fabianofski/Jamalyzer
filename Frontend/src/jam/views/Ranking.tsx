@@ -4,6 +4,8 @@ import "./View.css";
 import "../components/PaginationTable.css";
 import { jamData } from "../../model/jamData/jamData";
 import { entry, entry_criteria } from "../../model/jamData/entry";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
 
 function Ranking({ jamData }: { jamData: jamData }): ReactElement {
   const [currentPage, setCurrentPage] = useState(1);
@@ -125,7 +127,13 @@ function CriteriaScores({ jamData, entry }: CriteriaScoresProps): ReactElement {
     <>
       {jamData.criteria.map((criteria, index) => {
         const crit = entry.criteria.find((c: entry_criteria) => c.name === criteria);
-        if (crit !== undefined) return <td key={index}>{crit.score.toFixed(2)}</td>;
+        if (crit !== undefined)
+          return (
+            <td key={index} style={{ textAlign: "right" }}>
+              {crit.score.toFixed(2)}
+              <FontAwesomeIcon icon={faStar} style={{ marginLeft: ".3rem" }} />
+            </td>
+          );
         else return <td key={index}>-</td>;
       })}
     </>

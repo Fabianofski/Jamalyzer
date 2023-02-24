@@ -14,11 +14,14 @@ import Overview from "./views/Overview";
 import { SetJamTheme } from "../components/ColorManager";
 import ReactGA from "react-ga4";
 import { jamData } from "../model/jamData/jamData";
+import { observeStyle } from "./cards/ChartColorObserver";
 
 function Jam(): ReactElement {
   const { jamName } = useParams();
   const [jamData, setJamData] = useState<jamData>();
   const [errors, setErrors] = useState<string[]>([]);
+
+  useEffect(observeStyle, []);
 
   if (jamData === undefined) document.title = `Jamalyzer | Loading..`;
   useEffect(() => {

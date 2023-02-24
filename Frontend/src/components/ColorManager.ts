@@ -50,7 +50,7 @@ export function SetJamTheme(primary: string, secondary: string): void {
     primaryHsl.l = Math.min(0.4, primaryHsl.l);
   } else {
     secondaryHsl.l = Math.max(0.2, secondaryHsl.l);
-    primaryHsl.l = Math.max(0.4, primaryHsl.l);
+    primaryHsl.l = Math.max(0.4, Math.min(primaryHsl.l, 0.6));
   }
 
   jamPrimaryColor = hslToRGB(primaryHsl);
