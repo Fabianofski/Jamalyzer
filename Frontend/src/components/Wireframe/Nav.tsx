@@ -11,7 +11,7 @@ import React, { ReactElement, useState } from "react";
 import "../../App.css";
 import "./Nav.css";
 import "./ThemeSwitch.css";
-import { toggleTheme, getTheme } from "../ColorManager";
+import { toggleTheme, getTheme } from "../Color/ColorManager";
 
 function Nav({}): ReactElement {
   const [darkMode, setDarkMode] = useState(getTheme() === "dark");

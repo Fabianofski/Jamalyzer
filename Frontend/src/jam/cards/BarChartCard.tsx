@@ -4,7 +4,7 @@ import "../views/View.css";
 import "./Card.css";
 
 import { BarElement, Chart as ChartJS, ChartData, Legend, Title, Tooltip } from "chart.js";
-import { updateStyle } from "./ChartColorObserver";
+import { updateStyle } from "../../components/Color/ChartColorObserver";
 
 ChartJS.register(Title, Tooltip, Legend, BarElement);
 

@@ -1,4 +1,4 @@
-.table-wrapper {
+.ranking .table-wrapper {
   width: 100%;
   max-width: 70vw;
   overflow-x: auto;
@@ -10,26 +10,26 @@
 }
 
 /* width */
-.table-wrapper::-webkit-scrollbar {
+.ranking .table-wrapper::-webkit-scrollbar {
   width: 10px;
 }
 
 /* Track */
-.table-wrapper::-webkit-scrollbar-track {
+.ranking .table-wrapper::-webkit-scrollbar-track {
   background: var(--primary-color);
 }
 
 /* Handle */
-.table-wrapper::-webkit-scrollbar-thumb {
+.ranking .table-wrapper::-webkit-scrollbar-thumb {
   background: var(--primary-color);
 }
 
 /* Handle on hover */
-.table-wrapper::-webkit-scrollbar-thumb:hover {
+.ranking .table-wrapper::-webkit-scrollbar-thumb:hover {
   background: var(--primary-color);
 }
 
-table {
+.ranking table {
   width: 100%;
 
   border-collapse: separate;
@@ -39,27 +39,27 @@ table {
   white-space: nowrap;
 }
 
-table tr:nth-child(even) {
+.ranking table tr:nth-child(even) {
   background-color: var(--darker-background-color);
 }
 
-table,
-th,
-td {
+.ranking table,
+.ranking th,
+.ranking td {
   border-left: 1px solid var(--text-color);
   border-right: 1px solid var(--text-color);
 
   overflow: hidden;
 }
 
-th,
-td {
+.ranking > th,
+.ranking td {
   max-width: 180px;
   min-width: 80px;
   padding: 10px;
 }
 
-th {
+.ranking th {
   color: white;
   white-space: normal;
 

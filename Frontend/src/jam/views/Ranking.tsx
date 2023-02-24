@@ -15,7 +15,7 @@ function Ranking({ jamData }: { jamData: jamData }): ReactElement {
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
 
   return (
-    <div className="view" id="Ranking">
+    <div className="view ranking" id="Ranking">
       <h1>Ranking</h1>
       <div className="table-wrapper">
         <table>
@@ -131,7 +131,10 @@ function CriteriaScores({ jamData, entry }: CriteriaScoresProps): ReactElement {
           return (
             <td key={index} style={{ textAlign: "right" }}>
               {crit.score.toFixed(2)}
-              <FontAwesomeIcon icon={faStar} style={{ marginLeft: ".3rem" }} />
+              <FontAwesomeIcon
+                icon={faStar}
+                style={{ marginLeft: ".3rem", color: "var(--primary-color)" }}
+              />
             </td>
           );
         else return <td key={index}>-</td>;

@@ -10,7 +10,7 @@ import PrivacyPolicy from "./legal/PrivacyPolicy";
 import About from "./legal/About";
 import CookieConsentBanner from "./cookies/CookieConsent";
 import ReactGA from "react-ga4";
-import { setPreferredColorScheme } from "./components/ColorManager";
+import { setPreferredColorScheme } from "./components/Color/ColorManager";
 import Jobs from "./jobs/Jobs";
 
 const MESS_ID = "G-SW2RQ0Q5JJ";

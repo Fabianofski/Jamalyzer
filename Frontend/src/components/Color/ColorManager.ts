@@ -46,11 +46,11 @@ export function SetJamTheme(primary: string, secondary: string): void {
   primaryHsl.s = Math.max(0.6, primaryHsl.s);
   secondaryHsl.s = Math.max(0.8, secondaryHsl.s);
   if (colorScheme === "light") {
-    secondaryHsl.l = Math.max(0.2, Math.min(secondaryHsl.l, 0.4));
+    secondaryHsl.l = clampValue(secondaryHsl.l, 0.2, 0.4);
     primaryHsl.l = Math.min(0.4, primaryHsl.l);
   } else {
     secondaryHsl.l = Math.max(0.2, secondaryHsl.l);
-    primaryHsl.l = Math.max(0.4, Math.min(primaryHsl.l, 0.6));
+    primaryHsl.l = clampValue(primaryHsl.l, 0.2, 0.4);
   }
 
   jamPrimaryColor = hslToRGB(primaryHsl);
@@ -81,4 +81,8 @@ function GetColorVariations(color: string, amount: number, degree: number): stri
     oldColor = changeHue(oldColor, degree);
   }
   return colors;
+}
+
+function clampValue(value: number, min: number, max: number) {
+  return Math.min(Math.max(min, value), max);
 }

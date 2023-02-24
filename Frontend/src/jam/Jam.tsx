@@ -11,10 +11,10 @@ import Description from "./views/Description";
 import Genre from "./views/Genre";
 import Engine from "./views/Engine";
 import Overview from "./views/Overview";
-import { SetJamTheme } from "../components/ColorManager";
+import { SetJamTheme } from "../components/Color/ColorManager";
 import ReactGA from "react-ga4";
 import { jamData } from "../model/jamData/jamData";
-import { observeStyle } from "./cards/ChartColorObserver";
+import { observeStyle } from "../components/Color/ChartColorObserver";
 
 function Jam(): ReactElement {
   const { jamName } = useParams();

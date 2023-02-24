@@ -14,7 +14,7 @@ import {
   Tooltip
 } from "chart.js";
 import { Line } from "react-chartjs-2";
-import { updateStyle } from "./ChartColorObserver";
+import { updateStyle } from "../../components/Color/ChartColorObserver";
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 

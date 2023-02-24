@@ -2,7 +2,7 @@ import React, { ReactElement, useState } from "react";
 import "./View.css";
 import { JsxCard } from "../cards/BasicCard";
 import { LineChartCard } from "../cards/LineChartCard";
-import { GetJamPrimary } from "../../components/ColorManager";
+import { GetJamPrimary } from "../../components/Color/ColorManager";
 import { pearsonCorrelation } from "../../components/Utilities";
 import { jamData } from "../../model/jamData/jamData";
 import { InlineMath } from "react-katex";
@@ -23,11 +23,23 @@ function karmaDescription(): ReactElement {
 
 function PearsonTooltip(): ReactElement {
   return (
-    <p style={{ lineHeight: "1.5rem" }}>
-      The Pearson correlation coefficient is a measure of the linear relationship between two
-      variables. <br />
-      -1 = negative relationship <br />
-      0 = no relationship <br />1 = positive relationship
+    <p style={{ lineHeight: "1.5rem", hyphens: "auto" }}>
+      The correlation coefficient is a measure of the linear relationship between two variables.{" "}
+      <br />
+      <table>
+        <tr>
+          <td style={{ textAlign: "right" }}>-1 = </td>
+          <td>negative relationship</td>
+        </tr>
+        <tr>
+          <td style={{ textAlign: "right" }}>0 = </td>
+          <td>no relationship</td>
+        </tr>
+        <tr>
+          <td style={{ textAlign: "right" }}>1 = </td>
+          <td>positive relationship</td>
+        </tr>
+      </table>
     </p>
   );
 }
@@ -49,7 +61,8 @@ function Correlation({ jamData }: { jamData: jamData }): ReactElement {
     <div>
       <p>
         {" "}
-        Pearson-Correlation: <strong>r = {c.toFixed(2)}</strong>
+        Correlation: <br />
+        <strong>r = {c.toFixed(2)}</strong>
       </p>
     </div>
   );

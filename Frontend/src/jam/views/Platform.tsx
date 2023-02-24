@@ -3,7 +3,7 @@ import "./View.css";
 import { JsxCard } from "../cards/BasicCard";
 import { BarChartCard } from "../cards/BarChartCard";
 import { PieChartCard } from "../cards/PieChartCard";
-import { GetJamPrimaryVariations } from "../../components/ColorManager";
+import { GetJamPrimaryVariations } from "../../components/Color/ColorManager";
 import { jamData } from "../../model/jamData/jamData";
 import { ChartData } from "chart.js";
 
