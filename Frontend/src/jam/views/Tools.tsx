@@ -1,12 +1,61 @@
 import React, { ReactElement } from "react";
 import "./View.css";
-import { Card, JsxCard } from "../cards/BasicCard";
+import { JsxCard } from "../cards/BasicCard";
 import { jamData } from "../../model/jamData/jamData";
+import { engines, artCreation, soundCreation } from "../components/tools";
 
-function ToolRankingTable({ tools }: { tools: { name: string; amount: number }[] }) {
+function Tools({ jamData }: { jamData: jamData }): ReactElement {
+  const tools = countTools(jamData);
+
+  return (
+    <div className="view" id="Tools">
+      <h1>Tools</h1>
+      <div className="card-grid">
+        <JsxCard
+          jsx={<ToolRankingTable tools={filter(tools, engines)} title={"Engines"} />}
+          styleClass={"card card-row-span-2 card-col-span-2"}
+        />
+        <JsxCard
+          jsx={
+            <ToolRankingTable
+              tools={filter(tools, artCreation)}
+              title={"Asset Creation Software"}
+            />
+          }
+          styleClass={"card card-row-span-2 card-col-span-2"}
+        />
+        <JsxCard
+          jsx={<ToolRankingTable tools={filter(tools, soundCreation)} title={"Sound Software"} />}
+          styleClass={"card card-row-span-2 card-col-span-2"}
+        />
+      </div>
+    </div>
+  );
+}
+
+function filter(tools: { name: string; amount: number }[], included: string[]) {
+  let regex = new RegExp(included.join("|"), "i");
+  return tools.filter((tool) => regex.test(tool.name));
+}
+
+function ToolRankingTable({
+  tools,
+  title
+}: {
+  tools: { name: string; amount: number }[];
+  title: string;
+}) {
+  let sum: number = 0;
+  tools.forEach((tool) => {
+    sum += tool.amount;
+  });
+
   return (
     <div className={"tool-table-wrapper"}>
-      <h3>Top 10</h3>
+      <h3>
+        Top 10 <br />
+        {title}
+      </h3>
       <table className={"tool-table"}>
         <tbody>
           {tools.slice(0, 10).map((tool, idx) => {
@@ -19,26 +68,14 @@ function ToolRankingTable({ tools }: { tools: { name: string; amount: number }[]
                 <td>
                   <b>{tool.amount}</b>
                 </td>
+                <td>
+                  <b>{((tool.amount / sum) * 100).toFixed(2)}%</b>
+                </td>
               </tr>
             );
           })}
         </tbody>
       </table>
-    </div>
-  );
-}
-
-function Tools({ jamData }: { jamData: jamData }): ReactElement {
-  const tools = countTools(jamData);
-  return (
-    <div className="view" id="Tools">
-      <h1>Tools</h1>
-      <div className="card-grid">
-        <JsxCard
-          jsx={<ToolRankingTable tools={tools} />}
-          styleClass={"card card-row-span-2 card-col-span-2"}
-        />
-      </div>
     </div>
   );
 }
