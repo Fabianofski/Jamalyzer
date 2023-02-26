@@ -24,7 +24,7 @@ function karmaDescription(): ReactElement {
 function PearsonTooltip(): ReactElement {
   return (
     <>
-      <p style={{ lineHeight: "1.5rem", hyphens: "auto" }}>
+      <p>
         The correlation coefficient is a measure of the linear relationship between two variables.{" "}
         <br />
       </p>

@@ -27,7 +27,9 @@
   background-color: var(--background-color);
 
   color: var(--text-color);
+  font-weight: normal;
   text-align: justify;
+  line-height: 1.5rem;
   hyphens: auto;
 
   border: 1px solid var(--primary-color);

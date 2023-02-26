@@ -4,6 +4,15 @@ import { JsxCard } from "../cards/BasicCard";
 import { jamData } from "../../model/jamData/jamData";
 import { engines, artCreation, soundCreation } from "../components/tools";
 
+function ToolDescription(): ReactElement {
+  return (
+    <p style={{ textAlign: "justify", hyphens: "auto" }}>
+      The data here are estimated values and are based on the information provided by the respective
+      game creators. The actual data may differ from the values listed here.
+    </p>
+  );
+}
+
 function Tools({ jamData }: { jamData: jamData }): ReactElement {
   const tools = countTools(jamData);
 
@@ -11,21 +20,29 @@ function Tools({ jamData }: { jamData: jamData }): ReactElement {
     <div className="view" id="Tools">
       <h1>Tools</h1>
       <div className="card-grid">
+        <JsxCard jsx={<ToolDescription />} styleClass={"card card-col-span-2 card-row-span-2"} />
         <JsxCard
-          jsx={<ToolRankingTable tools={filter(tools, engines)} title={"Engines"} />}
-          styleClass={"card card-row-span-2 card-col-span-2"}
+          jsx={<ToolRankingTable tools={filter(tools, engines)} title={"Engines"} amount={10} />}
+          styleClass={"card card-row-span-4 card-col-span-2"}
         />
         <JsxCard
           jsx={
             <ToolRankingTable
               tools={filter(tools, artCreation)}
               title={"Asset Creation Software"}
+              amount={10}
             />
           }
-          styleClass={"card card-row-span-2 card-col-span-2"}
+          styleClass={"card card-row-span-4 card-col-span-2"}
         />
         <JsxCard
-          jsx={<ToolRankingTable tools={filter(tools, soundCreation)} title={"Sound Software"} />}
+          jsx={
+            <ToolRankingTable
+              tools={filter(tools, soundCreation)}
+              title={"Sound Creation Software"}
+              amount={5}
+            />
+          }
           styleClass={"card card-row-span-2 card-col-span-2"}
         />
       </div>
@@ -40,10 +57,12 @@ function filter(tools: { name: string; amount: number }[], included: string[]) {
 
 function ToolRankingTable({
   tools,
-  title
+  title,
+  amount
 }: {
   tools: { name: string; amount: number }[];
   title: string;
+  amount: number;
 }) {
   let sum: number = 0;
   tools.forEach((tool) => {
@@ -58,7 +77,7 @@ function ToolRankingTable({
       </h3>
       <table className={"tool-table"}>
         <tbody>
-          {tools.slice(0, 10).map((tool, idx) => {
+          {tools.slice(0, amount).map((tool, idx) => {
             return (
               <tr key={idx}>
                 <td className={"rank"}>
