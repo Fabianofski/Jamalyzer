@@ -47,7 +47,7 @@ export function SetJamTheme(primary: string, secondary: string): void {
   secondaryHsl.s = Math.max(0.8, secondaryHsl.s);
   if (colorScheme === "light") {
     secondaryHsl.l = clampValue(secondaryHsl.l, 0.2, 0.4);
-    primaryHsl.l = clampValue(primaryHsl.l, 0.4, 0.8);
+    primaryHsl.l = clampValue(primaryHsl.l, 0.2, 0.5);
   } else {
     secondaryHsl.l = Math.max(0.2, secondaryHsl.l);
     primaryHsl.l = clampValue(primaryHsl.l, 0.2, 0.4);

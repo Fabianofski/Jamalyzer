@@ -63,18 +63,6 @@
   }
 }
 
-.jam-title {
-  text-align: center;
-}
-
-.jam-title-link {
-  color: var(--primary-color);
-}
-
-.jam-title-link:hover {
-  color: var(--secondary-color);
-}
-
 .view a {
   color: var(--text-color);
   text-decoration: underline;
@@ -82,6 +70,18 @@
 
 .view a:hover {
   color: var(--primary-color);
+}
+
+.jam-title {
+  text-align: center;
+}
+
+.jam-title a {
+  color: var(--primary-color);
+}
+
+.jam-title a:hover {
+  color: var(--secondary-color);
 }
 
 .tool-table-wrapper {
