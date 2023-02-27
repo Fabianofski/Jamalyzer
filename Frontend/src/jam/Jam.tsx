@@ -78,12 +78,12 @@ function JamAnalysis({ jamData, errors }: JamAnalysisProps): ReactElement {
     <div className="jam-container">
       <Sidebar />
       <div className="view-container">
-        <Tools jamData={jamData} />
         <Overview jamData={jamData} />
         <Ranking jamData={jamData} />
         <Karma jamData={jamData} />
         <Team jamData={jamData} />
         <Platform jamData={jamData} />
+        <Tools jamData={jamData} />
         <Description jamData={jamData} />
         <Genre jamData={jamData} />
       </div>

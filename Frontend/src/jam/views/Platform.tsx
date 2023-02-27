@@ -53,7 +53,7 @@ function getPieChartData(jamData: jamData): ChartData<"pie", any> {
   });
   const colors = GetJamPrimaryVariations(4);
   return {
-    labels: ["Web", "Windows", "MacOS", "Linux"],
+    labels: ["WEB", "WINDOWS", "MAC", "LINUX"],
     datasets: [
       {
         data: data,
@@ -107,25 +107,25 @@ function getBarChartData(jamData: jamData): ChartData<"bar", any> {
     labels,
     datasets: [
       {
-        label: "Web",
+        label: "WEB",
         data: web,
         backgroundColor: colors?.[0],
         stack: "Stack 0"
       },
       {
-        label: "Windows",
+        label: "WINDOWS",
         data: windows,
         backgroundColor: colors?.[1],
         stack: "Stack 1"
       },
       {
-        label: "MacOS",
+        label: "MAC",
         data: mac,
         backgroundColor: colors?.[2],
         stack: "Stack 2"
       },
       {
-        label: "Linux",
+        label: "LINUX",
         data: linux,
         backgroundColor: colors?.[3],
         stack: "Stack 3"

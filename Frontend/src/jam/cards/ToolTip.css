@@ -33,7 +33,7 @@
   hyphens: auto;
 
   border: 1px solid var(--primary-color);
-  border-radius: 5px;
+  border-radius: 10px;
 
   visibility: hidden;
   opacity: 0;

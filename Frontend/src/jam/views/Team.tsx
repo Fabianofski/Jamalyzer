@@ -107,7 +107,7 @@ function extractData(jamData: jamData): ChartData<"pie", any> {
   });
   const colors = GetJamPrimaryVariations(4);
   return {
-    labels: ["Solo", "Duo", "Trio", ">3"],
+    labels: ["SOLO", "DUO", "TRIO", ">3"],
     datasets: [
       {
         data: data,
@@ -157,19 +157,19 @@ function getBarChartData(jamData: jamData): ChartData<"bar", any> {
     labels,
     datasets: [
       {
-        label: "Solo",
+        label: "SOLO",
         data: solo,
         backgroundColor: colors?.[0],
         stack: "Stack 0"
       },
       {
-        label: "Duo",
+        label: "DUO",
         data: duo,
         backgroundColor: colors?.[1],
         stack: "Stack 1"
       },
       {
-        label: "Trio",
+        label: "TRIO",
         data: trio,
         backgroundColor: colors?.[2],
         stack: "Stack 2"
