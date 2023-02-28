@@ -111,7 +111,7 @@ function extractData(jamData: jamData): ChartData<"pie", any> {
     datasets: [
       {
         data: data,
-        backgroundColor: [colors?.[0], colors?.[1], colors?.[2], colors?.[3]],
+        backgroundColor: colors,
         hoverOffset: 10
       }
     ]

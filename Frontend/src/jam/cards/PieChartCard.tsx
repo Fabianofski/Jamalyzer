@@ -4,6 +4,7 @@ import "../views/View.css";
 import "./Card.css";
 
 import { ArcElement, Chart as ChartJS, ChartData, Legend, Title, Tooltip } from "chart.js";
+import { GetJamPrimaryVariations } from "../../components/Color/ColorManager";
 
 ChartJS.register(Title, Tooltip, Legend, ArcElement);
 
@@ -22,6 +23,32 @@ interface Props {
   styleClass: string;
   data: ChartData<"pie", any>;
   title: string;
+}
+
+export function generatePieChartData(
+  pieData: { name: string; amount: number }[],
+  amount: number = 5
+): ChartData<"pie", any> {
+  const data: number[] = [];
+  const labels: string[] = [];
+
+  pieData.slice(0, amount).forEach((tool) => {
+    labels.push(tool.name.toUpperCase());
+    data.push(tool.amount);
+  });
+
+  const colors = GetJamPrimaryVariations(amount);
+
+  return {
+    labels: labels,
+    datasets: [
+      {
+        data: data,
+        backgroundColor: colors,
+        hoverOffset: 10
+      }
+    ]
+  };
 }
 
 export function PieChartCard({

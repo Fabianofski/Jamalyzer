@@ -13,7 +13,7 @@ function Sidebar(): ReactElement {
         <Chapter id={"Team"} />
         <Chapter id={"Platform"} />
         <Chapter id={"Tools"} />
-        <Chapter id={"Description"} />
+        <Chapter id={"Tags"} />
         <Chapter id={"Genre"} />
       </div>
     </div>

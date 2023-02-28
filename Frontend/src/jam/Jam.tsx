@@ -15,6 +15,7 @@ import ReactGA from "react-ga4";
 import { jamData } from "../model/jamData/jamData";
 import { observeStyle } from "../components/Color/ChartColorObserver";
 import Tools from "./views/Tools";
+import Tags from "./views/Tags";
 
 function Jam(): ReactElement {
   const { jamName } = useParams();
@@ -84,7 +85,7 @@ function JamAnalysis({ jamData, errors }: JamAnalysisProps): ReactElement {
         <Team jamData={jamData} />
         <Platform jamData={jamData} />
         <Tools jamData={jamData} />
-        <Description jamData={jamData} />
+        <Tags jamData={jamData} />
         <Genre jamData={jamData} />
       </div>
     </div>
