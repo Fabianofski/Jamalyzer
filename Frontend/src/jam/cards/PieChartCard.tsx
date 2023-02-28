@@ -90,6 +90,12 @@ export function PieChartCard({
 
   const pieOptions: ChartOptions = {
     responsive: true,
+    datasets: {
+      pie: {
+        borderColor: "transparent",
+        hoverBorderColor: chartColor
+      }
+    },
     plugins: {
       legend: {
         display: showLegend,
