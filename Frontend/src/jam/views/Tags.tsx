@@ -16,9 +16,10 @@ function Tags({ jamData }: { jamData: jamData }) {
           styleClass={"card card-col-span-4"}
         />
         <PieChartCard
-          data={generatePieChartData(tags)}
+          data={generatePieChartData(tags, 10)}
           styleClass={"card card-col-span-2"}
-          title={"Top 5 Tags"}
+          title={"Top 10 Tags"}
+          showLegend={false}
         />
       </div>
     </div>

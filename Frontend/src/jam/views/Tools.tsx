@@ -64,9 +64,10 @@ function ToolAnalysis({
 
   const chart = (
     <PieChartCard
-      data={generatePieChartData(filter(tools, included))}
+      data={generatePieChartData(filter(tools, included), 10)}
       styleClass={"card card-col-span-2"}
-      title={"Top 5 " + title}
+      title={"Top 10 " + title}
+      showLegend={false}
     />
   );
   return (

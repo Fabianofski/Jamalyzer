@@ -3,7 +3,16 @@ import React, { ReactElement, useEffect, useState } from "react";
 import "../views/View.css";
 import "./Card.css";
 
-import { ArcElement, Chart as ChartJS, ChartData, Legend, Title, Tooltip } from "chart.js";
+import {
+  ArcElement,
+  Chart as ChartJS,
+  ChartData,
+  ChartOptions,
+  Legend,
+  Title,
+  Tooltip,
+  TooltipItem
+} from "chart.js";
 import { GetJamPrimaryVariations } from "../../components/Color/ColorManager";
 
 ChartJS.register(Title, Tooltip, Legend, ArcElement);
@@ -19,12 +28,6 @@ export const dummyPieData = {
   ]
 };
 
-interface Props {
-  styleClass: string;
-  data: ChartData<"pie", any>;
-  title: string;
-}
-
 export function generatePieChartData(
   pieData: { name: string; amount: number }[],
   amount: number = 5
@@ -32,10 +35,19 @@ export function generatePieChartData(
   const data: number[] = [];
   const labels: string[] = [];
 
-  pieData.slice(0, amount).forEach((tool) => {
+  pieData.slice(0, amount - 1).forEach((tool) => {
     labels.push(tool.name.toUpperCase());
     data.push(tool.amount);
   });
+
+  let value = 0;
+  pieData.slice(amount - 1).forEach((tool) => {
+    {
+      value += tool.amount;
+    }
+  });
+  labels.push("OTHER");
+  data.push(value);
 
   const colors = GetJamPrimaryVariations(amount);
 
@@ -51,10 +63,18 @@ export function generatePieChartData(
   };
 }
 
+interface Props {
+  styleClass: string;
+  data: ChartData<"pie", any>;
+  title: string;
+  showLegend?: boolean;
+}
+
 export function PieChartCard({
   styleClass,
   data = dummyPieData,
-  title = "Dummy Title"
+  title = "Dummy Title",
+  showLegend = true
 }: Props): ReactElement {
   const [chartColor, setChartColor] = useState(
     getComputedStyle(document.documentElement).getPropertyValue("--text-color")
@@ -63,11 +83,16 @@ export function PieChartCard({
     document.addEventListener("textColorChanged", (e: any) => setChartColor(e.detail));
   }, []);
 
-  const pieOptions: object = {
+  let sum: number = 0;
+  data.datasets[0].data.forEach((value: any) => {
+    sum += value;
+  });
+
+  const pieOptions: ChartOptions = {
     responsive: true,
     plugins: {
       legend: {
-        display: true,
+        display: showLegend,
         position: "bottom",
         labels: {
           color: chartColor
@@ -77,6 +102,15 @@ export function PieChartCard({
         display: true,
         text: title,
         color: chartColor
+      },
+      tooltip: {
+        callbacks: {
+          label(tooltipItem: TooltipItem<any>): string | string[] {
+            return (
+              tooltipItem.label + ": " + ((Number(tooltipItem.raw) / sum) * 100).toFixed(2) + "%"
+            );
+          }
+        }
       }
     }
   };
