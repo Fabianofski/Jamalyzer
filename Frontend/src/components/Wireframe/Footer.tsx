@@ -16,7 +16,7 @@ function Footer({ setIsCookieAnswered }: Props): ReactElement {
     <div className="footer">
       <a href="/credits">Credits</a>
       <a href="/about">About</a>
-      <a onClick={openCookies} href="Frontend/src/components#cookies">
+      <a onClick={openCookies} href="#cookies">
         Cookies
       </a>
       <a href="/privacy-policy">Privacy Policy</a>

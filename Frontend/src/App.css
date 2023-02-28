@@ -91,6 +91,8 @@ html {
 .Router {
   display: flex;
   flex: 1;
+
+  margin-top: 3rem;
 }
 
 @media screen and (prefers-reduced-motion: reduce) {

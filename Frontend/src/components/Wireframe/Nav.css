@@ -3,6 +3,11 @@
   align-items: center;
   justify-content: space-between;
 
+  position: fixed;
+  top: 0;
+  z-index: 1;
+
+  width: 100%;
   min-height: 3rem;
   padding: 0 0.5rem 0 0.5rem;
   background-color: var(--primary-color);
