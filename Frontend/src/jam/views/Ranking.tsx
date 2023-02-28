@@ -137,7 +137,12 @@ function CriteriaScores({ jamData, entry }: CriteriaScoresProps): ReactElement {
               />
             </td>
           );
-        else return <td key={index}>-</td>;
+        else
+          return (
+            <td key={index} style={{ textAlign: "right" }}>
+              -
+            </td>
+          );
       })}
     </>
   );
