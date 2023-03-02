@@ -1,7 +1,6 @@
 import { Response, Request } from "express";
 
 const { sendJobs } = require("./services/bull.service");
-const functions = require("firebase-functions");
 const express = require("express");
 const jamListService = require("./services/jamList.service");
 const jamIdService = require("./services/jamID.service");
@@ -54,4 +53,3 @@ app.get("/api/jobs", function (req: Request, res: Response) {
 });
 
 app.listen(PORT, () => console.log("Listening ..."));
-exports.app = functions.https.onRequest(app);

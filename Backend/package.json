@@ -2,11 +2,7 @@
   "name": "functions",
   "description": "Cloud Functions for Firebase",
   "scripts": {
-    "serve": "firebase emulators:start --only functions",
-    "shell": "firebase functions:shell",
-    "start": "nodemon ./index.ts",
-    "deploy": "firebase deploy --only functions",
-    "logs": "firebase functions:log"
+    "start": "nodemon ./index.ts"
   },
   "engines": {
     "node": "16"
@@ -19,9 +15,6 @@
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
-    "firebase": "^9.15.0",
-    "firebase-admin": "^10.0.2",
-    "firebase-functions": "^3.18.0",
     "mongodb": "4.12",
     "node-fetch": "^2.6.7"
   },
@@ -31,7 +24,6 @@
     "@types/node": "^18.14.0",
     "@typescript-eslint/parser": "^5.53.0",
     "concurrently": "^7.6.0",
-    "firebase-functions-test": "^0.2.0",
     "nodemon": "^2.0.20",
     "ts-node": "^10.9.1",
     "ts-node-dev": "^2.0.0",
