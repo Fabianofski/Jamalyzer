@@ -1,0 +1,46 @@
+version: '3.8'
+
+
+services:
+
+  mongodb:
+    image: mongo:latest
+    restart: unless-stopped
+    ports:
+      - '27017:27017'
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ""
+      MONGO_INITDB_ROOT_PASSWORD: ""
+
+  redis:
+    image: redis:latest
+    restart: unless-stopped
+    ports:
+      - '6379:6379'
+
+  api:
+    build:
+      dockerfile: Dockerfile
+      context: "./Backend"
+    volumes:
+      - /app/node_modules
+      - ./Backend:/app
+    restart: unless-stopped
+    depends_on:
+      - redis
+      - mongodb
+    ports:
+      - "3001:3001"
+
+  client:
+    build:
+      dockerfile: Dockerfile
+      context: ./Frontend
+    volumes:
+      - /app/node_modules
+      - ./Frontend:/app
+    restart: unless-stopped
+    depends_on:
+      - api
+    ports:
+      - "3000:3000"
