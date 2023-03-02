@@ -1,4 +1,5 @@
 import { changeHue, hslToRGB, rgbToHSL } from "./ColorConverter";
+import { de } from "date-fns/locale";
 
 let colorScheme = "light";
 
@@ -66,7 +67,8 @@ export function GetJamPrimary(): string {
 export function GetJamPrimaryVariations(amount: number): string[] | undefined {
   const hslColor = rgbToHSL(jamPrimaryColor);
   hslColor.l = Math.max(0.4, hslColor.l);
-  return GetColorVariations(hslToRGB(hslColor), amount, 60);
+  const degree = 360 / amount;
+  return GetColorVariations(hslToRGB(hslColor), amount, degree);
 }
 
 export function GetJamSecondary(): string {

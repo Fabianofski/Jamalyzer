@@ -1,23 +1,44 @@
 import React, { ReactElement } from "react";
 import "./View.css";
-import { Card } from "../cards/BasicCard";
 import { jamData } from "../../model/jamData/jamData";
+import { JsxCard } from "../cards/BasicCard";
+import BasicTable from "../components/BasicTable";
+import { generatePieChartData, PieChartCard } from "../cards/PieChartCard";
+import { tr } from "date-fns/locale";
 
 function Genre({ jamData }: { jamData: jamData }): ReactElement {
+  const genres = countGenres(jamData);
+
   return (
     <div className="view" id="Genre">
-      <h1>Genre (WIP)</h1>
+      <h1>Genre</h1>
       <div className="card-grid">
-        <Card text={"Lorem ipsum dolor sit amet."} styleClass={"card card-col-span-6"} />
-        <Card text={"Median: 2 Collaborators"} styleClass={"card card-col-span-2"} />
-        <Card
-          text={"Lorem ipsum dolor sit amet."}
-          styleClass={"card card-col-span-4 card-row-span-2"}
+        <JsxCard
+          jsx={<BasicTable data={genres} title={"Genres"} amount={10} />}
+          styleClass={"card card-col-span-4"}
         />
-        <Card text={"Most: 5 Collaborators"} styleClass={"card card-col-span-2"} />
+        <PieChartCard
+          data={generatePieChartData(genres, 10)}
+          styleClass={"card card-col-span-2"}
+          title={"Top 10 Genres"}
+        />
       </div>
     </div>
   );
+}
+
+function countGenres(jamData: jamData) {
+  const genres: { name: string; amount: number }[] = [];
+  Object.entries(jamData.jam_games).forEach(([_, entry]) => {
+    entry.game_info_panel.genre?.forEach((genre) => {
+      let idx = genres.findIndex((e) => e.name === genre);
+      if (idx > -1) genres[idx].amount++;
+      else genres.push({ name: genre, amount: 1 });
+    });
+  });
+  return genres.sort((a, b) => {
+    return b.amount - a.amount;
+  });
 }
 
 export default Genre;
