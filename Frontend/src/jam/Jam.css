@@ -33,24 +33,3 @@
     padding: 0 3vh 0 3vh;
   }
 }
-
-.loader {
-  display: inline-block;
-
-  height: 100px;
-  width: 20%;
-  padding: 1em;
-  margin: 0 auto 1em;
-
-  text-align: center;
-  vertical-align: top;
-}
-
-.loader svg path,
-.loader svg rect {
-  fill: var(--primary-color);
-}
-
-.loader p {
-  color: var(--primary-color);
-}

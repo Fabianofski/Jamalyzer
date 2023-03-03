@@ -3,26 +3,35 @@ import { jamData } from "../../model/jamData/jamData";
 import { JsxCard } from "../cards/BasicCard";
 import BasicTable from "../components/BasicTable";
 import { generatePieChartData, PieChartCard } from "../cards/PieChartCard";
+import Loader from "../components/Loader";
 
 function Tags({ jamData }: { jamData: jamData }) {
   const tags = countTags(jamData);
 
-  return (
-    <div className="view" id="Tags">
-      <h1>Tags</h1>
-      <div className="card-grid">
-        <JsxCard
-          jsx={<BasicTable data={tags} title={"Tags"} amount={10} />}
-          styleClass={"card card-col-span-4"}
-        />
-        <PieChartCard
-          data={generatePieChartData(tags, 10)}
-          styleClass={"card card-col-span-2"}
-          title={"Top 10 Tags"}
-        />
+  if (jamData.extendedData)
+    return (
+      <div className="view" id="Tags">
+        <h1>Tags</h1>
+        <div className="card-grid">
+          <JsxCard
+            jsx={<BasicTable data={tags} title={"Tags"} amount={10} />}
+            styleClass={"card card-col-span-4"}
+          />
+          <PieChartCard
+            data={generatePieChartData(tags, 10)}
+            styleClass={"card card-col-span-2"}
+            title={"Top 10 Tags"}
+          />
+        </div>
       </div>
-    </div>
-  );
+    );
+  else
+    return (
+      <div className="view" id="Tags">
+        <h1>Tags</h1>
+        <Loader text={"This data is still processing..."} />
+      </div>
+    );
 }
 
 function countTags(jamData: jamData) {

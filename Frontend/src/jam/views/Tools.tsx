@@ -7,25 +7,34 @@ import { ChartData } from "chart.js";
 import { GetJamPrimaryVariations } from "../../components/Color/ColorManager";
 import { generatePieChartData, PieChartCard } from "../cards/PieChartCard";
 import BasicTable from "../components/BasicTable";
+import Loader from "../components/Loader";
 
 function Tools({ jamData }: { jamData: jamData }): ReactElement {
   const tools = countTools(jamData);
 
-  return (
-    <div className="view" id="Tools">
-      <h1>Tools</h1>
-      <div className="card-grid">
-        <ToolAnalysis tools={tools} included={engines} title={"Engines"} />
-        <ToolAnalysis
-          tools={tools}
-          included={artCreation}
-          title={"Asset Creation Software"}
-          left={true}
-        />
-        <ToolAnalysis tools={tools} included={soundCreation} title={"Sound Creation Software"} />
+  if (jamData.extendedData)
+    return (
+      <div className="view" id="Tools">
+        <h1>Tools</h1>
+        <div className="card-grid">
+          <ToolAnalysis tools={tools} included={engines} title={"Engines"} />
+          <ToolAnalysis
+            tools={tools}
+            included={artCreation}
+            title={"Asset Creation Software"}
+            left={true}
+          />
+          <ToolAnalysis tools={tools} included={soundCreation} title={"Sound Creation Software"} />
+        </div>
       </div>
-    </div>
-  );
+    );
+  else
+    return (
+      <div className="view" id="Tools">
+        <h1>Tools</h1>
+        <Loader text={"This data is still processing..."} />
+      </div>
+    );
 }
 
 function countTools(jamData: jamData) {
