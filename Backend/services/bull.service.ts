@@ -12,7 +12,8 @@ const REDIS_CONFIG = {
   connection: {
     port: process.env.REDIS_PORT,
     host: process.env.REDIS_HOST,
-    password: process.env.REDIS_PASSWORD,
+    password:
+      process.env.NODE_ENV === "PRODUCTION" ? process.env.REDIS_PASSWORD : "",
   },
 };
 

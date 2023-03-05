@@ -3,7 +3,10 @@ import { jamData } from "../model/jamData/jamData";
 const { MongoClient } = require("mongodb");
 require("dotenv").config();
 
-const uri = process.env.MONGO_URI;
+const uri =
+  process.env.NODE_ENV === "PRODUCTION"
+    ? `mongodb://${process.env.MONGO_AUTH}@${process.env.MONGO_HOST}`
+    : `mongodb://${process.env.MONGO_HOST}`;
 
 async function postJamData(jamId: string, data: jamData) {
   try {
