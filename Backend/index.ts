@@ -52,4 +52,6 @@ app.get("/api/jobs", function (req: Request, res: Response) {
   sendJobs(res);
 });
 
-app.listen(PORT, () => console.log("Listening ..."));
+app.listen(PORT, () =>
+  console.log(`Listening in ${process.env.NODE_ENV} mode`)
+);

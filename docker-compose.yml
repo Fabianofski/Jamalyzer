@@ -1,6 +1,5 @@
 version: '3.8'
 
-
 services:
 
   mongodb:
@@ -8,15 +7,22 @@ services:
     restart: unless-stopped
     ports:
       - '27017:27017'
+    secrets:
+      - MONGO_PASSWORD
+    command: [--auth]
     environment:
-      MONGO_INITDB_ROOT_USERNAME: ""
-      MONGO_INITDB_ROOT_PASSWORD: ""
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: /run/secrets/MONGO_PASSWORD
 
   redis:
     image: redis:latest
     restart: unless-stopped
     ports:
       - '6379:6379'
+    secrets:
+      - REDIS_PASSWORD
+    command: >
+      --requirepass /run/secrets/REDIS_PASSWORD
 
   api:
     build:
@@ -31,6 +37,10 @@ services:
       - mongodb
     ports:
       - "3001:3001"
+    environment:
+      REDIS_HOST: "redis"
+      MONGO_HOST: "mongodb:27017"
+      NODE_ENV: "PRODUCTION"
 
   client:
     build:
@@ -44,3 +54,9 @@ services:
       - api
     ports:
       - "3000:3000"
+
+secrets:
+  REDIS_PASSWORD:
+    external: true
+  MONGO_PASSWORD:
+    external: true
