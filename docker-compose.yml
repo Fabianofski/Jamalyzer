@@ -7,22 +7,20 @@ services:
     restart: unless-stopped
     ports:
       - '27017:27017'
-    secrets:
-      - MONGO_PASSWORD
+    env_file: .env
     command: [--auth]
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: /run/secrets/MONGO_PASSWORD
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD}
 
   redis:
     image: redis:latest
     restart: unless-stopped
     ports:
       - '6379:6379'
-    secrets:
-      - REDIS_PASSWORD
+    env_file: .env
     command: >
-      --requirepass /run/secrets/REDIS_PASSWORD
+      --requirepass ${REDIS_PASSWORD}
 
   api:
     build:
@@ -54,9 +52,3 @@ services:
       - api
     ports:
       - "3000:3000"
-
-secrets:
-  REDIS_PASSWORD:
-    external: true
-  MONGO_PASSWORD:
-    external: true
