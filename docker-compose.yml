@@ -51,4 +51,5 @@ services:
     depends_on:
       - api
     ports:
+      - "80:80"
       - "3000:3000"
