@@ -5,19 +5,52 @@ Jamalyzer is a web-based tool for analyzing and evaluating game jams on itch.io.
 Visit the website at [https://www.jamalyzer.com](https://www.jamalyzer.com)
 
 ## Getting Started
-### Frontend
-1. Clone the repository to your local machine: `git clone https://github.com/Fabianofski/Jamalyzer.git`
-1. Go to the Frontend folder: `cd Frontend`
-1. Install the required dependencies: `npm install`
-1. Start the development server: `npm start`
-1. Open your browser and navigate to `http://localhost:3000` to view the application
 
-### Backend
+### Local
+
+#### Frontend
 1. Clone the repository to your local machine: `git clone https://github.com/Fabianofski/Jamalyzer.git`
-1. Go to the Backend folder: `cd Backend/functions`
-1. Install the required dependencies: `npm install`
-1. Start the development server: `npm start`
-1. The backend will be running on `http://localhost:3001`
+2. Go to the Frontend folder: `cd Frontend`
+3. Install the required dependencies: `npm install`
+4. Start the development server: `npm start`
+5. Open your browser and navigate to [http://localhost:3000](http://localhost:3000) to view the application
+
+#### Backend
+1. Clone the repository to your local machine: `git clone https://github.com/Fabianofski/Jamalyzer.git`
+2. Go to the Backend folder: `cd Backend`
+3. Install the required dependencies: `npm install`
+4. Add .env file in Backend folder
+    ```
+    VERSION='0.2'
+    NODE_ENV='DEVELOPMENT'
+    MONGO_AUTH='root:password'
+    MONGO_HOST='localhost:27017'
+    REDIS_HOST='localhost'
+    REDIS_PORT="6379"
+    REDIS_PASSWORD='password'
+    ```
+5. Start the development server: `npm start`
+6. The backend will be running on [http://localhost:3001](http://localhost:3001)
+
+### Docker
+
+1. Add .env file in Backend folder
+    ```
+    VERSION='0.2'
+    NODE_ENV='DEVELOPMENT'
+    MONGO_AUTH='root:password'
+    MONGO_HOST='localhost:27017'
+    REDIS_HOST='localhost'
+    REDIS_PORT="6379"
+    REDIS_PASSWORD='password'
+    ```
+2. Add .env in root directory
+    ```
+    REDIS_PASSWORD='password'
+    MONGO_PASSWORD='password'
+    ```
+3. Run `docker compose up -d`
+4. Open your browser and navigate to [http://localhost](http://localhost)
 
 ## Built With
 
