@@ -3,7 +3,10 @@ import useWebSocket from "react-use-websocket";
 import "./jobs.css";
 import { jamJob } from "../model/jamJobs/jobList";
 
-const WS_URL = "ws://127.0.0.1:7071";
+let WS_URL = `ws://${window.location.hostname}:7071`;
+// @ts-ignore
+if (import.meta.env.PROD) WS_URL = `wss://${window.location.hostname}/ws`;
+console.log(WS_URL);
 
 function Jobs() {
   document.title = "Jamalyzer | Jobs";
