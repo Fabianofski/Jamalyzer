@@ -22,6 +22,7 @@ async function fetchExtendedJamData(job: Job) {
       }),
     ]);
   }
+  await job.updateProgress(1);
   jamData.extendedData = true;
   await postJamData(jamData._id, jamData);
 }

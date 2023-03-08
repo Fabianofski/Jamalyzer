@@ -1,30 +1,29 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import useWebSocket from "react-use-websocket";
 import "./jobs.css";
-import { jobList, jamJob } from "../model/jamJobs/jobList";
+import { jamJob } from "../model/jamJobs/jobList";
+
+const WS_URL = "ws://127.0.0.1:7071";
 
 function Jobs() {
-  const url = "/api/jobs";
-  const [jobs, setJobs] = useState<jamJob[]>([]);
-  useEffect(() => {
-    if ("EventSource" in window) {
-      let source = new EventSource(url);
+  document.title = "Jamalyzer | Jobs";
 
-      source.addEventListener(
-        "message",
-        function (e) {
-          console.log("message");
-          const response: jobList = JSON.parse(e.data);
-          setJobs(response.jobs);
-        },
-        false
-      );
+  const [jobs, setJobs] = useState<jamJob[]>([]);
+
+  useWebSocket(WS_URL, {
+    onOpen: () => {
+      console.log("WebSocket connection established.");
+    },
+    onMessage: (message: MessageEvent<any>) => {
+      const json = JSON.parse(message.data);
+      setJobs(json.jobs);
     }
-  }, []);
+  });
 
   return (
     <div className="jobs">
-      {jobs.map((job: jamJob) => {
-        return <Job job={job} />;
+      {jobs.map((job: jamJob, index: number) => {
+        return <Job job={job} key={index} />;
       })}
       {jobs.length === 0 ? (
         <div className={"job"} style={{ justifyContent: "center" }}>

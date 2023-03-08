@@ -29,7 +29,8 @@ function Tags({ jamData }: { jamData: jamData }) {
     return (
       <div className="view" id="Tags">
         <h1>Tags</h1>
-        <Loader text={"This data is still processing..."} />
+        <Loader text={""} />
+        <a href={"/jobs"}>This data is still processing...</a>
       </div>
     );
 }

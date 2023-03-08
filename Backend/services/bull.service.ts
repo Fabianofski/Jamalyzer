@@ -72,22 +72,29 @@ queueEvents.on(
   }
 );
 
-function sendJobs(res: Response) {
-  queue.getJobs().then((jobs: Job[]) => {
+function sendJobs(users: any) {
+  if (users.size === 0) {
+    setTimeout(() => sendJobs(users), 1000);
+    return;
+  }
+  queue.getJobs().then(async (jobs: Job[]) => {
     const jamJobs: jobList = { jobs: [] };
-    jobs.forEach((job: Job) => {
+    for (const job of jobs) {
       const jamData: jamData = job.data;
+      const state = await job.getState();
       const jamJob: jamJob = {
         jamLogo: jamData.jam.banner,
         jamTitle: jamData.jam.Title,
         jobProgress: (Number(job.progress) * 100).toFixed(2) + "%",
-        jobState: String(job.getState()),
+        jobState: state,
       };
       jamJobs.jobs.push(jamJob);
-    });
+    }
 
-    res.write("data: " + JSON.stringify(jamJobs) + "\n\n");
-    setTimeout(() => sendJobs(res), 1000);
+    users.forEach((user: any) => {
+      user.ws.send(JSON.stringify(jamJobs));
+    });
+    setTimeout(() => sendJobs(users), 1000);
   });
 }
 

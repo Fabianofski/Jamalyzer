@@ -5,6 +5,7 @@ const express = require("express");
 const jamListService = require("./services/jamList.service");
 const jamIdService = require("./services/jamID.service");
 const jamDataService = require("./services/jamData.service");
+const WebSocket = require("ws");
 
 const app = express();
 const PORT = 3001;
@@ -43,14 +44,23 @@ app.get(
   }
 );
 
-app.get("/api/jobs", function (req: Request, res: Response) {
-  res.writeHead(200, {
-    "Content-Type": "text/event-stream",
-    "Cache-Control": "no-cache",
-    Connection: "keep-alive",
+const wss = new WebSocket.Server({ port: 7071 });
+const users = new Set();
+wss.on("connection", (ws: any) => {
+  const userRef = {
+    ws,
+  };
+  users.add(userRef);
+
+  ws.on("error", console.error);
+
+  ws.on("close", (code: string, reason: any) => {
+    users.delete(userRef);
+    console.log(`Connection closed: ${code} ${reason}!`);
   });
-  sendJobs(res);
+  console.log("New User!");
 });
+sendJobs(users);
 
 app.listen(PORT, () =>
   console.log(`Listening in ${process.env.NODE_ENV} mode`)

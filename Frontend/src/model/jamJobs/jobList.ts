@@ -1,7 +1,3 @@
-export type jobList = {
-  jobs: jamJob[];
-};
-
 export type jamJob = {
   jamTitle: string;
   jamLogo: string;

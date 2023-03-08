@@ -32,7 +32,8 @@ function Tools({ jamData }: { jamData: jamData }): ReactElement {
     return (
       <div className="view" id="Tools">
         <h1>Tools</h1>
-        <Loader text={"This data is still processing..."} />
+        <Loader text={""} />
+        <a href={"/jobs"}>This data is still processing...</a>
       </div>
     );
 }

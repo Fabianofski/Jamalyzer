@@ -29,7 +29,10 @@ async function fetchJamData(jamName: string) {
   await db.postJamData(jamId, data);
   await queue.add(`Jam: ${jamId}`, data, {
     jobId: `jam_${jamId}`,
-    removeOnComplete: true,
+
+    removeOnComplete: {
+      age: 600, // 10 Minutes
+    },
     removeOnFail: true,
   });
   return data;

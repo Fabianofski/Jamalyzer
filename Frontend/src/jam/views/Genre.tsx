@@ -31,7 +31,8 @@ function Genre({ jamData }: { jamData: jamData }): ReactElement {
     return (
       <div className="view" id="Genre">
         <h1>Genre</h1>
-        <Loader text={"This data is still processing..."} />
+        <Loader text={""} />
+        <a href={"/jobs"}>This data is still processing...</a>
       </div>
     );
 }
