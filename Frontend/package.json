@@ -30,6 +30,7 @@
   "scripts": {
     "start": "vite --host",
     "build": "vite build",
+    "deploy": "deploy.sh",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint src",
