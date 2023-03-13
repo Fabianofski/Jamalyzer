@@ -17,6 +17,7 @@ import { observeStyle } from "../components/Color/ChartColorObserver";
 import Tools from "./views/Tools";
 import Tags from "./views/Tags";
 import Loader from "./components/Loader";
+import JamLoading from "./components/JamLoading";
 
 function Jam(): ReactElement {
   const { jamName } = useParams();
@@ -52,7 +53,7 @@ function Jam(): ReactElement {
       {jamData !== undefined || errors.length > 0 ? (
         <JamAnalysis jamData={jamData} errors={errors} />
       ) : (
-        <Loader />
+        <JamLoading />
       )}
     </div>
   );

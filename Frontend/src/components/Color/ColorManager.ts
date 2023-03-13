@@ -17,7 +17,8 @@ export function toggleTheme() {
   colorScheme = colorScheme === "dark" ? "light" : "dark";
   localStorage.setItem("theme", colorScheme);
   document.documentElement.setAttribute("data-theme", colorScheme);
-  if (document.URL.includes("/jam/")) SetJamTheme(jamDefaultPrimaryColor, jamDefaultSecondaryColor);
+  if (document.URL.includes("/jam/") && !document.title.includes("Loading"))
+    SetJamTheme(jamDefaultPrimaryColor, jamDefaultSecondaryColor);
 }
 
 export function getTheme() {
