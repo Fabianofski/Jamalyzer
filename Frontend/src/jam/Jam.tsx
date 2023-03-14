@@ -1,4 +1,5 @@
 import React, { ReactElement, useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 import { useParams } from "react-router-dom";
 import Ranking from "./views/Ranking";
 import Karma from "./views/Karma";
@@ -7,7 +8,6 @@ import "./Jam.css";
 import Sidebar from "./components/Sidebar";
 import Team from "./views/Team";
 import Platform from "./views/Platform";
-import Description from "./views/Description";
 import Genre from "./views/Genre";
 import Overview from "./views/Overview";
 import { SetJamTheme } from "../components/Color/ColorManager";
@@ -16,7 +16,6 @@ import { jamData } from "../model/jamData/jamData";
 import { observeStyle } from "../components/Color/ChartColorObserver";
 import Tools from "./views/Tools";
 import Tags from "./views/Tags";
-import Loader from "./components/Loader";
 import JamLoading from "./components/JamLoading";
 
 function Jam(): ReactElement {
@@ -79,6 +78,15 @@ function JamAnalysis({ jamData, errors }: JamAnalysisProps): ReactElement {
 
   return (
     <div className="jam-container">
+      <Helmet>
+        <meta content={jamData.jam.Title} property="og:title" />
+        <meta
+          content={`Analyze the ${jamData.jam.Title} on Jamalyzer.com! Your go to destination for in depth analysis of game jams!`}
+          property="og:description"
+        />
+        <meta content={jamData.jam.banner} property="og:image" />
+        <meta content={jamData.jam.color} data-react-helmet="true" name="theme-color" />
+      </Helmet>
       <Sidebar />
       <div className="view-container">
         <Overview jamData={jamData} />
