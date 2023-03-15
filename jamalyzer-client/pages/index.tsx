@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import React, { ReactElement, useState } from "react";
+import React, { ReactElement, useEffect, useState } from "react";
 import ReactGA from "react-ga4";
 import { jamCard } from "@/model/jamData/jamCard";
 import jamList from "../public/jamList.json";
@@ -12,10 +12,12 @@ function shuffle(array: jamCard[]): jamCard[] {
   return array;
 }
 
-const jams = shuffle(jamList.jams);
+const jams = jamList.jams;
 
 function Home(): ReactElement {
-  // if (document) document.title = `Jamalyzer | Home`;
+  useEffect(() => {
+    document.title = `Jamalyzer | Home`;
+  });
   let input = "";
   const [error, setError] = useState<string>("");
   const router = useRouter();
