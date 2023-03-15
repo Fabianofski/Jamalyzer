@@ -99,6 +99,14 @@ body {
   margin-top: 3rem;
 }
 
+a {
+  color: var(--text-color);
+}
+
+a:hover {
+  color: var(--primary-color);
+}
+
 @media screen and (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

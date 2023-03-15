@@ -7,7 +7,7 @@ function Credits(): ReactElement {
 
   return (
     <div className="legal-container">
-      <h1>Credits</h1>
+      <h1 style={{ color: "var(--text-color)" }}>Credits</h1>
       <div className="legal-view">
         <h1>FABIAN</h1>
         <div className="credits-wrapper">

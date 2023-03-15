@@ -37,12 +37,17 @@
 
   width: 100%;
   height: fit-content;
+
+  text-decoration: none;
 }
 
 .link img {
   width: 2rem;
+
+  filter: brightness(0%);
 }
 
 .link:hover img {
-  filter: invert(48%) sepia(84%) saturate(3421%) hue-rotate(328deg) brightness(108%) contrast(94%);
+  filter: invert(48%) sepia(84%) saturate(3421%) hue-rotate(328deg)
+    brightness(108%) contrast(94%);
 }

@@ -36,7 +36,7 @@ export default function App({ Component, pageProps }: AppProps) {
   }, [isCookieAnswered]);
 
   return (
-    <>
+    <div className="App">
       <Head>
         <link rel="shortcut icon" href="/jam.png" />
       </Head>
@@ -48,7 +48,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <Component {...pageProps} />
       </div>
       <Footer setIsCookieAnswered={setIsCookieAnswered} />
-    </>
+    </div>
   );
 }
 
