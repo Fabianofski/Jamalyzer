@@ -1,0 +1,39 @@
+.legal-container {
+  display: flex;
+  justify-content: flex-start;
+  gap: 2rem;
+  align-items: center;
+  flex-direction: column;
+
+  width: 100vw;
+  padding: 2rem;
+}
+
+.legal-view {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  width: 100%;
+  max-width: 50rem;
+  height: fit-content;
+  padding: 0 3em 3em 3em;
+  background: var(--background-color);
+
+  color: var(--text-color);
+
+  box-shadow: var(--box-shadow);
+
+  border-radius: 25px;
+}
+
+.legal-view h1,
+h2 {
+  text-align: center;
+}
+
+.legal-view p {
+  text-align: justify;
+  hyphens: auto;
+}

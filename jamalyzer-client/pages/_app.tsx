@@ -7,6 +7,8 @@ import "@/styles/wireframe/Nav.css";
 import "@/styles/wireframe/ThemeSwitch.css";
 import "@/styles/cookies/CookieConsent.css";
 import "@/styles/cookies/ToggleSwitch.css";
+import "@/styles/legal/Legal.css";
+import "@/styles/legal/Credits.css";
 import type { AppProps } from "next/app";
 import Nav from "@/components/wireframe/Nav";
 import Footer from "@/components/wireframe/Footer";
@@ -42,7 +44,9 @@ export default function App({ Component, pageProps }: AppProps) {
       {!isCookieAnswered && (
         <CookieConsentBanner setIsCookieAnswered={setIsCookieAnswered} />
       )}
-      <Component {...pageProps} />{" "}
+      <div className={"content"}>
+        <Component {...pageProps} />
+      </div>
       <Footer setIsCookieAnswered={setIsCookieAnswered} />
     </>
   );
