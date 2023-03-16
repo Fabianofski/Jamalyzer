@@ -1,3 +1,4 @@
+"use client";
 import React, { ReactElement } from "react";
 import { JsxCard } from "../cards/BasicCard";
 import { jamData } from "@/model/jamData/jamData";

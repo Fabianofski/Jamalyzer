@@ -1,5 +1,6 @@
+"use client";
 import React from "react";
-import { jamData } from "../../model/jamData/jamData";
+import { jamData } from "@/model/jamData/jamData";
 import { JsxCard } from "../cards/BasicCard";
 import BasicTable from "../components/BasicTable";
 import { generatePieChartData, PieChartCard } from "../cards/PieChartCard";
@@ -38,7 +39,7 @@ function Tags({ jamData }: { jamData: jamData }) {
 function countTags(jamData: jamData) {
   const tags: { name: string; amount: number }[] = [];
   Object.entries(jamData.jam_games).forEach(([_, entry]) => {
-    entry.game_info_panel.tags?.forEach((tag) => {
+    entry.game_info_panel.tags?.forEach((tag: string) => {
       let idx = tags.findIndex((e) => e.name === tag);
       if (idx > -1) tags[idx].amount++;
       else tags.push({ name: tag, amount: 1 });
