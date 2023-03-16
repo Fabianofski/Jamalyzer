@@ -1,0 +1,125 @@
+.view {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
+
+  width: 100%;
+  max-width: 86vw;
+  margin: 5rem 0 0 0;
+  padding: 3rem;
+  background: var(--background-color);
+
+  color: var(--text-color);
+
+  box-shadow: var(--box-shadow);
+
+  border-radius: 25px;
+}
+
+.jam-banner {
+  max-height: 25rem;
+  max-width: 100%;
+  margin-bottom: 5vh;
+}
+
+.card-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(6, 1fr);
+  grid-auto-flow: dense;
+
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 1200px) {
+  .card-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  .view {
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 1000px) {
+  .card-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .view {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 800px) {
+  .card-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .view {
+    padding: 1rem;
+  }
+}
+
+.view a {
+  color: var(--text-color);
+  text-decoration: underline;
+}
+
+.view a:hover {
+  color: var(--primary-color);
+}
+
+.jam-title {
+  text-align: center;
+}
+
+.jam-title a {
+  color: var(--primary-color);
+}
+
+.jam-title a:hover {
+  color: var(--secondary-color);
+}
+
+.basic-table-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  width: 100%;
+  height: 100%;
+}
+
+.basic-table {
+  width: 100%;
+
+  text-align: left;
+
+  border-collapse: collapse;
+  border-radius: 30px;
+}
+
+.basic-table tr:nth-child(even) {
+  background-color: var(--darker-background-color);
+}
+
+.basic-table td {
+  height: 2rem;
+  padding: 0 0.5rem 0 0.5rem;
+}
+
+.basic-table .rank {
+  text-align: right;
+}
+
+.basic-table td:nth-child(2) {
+  width: 60%;
+}
+
+.basic-table td:nth-child(2),
+.basic-table td:nth-child(3) {
+  border-right: 1px solid var(--text-color);
+}

@@ -1,10 +1,21 @@
 import React, { ReactElement } from "react";
+import { Helmet } from "react-helmet";
 
 function About(): ReactElement {
   document.title = `Jamalyzer | About`;
 
   return (
     <div className="legal-container">
+      <Helmet>
+        <meta content={"About Jamalyzer"} property="og:title" />
+        <meta
+          content={`Analyze different Game Jams on Jamalyzer.com! Your go to destination for in depth analysis of game jams!`}
+          property="og:description"
+        />
+        <meta content="" property="og:image" />
+        <meta content="#f55a5b" data-react-helmet="true" name="theme-color" />
+      </Helmet>
+
       <div className="legal-view">
         <h1>About</h1>
         <h2>About Jamalyzer</h2>

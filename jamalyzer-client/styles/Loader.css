@@ -1,0 +1,43 @@
+.loader {
+  display: inline-block;
+
+  height: 100px;
+  width: 100px;
+  padding: 1em;
+  margin: 0 auto 1em;
+
+  text-align: center;
+  vertical-align: top;
+}
+
+.loader svg path,
+.loader svg rect {
+  fill: var(--primary-color);
+}
+
+.loader p {
+  color: var(--text-color);
+}
+
+.jamLoader {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.jamLoader * {
+  margin: 0;
+}
+
+.jamLoader a {
+  color: var(--text-color);
+}
+
+.jamLoader a:hover {
+  color: var(--primary-color);
+}
+
+.jamLoader img {
+  height: 64px;
+}
