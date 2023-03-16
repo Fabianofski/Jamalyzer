@@ -2,7 +2,7 @@ import React from "react";
 import { LoadingBarItem } from "@/model/LoadingBarItem";
 import { loadingBarItems } from "./LoadingBarItems";
 
-function JamLoading() {
+function Loading() {
   const random = Math.floor(Math.random() * loadingBarItems.length);
   const loadingBarItem: LoadingBarItem = loadingBarItems[random];
 
@@ -17,4 +17,4 @@ function JamLoading() {
   );
 }
 
-export default JamLoading;
+export default Loading;
