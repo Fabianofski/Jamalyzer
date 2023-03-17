@@ -1,4 +1,5 @@
-import { useRouter } from "next/router";
+"use client";
+import { useRouter } from "next/navigation";
 import React, { ReactElement, useEffect, useState } from "react";
 import ReactGA from "react-ga4";
 import { jamCard } from "@/model/jamData/jamCard";

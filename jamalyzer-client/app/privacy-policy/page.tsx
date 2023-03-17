@@ -1,3 +1,4 @@
+"use client";
 import React, { ReactElement, useEffect } from "react";
 
 function PrivacyPolicy(): ReactElement {
