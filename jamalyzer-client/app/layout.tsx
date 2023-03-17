@@ -17,6 +17,7 @@ import "@/styles/jam/components/Loader.css";
 import "@/styles/jam/components/PaginationTable.css";
 import "@/styles/jam/components/Sidebar.css";
 import "@/styles/jam/views/View.css";
+import "@/styles/jobs/jobs.css";
 import Nav from "@/components/wireframe/Nav";
 import React from "react";
 import { Metadata } from "next";

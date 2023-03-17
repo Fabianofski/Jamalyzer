@@ -79,10 +79,13 @@ export function PieChartCard({
   title = "Dummy Title",
   showLegend = true,
 }: Props): ReactElement {
-  const [chartColor, setChartColor] = useState(
-    getComputedStyle(document.documentElement).getPropertyValue("--text-color")
-  );
+  const [chartColor, setChartColor] = useState<string>("");
   useEffect(() => {
+    setChartColor(
+      getComputedStyle(document.documentElement).getPropertyValue(
+        "--text-color"
+      )
+    );
     document.addEventListener("textColorChanged", (e: any) =>
       setChartColor(e.detail)
     );

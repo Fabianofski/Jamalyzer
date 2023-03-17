@@ -12,19 +12,21 @@ import { jamData } from "@/model/jamData/jamData";
 import { observeStyle } from "@/utilities/Color/ChartColorObserver";
 import Tools from "./views/Tools";
 import Tags from "./views/Tags";
-import Head from "next/head";
 
-async function Jam({}): Promise<ReactElement> {
-  const { jamName } = { jamName: "vimjam2" };
-
+async function Jam({
+  params,
+}: {
+  params: { jam: string };
+}): Promise<ReactElement> {
+  const jamName = params.jam;
   // useEffect(observeStyle, []);
 
   const response = await fetch(
-    `http://localhost:3001/api/jamData?jamName=${jamName}`
+    `http://localhost:3001/api/jamData?jamName=${jamName}`,
+    { next: { revalidate: 20 } }
   );
   const jamData = await response.json();
   if (!jamData.errors) {
-    // document.title = `Jamalyzer | ${jamData.jam.Title}`;
     if (ReactGA.isInitialized)
       ReactGA.send({
         hitType: "pageview",
@@ -40,7 +42,7 @@ async function Jam({}): Promise<ReactElement> {
 }
 
 interface JamAnalysisProps {
-  jamData: jamData | undefined;
+  jamData: jamData;
   errors: string[];
 }
 
@@ -60,22 +62,21 @@ function JamAnalysis({ jamData, errors }: JamAnalysisProps): ReactElement {
   )
     return <></>;
   // SetJamTheme(jamData.jam.color, jamData.jam.secondary_color);
-
   return (
     <div className="jam-container">
-      <Head>
-        <meta content={jamData.jam.Title} property="og:title" />
-        <meta
-          content={`Analyze the ${jamData.jam.Title} on Jamalyzer.com! Your go to destination for in depth analysis of game jams!`}
-          property="og:description"
-        />
-        <meta content={jamData.jam.banner} property="og:image" />
-        <meta
-          content={jamData.jam.color}
-          data-react-helmet="true"
-          name="theme-color"
-        />
-      </Head>
+      <title>{"Jamalyzer | " + jamData.jam.Title}</title>
+      <meta content={jamData.jam.Title} property="og:title" />
+      <meta
+        content={`Analyze the ${jamData?.jam.Title} on Jamalyzer.com! Your go to destination for in depth analysis of game jams!`}
+        property="og:description"
+      />
+      <meta content={jamData.jam.banner} property="og:image" />
+      <meta
+        content={jamData.jam.color}
+        data-react-helmet="true"
+        name="theme-color"
+      />
+
       <Sidebar />
       <div className="view-container">
         <Overview jamData={jamData} />

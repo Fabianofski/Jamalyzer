@@ -1,5 +1,5 @@
 "use client";
-import React, { ReactElement, useState } from "react";
+import React, { ReactElement, useEffect, useState } from "react";
 
 import {
   CategoryScale,
@@ -52,13 +52,15 @@ export function LineChartCard({
   data = dummyLineData,
   title = "Dummy Title",
 }: Props): ReactElement {
-  const style = getComputedStyle(document.documentElement);
-  const [chartColor, setChartColor] = useState(
-    style.getPropertyValue("--text-color")
-  );
-  const [gridColor, setGridColor] = useState(
-    style.getPropertyValue("--darker-background-color")
-  );
+  const [chartColor, setChartColor] = useState<string>("");
+  const [gridColor, setGridColor] = useState<string>("");
+
+  useEffect(() => {
+    const style = getComputedStyle(document.documentElement);
+    setGridColor(style.getPropertyValue("--darker-background-color"));
+    setChartColor(style.getPropertyValue("--text-color"));
+  });
+
   updateStyle(setChartColor, setGridColor);
 
   const lineOptions: object = {

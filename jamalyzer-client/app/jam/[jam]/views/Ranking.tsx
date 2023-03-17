@@ -152,7 +152,11 @@ function CriteriaScores({ jamData, entry }: CriteriaScoresProps): ReactElement {
               {crit.score.toFixed(2)}
               <FontAwesomeIcon
                 icon={faStar}
-                style={{ marginLeft: ".3rem", color: "var(--primary-color)" }}
+                style={{
+                  marginLeft: ".3rem",
+                  color: "var(--primary-color)",
+                  height: "1rem",
+                }}
               />
             </td>
           );
