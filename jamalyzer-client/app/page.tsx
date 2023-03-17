@@ -1,10 +1,9 @@
 "use client";
 import { useRouter } from "next/navigation";
-import React, { ReactElement, useEffect, useState } from "react";
+import React, { ReactElement, useState } from "react";
 import ReactGA from "react-ga4";
 import { jamCard } from "@/model/jamData/jamCard";
 import jamList from "../public/jamList.json";
-import Head from "next/head";
 
 // function shuffle(array: jamCard[]): jamCard[] {
 //   for (let i = array.length - 1; i > 0; i--) {

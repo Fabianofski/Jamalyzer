@@ -20,6 +20,8 @@ import "@/styles/jam/views/View.css";
 import Nav from "@/components/wireframe/Nav";
 import React from "react";
 import { Metadata } from "next";
+import Footer from "@/components/wireframe/Footer";
+import CookieConsentBanner from "@/components/cookies/CookieConsent";
 
 export const metadata: Metadata = {
   title: "Jamalyzer",
@@ -34,8 +36,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Nav />
-        {children}
+        <div className={"App"}>
+          <CookieConsentBanner />
+          <Nav />
+          <div className={"content"}>{children}</div>
+          <Footer />
+        </div>
       </body>
     </html>
   );

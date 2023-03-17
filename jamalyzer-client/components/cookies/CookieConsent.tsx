@@ -1,17 +1,49 @@
-import React, { ReactElement, useState } from "react";
+"use client";
+import React, { ReactElement, useEffect, useState } from "react";
 import ToggleSwitch from "./ToggleSwitch";
 import ReactGA from "react-ga4";
+const MESS_ID = "G-SW2RQ0Q5JJ";
 
 interface Props {
   setIsCookieAnswered: React.Dispatch<boolean>;
 }
 
-function CookieConsentBanner({ setIsCookieAnswered }: Props): ReactElement {
+function CookieConsentBanner(): ReactElement {
+  const [isCookieAnswered, setIsCookieAnswered] = useState(true);
+
+  useEffect(() => {
+    setIsCookieAnswered(
+      localStorage.getItem("isCookieConsentBannerAnswered") === "true"
+    );
+    if (
+      localStorage.getItem("isCookieAnalyticalAccepted") === "true" &&
+      isCookieAnswered
+    ) {
+      initGA();
+    }
+  }, [isCookieAnswered]);
+
   return (
-    <div className="cookie-container">
-      <MainBanner setIsCookieAnswered={setIsCookieAnswered} />
-    </div>
+    <>
+      {isCookieAnswered ? (
+        <></>
+      ) : (
+        <div className="cookie-container">
+          <MainBanner setIsCookieAnswered={setIsCookieAnswered} />
+        </div>
+      )}
+    </>
   );
+}
+
+function initGA(): void {
+  try {
+    if (ReactGA.isInitialized) return;
+    ReactGA.initialize(MESS_ID);
+    console.log("initialized");
+  } catch (err) {
+    console.error(err);
+  }
 }
 
 function MainBanner({ setIsCookieAnswered }: Props): ReactElement {

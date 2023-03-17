@@ -1,13 +1,10 @@
+"use client";
 import React, { ReactElement } from "react";
 
-interface Props {
-  setIsCookieAnswered: React.Dispatch<boolean>;
-}
-
-function Footer({ setIsCookieAnswered }: Props): ReactElement {
+function Footer(): ReactElement {
   const openCookies = (): void => {
     localStorage.setItem("isCookieConsentBannerAnswered", "false");
-    setIsCookieAnswered(false);
+    window.location.reload();
   };
 
   return (
