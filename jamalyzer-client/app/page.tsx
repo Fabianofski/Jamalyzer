@@ -4,6 +4,7 @@ import React, { ReactElement, useEffect, useState } from "react";
 import ReactGA from "react-ga4";
 import { jamCard } from "@/model/jamData/jamCard";
 import jamList from "../public/jamList.json";
+import Head from "next/head";
 
 // function shuffle(array: jamCard[]): jamCard[] {
 //   for (let i = array.length - 1; i > 0; i--) {
@@ -16,9 +17,6 @@ import jamList from "../public/jamList.json";
 const jams = jamList.jams;
 
 function Home(): ReactElement {
-  useEffect(() => {
-    document.title = `Jamalyzer | Home`;
-  });
   let input = "";
   const [error, setError] = useState<string>("");
   const router = useRouter();
@@ -43,6 +41,7 @@ function Home(): ReactElement {
 
   return (
     <div className="Home">
+      <title>Jamalyzer | Home</title>
       <div className="banner"></div>
       <div className="form">
         <input

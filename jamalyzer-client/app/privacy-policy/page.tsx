@@ -1,13 +1,9 @@
-"use client";
-import React, { ReactElement, useEffect } from "react";
+import React, { ReactElement } from "react";
 
 function PrivacyPolicy(): ReactElement {
-  useEffect(() => {
-    document.title = `Jamalyzer | Privacy Policy`;
-  });
-
   return (
     <div className="legal-container">
+      <title>Jamalyzer | Privacy Policy</title>
       <div className="legal-view">
         <h1>Privacy Policy</h1>
 

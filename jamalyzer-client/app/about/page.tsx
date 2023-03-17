@@ -1,13 +1,9 @@
-"use client";
-import React, { ReactElement, useEffect } from "react";
+import React, { ReactElement } from "react";
 
 function About(): ReactElement {
-  useEffect(() => {
-    document.title = `Jamalyzer | About`;
-  });
-
   return (
     <div className="legal-container">
+      <title>Jamalyzer | About</title>
       <div className="legal-view">
         <h1>About</h1>
         <h2>About Jamalyzer</h2>

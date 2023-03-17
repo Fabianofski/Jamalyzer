@@ -1,13 +1,10 @@
-"use client";
-import React, { ReactElement, useEffect } from "react";
+import React, { ReactElement } from "react";
 
 function Credits(): ReactElement {
-  useEffect(() => {
-    document.title = `Jamalyzer | Credits`;
-  });
-
   return (
     <div className="legal-container">
+      <title>Jamalyzer | Credits</title>
+
       <h1 style={{ color: "var(--text-color)" }}>Credits</h1>
       <div className="legal-view">
         <h1>FABIAN</h1>
