@@ -1,5 +1,4 @@
 import { changeHue, hslToRGB, rgbToHSL } from "./ColorConverter";
-import { de } from "date-fns/locale";
 
 let colorScheme = "light";
 
@@ -17,7 +16,7 @@ export function toggleTheme() {
   colorScheme = colorScheme === "dark" ? "light" : "dark";
   localStorage.setItem("theme", colorScheme);
   document.documentElement.setAttribute("data-theme", colorScheme);
-  if (document.URL.includes("/jam/") && !document.title.includes("Loading"))
+  if (document.URL.includes("/jam/"))
     SetJamTheme(jamDefaultPrimaryColor, jamDefaultSecondaryColor);
 }
 

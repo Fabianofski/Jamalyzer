@@ -18,7 +18,7 @@ function Nav({}): ReactElement {
   useEffect(() => {
     setPreferredColorScheme();
     setDarkMode(getTheme() === "dark");
-  }, [])
+  }, [setDarkMode])
 
   const toggle = () => {
     toggleTheme();

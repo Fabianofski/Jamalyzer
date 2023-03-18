@@ -23,6 +23,7 @@ import React from "react";
 import { Metadata } from "next";
 import Footer from "@/components/wireframe/Footer";
 import CookieConsentBanner from "@/components/cookies/CookieConsent";
+import { setPreferredColorScheme } from "@/utilities/Color/ColorManager";
 
 export const metadata: Metadata = {
   title: "Jamalyzer",
@@ -34,9 +35,15 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+
+  // Set preferred colorscheme before body renders to avoid dark mode flicker
+  // function needs to be a string to inject script
+  const colorFunction = String(setPreferredColorScheme) + " setPreferredColorScheme();";
+
   return (
-    <html lang="en">
+    <html lang="en" data-theme="light">
       <body>
+      <script dangerouslySetInnerHTML={{__html: colorFunction}}/>
         <div className={"App"}>
           <CookieConsentBanner />
           <Nav />
