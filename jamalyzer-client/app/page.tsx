@@ -1,9 +1,8 @@
-"use client";
-import { useRouter } from "next/navigation";
-import React, { ReactElement, useState } from "react";
+import React, { ReactElement } from "react";
 import ReactGA from "react-ga4";
 import { jamCard } from "@/model/jamData/jamCard";
 import jamList from "../public/jamList.json";
+import HomeForm from "@/app/HomeForm";
 
 // function shuffle(array: jamCard[]): jamCard[] {
 //   for (let i = array.length - 1; i > 0; i--) {
@@ -16,50 +15,11 @@ import jamList from "../public/jamList.json";
 const jams = jamList.jams;
 
 function Home(): ReactElement {
-  let input = "";
-  const [error, setError] = useState<string>("");
-  const router = useRouter();
-
-  const onInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    input = e.target.value;
-  };
-  const onSubmit = (): void => {
-    if (!input.startsWith("https://itch.io/jam/")) {
-      setError("Invalid URL");
-      return;
-    }
-    const jamName = input.replace("https://itch.io/jam/", "");
-    if (ReactGA.isInitialized)
-      ReactGA.event({
-        category: "Jam Analysis",
-        action: "Analyze custom jam",
-        label: jamName,
-      });
-    router.push(`/jam/${jamName}`);
-  };
-
   return (
     <div className="Home">
       <title>Jamalyzer | Home</title>
       <div className="banner"></div>
-      <div className="form">
-        <input
-          type="text"
-          placeholder="https://itch.io/jam/..."
-          name="JamURL"
-          autoComplete="off"
-          required
-          onChange={onInputChange}
-        />
-        <div className="error">
-          <p> {error} </p>
-        </div>
-        <button onClick={onSubmit} className="submit">
-          <div>
-            <p>ANALYZE</p>
-          </div>
-        </button>
-      </div>
+      <HomeForm />
       <div className="recommended-container">
         <div className="recommended-mask">
           <div className="recommended jam-left-slide">
@@ -141,7 +101,6 @@ function Jam({ jamInfo }: { jamInfo: jamCard }): ReactElement {
       </div>
       <a
         href={`/jam/${jamInfo.link.replace("https://itch.io/jam/", "")}`}
-        onClick={onSubmit}
         className="submit"
       >
         ANALYZE

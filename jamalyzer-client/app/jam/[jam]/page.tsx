@@ -6,12 +6,11 @@ import Team from "./views/Team";
 import Platform from "./views/Platform";
 import Genre from "./views/Genre";
 import Overview from "./views/Overview";
-import { SetJamTheme } from "@/utilities/Color/ColorManager";
 import ReactGA from "react-ga4";
 import { jamData } from "@/model/jamData/jamData";
-import { observeStyle } from "@/utilities/Color/ChartColorObserver";
 import Tools from "./views/Tools";
 import Tags from "./views/Tags";
+import JamTheme from "@/app/jam/[jam]/components/JamTheme";
 
 async function Jam({
   params,
@@ -19,7 +18,6 @@ async function Jam({
   params: { jam: string };
 }): Promise<ReactElement> {
   const jamName = params.jam;
-  // useEffect(observeStyle, []);
 
   const response = await fetch(
     `http://localhost:3001/api/jamData?jamName=${jamName}`,
@@ -61,13 +59,12 @@ function JamAnalysis({ jamData, errors }: JamAnalysisProps): ReactElement {
     jamData.jam.color === undefined
   )
     return <></>;
-  // SetJamTheme(jamData.jam.color, jamData.jam.secondary_color);
   return (
     <div className="jam-container">
       <title>{"Jamalyzer | " + jamData.jam.Title}</title>
       <meta content={jamData.jam.Title} property="og:title" />
       <meta
-        content={`Analyze the ${jamData?.jam.Title} on Jamalyzer.com! Your go to destination for in depth analysis of game jams!`}
+        content={`Analyze the ${jamData.jam.Title} on Jamalyzer.com! Your go to destination for in depth analysis of game jams!`}
         property="og:description"
       />
       <meta content={jamData.jam.banner} property="og:image" />
@@ -76,6 +73,7 @@ function JamAnalysis({ jamData, errors }: JamAnalysisProps): ReactElement {
         data-react-helmet="true"
         name="theme-color"
       />
+      <JamTheme jamData={jamData} />
 
       <Sidebar />
       <div className="view-container">
