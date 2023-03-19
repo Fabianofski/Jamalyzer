@@ -35,13 +35,13 @@
   max-width: 10rem;
 }
 
-.job-progress {
+.jobProgress {
   display: flex;
   justify-content: flex-end;
   gap: 1rem;
 }
 
-.job-percentage {
+.jobPercentage {
   width: 5rem;
   text-align: right;
 }
