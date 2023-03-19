@@ -1,5 +1,6 @@
 "use client";
 import React, { ReactElement } from "react";
+import styles from "./Footer.module.css";
 
 function Footer(): ReactElement {
   const openCookies = (): void => {
@@ -8,7 +9,7 @@ function Footer(): ReactElement {
   };
 
   return (
-    <div className="footer">
+    <div className={styles.footer}>
       <a href="/credits">Credits</a>
       <a href="/about">About</a>
       <a onClick={openCookies} href="#cookies">

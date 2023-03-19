@@ -14,17 +14,17 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   --light-clr: hsl(240, 100%, 98%);
 }
 
-.light-theme {
+.lightTheme {
   --clr-foreground: var(--dark-clr);
   --clr-background: var(--light-clr);
 }
 
-.dark-theme {
+.darkTheme {
   --clr-background: var(--dark-clr);
   --clr-foreground: var(--light-clr);
 }
 
-#switch-theme {
+#switchTheme {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -39,11 +39,11 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   isolation: isolate;
 }
 
-#switch-theme svg {
+#switchTheme svg {
   fill: var(--clr-foreground);
 }
 
-#switch-theme::before {
+#switchTheme::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -54,15 +54,15 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   z-index: -1;
 }
 
-.light-theme #switch-theme::before {
+.lightTheme #switchTheme::before {
   animation: pulseToLight 650ms ease-out;
 }
 
-.dark-theme #switch-theme::before {
+.darkTheme #switchTheme::before {
   animation: pulseToDark 650ms ease-out;
 }
 
-#switch-theme::after {
+#switchTheme::after {
   content: attr(aria-label);
   position: absolute;
   color: var(--clr-background);
@@ -80,54 +80,54 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   transition: transform 0ms linear 100ms, opacity 100ms linear;
 }
 
-#switch-theme:hover,
-#switch-theme:focus {
+#switchTheme:hover,
+#switchTheme:focus {
   outline: 0;
   opacity: 1;
   background: hsl(0 0% 50% / 0.15);
 }
 
-#switch-theme:hover::after,
-#switch-theme:focus-visible::after {
+#switchTheme:hover::after,
+#switchTheme:focus-visible::after {
   opacity: 0.7;
   transform: scale(1);
   transition: transform 70ms linear, opacity 70ms linear;
 }
 
-.toggle-circle {
+.toggleCircle {
   transition: transform 500ms ease-out;
 }
 
-.light-theme .toggle-circle {
+.lightTheme .toggleCircle {
   transform: translateX(-15%);
 }
 
-.toggle-sun {
+.toggleSun {
   transform-origin: center center;
   transition: transform 750ms cubic-bezier(0.11, 0.14, 0.29, 1.32);
 }
 
-.moon-mask,
-.sun-core,
-.sun-rays {
+.moonMask,
+.sunCore,
+.sunRays {
   transition: 750ms ease-out;
   transform-origin: center center;
 }
-.dark-theme .moon-mask {
+.darkTheme .moonMask {
   r: 9;
   cx: 12;
   cy: 4;
 }
-.light-theme .moon-mask {
+.lightTheme .moonMask {
   r: 5;
   transform: rotate(-90deg);
   cx: 20;
   cy: 0;
 }
-.dark-theme .sun-core {
+.darkTheme .sunCore {
   transform: rotate(-40deg);
 }
-.dark-theme .sun-rays {
+.darkTheme .sunRays {
   transform: rotate(-180deg);
   opacity: 0;
 }
@@ -164,14 +164,14 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     transform: scale(1);
   }
 }
-.light-theme .toggle-sun {
+.lightTheme .toggleSun {
   transform: rotate(0.5turn);
 }
-.light-theme .img .toggle-sun {
+.lightTheme .img .toggleSun {
   transform: rotate(0.5turn);
 }
-.light-theme .sun-rays,
-.light-theme .sun-core {
+.lightTheme .sunRays,
+.lightTheme .sunCore {
   color: var(--sun-clr);
   fill: var(--sun-clr);
 }
