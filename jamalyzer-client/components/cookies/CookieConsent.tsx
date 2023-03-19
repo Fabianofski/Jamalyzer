@@ -2,6 +2,9 @@
 import React, { ReactElement, useEffect, useState } from "react";
 import ToggleSwitch from "./ToggleSwitch";
 import ReactGA from "react-ga4";
+import styles from "./CookieConsent.module.css"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCaretUp, faCaretDown } from "@fortawesome/free-solid-svg-icons";
 const MESS_ID = "G-SW2RQ0Q5JJ";
 
 interface Props {
@@ -28,7 +31,7 @@ function CookieConsentBanner(): ReactElement {
       {isCookieAnswered ? (
         <></>
       ) : (
-        <div className="cookie-container">
+        <div className={styles.cookieContainer}>
           <MainBanner setIsCookieAnswered={setIsCookieAnswered} />
         </div>
       )}
@@ -72,9 +75,9 @@ function MainBanner({ setIsCookieAnswered }: Props): ReactElement {
   };
 
   return (
-    <div className="cookie-banner">
+    <div className={styles.cookieBanner}>
       <h1 style={{ textAlign: "center" }}>🍪 We use Cookies!</h1>
-      <div className="toggles">
+      <div className={styles.toggles}>
         <Toggle
           cookieName={"Targeted Advertising Cookies"}
           description={
@@ -92,7 +95,7 @@ function MainBanner({ setIsCookieAnswered }: Props): ReactElement {
           setOption={setAnalytical}
         />
       </div>
-      <div className="cookie-buttons">
+      <div className={styles.cookieButtons}>
         <button onClick={applyOptions}>
           <b>APPLY</b>
         </button>
@@ -123,20 +126,16 @@ function Toggle({
   const [infoShown, setInfoShown] = useState(true);
 
   return (
-    <div className="cookie-info">
-      <div className="toggle">
-        <div className="toggle-info">
+    <div className={styles.cookieInfo}>
+      <div className={styles.toggle}>
+        <div className={styles.toggleInfo}>
           <button
             onClick={() => {
               setInfoShown(!infoShown);
             }}
-            className="collapse-button"
+            className={styles.collapseButton}
           >
-            <i
-              className={`collapse-button-icon fa fa-2x ${
-                infoShown ? "fa-caret-up" : "fa-caret-down"
-              }`}
-            ></i>
+            <FontAwesomeIcon icon={infoShown ? faCaretUp : faCaretDown} className={styles.collapseButtonIcon}/>
           </button>
           <p>{cookieName}</p>
         </div>

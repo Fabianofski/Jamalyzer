@@ -1,4 +1,5 @@
 import React, { ReactElement } from "react";
+import styles from "./ToggleSwitch.module.css";
 
 interface Props {
   option: boolean;
@@ -10,15 +11,15 @@ export default function ToggleSwitch({
   setOption,
 }: Props): ReactElement {
   return (
-    <div className={"switch-container"}>
-      <label className="switch">
+    <div>
+      <label className={styles.switch}>
         <input
           type="checkbox"
           onClick={() => {
             setOption(!option);
           }}
         />
-        <span className="slider round"></span>
+        <span className={`${styles.slider} ${styles.round}`}></span>
       </label>
     </div>
   );

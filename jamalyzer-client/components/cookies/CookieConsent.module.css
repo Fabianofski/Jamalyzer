@@ -1,4 +1,4 @@
-.cookie-container {
+.cookieContainer {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -13,7 +13,7 @@
   background-color: rgba(30, 30, 30, 0.5);
 }
 
-.cookie-banner {
+.cookieBanner {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -34,7 +34,7 @@
   box-shadow: var(--box-shadow);
 }
 
-.cookie-buttons {
+.cookieButtons {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -44,7 +44,7 @@
   max-width: 30rem;
 }
 
-.cookie-buttons button {
+.cookieButtons button {
   flex: 1 1;
 
   background-color: var(--primary-color);
@@ -58,7 +58,7 @@
   transition: all 0.2s ease;
 }
 
-.cookie-buttons button:hover {
+.cookieButtons button:hover {
   background-color: white;
 
   color: var(--primary-color);
@@ -66,7 +66,7 @@
   border: 1px solid var(--primary-color);
 }
 
-.cookie-info p {
+.cookieInfo p {
   padding-left: 1rem;
   padding-right: 1rem;
 
@@ -99,14 +99,14 @@
   border-bottom: 1px solid var(--primary-color);
 }
 
-.toggle-info {
+.toggleInfo {
   display: flex;
   align-items: center;
 
   height: 100%;
 }
 
-.collapse-button {
+.collapseButton {
   height: 2rem;
   width: 2rem;
 
@@ -115,10 +115,12 @@
   border: none;
 }
 
-.collapse-button-icon {
+.collapseButtonIcon {
+  height: 100%;
+
   color: var(--primary-color);
 }
 
-.collapse-button-icon:hover {
+.collapseButtonIcon:hover {
   color: var(--text-color);
 }
