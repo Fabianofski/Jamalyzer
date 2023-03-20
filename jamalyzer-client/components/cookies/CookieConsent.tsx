@@ -43,7 +43,6 @@ function initGA(): void {
   try {
     if (ReactGA.isInitialized) return;
     ReactGA.initialize(MESS_ID);
-    console.log("initialized");
   } catch (err) {
     console.error(err);
   }

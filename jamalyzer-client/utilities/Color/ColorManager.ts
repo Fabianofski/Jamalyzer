@@ -16,8 +16,10 @@ export function toggleTheme() {
   colorScheme = colorScheme === "dark" ? "light" : "dark";
   localStorage.setItem("theme", colorScheme);
   document.documentElement.setAttribute("data-theme", colorScheme);
-  if (document.URL.includes("/jam/"))
-    SetJamTheme(jamDefaultPrimaryColor, jamDefaultSecondaryColor);
+  if (document.URL.includes("/jam/")){
+    setJamTheme(jamDefaultPrimaryColor, jamDefaultSecondaryColor);
+    updateCSSVariables();
+  }
 }
 
 export function getTheme() {
@@ -37,7 +39,7 @@ let jamDefaultSecondaryColor = "#151048";
 let jamPrimaryColor = "#f55a5b";
 let jamSecondaryColor = "#151048";
 
-export function SetJamTheme(primary: string, secondary: string): void {
+export function setJamTheme(primary: string, secondary: string): void {
   jamDefaultPrimaryColor = primary;
   jamDefaultSecondaryColor = secondary;
   if (primary === "#ffffff") primary = secondary;
@@ -56,26 +58,29 @@ export function SetJamTheme(primary: string, secondary: string): void {
 
   jamPrimaryColor = hslToRGB(primaryHsl);
   jamSecondaryColor = hslToRGB(secondaryHsl);
+}
+
+export function updateCSSVariables() {
   document.documentElement.style.setProperty("--primary-color", jamPrimaryColor);
   document.documentElement.style.setProperty("--secondary-color", jamSecondaryColor);
 }
 
-export function GetJamPrimary(): string {
+export function getJamPrimary(): string {
   return jamPrimaryColor;
 }
 
-export function GetJamPrimaryVariations(amount: number): string[] | undefined {
+export function getJamPrimaryVariations(amount: number): string[] | undefined {
   const hslColor = rgbToHSL(jamPrimaryColor);
   hslColor.l = Math.max(0.4, hslColor.l);
   const degree = 360 / amount;
-  return GetColorVariations(hslToRGB(hslColor), amount, degree);
+  return getColorVariations(hslToRGB(hslColor), amount, degree);
 }
 
-export function GetJamSecondary(): string {
+export function getJamSecondary(): string {
   return jamSecondaryColor;
 }
 
-function GetColorVariations(color: string, amount: number, degree: number): string[] | undefined {
+function getColorVariations(color: string, amount: number, degree: number): string[] | undefined {
   const colors = [];
   let oldColor = color;
   for (let i = 0; i < amount; i++) {

@@ -1,9 +1,9 @@
-"use client";
 import React, { ReactElement } from "react";
 import { JsxCard } from "../cards/BasicCard";
 import { jamData } from "@/model/jamData/jamData";
 import { engines, artCreation, soundCreation } from "../components/tools";
-import { generatePieChartData, PieChartCard } from "../cards/PieChartCard";
+import { generatePieChartData } from "@/utilities/PieChartData";
+import { PieChartCard } from "../cards/PieChartCard";
 import BasicTable from "../components/BasicTable";
 import Loader from "../components/Loader";
 

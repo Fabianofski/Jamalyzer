@@ -2,7 +2,7 @@ import React, { ReactElement } from "react";
 import { JsxCard } from "../cards/BasicCard";
 import { BarChartCard } from "../cards/BarChartCard";
 import { PieChartCard } from "../cards/PieChartCard";
-import { GetJamPrimaryVariations } from "@/utilities/Color/ColorManager";
+import { getJamPrimaryVariations } from "@/utilities/Color/ColorManager";
 import { jamData } from "@/model/jamData/jamData";
 import { ChartData } from "chart.js";
 
@@ -54,7 +54,7 @@ function getPieChartData(jamData: jamData): ChartData<"pie", any> {
     if (entry.platforms.includes("osx")) data[2]++;
     if (entry.platforms.includes("linux")) data[3]++;
   });
-  const colors = GetJamPrimaryVariations(4);
+  const colors = getJamPrimaryVariations(4);
   return {
     labels: ["WEB", "WINDOWS", "MAC", "LINUX"],
     datasets: [
@@ -105,7 +105,7 @@ function getBarChartData(jamData: jamData): ChartData<"bar", any> {
     }
     oldP = percentage;
   });
-  const colors = GetJamPrimaryVariations(4);
+  const colors = getJamPrimaryVariations(4);
   return {
     labels,
     datasets: [

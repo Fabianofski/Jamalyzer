@@ -2,7 +2,7 @@ import React, { ReactElement } from "react";
 import { JsxCard } from "../cards/BasicCard";
 import { BarChartCard } from "../cards/BarChartCard";
 import { PieChartCard } from "../cards/PieChartCard";
-import { GetJamPrimaryVariations } from "@/utilities/Color/ColorManager";
+import { getJamPrimaryVariations } from "@/utilities/Color/ColorManager";
 import { jamData } from "@/model/jamData/jamData";
 import { ChartData } from "chart.js";
 
@@ -118,7 +118,7 @@ function extractData(jamData: jamData): ChartData<"pie", any> {
     const teamSize = clamp(entry.contributors.length - 1, 0, 3);
     data[teamSize]++;
   });
-  const colors = GetJamPrimaryVariations(4);
+  const colors = getJamPrimaryVariations(4);
   return {
     labels: ["SOLO", "DUO", "TRIO", ">3"],
     datasets: [
@@ -165,7 +165,7 @@ function getBarChartData(jamData: jamData): ChartData<"bar", any> {
     }
     oldP = percentage;
   });
-  const colors = GetJamPrimaryVariations(4);
+  const colors = getJamPrimaryVariations(4);
   return {
     labels,
     datasets: [

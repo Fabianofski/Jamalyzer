@@ -1,7 +1,7 @@
 import React, { ReactElement } from "react";
 import { JsxCard } from "../cards/BasicCard";
 import { LineChartCard } from "../cards/LineChartCard";
-import { GetJamPrimary } from "@/utilities/Color/ColorManager";
+import { getJamPrimary } from "@/utilities/Color/ColorManager";
 import { pearsonCorrelation } from "@/utilities/Correlation";
 import { jamData } from "@/model/jamData/jamData";
 import { InlineMath } from "react-katex";
@@ -240,7 +240,7 @@ function getLineChartData(jamData: jamData): LineChartData {
         label: "Karma",
         data: data,
         lineTension: 0.4,
-        borderColor: GetJamPrimary(),
+        borderColor: getJamPrimary(),
         backgroundColor: "white",
       },
     ],

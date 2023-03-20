@@ -11,6 +11,7 @@ import { jamData } from "@/model/jamData/jamData";
 import Tools from "./views/Tools";
 import Tags from "./views/Tags";
 import JamTheme from "@/app/jam/[jam]/components/JamTheme";
+import { setJamTheme } from "@/utilities/Color/ColorManager";
 
 async function Jam({
   params,
@@ -21,7 +22,7 @@ async function Jam({
 
   const response = await fetch(
     `http://localhost:3001/api/jamData?jamName=${jamName}`,
-    { next: { revalidate: 20 } }
+    { next: { revalidate: 0 } }
   );
   const jamData = await response.json();
   if (!jamData.errors) {
@@ -53,12 +54,12 @@ function JamAnalysis({ jamData, errors }: JamAnalysisProps): ReactElement {
         })}
       </>
     );
-  if (jamData === undefined) return <></>;
   if (
     jamData.jam.secondary_color === undefined ||
     jamData.jam.color === undefined
   )
     return <></>;
+  setJamTheme(jamData.jam.color, jamData.jam.secondary_color);
   return (
     <div className="jam-container">
       <title>{"Jamalyzer | " + jamData.jam.Title}</title>

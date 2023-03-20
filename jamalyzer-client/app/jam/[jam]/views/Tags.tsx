@@ -1,9 +1,9 @@
-"use client";
 import React from "react";
 import { jamData } from "@/model/jamData/jamData";
 import { JsxCard } from "../cards/BasicCard";
 import BasicTable from "../components/BasicTable";
-import { generatePieChartData, PieChartCard } from "../cards/PieChartCard";
+import { generatePieChartData } from "@/utilities/PieChartData";
+import {PieChartCard } from "../cards/PieChartCard";
 import Loader from "../components/Loader";
 
 function Tags({ jamData }: { jamData: jamData }) {
