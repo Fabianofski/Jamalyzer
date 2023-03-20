@@ -1,16 +1,18 @@
 import React, { ReactElement } from "react";
+import styles from "@/styles/legal/Legal.module.css"
+import creditsStyles from "./Credits.module.css";
 
 function Credits(): ReactElement {
   return (
-    <div className="legal-container">
+    <div className={styles.legalContainer}>
       <title>Jamalyzer | Credits</title>
 
       <h1 style={{ color: "var(--text-color)" }}>Credits</h1>
-      <div className="legal-view">
+      <div className={styles.legalView}>
         <h1>FABIAN</h1>
-        <div className="credits-wrapper">
-          <img src="/logo.png" alt="F4B1 Logo" className="profile"></img>
-          <div className="information">
+        <div className={creditsStyles.creditsWrapper}>
+          <img src="/logo.png" alt="F4B1 Logo" className={creditsStyles.profile}></img>
+          <div className={creditsStyles.information}>
             <Link
               site={"Itch.io - F4B1"}
               link={"https://f4b1.itch.io"}
@@ -38,7 +40,7 @@ interface Props {
 
 function Link({ site, link, icon }: Props): ReactElement {
   return (
-    <a className="link" href={link} target="_blank" rel="noopener noreferrer">
+    <a className={creditsStyles.link} href={link} target="_blank" rel="noopener noreferrer">
       <img src={icon} alt={`${site} Icon`} />
       <h2>{site}</h2>
     </a>

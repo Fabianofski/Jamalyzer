@@ -1,10 +1,11 @@
 import React, { ReactElement } from "react";
+import styles from "@/styles/legal/Legal.module.css"
 
 function About(): ReactElement {
   return (
-    <div className="legal-container">
+    <div className={styles.legalContainer}>
       <title>Jamalyzer | About</title>
-      <div className="legal-view">
+      <div className={styles.legalView}>
         <h1>About</h1>
         <h2>About Jamalyzer</h2>
         <p>

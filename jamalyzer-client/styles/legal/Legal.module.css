@@ -1,4 +1,4 @@
-.legal-container {
+.legalContainer {
   display: flex;
   justify-content: flex-start;
   gap: 2rem;
@@ -9,7 +9,7 @@
   padding: 2rem;
 }
 
-.legal-view {
+.legalView {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -28,12 +28,12 @@
   border-radius: 25px;
 }
 
-.legal-view h1,
-h2 {
+.legalView h1,
+.legalView h2 {
   text-align: center;
 }
 
-.legal-view p {
+.legalView p {
   text-align: justify;
   hyphens: auto;
 }

@@ -1,10 +1,11 @@
 import React, { ReactElement } from "react";
+import styles from "@/styles/legal/Legal.module.css"
 
 function PrivacyPolicy(): ReactElement {
   return (
-    <div className="legal-container">
+    <div className={styles.legalContainer}>
       <title>Jamalyzer | Privacy Policy</title>
-      <div className="legal-view">
+      <div className={styles.legalView}>
         <h1>Privacy Policy</h1>
 
         <p>

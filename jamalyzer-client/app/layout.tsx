@@ -2,8 +2,6 @@ import "@/styles/App.css";
 import "@/styles/home/HomeForm.css";
 import "@/styles/home/HomeRecommended.css";
 import "@/styles/home/HomeInfo.css";
-import "@/styles/legal/Legal.css";
-import "@/styles/legal/Credits.css";
 import "@/styles/Loader.css";
 import "@/styles/jam/Jam.css";
 import "@/styles/jam/cards/Card.css";
