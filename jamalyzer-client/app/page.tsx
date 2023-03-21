@@ -3,6 +3,9 @@ import ReactGA from "react-ga4";
 import { jamCard } from "@/model/jamData/jamCard";
 import jamList from "../public/jamList.json";
 import HomeForm from "@/app/HomeForm";
+import homeStyles from "@/styles/home/Home.module.css";
+import homeInfoStyles from "@/styles/home/HomeInfo.module.css";
+import homeRecStyles from "@/styles/home/HomeRecommended.module.css";
 
 // function shuffle(array: jamCard[]): jamCard[] {
 //   for (let i = array.length - 1; i > 0; i--) {
@@ -16,13 +19,13 @@ const jams = jamList.jams;
 
 function Home(): ReactElement {
   return (
-    <div className="Home">
+    <div className={homeStyles.Home}>
       <title>Jamalyzer | Home</title>
       <div className="banner"></div>
       <HomeForm />
-      <div className="recommended-container">
-        <div className="recommended-mask">
-          <div className="recommended jam-left-slide">
+      <div className={homeRecStyles.recommendedContainer}>
+        <div className={homeRecStyles.recommendedMask}>
+          <div className={`${homeRecStyles.recommended} ${homeRecStyles.jamLeftSlide}`}>
             {jams.map((element: jamCard, idx: number) => {
               return <Jam jamInfo={element} key={idx} />;
             })}
@@ -30,7 +33,7 @@ function Home(): ReactElement {
               return <Jam jamInfo={element} key={idx} />;
             })}
           </div>
-          <div className="recommended-gradient"></div>
+          <div className={homeRecStyles.recommendedGradient}></div>
         </div>
       </div>
       <AboutSection />
@@ -49,13 +52,13 @@ function Jam({ jamInfo }: { jamInfo: jamCard }): ReactElement {
   };
 
   return (
-    <div className="recommended-jam">
-      <div className="primary-info">
+    <div className={homeRecStyles.recommendedJam}>
+      <div className={homeRecStyles.primaryInfo}>
         <a
           href={jamInfo.link}
           target="_blank"
           rel="noopener noreferrer"
-          className="jam-icon"
+          className={homeRecStyles.jamIcon}
         >
           <img
             className="jam_cover"
@@ -67,12 +70,12 @@ function Jam({ jamInfo }: { jamInfo: jamCard }): ReactElement {
           href={jamInfo.link}
           target="_blank"
           rel="noopener noreferrer"
-          className="title"
+          className={homeRecStyles.title}
         >
           <h3>{jamInfo.name}</h3>
         </a>
       </div>
-      <div className="host">
+      <div className={homeRecStyles.host}>
         Hosted by&nbsp;
         {jamInfo.hosts
           .map((element, idx) => {
@@ -91,17 +94,17 @@ function Jam({ jamInfo }: { jamInfo: jamCard }): ReactElement {
             <React.Fragment key={idx}>{[prev, ", ", curr]}</React.Fragment>
           ))}
       </div>
-      <div className="stats">
-        <div className="joined">
+      <div className={homeRecStyles.stats}>
+        <div className={homeRecStyles.joined}>
           <p> {jamInfo.joined} joined</p>
         </div>
-        <div className="submissions">
+        <div className={homeRecStyles.submissions}>
           <p> {jamInfo.submitted} Submissions</p>
         </div>
       </div>
       <a
         href={`/jam/${jamInfo.link.replace("https://itch.io/jam/", "")}`}
-        className="submit"
+        className={homeStyles.submit}
       >
         ANALYZE
       </a>
@@ -111,16 +114,15 @@ function Jam({ jamInfo }: { jamInfo: jamCard }): ReactElement {
 
 function AboutSection() {
   return (
-    <div className="about-container">
-      <div className="about-row">
-        <div className={"about-image"}>
+    <div className={homeInfoStyles.aboutContainer}>
+      <div className={homeInfoStyles.aboutRow}>
+        <div className={homeInfoStyles.aboutImage}>
           <img
-            className="jam_cover"
             src="https://img.itch.zone/aW1nLzY1ODQ2NDUucG5n/140x111%23/%2FqT7FN.png"
             alt="Icon: Brackeys Game Jam 2021.2"
           ></img>
         </div>
-        <div className="about-text">
+        <div className={homeInfoStyles.aboutText}>
           <h2>Jamalyzer</h2>
           <p>
             With Jamalyzer, you can browse through the latest game jams, view
@@ -134,8 +136,8 @@ function AboutSection() {
           </p>
         </div>
       </div>
-      <div className="about-row">
-        <div className="about-text">
+      <div className={homeInfoStyles.aboutRow}>
+        <div className={homeInfoStyles.aboutText}>
           <h2>Game Jam</h2>
           <p>
             A &#34;Game Jam&#34; is a gathering of game developers for the
@@ -154,9 +156,8 @@ function AboutSection() {
             camaraderie within the industry.
           </p>
         </div>
-        <div className={"about-image"}>
+        <div className={homeInfoStyles.aboutImage}>
           <img
-            className="jam_cover"
             src="https://img.itch.zone/aW1nLzY1ODQ2NDUucG5n/140x111%23/%2FqT7FN.png"
             alt="Icon: Brackeys Game Jam 2021.2"
           ></img>

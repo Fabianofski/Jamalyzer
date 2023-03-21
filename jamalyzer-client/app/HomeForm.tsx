@@ -2,6 +2,8 @@
 import React, { useState } from "react";
 import ReactGA from "react-ga4";
 import { useRouter } from "next/navigation";
+import styles from "@/styles/home/HomeForm.module.css";
+import homeStyles from "@/styles/home/Home.module.css";
 
 function HomeForm() {
   let input = "";
@@ -28,7 +30,7 @@ function HomeForm() {
   };
 
   return(
-    <div className="form">
+    <div className={styles.form}>
     <input
       type="text"
       placeholder="https://itch.io/jam/..."
@@ -37,10 +39,10 @@ function HomeForm() {
       required
       onChange={onInputChange}
     />
-    <div className="error">
+    <div className={styles.error}>
       <p> {error} </p>
     </div>
-    <button onClick={onSubmit} className="submit">
+    <button onClick={onSubmit} className={homeStyles.submit}>
       <div>
         <p>ANALYZE</p>
       </div>

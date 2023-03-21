@@ -1,4 +1,4 @@
-.recommended-container {
+.recommendedContainer {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -12,7 +12,7 @@
   border-top: 1px solid var(--primary-color);
 }
 
-.recommended-mask {
+.recommendedMask {
   width: 95vw;
   max-width: 100rem;
 
@@ -21,7 +21,7 @@
   overflow-x: hidden;
 }
 
-.recommended-gradient {
+.recommendedGradient {
   position: absolute;
   top: 0;
   left: 0;
@@ -44,19 +44,19 @@
   height: 100%;
 }
 
-.jam-right-slide {
-  animation: right-slide linear 60s infinite;
+.jamRightSlide {
+  animation: rightSlide linear 60s infinite;
 }
 
-.jam-left-slide {
-  animation: left-slide linear 80s infinite;
+.jamLeftSlide {
+  animation: leftSlide linear 80s infinite;
 }
 
-.recommended-mask:hover > .recommended {
+.recommendedMask:hover > .recommended {
   animation-play-state: paused;
 }
 
-@keyframes right-slide {
+@keyframes rightSlide {
   from {
     left: 0;
   }
@@ -65,7 +65,7 @@
   }
 }
 
-@keyframes left-slide {
+@keyframes leftSlide {
   from {
     left: 0;
   }
@@ -74,7 +74,7 @@
   }
 }
 
-.recommended-jam {
+.recommendedJam {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -92,30 +92,32 @@
   box-shadow: 0 4px 4px var(--box-shadow-color);
 }
 
-.recommended-jam .host a,
-.recommended-jam .primary-info a {
+.recommendedJam .host a,
+.recommendedJam .primaryInfo a {
   color: var(--text-color);
 }
 
-.recommended-jam .host a:hover,
-.recommended-jam .primary-info a:hover {
+.recommendedJam .host a:hover,
+.recommendedJam .primaryInfo a:hover {
   color: var(--primary-color);
 }
 
-.primary-info {
+.primaryInfo {
   display: flex;
   align-items: flex-start;
 
   width: 100%;
 }
 
-.jam-icon {
+.jamIcon {
   flex: 1;
 }
 
-.jam-icon img {
+.jamIcon img {
   width: 100%;
+  height: 5rem;
 
+  object-fit: cover;
   border-radius: 5px;
 }
 
