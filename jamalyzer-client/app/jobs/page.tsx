@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import useWebSocket from "react-use-websocket";
-import styles from "./jobs.module.css";
+import styles from "@/styles/jobs/jobs.module.css";
 import { jamJob } from "@/model/jamJobs/jobList";
 
 let WS_URL = `ws://localhost:7071`;

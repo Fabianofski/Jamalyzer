@@ -1,6 +1,6 @@
 import React, { ReactElement } from "react";
 import styles from "@/styles/legal/Legal.module.css"
-import creditsStyles from "./Credits.module.css";
+import creditsStyles from "@/styles/legal/Credits.module.css";
 
 function Credits(): ReactElement {
   return (
