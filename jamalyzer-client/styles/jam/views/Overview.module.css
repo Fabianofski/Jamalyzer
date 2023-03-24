@@ -1,0 +1,17 @@
+.jam-banner {
+  max-height: 25rem;
+  max-width: 100%;
+  margin-bottom: 5vh;
+}
+
+.jam-title {
+  text-align: center;
+}
+
+.jam-title-link {
+  color: var(--primary-color);
+}
+
+.jam-title-link:hover {
+  color: var(--secondary-color);
+}

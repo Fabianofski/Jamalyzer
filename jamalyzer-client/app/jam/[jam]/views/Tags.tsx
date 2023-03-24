@@ -5,15 +5,16 @@ import BasicTable from "../components/BasicTable";
 import { generatePieChartData } from "@/utilities/PieChartData";
 import {PieChartCard } from "../cards/PieChartCard";
 import Loader from "../components/Loader";
+import styles from "@/styles/jam/views/View.module.css";
 
 function Tags({ jamData }: { jamData: jamData }) {
   const tags = countTags(jamData);
 
   if (jamData.extendedData)
     return (
-      <div className="view" id="Tags">
+      <div className={styles.view} id="Tags">
         <h1>Tags</h1>
-        <div className="card-grid">
+        <div className={styles["card-grid"]}>
           <JsxCard
             jsx={<BasicTable data={tags} title={"Tags"} amount={10} />}
             styleClass={"card card-col-span-4"}
@@ -28,7 +29,7 @@ function Tags({ jamData }: { jamData: jamData }) {
     );
   else
     return (
-      <div className="view" id="Tags">
+      <div className={styles.view} id="Tags">
         <h1>Tags</h1>
         <Loader text={""} />
         <a href={"/jobs"}>This data is still processing...</a>

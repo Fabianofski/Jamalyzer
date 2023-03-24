@@ -106,7 +106,7 @@ export function LineChartCard({
         <Line
           options={lineOptions}
           data={data}
-          style={{ minHeight: "20rem", color: "white" }}
+          style={{ minHeight: "20rem", color: "white", width: "100%" }}
         />
       </div>
     </div>

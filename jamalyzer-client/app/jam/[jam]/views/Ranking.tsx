@@ -5,6 +5,8 @@ import { jamData } from "@/model/jamData/jamData";
 import { entry, entry_criteria } from "@/model/jamData/entry";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
+import styles from "@/styles/jam/components/PaginationTable.module.css";
+import viewStyles from "@/styles/jam/views/View.module.css";
 
 function Ranking({ jamData }: { jamData: jamData }): ReactElement {
   const [currentPage, setCurrentPage] = useState(1);
@@ -14,9 +16,9 @@ function Ranking({ jamData }: { jamData: jamData }): ReactElement {
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
 
   return (
-    <div className="view ranking" id="Ranking">
+    <div className={`${viewStyles.view} ${styles.ranking}`} id="Ranking">
       <h1>Ranking</h1>
-      <div className="table-wrapper">
+      <div className={styles["table-wrapper"]}>
         <table>
           <Header jamData={jamData} />
           <tbody>
@@ -179,7 +181,7 @@ function Header({ jamData }: { jamData: jamData }): ReactElement {
         <th>TITLE</th>
         {jamData.criteria.map((criteria, index) => (
           <th
-            className={criteria.length > 30 ? "long-criteria" : ""}
+            className={criteria.length > 30 ? styles["long-criteria"] : ""}
             key={index}
           >
             {criteria.toUpperCase()}

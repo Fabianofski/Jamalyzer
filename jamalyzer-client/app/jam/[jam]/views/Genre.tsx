@@ -5,15 +5,16 @@ import BasicTable from "../components/BasicTable";
 import { generatePieChartData } from "@/utilities/PieChartData";
 import { PieChartCard } from "../cards/PieChartCard";
 import Loader from "../components/Loader";
+import styles from "@/styles/jam/views/View.module.css";
 
 function Genre({ jamData }: { jamData: jamData }): ReactElement {
   const genres = countGenres(jamData);
 
   if (jamData.extendedData)
     return (
-      <div className="view" id="Genre">
+      <div className={styles.view} id="Genre">
         <h1>Genre</h1>
-        <div className="card-grid">
+        <div className={styles["card-grid"]}>
           <JsxCard
             jsx={<BasicTable data={genres} title={"Genres"} amount={10} />}
             styleClass={"card card-col-span-4"}
@@ -28,7 +29,7 @@ function Genre({ jamData }: { jamData: jamData }): ReactElement {
     );
   else
     return (
-      <div className="view" id="Genre">
+      <div className={styles.view} id="Genre">
         <h1>Genre</h1>
         <Loader text={""} />
         <a href={"/jobs"}>This data is still processing...</a>

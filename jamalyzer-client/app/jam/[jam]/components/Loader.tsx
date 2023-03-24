@@ -1,4 +1,5 @@
 import React, { ReactElement } from "react";
+import styles from "@/styles/jam/components/Loader.module.css";
 
 type Props = {
   text?: string;
@@ -6,7 +7,7 @@ type Props = {
 
 export default function Loader({ text = "Loading..." }: Props): ReactElement {
   return (
-    <div className="loader loader--style2" title="1">
+    <div className={`${styles.loader} ${styles["loader--style2"]}`} title="1">
       <svg
         version="1.1"
         id="loader-1"

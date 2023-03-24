@@ -5,6 +5,7 @@ import { getJamPrimary } from "@/utilities/Color/ColorManager";
 import { pearsonCorrelation } from "@/utilities/Correlation";
 import { jamData } from "@/model/jamData/jamData";
 import { InlineMath } from "react-katex";
+import styles from "@/styles/jam/views/View.module.css";
 
 function karmaDescription(): ReactElement {
   return (
@@ -78,9 +79,9 @@ function Karma({ jamData }: { jamData: jamData }): ReactElement {
   const data = getLineChartData(jamData);
 
   return (
-    <div className="view" id="Karma">
+    <div className={styles.view} id="Karma">
       <h1>Karma</h1>
-      <div className="card-grid">
+      <div className={styles["card-grid"]}>
         <JsxCard jsx={karmaDescription()} styleClass={"card card-col-span-6"} />
         <LineChartCard
           data={data}

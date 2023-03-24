@@ -12,6 +12,7 @@ import Tools from "./views/Tools";
 import Tags from "./views/Tags";
 import JamTheme from "@/app/jam/[jam]/components/JamTheme";
 import { setJamTheme } from "@/utilities/Color/ColorManager";
+import styles from "@/styles/jam/Jam.module.css";
 
 async function Jam({
   params,
@@ -34,7 +35,7 @@ async function Jam({
   }
 
   return (
-    <div className="Jam">
+    <div className={styles.Jam}>
       <JamAnalysis jamData={jamData} errors={jamData.errors} />
     </div>
   );
@@ -61,7 +62,7 @@ function JamAnalysis({ jamData, errors }: JamAnalysisProps): ReactElement {
     return <></>;
   setJamTheme(jamData.jam.color, jamData.jam.secondary_color);
   return (
-    <div className="jam-container">
+    <div className={styles["jam-container"]}>
       <title>{"Jamalyzer | " + jamData.jam.Title}</title>
       <meta content={jamData.jam.Title} property="og:title" />
       <meta
@@ -77,7 +78,7 @@ function JamAnalysis({ jamData, errors }: JamAnalysisProps): ReactElement {
       <JamTheme jamData={jamData} />
 
       <Sidebar />
-      <div className="view-container">
+      <div className={styles["view-container"]}>
         <Overview jamData={jamData} />
         <Ranking jamData={jamData} />
         <Karma jamData={jamData} />

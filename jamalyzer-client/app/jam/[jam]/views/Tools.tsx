@@ -6,15 +6,16 @@ import { generatePieChartData } from "@/utilities/PieChartData";
 import { PieChartCard } from "../cards/PieChartCard";
 import BasicTable from "../components/BasicTable";
 import Loader from "../components/Loader";
+import styles from "@/styles/jam/views/View.module.css";
 
 function Tools({ jamData }: { jamData: jamData }): ReactElement {
   const tools = countTools(jamData);
 
   if (jamData.extendedData)
     return (
-      <div className="view" id="Tools">
+      <div className={styles.view} id="Tools">
         <h1>Tools</h1>
-        <div className="card-grid">
+        <div className={styles["card-grid"]}>
           <ToolAnalysis tools={tools} included={engines} title={"Engines"} />
           <ToolAnalysis
             tools={tools}
@@ -32,7 +33,7 @@ function Tools({ jamData }: { jamData: jamData }): ReactElement {
     );
   else
     return (
-      <div className="view" id="Tools">
+      <div className={styles.view} id="Tools">
         <h1>Tools</h1>
         <Loader text={""} />
         <a href={"/jobs"}>This data is still processing...</a>

@@ -5,18 +5,18 @@
   z-index: 1;
 }
 
-.tooltip-icon {
+.tooltipIcon {
   position: relative;
   right: 0;
 
   color: var(--primary-color);
 }
 
-.tooltip-icon:hover {
+.tooltipIcon:hover {
   color: var(--secondary-color);
 }
 
-.tooltip-text {
+.tooltipText {
   position: absolute;
   bottom: 100%;
 
@@ -42,12 +42,12 @@
 }
 
 @media (max-width: 1200px) {
-  .tooltip-text {
+  .tooltipText {
     right: 100%;
   }
 }
 
-.tooltip-icon:hover .tooltip-text {
+.tooltip:hover .tooltipText {
   visibility: visible;
   opacity: 1;
 }

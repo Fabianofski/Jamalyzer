@@ -1,11 +1,12 @@
 "use client";
 import React, { ReactElement } from "react";
 import ReactGA from "react-ga4";
+import styles from "@/styles/jam/components/Sidebar.module.css";
 
 function Sidebar(): ReactElement {
   return (
-    <div className="sidebar-container">
-      <div className="sidebar">
+    <div className={styles["sidebar-container"]}>
+      <div className={styles.sidebar}>
         <Chapter id={"Overview"} />
         <Chapter id={"Ranking"} />
         <Chapter id={"Karma"} />
@@ -30,7 +31,7 @@ function Chapter({ id }: { id: string }): ReactElement {
   };
 
   return (
-    <a href={`#${id}`} className="chapter" onClick={sendChapterGAEvent}>
+    <a href={`#${id}`} className={styles.chapter} onClick={sendChapterGAEvent}>
       <div>
         <p>{id}</p>
       </div>

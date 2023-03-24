@@ -9,6 +9,9 @@ import {
 } from "date-fns";
 import { jamData } from "@/model/jamData/jamData";
 import { jam } from "@/model/jamData/jam";
+import styles from "@/styles/jam/views/Overview.module.css";
+import viewStyles from "@/styles/jam/views/View.module.css";
+
 
 function JamHosts(jamData: jamData): ReactElement {
   return (
@@ -68,26 +71,26 @@ function JamStats(jam: jam): ReactElement {
 function Overview({ jamData }: { jamData: jamData }): ReactElement {
   return (
     <div
-      className="view"
+      className={viewStyles.view}
       id="Overview"
       style={{ backgroundColor: `${jamData.jam.bg_color}` }}
     >
-      <h1 className="jam-title">
+      <h1 className={styles["jam-title"]}>
         <a
           href={jamData.jam.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="jam-title-link"
+          className={styles["jam-title-link"]}
         >
           {jamData.jam.Title}
         </a>
       </h1>
       <img
-        className="jam-banner"
+        className={styles["jam-banner"]}
         src={jamData.jam.banner}
         alt="Game Jam Banner"
       />
-      <div className="card-grid">
+      <div className={viewStyles["card-grid"]}>
         <JsxCard jsx={JamHosts(jamData)} styleClass={"card card-col-span-2"} />
         <JsxCard
           jsx={JamDate(jamData.jam)}

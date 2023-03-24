@@ -5,6 +5,7 @@ import { PieChartCard } from "../cards/PieChartCard";
 import { getJamPrimaryVariations } from "@/utilities/Color/ColorManager";
 import { jamData } from "@/model/jamData/jamData";
 import { ChartData } from "chart.js";
+import styles from "@/styles/jam/views/View.module.css";
 
 function TeamDescription(): ReactElement {
   return (
@@ -22,9 +23,9 @@ function Team({ jamData }: { jamData: jamData }): ReactElement {
   const teamStats = getTeamStats(jamData);
 
   return (
-    <div className="view" id="Team">
+    <div className={styles.view} id="Team">
       <h1>Team</h1>
-      <div className="card-grid">
+      <div className={styles["card-grid"]}>
         <JsxCard jsx={TeamDescription()} styleClass={"card card-col-span-4"} />
         <PieChartCard
           data={pieData}

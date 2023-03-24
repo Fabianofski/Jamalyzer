@@ -5,6 +5,7 @@ import { PieChartCard } from "../cards/PieChartCard";
 import { getJamPrimaryVariations } from "@/utilities/Color/ColorManager";
 import { jamData } from "@/model/jamData/jamData";
 import { ChartData } from "chart.js";
+import styles from "@/styles/jam/views/View.module.css";
 
 function PlatformDescription(): ReactElement {
   return (
@@ -23,9 +24,9 @@ function Platform({ jamData }: { jamData: jamData }): ReactElement {
   const pieData = getPieChartData(jamData);
 
   return (
-    <div className="view" id="Platform">
+    <div className={styles.view} id="Platform">
       <h1>Platform</h1>
-      <div className="card-grid">
+      <div className={styles["card-grid"]}>
         <PieChartCard
           data={pieData}
           styleClass={"card card-col-span-2 card-row-span-3"}

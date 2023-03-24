@@ -1,12 +1,5 @@
 import "@/styles/App.css";
-import "@/styles/Loader.css";
-import "@/styles/jam/Jam.css";
 import "@/styles/jam/cards/Card.css";
-import "@/styles/jam/cards/ToolTip.css";
-import "@/styles/jam/components/Loader.css";
-import "@/styles/jam/components/PaginationTable.css";
-import "@/styles/jam/components/Sidebar.css";
-import "@/styles/jam/views/View.css";
 import Nav from "@/components/wireframe/Nav";
 import React from "react";
 import { Metadata } from "next";
@@ -32,7 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en" data-theme="light">
       <body>
-      <script dangerouslySetInnerHTML={{__html: colorFunction}}/>
+        <script dangerouslySetInnerHTML={{__html: colorFunction}}/>
         <div className={"App"}>
           <CookieConsentBanner />
           <Nav />

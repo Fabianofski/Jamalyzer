@@ -1,4 +1,5 @@
 import React, { ReactElement } from "react";
+import styles from "@/styles/jam/components/PaginationTable.module.css";
 
 interface Props {
   postsPerPage: number;
@@ -19,7 +20,7 @@ function Pagination({
   };
 
   return (
-    <div className="pagination">
+    <div className={styles.pagination}>
       <button
         onClick={() => {
           paginate(clamp(currentPage - 10, 1, maxPages));
@@ -32,7 +33,7 @@ function Pagination({
         }}>
         {"<"}
       </button>
-      <p className={"page-number"}>
+      <p className={styles["page-number"]}>
         {currentPage} / {maxPages}
       </p>
       <button
