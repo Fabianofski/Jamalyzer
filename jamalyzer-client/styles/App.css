@@ -6,6 +6,13 @@
 }
 
 @font-face {
+  font-family: "Poppins";
+  src: local("Poppins"), url("../fonts/Poppins-Black.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
   font-family: "Rancho";
   src: local("Rancho"), url("../fonts/Rancho-Regular.ttf") format("truetype");
   font-weight: 400;
