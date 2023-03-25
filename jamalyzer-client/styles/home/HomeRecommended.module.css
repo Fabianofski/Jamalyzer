@@ -1,0 +1,28 @@
+.home-recommended-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  color: var(--text-color);
+
+  margin-bottom: 3rem;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 25rem);
+  justify-content: center;
+  gap: 3rem;
+
+  width: 100vw;
+}
+
+.card {
+  height: 30rem;
+
+  border: 2px solid var(--primary-color);
+  border-radius: 10px;
+
+  box-shadow: var(--box-shadow);
+}

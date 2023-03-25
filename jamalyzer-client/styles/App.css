@@ -39,6 +39,7 @@
     rgba(255, 255, 255, 0) 97%,
     rgba(255, 255, 255, 1) 100%
   );
+  --hero-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0) 30%, #ffffff 80%);
 }
 
 [data-theme="dark"] {
@@ -56,6 +57,7 @@
     rgba(29, 29, 42, 0) 97%,
     rgba(29, 29, 42, 1) 100%
   );
+  --hero-gradient: linear-gradient(180deg, rgba(29, 29, 42, 0) 0%, #1D1D2A 70%);
 }
 
 * {
