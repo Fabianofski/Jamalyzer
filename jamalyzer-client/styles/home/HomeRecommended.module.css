@@ -11,18 +11,9 @@
 
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, 25rem);
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 25rem));
   justify-content: center;
   gap: 3rem;
 
   width: 100vw;
-}
-
-.card {
-  height: 30rem;
-
-  border: 2px solid var(--primary-color);
-  border-radius: 10px;
-
-  box-shadow: var(--box-shadow);
 }

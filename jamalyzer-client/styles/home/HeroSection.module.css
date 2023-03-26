@@ -11,7 +11,7 @@
 
   min-height: 90vh;
 
-  padding-top: 12rem;
+  padding-top: 10vw;
 }
 
 .hero-section h1 {
@@ -27,7 +27,7 @@
 
 .hero-banner {
   position: absolute;
-  z-index: -2;
+  z-index: -4;
   top: 3rem;
   left: 0;
 
@@ -39,7 +39,7 @@
 
 .drop-shadow {
   position: absolute;
-  z-index: -1;
+  z-index: -3;
   top: 3rem;
   left: 0;
 
