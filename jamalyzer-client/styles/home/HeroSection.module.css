@@ -12,6 +12,7 @@
   min-height: 90vh;
 
   padding-top: 10vw;
+  padding-bottom: 10vw;
 }
 
 .hero-section h1 {
@@ -35,6 +36,7 @@
   height: 100%;
 
   object-fit: cover;
+  object-position: 50% 0;
 }
 
 .drop-shadow {
