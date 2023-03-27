@@ -3,9 +3,12 @@ import React, { useRef, useState } from "react";
 import styles from "@/styles/home/HomeJamCard.module.css";
 import { jamCard } from "@/model/jamData/jamCard";
 import Image from "next/image";
+import ReactGA from "react-ga4";
+import { useRouter } from "next/navigation";
 
 function HomeJamCard({ jam }: { jam: jamCard }) {
   const cardRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
 
   const tiltCard = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!cardRef.current) return;
@@ -25,6 +28,15 @@ function HomeJamCard({ jam }: { jam: jamCard }) {
     cardRef.current.style.setProperty("--rotate-x", "0");
   };
 
+  const onClick = (): void => {
+    if (ReactGA.isInitialized)
+      ReactGA.event({
+        category: "Jam Analysis",
+        action: "Analyze recommended jam",
+        label: jam.name,
+      });
+  };
+
   return (
     <div
       ref={cardRef}
@@ -41,7 +53,13 @@ function HomeJamCard({ jam }: { jam: jamCard }) {
         <h3> {jam.joined} joined </h3>
         <h3> {jam.submitted} Entries </h3>
       </div>
-      <button className={styles["analyze-button"]}>ANALYZE</button>
+      <a
+        className={styles["analyze-button"]}
+        href={`/jam/${jam.link.replace("https://itch.io/jam/", "")}`}
+        onClick={onClick}
+      >
+        ANALYZE
+      </a>
     </div>
   );
 }
