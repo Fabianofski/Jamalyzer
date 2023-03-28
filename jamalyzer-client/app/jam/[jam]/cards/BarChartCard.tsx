@@ -58,7 +58,7 @@ export function BarChartCard({
     const style = getComputedStyle(document.documentElement);
     setGridColor(style.getPropertyValue("--darker-background-color"));
     setChartColor(style.getPropertyValue("--text-color"));
-  });
+  }, [setGridColor, setChartColor]);
 
   updateStyle(setChartColor, setGridColor);
 

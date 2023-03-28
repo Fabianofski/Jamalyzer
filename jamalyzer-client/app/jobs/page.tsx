@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import useWebSocket from "react-use-websocket";
 import styles from "@/styles/jobs/jobs.module.css";
 import { jamJob } from "@/model/jamJobs/jobList";
+import Image from "next/image";
 
 let WS_URL = `ws://localhost:7071`;
 // let WS_URL = `ws://${window.location.hostname}:7071`;
@@ -43,7 +44,7 @@ function Jobs() {
 function Job({ job }: { job: jamJob }) {
   return (
     <div className={styles.job}>
-      <img src={job.jamLogo} alt={"jam-logo"} />
+      <Image src={job.jamLogo} alt={"jam-logo"} width={1000} height={1000} />
       <h2 className={styles.jobTitle}>{job.jamTitle}</h2>
       <div className={styles.jobProgress}>
         <h3>{job.jobState}</h3>

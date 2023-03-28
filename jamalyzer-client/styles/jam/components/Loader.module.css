@@ -45,6 +45,9 @@
   color: var(--primary-color);
 }
 
-.jamLoader img {
+.loadingImage {
+  position: relative;
+
+  width: 256px;
   height: 64px;
 }

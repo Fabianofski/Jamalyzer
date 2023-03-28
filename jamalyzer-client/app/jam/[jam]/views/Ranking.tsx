@@ -117,7 +117,7 @@ function EmptyTableEntry({ jamData }: { jamData: jamData }): ReactElement {
       <td>-</td>
       <td>-</td>
       {jamData.criteria.map((criteria, index) => {
-        return <td>-</td>;
+        return <td key={index}>-</td>;
       })}
       <td>-</td>
       <td>-</td>
