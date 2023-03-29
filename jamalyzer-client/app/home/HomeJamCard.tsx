@@ -8,7 +8,6 @@ import ReactGA from "react-ga4";
 function HomeJamCard({ jam }: { jam: jamCard }) {
   const cardRef = useRef<HTMLDivElement>(null);
 
-  const prefersReducedMotion = getPrefersReducedMotion();
   let targetY = 0;
   let targetX = 0;
   let currentY = 0;
@@ -38,11 +37,11 @@ function HomeJamCard({ jam }: { jam: jamCard }) {
   }
 
   function lerp(a: number, b: number, speed: number = 10) {
-    return a + (b - a) / speed;
+    return Number((a + (b - a) / speed).toFixed(2));
   }
 
   useEffect(() => {
-    if (!prefersReducedMotion) setInterval(interpolate, 20);
+    if (!getPrefersReducedMotion()) setInterval(interpolate, 20);
   }, []);
 
   const onClick = (): void => {

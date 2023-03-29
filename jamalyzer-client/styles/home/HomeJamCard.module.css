@@ -57,6 +57,7 @@
   height: 80%;
 
   object-fit: cover;
+  object-position: top;
 }
 
 .background {

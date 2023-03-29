@@ -6,13 +6,12 @@
   gap: 4rem;
   flex: 1;
 
-  text-align: center;
+  height: 55rem;
+  margin-top: 8rem;
+  margin-bottom: 22rem;
+
   color: white;
-
-  min-height: 90vh;
-
-  padding-top: 10vw;
-  padding-bottom: 10vw;
+  text-align: center;
 }
 
 .hero-section h1 {
@@ -26,27 +25,27 @@
   margin: 0;
 }
 
-.hero-banner {
+.hero-banner,
+.drop-shadow {
   position: absolute;
-  z-index: -4;
   top: 3rem;
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%);
 
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  max-width: 150rem;
+  height: 60rem;
+}
+
+.hero-banner {
+  z-index: -4;
 
   object-fit: cover;
   object-position: 50% 0;
 }
 
 .drop-shadow {
-  position: absolute;
   z-index: -3;
-  top: 3rem;
-  left: 0;
-
-  width: 100%;
-  height: 100%;
 
   background: var(--hero-gradient);
 }
