@@ -1,32 +1,49 @@
 "use client";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import styles from "@/styles/home/HomeJamCard.module.css";
 import { jamCard } from "@/model/jamData/jamCard";
 import Image from "next/image";
 import ReactGA from "react-ga4";
-import { useRouter } from "next/navigation";
 
 function HomeJamCard({ jam }: { jam: jamCard }) {
   const cardRef = useRef<HTMLDivElement>(null);
-  const router = useRouter();
+
+  const prefersReducedMotion = getPrefersReducedMotion();
+  let targetY = 0;
+  let targetX = 0;
+  let currentY = 0;
+  let currentX = 0;
 
   const tiltCard = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!cardRef.current) return;
     const rect = cardRef.current.getBoundingClientRect();
     const xCenter = rect.left + rect.width / 2;
     const yCenter = rect.top + rect.height / 2;
-    const yRotation = ((e.clientX - xCenter) / (rect.width / 2)) * 10;
-    const xRotation = ((yCenter - e.clientY) / (rect.height / 2)) * 10;
-
-    cardRef.current.style.setProperty("--rotate-y", yRotation + "deg");
-    cardRef.current.style.setProperty("--rotate-x", xRotation + "deg");
+    targetY = ((e.clientX - xCenter) / (rect.width / 2)) * 10;
+    targetX = ((yCenter - e.clientY) / (rect.height / 2)) * 10;
   };
 
   const resetTilt = () => {
-    if (!cardRef.current) return;
-    cardRef.current.style.setProperty("--rotate-y", "0");
-    cardRef.current.style.setProperty("--rotate-x", "0");
+    targetY = 0;
+    targetX = 0;
   };
+
+  function interpolate() {
+    if (!cardRef.current) return;
+
+    currentX = lerp(currentX, targetX);
+    currentY = lerp(currentY, targetY);
+    cardRef.current.style.setProperty("--rotate-y", currentY + "deg");
+    cardRef.current.style.setProperty("--rotate-x", currentX + "deg");
+  }
+
+  function lerp(a: number, b: number, speed: number = 10) {
+    return a + (b - a) / speed;
+  }
+
+  useEffect(() => {
+    if (!prefersReducedMotion) setInterval(interpolate, 20);
+  }, []);
 
   const onClick = (): void => {
     if (ReactGA.isInitialized)
@@ -101,6 +118,12 @@ function Hosts({ jam }: { jam: jamCard }) {
         ))}
     </p>
   );
+}
+
+function getPrefersReducedMotion() {
+  const QUERY = "(prefers-reduced-motion: no-preference)";
+  const mediaQueryList = window.matchMedia(QUERY);
+  return !mediaQueryList.matches;
 }
 
 export default HomeJamCard;
