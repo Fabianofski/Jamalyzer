@@ -6,10 +6,7 @@ import { jamJob } from "@/model/jamJobs/jobList";
 import Image from "next/image";
 
 let WS_URL = `ws://localhost:7071`;
-// let WS_URL = `ws://${window.location.hostname}:7071`;
-// if (process.env.NODE_ENV === "production")
-//   WS_URL = `wss://${window.location.hostname}/ws`;
-// console.log(WS_URL);
+if (process.env.NODE_ENV === "production") WS_URL = `wss://jamalyzer.com/ws`;
 
 function Jobs() {
   const [jobs, setJobs] = useState<jamJob[]>([]);

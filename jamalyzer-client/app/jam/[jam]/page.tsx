@@ -14,6 +14,11 @@ import JamTheme from "@/app/jam/[jam]/components/JamTheme";
 import { setJamTheme } from "@/utilities/Color/ColorManager";
 import styles from "@/styles/jam/Jam.module.css";
 
+const host =
+  process.env.NODE_ENV === "development"
+    ? "http://localhost:3001"
+    : "http://api";
+
 async function Jam({
   params,
 }: {
@@ -21,10 +26,9 @@ async function Jam({
 }): Promise<ReactElement> {
   const jamName = params.jam;
 
-  const response = await fetch(
-    `http://localhost:3001/api/jamData?jamName=${jamName}`,
-    { next: { revalidate: 0 } }
-  );
+  const response = await fetch(`${host}/api/jamData?jamName=${jamName}`, {
+    next: { revalidate: 0 },
+  });
   const jamData = await response.json();
   if (!jamData.errors) {
     if (ReactGA.isInitialized)
