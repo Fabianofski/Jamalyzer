@@ -33,16 +33,14 @@
   --box-shadow-color: rgba(0, 0, 0, 0.25);
   --box-shadow: 10px 10px 30px var(--box-shadow-color);
   --home-jam-gradient: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 1) 0%,
-    rgba(255, 255, 255, 0) 3%,
-    rgba(255, 255, 255, 0) 97%,
-    rgba(255, 255, 255, 1) 100%
-  );
-  --hero-gradient: linear-gradient(
     180deg,
     rgba(255, 255, 255, 0) 0%,
     #ffffff 70%
+  );
+  --hero-gradient: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0) 25%,
+    #ffffff 100%
   );
 }
 
@@ -54,14 +52,8 @@
   --darker-background-color: #0a0a10;
   --box-shadow-color: rgba(0, 0, 0, 0.6);
   --box-shadow: 10px 10px 30px var(--box-shadow-color);
-  --home-jam-gradient: linear-gradient(
-    90deg,
-    rgba(29, 29, 42, 1) 0%,
-    rgba(29, 29, 42, 0) 3%,
-    rgba(29, 29, 42, 0) 97%,
-    rgba(29, 29, 42, 1) 100%
-  );
   --hero-gradient: linear-gradient(180deg, rgba(29, 29, 42, 0) 0%, #1d1d2a 70%);
+  --home-jam-gradient: var(--hero-gradient);
 }
 
 * {
