@@ -39,11 +39,11 @@ async function extractData($: any, el: CheerioAPI): Promise<jamCard> {
     });
 
   const link = "https://itch.io" + $(".primary_info a", el).attr("href");
-  const banner = await getBanner(link);
+  const icon = await getIcon(link);
 
   return {
     name: $(".primary_info a", el).text(),
-    icon: banner,
+    icon: icon,
     link: link,
     hosts: hosts,
     time: $(".date_countdown", el).text(),
@@ -52,13 +52,13 @@ async function extractData($: any, el: CheerioAPI): Promise<jamCard> {
   };
 }
 
-async function getBanner(url: string): Promise<string> {
+async function getIcon(url: string): Promise<string> {
   try {
     const response = await axios.get(url);
     const html = response.data;
     const $ = cheerio.load(html);
 
-    return $(".jam_banner").attr("src") || "";
+    return $("meta[property='og:image']").attr("content") || "";
   } catch (e: any) {
     console.log(e);
     return "";

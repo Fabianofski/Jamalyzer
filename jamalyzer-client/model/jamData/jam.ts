@@ -1,6 +1,7 @@
 export type jam = {
   Title: string;
   banner: string;
+  icon: string;
   id: number;
   url: string;
   hosts: host[];

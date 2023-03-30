@@ -12,7 +12,6 @@ import { jam } from "@/model/jamData/jam";
 import styles from "@/styles/jam/views/Overview.module.css";
 import viewStyles from "@/styles/jam/views/View.module.css";
 
-
 function JamHosts(jamData: jamData): ReactElement {
   return (
     <div>
@@ -87,7 +86,7 @@ function Overview({ jamData }: { jamData: jamData }): ReactElement {
       </h1>
       <img
         className={styles["jam-banner"]}
-        src={jamData.jam.banner}
+        src={jamData.jam.banner || jamData.jam.icon}
         alt="Game Jam Banner"
       />
       <div className={viewStyles["card-grid"]}>

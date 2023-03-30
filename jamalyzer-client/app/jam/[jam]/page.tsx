@@ -11,7 +11,7 @@ import { jamData } from "@/model/jamData/jamData";
 import Tools from "./views/Tools";
 import Tags from "./views/Tags";
 import JamTheme from "@/app/jam/[jam]/components/JamTheme";
-import { setJamTheme } from "@/utilities/Color/ColorManager";
+import { getJamPrimary, setJamTheme } from "@/utilities/Color/ColorManager";
 import styles from "@/styles/jam/Jam.module.css";
 
 const host =
@@ -68,15 +68,15 @@ function JamAnalysis({ jamData, errors }: JamAnalysisProps): ReactElement {
   return (
     <div className={styles["jam-container"]}>
       <title>{"Jamalyzer | " + jamData.jam.Title}</title>
-      <meta content={jamData.jam.Title} property="og:title" />
+      <meta content={"Jamalyzed: " + jamData.jam.Title} property="og:title" />
       <meta
         content={`Analyze the ${jamData.jam.Title} on Jamalyzer.com! Your go to destination for in depth analysis of game jams!`}
         property="og:description"
       />
-      <meta content={jamData.jam.banner} property="og:image" />
+      <meta content={jamData.jam.icon} property="og:image" />
       <meta name="twitter:card" content="summary_large_image" />
       <meta
-        content={jamData.jam.color}
+        content={getJamPrimary()}
         data-react-helmet="true"
         name="theme-color"
       />

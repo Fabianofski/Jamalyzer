@@ -21,7 +21,10 @@ async function fetchJamData(jamName: string) {
     console.log("Found cached data in database");
     if (dbData.version !== process.env.VERSION)
       console.log("Cached Data is deprecated");
-    else if (!dbData.extendedData && await queue.getJob(`jam_${jamId}`) === undefined)
+    else if (
+      !dbData.extendedData &&
+      (await queue.getJob(`jam_${jamId}`)) === undefined
+    )
       console.log("Data is not extended yet and not in queue");
     else return dbData;
   }
@@ -62,6 +65,7 @@ const joinEntriesAndResults = (entries: entryList, results: resultList) => {
     jam: {
       Title: "",
       banner: "",
+      icon: "",
       bg_color: "",
       color: "",
       ended: "",

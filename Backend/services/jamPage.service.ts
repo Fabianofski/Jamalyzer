@@ -11,6 +11,7 @@ const fetchJamPage = async (jamURL: string, jamId: string) => {
   const data: jam = {
     Title: "",
     banner: "",
+    icon: "",
     bg_color: "",
     color: "",
     ended: "",
@@ -43,7 +44,7 @@ function extractGeneralInfo(
   data["banner"] = banner ? banner : "";
   data["id"] = Number(jamId);
   data["url"] = jamURL;
-  data["hosts"] = [];
+  data["icon"] = $("meta[property='og:image']").attr("content") || "";
 }
 
 function extractColor($: CheerioAPI, data: jam) {
