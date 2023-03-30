@@ -5,9 +5,18 @@ import jamList from "@/public/jamList.json";
 import { jamCard } from "@/model/jamData/jamCard";
 import HomeJamCard from "@/app/home/HomeJamCard";
 
-function HomeRecommended({ jams }: { jams: jamCard[] }) {
+function shuffle(array: jamCard[]): jamCard[] {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
+function HomeRecommended() {
   const gridRef = useRef<HTMLDivElement>(null);
   const [columnCount, setColumnCount] = useState<number>(4);
+  const [jams, setJams] = useState<jamCard[]>();
 
   function getGridColumns() {
     if (!gridRef.current) return;
@@ -18,13 +27,14 @@ function HomeRecommended({ jams }: { jams: jamCard[] }) {
     setColumnCount(gridColumnCount);
   }
   useEffect(() => {
+    setJams(shuffle(jamList.jams));
     setInterval(getGridColumns, 200);
   }, []);
 
   return (
     <div className={styles["home-recommended-section"]}>
       <div className={styles["card-grid"]} ref={gridRef}>
-        {jams.slice(0, columnCount * 2).map((jam, index) => {
+        {(jams || jamList.jams).slice(0, columnCount * 2).map((jam, index) => {
           return <HomeJamCard jam={jam} key={index} />;
         })}
       </div>
