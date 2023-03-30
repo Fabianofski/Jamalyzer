@@ -17,7 +17,7 @@ import styles from "@/styles/jam/Jam.module.css";
 const host =
   process.env.NODE_ENV === "development"
     ? "http://localhost:3001"
-    : "http://api";
+    : "https://jamalyzer.com";
 
 async function Jam({
   params,
@@ -74,6 +74,7 @@ function JamAnalysis({ jamData, errors }: JamAnalysisProps): ReactElement {
         property="og:description"
       />
       <meta content={jamData.jam.banner} property="og:image" />
+      <meta name="twitter:card" content="summary_large_image" />
       <meta
         content={jamData.jam.color}
         data-react-helmet="true"
