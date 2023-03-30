@@ -48,6 +48,7 @@ services:
     volumes:
       - ./jamalyzer-client:/app
       - /app/.next
+      - /app/node_modules
     restart: unless-stopped
     depends_on:
       - api
