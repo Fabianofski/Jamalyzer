@@ -1,48 +1,52 @@
 "use client";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "@/styles/home/HomeJamCard.module.css";
 import { jamCard } from "@/model/jamData/jamCard";
 import Image from "next/image";
 import ReactGA from "react-ga4";
+import { clearInterval } from "timers";
 
 function HomeJamCard({ jam }: { jam: jamCard }) {
   const cardRef = useRef<HTMLDivElement>(null);
 
-  let targetY = 0;
-  let targetX = 0;
-  let currentY = 0;
-  let currentX = 0;
+  const [prefersReducedMotion, setPrefersReducedMotion] =
+    useState<boolean>(true);
+
+  const [targetY, setTargetY] = useState(0);
+  const [targetX, setTargetX] = useState(0);
+  const [currentY, setCurrentY] = useState(0);
+  const [currentX, setCurrentX] = useState(0);
 
   const tiltCard = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!cardRef.current) return;
     const rect = cardRef.current.getBoundingClientRect();
     const xCenter = rect.left + rect.width / 2;
     const yCenter = rect.top + rect.height / 2;
-    targetY = ((e.clientX - xCenter) / (rect.width / 2)) * 10;
-    targetX = ((yCenter - e.clientY) / (rect.height / 2)) * 10;
+    setTargetY(((e.clientX - xCenter) / (rect.width / 2)) * 10);
+    setTargetX(((yCenter - e.clientY) / (rect.height / 2)) * 10);
   };
 
   const resetTilt = () => {
-    targetY = 0;
-    targetX = 0;
+    setTargetY(0);
+    setTargetX(0);
   };
 
   function interpolate() {
     if (!cardRef.current) return;
 
-    currentX = lerp(currentX, targetX);
-    currentY = lerp(currentY, targetY);
+    setCurrentX(lerp(currentX, targetX));
+    setCurrentY(lerp(currentY, targetY));
     cardRef.current.style.setProperty("--rotate-y", currentY + "deg");
     cardRef.current.style.setProperty("--rotate-x", currentX + "deg");
   }
 
-  function lerp(a: number, b: number, speed: number = 10) {
+  function lerp(a: number, b: number, speed: number = 200) {
     return Number((a + (b - a) / speed).toFixed(2));
   }
 
   useEffect(() => {
-    if (!getPrefersReducedMotion()) setInterval(interpolate, 20);
-  }, []);
+    if (!getPrefersReducedMotion()) interpolate();
+  }, [targetY, targetX, currentX, currentY]);
 
   const onClick = (): void => {
     if (ReactGA.isInitialized)
