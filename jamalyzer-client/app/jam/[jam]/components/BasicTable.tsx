@@ -34,6 +34,7 @@ function BasicTable({
           {data.slice(0, amount - 1).map((tool, idx) => {
             return (
               <TableEntry
+                key={idx}
                 amount={tool.amount}
                 name={tool.name.toUpperCase()}
                 rank={idx + 1}
