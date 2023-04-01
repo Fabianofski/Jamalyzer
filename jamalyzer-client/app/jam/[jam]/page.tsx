@@ -13,6 +13,7 @@ import Tags from "./views/Tags";
 import JamTheme from "@/app/jam/[jam]/components/JamTheme";
 import { getJamPrimary, setJamTheme } from "@/utilities/Color/ColorManager";
 import styles from "@/styles/jam/Jam.module.css";
+import GMTKDisclaimer from "@/app/jam/[jam]/components/GMTKDisclaimer";
 
 const host =
   process.env.NODE_ENV === "development"
@@ -37,11 +38,13 @@ async function Jam({
         page: window.location.pathname,
       });
   }
-
   return (
-    <div className={styles.Jam}>
-      <JamAnalysis jamData={jamData} errors={jamData.errors} />
-    </div>
+    <>
+      {jamName === "gmtk-2020" ? <GMTKDisclaimer /> : <></>}
+      <div className={styles.Jam}>
+        <JamAnalysis jamData={jamData} errors={jamData.errors} />
+      </div>
+    </>
   );
 }
 
