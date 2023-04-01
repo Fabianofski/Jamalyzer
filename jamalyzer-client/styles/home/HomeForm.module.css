@@ -3,6 +3,8 @@
   align-items: center;
   justify-content: center;
 
+  position: relative;
+
   width: 90vw;
   max-width: 50rem;
 }
@@ -24,6 +26,51 @@
 
 .form input:focus {
   border: 1px solid var(--primary-color);
+}
+
+.form.error {
+  animation: shake 0.2s;
+}
+
+@keyframes shake {
+  0% {
+    transform: translate(1px, 1px);
+  }
+  20% {
+    transform: translate(-2px, 0px);
+  }
+  40% {
+    transform: translate(2px, -1px);
+  }
+  60% {
+    transform: translate(-2px, 1px);
+  }
+  80% {
+    transform: translate(-2px, -1px);
+  }
+  100% {
+    transform: translate(0, 0) rotate(0);
+  }
+}
+
+.errorText {
+  position: absolute;
+  top: 150%;
+
+  color: rgba(var(--primary-color-rgb), 0);
+  animation: fadeOut 3s;
+}
+
+@keyframes fadeOut {
+  0% {
+    color: rgba(var(--primary-color-rgb), 1);
+  }
+  50% {
+    color: rgba(var(--primary-color-rgb), 1);
+  }
+  100% {
+    color: rgba(var(--primary-color-rgb), 0);
+  }
 }
 
 .submit {

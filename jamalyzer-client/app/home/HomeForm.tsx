@@ -1,26 +1,38 @@
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { useState } from "react";
 import styles from "@/styles/home/HomeForm.module.css";
 import ReactGA from "react-ga4";
 
 function HomeForm() {
   let input = "";
   const router = useRouter();
+  const [error, setError] = useState<string>("");
+  const [shake, setShake] = useState<boolean>(false);
 
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     input = e.target.value;
   };
 
-  const onSubmit = (): void => {
-    if (!input.startsWith("https://itch.io/jam/"))
+  const onSubmit = (e: any): void => {
+    e.preventDefault();
+    if (!input.startsWith("https://itch.io/jam/")) {
+      setError("Wrong Link!");
+      setShake(true);
+      setTimeout(() => {
+        setShake(false);
+      }, 500);
       return;
+    }
     const jamName = input.replace("https://itch.io/jam/", "");
     sendAnalyticsEvent(jamName);
     router.push(`/jam/${jamName}`);
   };
 
-  return(
-    <div className={styles.form}>
+  return (
+    <form
+      className={`${styles.form} ${shake ? styles.error : ""}`}
+      onSubmit={onSubmit}
+    >
       <input
         type="text"
         placeholder="https://itch.io/jam/..."
@@ -32,7 +44,10 @@ function HomeForm() {
       <button onClick={onSubmit} className={styles.submit}>
         ANALYZE
       </button>
-    </div>
+      <p className={styles.errorText} key={shake ? "1" : "0"}>
+        {error}
+      </p>
+    </form>
   );
 }
 

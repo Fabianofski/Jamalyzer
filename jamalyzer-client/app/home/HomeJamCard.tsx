@@ -45,7 +45,7 @@ function HomeJamCard({ jam }: { jam: jamCard }) {
   }
 
   useEffect(() => {
-    if (!getPrefersReducedMotion()) interpolate();
+    if (!getPrefersReducedMotion() && window.innerWidth > 1250) interpolate();
   }, [targetY, targetX, currentX, currentY]);
 
   const onClick = (): void => {
