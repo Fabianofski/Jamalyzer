@@ -1,17 +1,22 @@
 import React, { ReactElement } from "react";
-import styles from "@/styles/legal/Legal.module.css"
+import styles from "@/styles/legal/Legal.module.css";
 import creditsStyles from "@/styles/legal/Credits.module.css";
 
 function Credits(): ReactElement {
   return (
-    <div className={styles.legalContainer}>
+    <div className={styles.legalContainer} style={{ marginBottom: "5rem" }}>
       <title>Jamalyzer | Credits</title>
 
-      <h1 style={{ color: "var(--text-color)" }}>Credits</h1>
+      <h1>Credits</h1>
+
       <div className={styles.legalView}>
         <h1>FABIAN</h1>
         <div className={creditsStyles.creditsWrapper}>
-          <img src="/logo.png" alt="F4B1 Logo" className={creditsStyles.profile}></img>
+          <img
+            src="/logo.png"
+            alt="F4B1 Logo"
+            className={creditsStyles.profile}
+          ></img>
           <div className={creditsStyles.information}>
             <Link
               site={"Itch.io - F4B1"}
@@ -28,6 +33,35 @@ function Credits(): ReactElement {
           </div>
         </div>
       </div>
+
+      <div className={styles.legalView}>
+        <h1>SANTUMERINO</h1>
+        <div className={creditsStyles.creditsWrapper}>
+          <img
+            src="/santum-logo.png"
+            alt="Santum Logo"
+            className={creditsStyles.profile}
+          ></img>
+          <div className={creditsStyles.information}>
+            <Link
+              site={"Itch.io - Santumerino"}
+              link={"https://santumerino.itch.io"}
+              icon={"https://static.itch.io/images/itchio-textless-black.svg"}
+            />
+            <a
+              className={creditsStyles.link}
+              href={"https://www.santumerino.com/"}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <h2>santumerino.com</h2>
+            </a>
+          </div>
+        </div>
+        <h3 style={{ padding: "1rem 0 0 0", margin: "0" }}>
+          Thanks for the amazing banner art!
+        </h3>
+      </div>
     </div>
   );
 }
@@ -40,8 +74,13 @@ interface Props {
 
 function Link({ site, link, icon }: Props): ReactElement {
   return (
-    <a className={creditsStyles.link} href={link} target="_blank" rel="noopener noreferrer">
-      <img src={icon} alt={`${site} Icon`} />
+    <a
+      className={creditsStyles.link}
+      href={link}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <img src={icon} alt={`${site} Icon`} className={creditsStyles.icon} />
       <h2>{site}</h2>
     </a>
   );

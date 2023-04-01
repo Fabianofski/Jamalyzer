@@ -5,6 +5,8 @@
   align-items: center;
   flex-direction: column;
 
+  color: var(--text-color);
+
   width: 100vw;
   padding: 2rem;
 }
@@ -20,8 +22,6 @@
   height: fit-content;
   padding: 0 3em 3em 3em;
   background: var(--background-color);
-
-  color: var(--text-color);
 
   box-shadow: var(--box-shadow);
 

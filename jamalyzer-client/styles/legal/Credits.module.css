@@ -43,11 +43,13 @@
 
 .link img {
   width: 2rem;
+}
 
+.link .icon {
   filter: brightness(0%);
 }
 
-.link:hover img {
+.link:hover .icon {
   filter: invert(48%) sepia(84%) saturate(3421%) hue-rotate(328deg)
     brightness(108%) contrast(94%);
 }
