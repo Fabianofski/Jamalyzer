@@ -16,7 +16,7 @@ function HomeForm() {
   const onSubmit = (e: any): void => {
     e.preventDefault();
     if (!input.startsWith("https://itch.io/jam/")) {
-      setError("Wrong Link!");
+      setError("The link provided is not valid.");
       setShake(true);
       setTimeout(() => {
         setShake(false);

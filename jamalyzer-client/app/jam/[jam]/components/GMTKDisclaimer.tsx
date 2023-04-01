@@ -12,17 +12,32 @@ function GMTKDisclaimer() {
   return (
     <div className={styles.container} ref={disclaimerRef}>
       <div className={styles.banner}>
-        <h1>WE'RE SORRY</h1>
+        <h1>WE&apos;RE SORRY</h1>
 
         <p>
           Unfortunately, the data for this jam is corrupted as the itch.io API
-          only provides the 20 "TOP MARKS" games when requesting the results.
+          only provides the 20 &quot;TOP MARKS&quot; games when requesting the
+          results.
         </p>
         <p>
-          The <a href={"itch.io"}>entries.json</a> file linked here is
-          functional, but the <a href={"itch.io"}>results.json</a>
-          &nbsp;is broken. It's still possible to view the jam's data, but
-          please be aware that some charts may not work, and the data is
+          The{" "}
+          <a
+            href={"https://itch.io/jam/11065/entries.json"}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            entries.json
+          </a>{" "}
+          file linked here is functional, but the{" "}
+          <a
+            href={"https://itch.io/jam/11065/results.json"}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            results.json
+          </a>
+          &nbsp;is broken. It&apos;s still possible to view the jam&apos;s data,
+          but please be aware that some charts may not work, and the data is
           incomplete.
         </p>
 

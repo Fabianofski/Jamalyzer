@@ -4,18 +4,15 @@ import styles from "@/styles/home/HomeJamCard.module.css";
 import { jamCard } from "@/model/jamData/jamCard";
 import Image from "next/image";
 import ReactGA from "react-ga4";
-import { clearInterval } from "timers";
 
 function HomeJamCard({ jam }: { jam: jamCard }) {
   const cardRef = useRef<HTMLDivElement>(null);
-
-  const [prefersReducedMotion, setPrefersReducedMotion] =
-    useState<boolean>(true);
 
   const [targetY, setTargetY] = useState(0);
   const [targetX, setTargetX] = useState(0);
   const [currentY, setCurrentY] = useState(0);
   const [currentX, setCurrentX] = useState(0);
+  const [num, setNum] = useState(0);
 
   const tiltCard = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!cardRef.current) return;
@@ -31,22 +28,29 @@ function HomeJamCard({ jam }: { jam: jamCard }) {
     setTargetX(0);
   };
 
+  let oldTime = Date.now();
   function interpolate() {
     if (!cardRef.current) return;
-
-    setCurrentX(lerp(currentX, targetX));
-    setCurrentY(lerp(currentY, targetY));
+    const currentTime = Date.now();
+    const time = currentTime - oldTime;
+    if (time >= 1) {
+      setCurrentX(lerp(currentX, targetX));
+      setCurrentY(lerp(currentY, targetY));
+      oldTime = Date.now();
+    } else {
+      setNum((num + 1) % 1000);
+    }
     cardRef.current.style.setProperty("--rotate-y", currentY + "deg");
     cardRef.current.style.setProperty("--rotate-x", currentX + "deg");
   }
 
-  function lerp(a: number, b: number, speed: number = 200) {
+  function lerp(a: number, b: number, speed: number = 100) {
     return Number((a + (b - a) / speed).toFixed(2));
   }
 
   useEffect(() => {
     if (!getPrefersReducedMotion() && window.innerWidth > 1250) interpolate();
-  }, [targetY, targetX, currentX, currentY]);
+  }, [targetY, targetX, currentX, currentY, num]);
 
   const onClick = (): void => {
     if (ReactGA.isInitialized)
