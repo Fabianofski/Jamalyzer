@@ -18,7 +18,6 @@
 
   border: 2px solid var(--primary-color);
   border-radius: 10px;
-  overflow: hidden;
 
   box-shadow: var(--box-shadow);
 
@@ -26,7 +25,8 @@
     rotateX(var(--rotate-x));
 }
 
-.card:hover {
+.card:hover > .blur {
+  background-color: var(--primary-color);
 }
 
 .card * {
@@ -37,7 +37,8 @@
 .banner,
 .background,
 .drop-shadow,
-.tilt {
+.tilt,
+.blur {
   position: absolute;
   top: 0;
   left: 0;
@@ -50,6 +51,18 @@
   height: 100%;
 }
 
+.blur {
+  z-index: -6;
+
+  background-color: transparent;
+  filter: blur(2rem);
+
+  width: 100%;
+  height: 100%;
+
+  transition: background-color 0.5s ease-in;
+}
+
 .banner {
   z-index: -2;
 
@@ -58,11 +71,19 @@
 
   object-fit: cover;
   object-position: top;
+
+  border-radius: 10px;
 }
 
 .background {
   background-color: var(--background-color);
+
   z-index: -3;
+
+  width: 100%;
+  height: 100%;
+
+  border-radius: 10px;
 }
 
 .drop-shadow {
@@ -72,6 +93,8 @@
   height: 100%;
 
   background: var(--home-jam-gradient);
+
+  border-radius: 10px;
 }
 
 .stats {

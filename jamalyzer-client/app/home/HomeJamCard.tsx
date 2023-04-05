@@ -99,6 +99,8 @@ function JamBanner({ jam }: { jam: jamCard }) {
         height={500}
       />
       <div className={styles["drop-shadow"]}></div>
+      <div className={styles.background}></div>
+      <div className={styles.blur}></div>
     </>
   );
 }
