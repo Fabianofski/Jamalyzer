@@ -7,11 +7,17 @@ import HomeForm from "@/app/home/HomeForm";
 function HeroSection() {
   return (
     <div className={styles["hero-section"]}>
-      <h1>
-        ANALYZE YOUR <br />
-        FAVOURITE GAME JAMS!
-      </h1>
-      <p>
+      <div className={styles["caption-container"]}>
+        <h1 className={styles.caption}>
+          ANALYZE YOUR <br />
+          FAVOURITE GAME JAMS!
+        </h1>
+        <h1 className={styles["caption-gradient"]}>
+          ANALYZE YOUR <br />
+          FAVOURITE GAME JAMS!
+        </h1>
+      </div>
+      <p className={styles["mission-statement"]}>
         Our mission is to provide valuable insights and statistics on the game{" "}
         <br />
         development community by collecting data from various game jams and{" "}

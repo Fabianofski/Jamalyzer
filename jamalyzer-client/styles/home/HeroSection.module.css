@@ -21,8 +21,54 @@
   margin: 0;
 }
 
-.hero-section p {
+.caption-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.caption {
+  text-shadow: 3px 3px 0 rgba(0, 0, 0, 1), 5px 5px 0 rgba(0, 0, 0, 1),
+    6px 6px 0 rgba(0, 0, 0, 1);
+  -webkit-text-stroke: 2px black; /* Safari/Chrome */
+  text-stroke: 2px black;
+}
+
+.caption-gradient {
+  position: absolute;
+
+  color: transparent;
+
+  background-image: repeating-linear-gradient(
+    45deg,
+    #ff9697,
+    #ff9697 10px,
+    var(--primary-color) 10px,
+    var(--primary-color) 20px
+  );
+  background-clip: text;
+  background-size: 300%;
+  animation: caption-animation 2s infinite linear;
+}
+
+@keyframes caption-animation {
+  0% {
+    background-position: 0;
+  }
+  100% {
+    background-position: 28px;
+  }
+}
+
+.mission-statement {
   margin: 0;
+
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 1), 2px 2px 0 rgba(0, 0, 0, 1),
+    3px 3px 0 rgba(0, 0, 0, 1);
 }
 
 .hero-banner,

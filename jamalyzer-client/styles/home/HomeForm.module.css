@@ -58,18 +58,24 @@
   top: 150%;
 
   color: rgba(var(--primary-color-rgb), 0);
+  text-shadow: none;
   animation: fadeOut 3s;
 }
 
 @keyframes fadeOut {
   0% {
     color: rgba(var(--primary-color-rgb), 1);
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, 1), 2px 2px 0 rgba(0, 0, 0, 1),
+      3px 3px 0 rgba(0, 0, 0, 1);
   }
   50% {
     color: rgba(var(--primary-color-rgb), 1);
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, 1), 2px 2px 0 rgba(0, 0, 0, 1),
+      3px 3px 0 rgba(0, 0, 0, 1);
   }
   100% {
     color: rgba(var(--primary-color-rgb), 0);
+    text-shadow: none;
   }
 }
 
