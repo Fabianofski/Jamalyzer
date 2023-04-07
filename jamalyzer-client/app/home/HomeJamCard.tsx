@@ -28,29 +28,24 @@ function HomeJamCard({ jam }: { jam: jamCard }) {
     setTargetX(0);
   };
 
-  let oldTime = Date.now();
   function interpolate() {
     if (!cardRef.current) return;
-    const currentTime = Date.now();
-    const time = currentTime - oldTime;
-    if (time >= 1) {
-      setCurrentX(lerp(currentX, targetX));
-      setCurrentY(lerp(currentY, targetY));
-      oldTime = Date.now();
-    } else {
-      setNum((num + 1) % 1000);
-    }
+    console.log("interpolate");
+    setCurrentX(lerp(currentX, targetX));
+    setCurrentY(lerp(currentY, targetY));
     cardRef.current.style.setProperty("--rotate-y", currentY + "deg");
     cardRef.current.style.setProperty("--rotate-x", currentX + "deg");
   }
 
-  function lerp(a: number, b: number, speed: number = 100) {
+  function lerp(a: number, b: number, speed: number = 30) {
     return Number((a + (b - a) / speed).toFixed(2));
   }
 
   useEffect(() => {
-    if (!getPrefersReducedMotion() && window.innerWidth > 1250) interpolate();
-  }, [targetY, targetX, currentX, currentY, num]);
+    if (getPrefersReducedMotion() || window.innerWidth < 1250) return;
+    const interval = setInterval(interpolate, 1);
+    return () => clearInterval(interval);
+  }, [currentX, currentY, targetX, targetY]);
 
   const onClick = (): void => {
     if (ReactGA.isInitialized)

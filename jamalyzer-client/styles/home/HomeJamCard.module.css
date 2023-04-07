@@ -55,7 +55,7 @@
   z-index: -6;
 
   background-color: transparent;
-  filter: blur(2rem);
+  filter: blur(1rem);
 
   width: 100%;
   height: 100%;
