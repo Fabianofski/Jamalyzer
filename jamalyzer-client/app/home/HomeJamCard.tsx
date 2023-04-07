@@ -30,7 +30,6 @@ function HomeJamCard({ jam }: { jam: jamCard }) {
 
   function interpolate() {
     if (!cardRef.current) return;
-    console.log("interpolate");
     setCurrentX(lerp(currentX, targetX));
     setCurrentY(lerp(currentY, targetY));
     cardRef.current.style.setProperty("--rotate-y", currentY + "deg");

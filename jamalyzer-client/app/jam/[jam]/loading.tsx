@@ -13,7 +13,7 @@ function Loading() {
       <h3 style={{ marginBottom: "1rem" }}>Loading...</h3>
       <div className={styles.loadingImage}>
         <Image
-          src={`/assets/${loadingBarItem.image}`}
+          src={`/assets/loading/${loadingBarItem.image}`}
           alt={"Loading Animation"}
           fill={true}
           style={{ objectFit: "contain" }}
