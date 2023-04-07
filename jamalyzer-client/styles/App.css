@@ -58,7 +58,11 @@
     rgba(29, 29, 42, 0) 25%,
     #1d1d2a 90%
   );
-  --home-jam-gradient: var(--hero-gradient);
+  --home-jam-gradient: linear-gradient(
+    180deg,
+    rgba(29, 29, 42, 0) 0%,
+    #1d1d2a 70%
+  );
 }
 
 * {
