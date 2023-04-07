@@ -17,13 +17,6 @@ function HeroSection() {
           FAVOURITE GAME JAMS!
         </h1>
       </div>
-      <p className={styles["mission-statement"]}>
-        Our mission is to provide valuable insights and statistics on the game{" "}
-        <br />
-        development community by collecting data from various game jams and{" "}
-        <br />
-        presenting it in an easy-to-understand format.
-      </p>
       <HomeForm />
       <Image
         src={"/hero-banner.png"}

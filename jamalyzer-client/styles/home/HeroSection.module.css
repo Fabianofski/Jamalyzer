@@ -1,13 +1,12 @@
 .hero-section {
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   flex-direction: column;
-  gap: 4rem;
+  gap: 10rem;
   flex: 1;
 
-  height: 55rem;
-  margin-top: 8rem;
+  margin-top: 8vw;
   margin-bottom: 22rem;
 
   color: white;
