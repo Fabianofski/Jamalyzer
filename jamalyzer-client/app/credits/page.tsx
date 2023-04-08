@@ -13,7 +13,7 @@ function Credits(): ReactElement {
         <h1>FABIAN</h1>
         <div className={creditsStyles.creditsWrapper}>
           <img
-            src="/logo.png"
+            src="/assets/credits/f4b1-logo.png"
             alt="F4B1 Logo"
             className={creditsStyles.profile}
           ></img>
@@ -38,7 +38,7 @@ function Credits(): ReactElement {
         <h1>SANTUMERINO</h1>
         <div className={creditsStyles.creditsWrapper}>
           <img
-            src="/santum-logo.png"
+            src="/assets/credits/santum-logo.png"
             alt="Santum Logo"
             className={creditsStyles.profile}
           ></img>
