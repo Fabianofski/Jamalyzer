@@ -19,19 +19,19 @@ function HeroSection() {
       </div>
       <HomeForm />
       <Background />
-      <div className={styles["drop-shadow"]}></div>
     </div>
   );
 }
 
 function Background() {
   return (
-    <div>
+    <div className={styles.backgrounds}>
       <BackgroundImage name={"0"} parallaxAmount={0} />
       <BackgroundImage name={"1"} parallaxAmount={0.1} />
       <BackgroundImage name={"2"} parallaxAmount={0.15} />
       <BackgroundImage name={"3"} parallaxAmount={0.2} />
       <BackgroundImage name={"4"} parallaxAmount={0.6} />
+      <div className={styles["drop-shadow"]}></div>
     </div>
   );
 }

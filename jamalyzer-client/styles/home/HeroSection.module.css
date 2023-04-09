@@ -8,6 +8,7 @@
 
   margin-top: 8vw;
   margin-bottom: 16rem;
+  min-height: min(50vh, 60rem);
 
   color: white;
   text-align: center;
@@ -63,11 +64,13 @@
   }
 }
 
-.mission-statement {
-  margin: 0;
+.backgrounds {
+  position: absolute;
+  top: 0;
 
-  text-shadow: 1px 1px 0 rgba(0, 0, 0, 1), 2px 2px 0 rgba(0, 0, 0, 1),
-    3px 3px 0 rgba(0, 0, 0, 1);
+  width: 100%;
+  max-width: 150rem;
+  height: 130vh;
 }
 
 .hero-banner,
@@ -78,19 +81,20 @@
   transform: translateX(-50%);
 
   width: 100%;
-  max-width: 150rem;
-  height: 60rem;
 }
 
 .hero-banner {
   z-index: -4;
 
   object-fit: cover;
-  object-position: 50% 0;
+  min-height: 80vh;
+  max-height: 130vh;
+  height: auto;
 }
 
 .drop-shadow {
   z-index: -3;
 
   background: var(--hero-gradient);
+  height: 100%;
 }
