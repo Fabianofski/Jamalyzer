@@ -7,6 +7,7 @@ import HomeForm from "@/app/home/HomeForm";
 function HeroSection() {
   return (
     <div className={styles["hero-section"]}>
+      <Background />
       <div className={styles["caption-container"]}>
         <h1 className={styles.caption}>
           ANALYZE YOUR <br />
@@ -18,7 +19,6 @@ function HeroSection() {
         </h1>
       </div>
       <HomeForm />
-      <Background />
     </div>
   );
 }
