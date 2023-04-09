@@ -30,6 +30,8 @@
   --html-bg-color: var(--background-color);
   --secondary-background-color: var(--background-color);
   --text-color: #151048;
+  --text-color-filter: brightness(0) saturate(100%) invert(4%) sepia(75%)
+    saturate(6662%) hue-rotate(250deg) brightness(89%) contrast(97%);
   --darker-background-color: #f1f1f1;
   --box-shadow-color: rgba(0, 0, 0, 0.25);
   --box-shadow: 10px 10px 30px var(--box-shadow-color);
@@ -50,6 +52,7 @@
   --html-bg-color: var(--background-color);
   --secondary-background-color: var(--background-color);
   --text-color: rgb(220, 220, 220);
+  --text-color-filter: none;
   --darker-background-color: #0a0a10;
   --box-shadow-color: rgba(0, 0, 0, 0.6);
   --box-shadow: 10px 10px 30px var(--box-shadow-color);

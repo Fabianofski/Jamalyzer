@@ -23,6 +23,8 @@
   grid-template-columns: repeat(6, 1fr);
   grid-auto-flow: dense;
 
+  position: relative;
+
   width: 100%;
   height: 100%;
 }
@@ -55,4 +57,10 @@
   .view {
     padding: 1rem;
   }
+}
+
+.math {
+  max-width: 100%;
+  height: auto;
+  filter: var(--text-color-filter);
 }

@@ -1,22 +1,26 @@
 import React, { ReactElement } from "react";
 import { JsxCard } from "../cards/BasicCard";
 import { LineChartCard } from "../cards/LineChartCard";
-import { getJamPrimary } from "@/utilities/Color/ColorManager";
+import { getJamPrimary, getTheme } from "@/utilities/Color/ColorManager";
 import { pearsonCorrelation } from "@/utilities/Correlation";
 import { jamData } from "@/model/jamData/jamData";
-import { InlineMath } from "react-katex";
 import styles from "@/styles/jam/views/View.module.css";
+import Image from "next/image";
 
 function karmaDescription(): ReactElement {
   return (
     <div style={{ lineHeight: "2rem", hyphens: "auto" }}>
       Karma is a numerical score that reflects the number of ratings an entry
       has received and given. It is calculated using the formula: <br />
-      <InlineMath>
-        {
-          "Karma = \\frac {Log(1 + ratings\\_given) - Log(1 + ratings\\_received)}{Log(5)}"
+      <Image
+        src={"/assets/karma/formula_white.png"}
+        width={500}
+        height={500}
+        className={styles.math}
+        alt={
+          "Karma = (Log(1 + ratings_given) - Log(1 + ratings_received)) / Log(5)"
         }
-      </InlineMath>
+      />
       <br />
       To possibly increase your score, you should rate more games and leave
       feedback.
@@ -31,22 +35,6 @@ function PearsonTooltip(): ReactElement {
         The correlation coefficient is a measure of the linear relationship
         between two variables. <br />
       </p>
-      <table>
-        <tbody>
-          <tr>
-            <td style={{ textAlign: "right" }}>-1 = </td>
-            <td>negative relationship</td>
-          </tr>
-          <tr>
-            <td style={{ textAlign: "right" }}>0 = </td>
-            <td>no relationship</td>
-          </tr>
-          <tr>
-            <td style={{ textAlign: "right" }}>1 = </td>
-            <td>positive relationship</td>
-          </tr>
-        </tbody>
-      </table>
     </>
   );
 }
