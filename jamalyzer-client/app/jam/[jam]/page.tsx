@@ -31,18 +31,20 @@ async function Jam({
     next: { revalidate: 0 },
   });
   const jamData = await response.json();
-  if (!jamData.errors) {
-    if (ReactGA.isInitialized)
-      ReactGA.send({
-        hitType: "pageview",
-        page: window.location.pathname,
-      });
-  }
+
+  if (jamData.errors) throw new Error(jamData.errors[0]);
+
+  if (ReactGA.isInitialized)
+    ReactGA.send({
+      hitType: "pageview",
+      page: window.location.pathname,
+    });
+
   return (
     <>
       {jamName === "gmtk-2020" ? <GMTKDisclaimer /> : <></>}
       <div className={styles.Jam}>
-        <JamAnalysis jamData={jamData} errors={jamData.errors} />
+        <JamAnalysis jamData={jamData} />
       </div>
     </>
   );
@@ -50,18 +52,9 @@ async function Jam({
 
 interface JamAnalysisProps {
   jamData: jamData;
-  errors: string[];
 }
 
-function JamAnalysis({ jamData, errors }: JamAnalysisProps): ReactElement {
-  if (errors && errors.length > 0)
-    return (
-      <>
-        {errors.map((e, idx) => {
-          return <p key={idx}> {e} </p>;
-        })}
-      </>
-    );
+function JamAnalysis({ jamData }: JamAnalysisProps): ReactElement {
   if (
     jamData.jam.secondary_color === undefined ||
     jamData.jam.color === undefined
