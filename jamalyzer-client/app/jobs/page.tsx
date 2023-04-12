@@ -1,5 +1,6 @@
 "use client";
-import React, { useState } from "react";
+
+import React, { ReactElement, useEffect, useState } from "react";
 import useWebSocket from "react-use-websocket";
 import styles from "@/styles/jobs/jobs.module.css";
 import { jamJob } from "@/model/jamJobs/jobList";
@@ -21,33 +22,53 @@ function Jobs() {
     },
   });
 
+  const fillMissingRows = (tableEntries: number): ReactElement[] => {
+    const rows = [];
+    for (let i = tableEntries; i < 10; i++) {
+      rows.push(<EmptyRow key={i} />);
+    }
+    return rows;
+  };
+
   return (
     <div className={styles.jobs}>
       <title>Jamalyzer | Jobs</title>
-      {jobs.map((job: jamJob, index: number) => {
-        return <Job job={job} key={index} />;
-      })}
-      {jobs.length === 0 ? (
-        <div className={styles.job} style={{ justifyContent: "center" }}>
-          <h2>No Jam processing</h2>
-        </div>
-      ) : (
-        <></>
-      )}
+      <div className={styles["table-wrapper"]}>
+        <table className={styles.table}>
+          <thead>
+            <th>Jam Title</th>
+            <th>State</th>
+            <th>Progress</th>
+          </thead>
+          <tbody>
+            {jobs.map((job, index) => {
+              return <Job job={job} key={index} />;
+            })}
+            {fillMissingRows(jobs.length)}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
 
 function Job({ job }: { job: jamJob }) {
   return (
-    <div className={styles.job}>
-      <Image src={job.jamLogo} alt={"jam-logo"} width={1000} height={1000} />
-      <h2 className={styles.jobTitle}>{job.jamTitle}</h2>
-      <div className={styles.jobProgress}>
-        <h3>{job.jobState}</h3>
-        <h3 className={styles.jobPercentage}>{job.jobProgress}</h3>
-      </div>
-    </div>
+    <tr>
+      <td className={styles["jam-title"]}>{job.jamTitle}</td>
+      <td className={styles["job-state"]}>{job.jobState}</td>
+      <td className={styles["job-progress"]}>{job.jobProgress}</td>
+    </tr>
+  );
+}
+
+function EmptyRow() {
+  return (
+    <tr>
+      <td className={styles["jam-title"]}>-</td>
+      <td className={styles["job-state"]}>-</td>
+      <td className={styles["job-progress"]}>-</td>
+    </tr>
   );
 }
 
