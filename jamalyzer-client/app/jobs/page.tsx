@@ -33,6 +33,7 @@ function Jobs() {
   return (
     <div className={styles.jobs}>
       <title>Jamalyzer | Jobs</title>
+      <h1>Active Jobs</h1>
       <div className={styles["table-wrapper"]}>
         <table className={styles.table}>
           <thead>

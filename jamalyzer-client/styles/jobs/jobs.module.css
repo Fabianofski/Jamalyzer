@@ -6,7 +6,6 @@
   gap: 3px;
 
   width: 100%;
-  padding: 5rem 0 1rem 0;
 
   color: var(--text-color);
 }
@@ -17,6 +16,7 @@
   justify-content: flex-start;
 
   min-width: 60%;
+  max-width: 95vw;
 
   border: 1px solid var(--text-color);
   border-radius: 10px;
