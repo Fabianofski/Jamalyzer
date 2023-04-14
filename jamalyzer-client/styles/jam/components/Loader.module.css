@@ -19,6 +19,12 @@
   color: var(--text-color);
 }
 
+.jam-loader-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 97vh;
+}
+
 .jamLoader {
   display: flex;
   align-items: center;

@@ -9,19 +9,21 @@ function Loading() {
   const loadingBarItem: LoadingBarItem = loadingBarItems[random];
 
   return (
-    <div className={styles.jamLoader}>
-      <h3 style={{ marginBottom: "1rem" }}>Loading...</h3>
-      <div className={styles.loadingImage}>
-        <Image
-          src={`/assets/loading/${loadingBarItem.image}`}
-          alt={"Loading Animation"}
-          fill={true}
-          style={{ objectFit: "contain" }}
-        />
+    <div className={styles["jam-loader-wrapper"]}>
+      <div className={styles.jamLoader}>
+        <h3 style={{ marginBottom: "1rem" }}>Loading...</h3>
+        <div className={styles.loadingImage}>
+          <Image
+            src={`/assets/loading/${loadingBarItem.image}`}
+            alt={"Loading Animation"}
+            fill={true}
+            style={{ objectFit: "contain" }}
+          />
+        </div>
+        <a href={loadingBarItem.link} target="_blank" rel="noopener noreferrer">
+          {loadingBarItem.author}: {loadingBarItem.title}
+        </a>
       </div>
-      <a href={loadingBarItem.link} target="_blank" rel="noopener noreferrer">
-        {loadingBarItem.author}: {loadingBarItem.title}
-      </a>
     </div>
   );
 }
