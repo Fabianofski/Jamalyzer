@@ -1,5 +1,5 @@
 import React, { ReactElement } from "react";
-import styles from "./ToggleSwitch.module.css";
+import styles from "../../styles/cookies/ToggleSwitch.module.css";
 
 interface Props {
   option: boolean;

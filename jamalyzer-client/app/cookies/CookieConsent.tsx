@@ -2,7 +2,7 @@
 import React, { ReactElement, useEffect, useState } from "react";
 import ToggleSwitch from "./ToggleSwitch";
 import ReactGA from "react-ga4";
-import styles from "./CookieConsent.module.css"
+import styles from "../../styles/cookies/CookieConsent.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretUp, faCaretDown } from "@fortawesome/free-solid-svg-icons";
 const MESS_ID = "G-SW2RQ0Q5JJ";
@@ -134,7 +134,10 @@ function Toggle({
             }}
             className={styles.collapseButton}
           >
-            <FontAwesomeIcon icon={infoShown ? faCaretUp : faCaretDown} className={styles.collapseButtonIcon}/>
+            <FontAwesomeIcon
+              icon={infoShown ? faCaretUp : faCaretDown}
+              className={styles.collapseButtonIcon}
+            />
           </button>
           <p>{cookieName}</p>
         </div>

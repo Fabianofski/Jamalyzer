@@ -1,10 +1,10 @@
 import "@/styles/App.css";
 import "@/styles/jam/cards/Card.css";
-import Nav from "@/components/wireframe/Nav";
+import Nav from "@/app/wireframe/Nav";
 import React from "react";
 import { Metadata } from "next";
-import Footer from "@/components/wireframe/Footer";
-import CookieConsentBanner from "@/components/cookies/CookieConsent";
+import Footer from "@/app/wireframe/Footer";
+import CookieConsentBanner from "@/app/cookies/CookieConsent";
 import { setPreferredColorScheme } from "@/utilities/Color/ColorManager";
 
 export const metadata: Metadata = {

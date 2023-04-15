@@ -1,6 +1,6 @@
 "use client";
 import React, { ReactElement } from "react";
-import styles from "./Footer.module.css";
+import styles from "../../styles/wireframe/Footer.module.css";
 import creditsStyles from "@/styles/legal/Credits.module.css";
 
 function Footer(): ReactElement {
@@ -55,7 +55,10 @@ function Footer(): ReactElement {
         </div>
         <div className={styles.category}>
           <p style={{ fontWeight: "bold" }}>Legal</p>
-          <a onClick={openCookies} href="#cookies">
+          <a
+            onClick={openCookies}
+            href="jamalyzer-client/app/wireframe#cookies"
+          >
             Cookies
           </a>
           <a href="/privacy-policy">Privacy Policy</a>

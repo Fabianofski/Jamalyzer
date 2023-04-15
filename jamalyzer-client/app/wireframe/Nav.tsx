@@ -10,9 +10,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 */
 "use client";
 import React, { ReactElement, useEffect, useState } from "react";
-import { toggleTheme, getTheme, setPreferredColorScheme } from "@/utilities/Color/ColorManager";
-import styles from "./Nav.module.css";
-import themeStyle from "./ThemeSwitch.module.css";
+import {
+  toggleTheme,
+  getTheme,
+  setPreferredColorScheme,
+} from "@/utilities/Color/ColorManager";
+import styles from "../../styles/wireframe/Nav.module.css";
+import themeStyle from "../../styles/wireframe/ThemeSwitch.module.css";
 
 function Nav({}): ReactElement {
   const [darkMode, setDarkMode] = useState(false);
@@ -20,7 +24,7 @@ function Nav({}): ReactElement {
   useEffect(() => {
     setPreferredColorScheme();
     setDarkMode(getTheme() === "dark");
-  }, [setDarkMode])
+  }, [setDarkMode]);
 
   const toggle = () => {
     toggleTheme();
@@ -28,7 +32,11 @@ function Nav({}): ReactElement {
   };
 
   return (
-    <div className={`${styles.nav} ${themeStyle.nav} ${darkMode ? themeStyle.darkTheme : themeStyle.lightTheme}`}>
+    <div
+      className={`${styles.nav} ${themeStyle.nav} ${
+        darkMode ? themeStyle.darkTheme : themeStyle.lightTheme
+      }`}
+    >
       <div>
         <button style={{ display: "none" }}>
           <i className={`collapse-button-icon fa fa-2x fa-navicon`}></i>
