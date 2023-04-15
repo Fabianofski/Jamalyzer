@@ -1,3 +1,5 @@
+import "@/styles/Fonts.css";
+import "@/styles/Colors.css";
 import "@/styles/App.css";
 import "@/styles/jam/cards/Card.css";
 import Nav from "@/app/wireframe/Nav";

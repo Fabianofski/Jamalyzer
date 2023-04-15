@@ -1,0 +1,48 @@
+:root {
+  --primary-color: #f55a5b;
+  --primary-color-rgb: 245, 90, 91;
+  --secondary-color: #151048;
+}
+
+:root {
+  --background-color: white;
+  --html-bg-color: var(--background-color);
+  --secondary-background-color: var(--background-color);
+  --text-color: #151048;
+  --text-color-filter: brightness(0) saturate(100%) invert(4%) sepia(75%)
+    saturate(6662%) hue-rotate(250deg) brightness(89%) contrast(97%);
+  --darker-background-color: #f1f1f1;
+  --box-shadow-color: rgba(0, 0, 0, 0.25);
+  --box-shadow: 10px 10px 30px var(--box-shadow-color);
+  --home-jam-gradient: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0) 0%,
+    #ffffff 70%
+  );
+  --hero-gradient: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0) 40%,
+    #ffffff 100%
+  );
+}
+
+[data-theme="dark"] {
+  --background-color: #1d1d2a;
+  --html-bg-color: var(--background-color);
+  --secondary-background-color: var(--background-color);
+  --text-color: rgb(220, 220, 220);
+  --text-color-filter: none;
+  --darker-background-color: #0a0a10;
+  --box-shadow-color: rgba(0, 0, 0, 0.6);
+  --box-shadow: 10px 10px 30px var(--box-shadow-color);
+  --hero-gradient: linear-gradient(
+    180deg,
+    rgba(29, 29, 42, 0) 25%,
+    #1d1d2a 90%
+  );
+  --home-jam-gradient: linear-gradient(
+    180deg,
+    rgba(29, 29, 42, 0) 0%,
+    #1d1d2a 70%
+  );
+}
