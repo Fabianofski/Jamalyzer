@@ -10,7 +10,7 @@ function Footer(): ReactElement {
   };
 
   return (
-    <div className={styles.footer}>
+    <div className={styles.footer} id={"footer"}>
       <div className={styles.copyright}>
         <h3>©F4B1 - 2023</h3>
         <a

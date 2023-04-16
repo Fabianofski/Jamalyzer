@@ -1,12 +1,13 @@
 .sidebar-container {
   flex: 1;
   justify-content: center;
+
+  position: relative;
 }
 
 .sidebar {
   position: fixed;
-  top: 50%;
-  transform: translateY(-50%);
+  bottom: 10vh;
 
   max-height: 90vh;
   overflow-y: scroll;
