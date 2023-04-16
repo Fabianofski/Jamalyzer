@@ -10,14 +10,15 @@
 
 .jam-container {
   display: flex;
+  gap: 1rem;
 
   width: 100%;
+  max-width: 150rem;
   height: 100%;
-  padding: 0 10vh 0 0;
+  padding: 0 1rem 0 1rem;
 }
 
 .view-container {
-  flex: 4;
   display: flex;
   flex-direction: column;
   align-items: center;

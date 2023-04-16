@@ -1,17 +1,18 @@
 .sidebar-container {
-  flex: 1;
   justify-content: center;
 
   position: relative;
+  width: 20rem;
 }
 
 .sidebar {
   position: fixed;
-  bottom: 10vh;
+  bottom: 50vh;
+  transform: translateY(50%);
 
   max-height: 90vh;
   overflow-y: scroll;
-  width: 15vw;
+  width: 15rem;
   background-color: var(--background-color);
 
   border-radius: 25px;

@@ -17,7 +17,7 @@ function Sidebar(): ReactElement {
 
     if (
       getRectTop(sidebar) + document.body.scrollTop + sidebar.offsetHeight >=
-      getRectTop(footer) + document.body.scrollTop - 10
+      getRectTop(footer) + document.body.scrollTop - 40
     )
       sidebar.style.position = "absolute";
     if (
