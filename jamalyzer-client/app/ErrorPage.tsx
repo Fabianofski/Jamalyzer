@@ -4,6 +4,7 @@ import React from "react";
 import styles from "@/styles/ErrorPage.module.css";
 import buttonStyles from "@/styles/home/HomeJamCard.module.css";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function ErrorPage({ error }: { error: string }) {
   return (
@@ -30,9 +31,9 @@ export default function ErrorPage({ error }: { error: string }) {
       </div>
       <div className={styles.container}>
         <p className={styles.message}>{error}</p>
-        <a href={"/"} className={buttonStyles["analyze-button"]}>
+        <Link href={"/"} className={buttonStyles["analyze-button"]}>
           Back
-        </a>
+        </Link>
       </div>
     </div>
   );

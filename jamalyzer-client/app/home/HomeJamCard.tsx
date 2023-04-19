@@ -4,6 +4,7 @@ import styles from "@/styles/home/HomeJamCard.module.css";
 import { jamCard } from "@/model/jamData/jamCard";
 import Image from "next/image";
 import ReactGA from "react-ga4";
+import Link from "next/link";
 
 function HomeJamCard({ jam }: { jam: jamCard }) {
   const cardRef = useRef<HTMLDivElement>(null);
@@ -71,13 +72,13 @@ function HomeJamCard({ jam }: { jam: jamCard }) {
         <h3> {jam.joined} joined </h3>
         <h3> {jam.submitted} Entries </h3>
       </div>
-      <a
+      <Link
         className={styles["analyze-button"]}
         href={`/jam/${jam.link.replace("https://itch.io/jam/", "")}`}
         onClick={onClick}
       >
         ANALYZE
-      </a>
+      </Link>
     </div>
   );
 }

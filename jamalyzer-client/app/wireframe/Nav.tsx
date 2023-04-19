@@ -17,6 +17,7 @@ import {
 } from "@/utilities/Color/ColorManager";
 import styles from "../../styles/wireframe/Nav.module.css";
 import themeStyle from "../../styles/wireframe/ThemeSwitch.module.css";
+import Link from "next/link";
 
 function Nav({}): ReactElement {
   const [darkMode, setDarkMode] = useState(false);
@@ -44,9 +45,9 @@ function Nav({}): ReactElement {
           </button>
         </div>
 
-        <a href={"/"} className={styles.logo}>
+        <Link href={"/"} className={styles.logo}>
           Jamalyzer
-        </a>
+        </Link>
 
         <button
           id={themeStyle.switchTheme}

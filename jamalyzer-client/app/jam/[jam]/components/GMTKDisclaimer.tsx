@@ -1,16 +1,21 @@
 "use client";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import styles from "@/styles/jam/components/GMTKDisclaimer.module.css";
 
 function GMTKDisclaimer() {
   const disclaimerRef = useRef<HTMLDivElement>(null);
+  const [accepted, setAccepted] = useState(false);
 
   const closePanel = () => {
-    disclaimerRef.current?.remove();
+    setAccepted(true);
   };
 
   return (
-    <div className={styles.container} ref={disclaimerRef}>
+    <div
+      className={styles.container}
+      ref={disclaimerRef}
+      style={accepted ? { display: "none" } : {}}
+    >
       <div className={styles.banner}>
         <h1>WE&apos;RE SORRY</h1>
 

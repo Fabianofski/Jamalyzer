@@ -2,6 +2,7 @@
 import React, { ReactElement } from "react";
 import styles from "../../styles/wireframe/Footer.module.css";
 import creditsStyles from "@/styles/legal/Credits.module.css";
+import Link from "next/link";
 
 function Footer(): ReactElement {
   const openCookies = (): void => {
@@ -44,8 +45,8 @@ function Footer(): ReactElement {
         <div className={styles.categories}>
           <div className={styles.category}>
             <p style={{ fontWeight: "bold" }}>Jamalyzer</p>
-            <a href="/about">About</a>
-            <a href="/credits">Credits</a>
+            <Link href={"/about"}>About</Link>
+            <Link href={"/credits"}>Credits</Link>
           </div>
           <div className={styles.category}>
             <p style={{ fontWeight: "bold" }}>Contact</p>
@@ -56,13 +57,10 @@ function Footer(): ReactElement {
           </div>
           <div className={styles.category}>
             <p style={{ fontWeight: "bold" }}>Legal</p>
-            <a
-              onClick={openCookies}
-              href="jamalyzer-client/app/wireframe#cookies"
-            >
+            <a onClick={openCookies} style={{ cursor: "pointer" }}>
               Cookies
             </a>
-            <a href="/privacy-policy">Privacy Policy</a>
+            <Link href={"/privacy-policy"}>Privacy Policy</Link>
           </div>
         </div>
       </div>
