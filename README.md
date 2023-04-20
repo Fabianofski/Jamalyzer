@@ -6,18 +6,18 @@ Visit the website at [https://www.jamalyzer.com](https://www.jamalyzer.com)
 
 ## Getting Started
 
-### Local
+### Development
 
 #### Frontend
 1. Clone the repository to your local machine: `git clone https://github.com/Fabianofski/Jamalyzer.git`
-2. Go to the Frontend folder: `cd Frontend`
+2. Go to the Frontend folder: `cd frontend`
 3. Install the required dependencies: `npm install`
-4. Start the development server: `npm start`
+4. Start the development server: `npm run dev`
 5. Open your browser and navigate to [http://localhost:3000](http://localhost:3000) to view the application
 
 #### Backend
 1. Clone the repository to your local machine: `git clone https://github.com/Fabianofski/Jamalyzer.git`
-2. Go to the Backend folder: `cd Backend`
+2. Go to the Backend folder: `cd backend`
 3. Install the required dependencies: `npm install`
 4. Add .env file in Backend folder
     ```
@@ -29,8 +29,9 @@ Visit the website at [https://www.jamalyzer.com](https://www.jamalyzer.com)
     REDIS_PORT="6379"
     REDIS_PASSWORD='password'
     ```
-5. Start the development server: `npm start`
-6. The backend will be running on [http://localhost:3001](http://localhost:3001)
+5. You need to have a mongodb running on port 27017 and a redis server running on port 6379 to start the Backend
+6. Start the development server: `npm start`
+7. The backend will be running on [http://localhost:3001](http://localhost:3001)
 
 ### Docker
 
@@ -50,15 +51,16 @@ Visit the website at [https://www.jamalyzer.com](https://www.jamalyzer.com)
     MONGO_PASSWORD='password'
     ```
 3. Run `docker compose up -d`
-4. Open your browser and navigate to [http://localhost](http://localhost)
+4. Open your browser and navigate to [http://localhost:3000](http://localhost)
 
 ## Built With
 
 - [React](https://reactjs.org/) - JavaScript library for building user interfaces
+- [Next13](https://nextjs.org/) - React framework for server-side rendering and static site generation
 - [Node.js](https://nodejs.org/) - JavaScript runtime for back-end development
 - [Express](https://expressjs.com/) - Node.js web application framework
 - [MongoDB](https://www.mongodb.com/) - NoSQL database used to store the data
-- [Firebase](https://firebase.google.com/) - Google's mobile and web application development platform
+- [Redis](https://redis.io/) - Open source in-memory data structure store
 
 ## License
 

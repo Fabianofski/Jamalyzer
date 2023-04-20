@@ -25,10 +25,10 @@ services:
   api:
     build:
       dockerfile: Dockerfile
-      context: "./Backend"
+      context: "./backend"
     volumes:
       - /app/node_modules
-      - ./Backend:/app
+      - ./backend:/app
     restart: unless-stopped
     depends_on:
       - redis
@@ -43,10 +43,10 @@ services:
 
   client:
     build:
-      context: ./jamalyzer-client
+      context: ./frontend
       dockerfile: Dockerfile
     volumes:
-      - ./jamalyzer-client:/app
+      - ./frontend:/app
       - /app/.next
       - /app/node_modules
     restart: unless-stopped
