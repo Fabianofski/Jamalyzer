@@ -5,7 +5,7 @@
   align-items: center;
 
   width: 100%;
-  margin: 5rem 0 0 0;
+  margin: min(3vw, 3rem) 0 0 0;
   padding: 3rem;
   background: var(--background-color);
 

@@ -10,14 +10,11 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 */
 "use client";
 import React, { ReactElement, useEffect, useState } from "react";
-import {
-  toggleTheme,
-  getTheme,
-  setPreferredColorScheme,
-} from "@/utilities/Color/ColorManager";
+import { getTheme, setPreferredColorScheme, toggleTheme } from "@/utilities/Color/ColorManager";
 import styles from "../../styles/wireframe/Nav.module.css";
 import themeStyle from "../../styles/wireframe/ThemeSwitch.module.css";
 import Link from "next/link";
+import Hamburger from "@/app/wireframe/Hamburger";
 
 function Nav({}): ReactElement {
   const [darkMode, setDarkMode] = useState(false);
@@ -39,11 +36,7 @@ function Nav({}): ReactElement {
       }`}
     >
       <div className={styles.wrapper}>
-        <div>
-          <button style={{ display: "none" }}>
-            <i className={`collapse-button-icon fa fa-2x fa-navicon`}></i>
-          </button>
-        </div>
+        <Hamburger />
 
         <Link href={"/"} className={styles.logo}>
           Jamalyzer
