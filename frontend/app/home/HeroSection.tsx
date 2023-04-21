@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import styles from "@/styles/home/HeroSection.module.css";
 import Image from "next/image";
 import HomeForm from "@/app/home/HomeForm";
+import { getPrefersReducedMotion } from "@/utilities/Accessibility";
 
 function HeroSection() {
   return (
@@ -43,24 +44,25 @@ function BackgroundImage({
   name: string;
   parallaxAmount: number;
 }) {
-  const [offset, setOffset] = useState(0);
+  const [currentOffset, setCurrentOffset] = useState(0);
 
   const scrollHandler = () => {
-    setOffset((-window.scrollY * parallaxAmount) / 2);
+    setCurrentOffset((-window.scrollY * parallaxAmount) / 2);
   };
 
   useEffect(() => {
+    if (getPrefersReducedMotion()) return;
     window.addEventListener("scroll", scrollHandler);
-  }, [offset]);
+  }, [currentOffset]);
 
   return (
     <Image
       src={`/assets/hero/${name}.png`}
       alt={`hero banner ${name}`}
-      width={4000}
-      height={4000}
+      width={1500}
+      height={1500}
       className={styles["hero-banner"]}
-      style={{ top: `${offset}px` }}
+      style={{ transform: `translateY(${currentOffset}px)`, top: "0" }}
     />
   );
 }

@@ -23,6 +23,7 @@
 
   transform: perspective(1000px) rotateY(var(--rotate-y))
     rotateX(var(--rotate-x));
+  transition: transform 0.5s linear;
 }
 
 .card:hover > .blur {
