@@ -35,7 +35,6 @@ function Hamburger() {
         <ListItem name={"Tools"} setActive={setActive} />
         <ListItem name={"Tags"} setActive={setActive} />
         <ListItem name={"Genre"} setActive={setActive} />
-        <ListItem name={"Overview"} setActive={setActive} />
       </div>
     </div>
   );
