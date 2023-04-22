@@ -63,6 +63,7 @@ function BackgroundImage({
       alt={`hero banner ${name}`}
       width={1500}
       height={1500}
+      priority={true}
       className={styles["hero-banner"]}
       style={{ transform: `translateY(${currentOffset}px)` }}
     />
