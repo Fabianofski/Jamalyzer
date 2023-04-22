@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect } from "react";
 import {
+  ResetToDefaultColors,
   setJamTheme,
   updateCSSVariables,
 } from "@/utilities/Color/ColorManager";
@@ -12,6 +13,10 @@ function JamTheme({ jamData }: { jamData: jamData }) {
     observeStyle();
     setJamTheme(jamData.jam.color, jamData.jam.secondary_color);
     updateCSSVariables();
+
+    return () => {
+      ResetToDefaultColors();
+    };
   }, [jamData]);
 
   return <></>;

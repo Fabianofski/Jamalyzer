@@ -4,7 +4,6 @@ import styles from "@/styles/home/HomeRecommended.module.css";
 import jamList from "@/public/jamList.json";
 import { jamCard } from "@/model/jamData/jamCard";
 import HomeJamCard from "@/app/home/HomeJamCard";
-import { ResetToDefaultColors } from "@/utilities/Color/ColorManager";
 
 function shuffle(array: jamCard[]): jamCard[] {
   for (let i = array.length - 1; i > 0; i--) {
@@ -18,8 +17,6 @@ function HomeRecommended() {
   const gridRef = useRef<HTMLDivElement>(null);
   const [columnCount, setColumnCount] = useState<number>(4);
   const [jams, setJams] = useState<jamCard[]>();
-
-  useEffect(ResetToDefaultColors, []);
 
   function getGridColumns() {
     if (!gridRef.current) return;
