@@ -64,4 +64,8 @@ Visit the website at [https://www.jamalyzer.com](https://www.jamalyzer.com)
 
 ## License
 
+### Code
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+### Assets
+Unless mentioned otherwise, all art, sound and music assets are distributed under the [Creative Commons Attribution-NonCommercial 4.0 International](https://creativecommons.org/licenses/by-nc/4.0/) license.
