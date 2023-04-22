@@ -14,6 +14,7 @@ import JamTheme from "@/app/jam/[jam]/components/JamTheme";
 import { getJamPrimary, setJamTheme } from "@/utilities/Color/ColorManager";
 import styles from "@/styles/jam/Jam.module.css";
 import GMTKDisclaimer from "@/app/jam/[jam]/components/GMTKDisclaimer";
+import ErrorPage from "@/app/ErrorPage";
 
 const host =
   process.env.NODE_ENV === "development"
@@ -32,7 +33,7 @@ async function Jam({
   });
   const jamData = await response.json();
 
-  if (jamData.errors) throw new Error(jamData.errors[0]);
+  if (jamData.errors) return <ErrorPage error={jamData.errors[0]} />;
 
   if (ReactGA.isInitialized)
     ReactGA.send({
