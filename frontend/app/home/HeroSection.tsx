@@ -31,8 +31,10 @@ function Background() {
       <BackgroundImage name={"1"} parallaxAmount={0.1} />
       <BackgroundImage name={"2"} parallaxAmount={0.15} />
       <BackgroundImage name={"3"} parallaxAmount={0.2} />
-      <BackgroundImage name={"4"} parallaxAmount={0.6} />
-      <div className={styles["drop-shadow"]}></div>
+      <div className={styles["hero-banner-wrapper"]}>
+        <BackgroundImage name={"4"} parallaxAmount={0.6} />
+        <div className={styles["drop-shadow"]}></div>
+      </div>
     </div>
   );
 }
@@ -62,7 +64,7 @@ function BackgroundImage({
       width={1500}
       height={1500}
       className={styles["hero-banner"]}
-      style={{ transform: `translateY(${currentOffset}px)`, top: "0" }}
+      style={{ transform: `translateY(${currentOffset}px)` }}
     />
   );
 }
