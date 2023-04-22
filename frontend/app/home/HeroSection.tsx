@@ -53,7 +53,7 @@ function BackgroundImage({
   };
 
   useEffect(() => {
-    if (getPrefersReducedMotion()) return;
+    if (getPrefersReducedMotion() || window.innerWidth < 1200) return;
     window.addEventListener("scroll", scrollHandler);
   }, [currentOffset]);
 
