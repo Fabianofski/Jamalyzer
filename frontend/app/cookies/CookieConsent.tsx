@@ -4,7 +4,8 @@ import ToggleSwitch from "./ToggleSwitch";
 import ReactGA from "react-ga4";
 import styles from "../../styles/cookies/CookieConsent.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCaretUp, faCaretDown } from "@fortawesome/free-solid-svg-icons";
+import { faCaretDown, faCaretUp } from "@fortawesome/free-solid-svg-icons";
+
 const MESS_ID = "G-SW2RQ0Q5JJ";
 
 interface Props {
@@ -133,6 +134,7 @@ function Toggle({
               setInfoShown(!infoShown);
             }}
             className={styles.collapseButton}
+            aria-label={`Toggle ${cookieName} details`}
           >
             <FontAwesomeIcon
               icon={infoShown ? faCaretUp : faCaretDown}
@@ -141,7 +143,11 @@ function Toggle({
           </button>
           <p>{cookieName}</p>
         </div>
-        <ToggleSwitch option={option} setOption={setOption} />
+        <ToggleSwitch
+          option={option}
+          setOption={setOption}
+          optionName={cookieName}
+        />
       </div>
       {infoShown && (
         <div>

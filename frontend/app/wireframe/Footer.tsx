@@ -5,7 +5,8 @@ import creditsStyles from "@/styles/legal/Credits.module.css";
 import Link from "next/link";
 
 function Footer(): ReactElement {
-  const openCookies = (): void => {
+  const openCookies = (e: React.MouseEvent): void => {
+    e.preventDefault();
     localStorage.setItem("isCookieConsentBannerAnswered", "false");
     window.location.reload();
   };
@@ -57,7 +58,11 @@ function Footer(): ReactElement {
           </div>
           <div className={styles.category}>
             <p style={{ fontWeight: "bold" }}>Legal</p>
-            <a onClick={openCookies} style={{ cursor: "pointer" }}>
+            <a
+              href="#"
+              onClick={(e) => openCookies(e)}
+              style={{ cursor: "pointer" }}
+            >
               Cookies
             </a>
             <Link href={"/privacy-policy"}>Privacy Policy</Link>
