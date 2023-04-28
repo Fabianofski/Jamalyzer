@@ -26,7 +26,9 @@ export default function RootLayout({
   // Set preferred colorscheme before body renders to avoid dark mode flicker
   // function needs to be a string to inject script
   const colorFunction =
-    String(setPreferredColorScheme) + " setPreferredColorScheme();";
+    'let colorScheme = "light"; ' +
+    String(setPreferredColorScheme) +
+    " setPreferredColorScheme();";
 
   return (
     <html lang="en" data-theme="light">
