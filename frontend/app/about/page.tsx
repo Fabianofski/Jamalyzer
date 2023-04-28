@@ -1,10 +1,17 @@
 import React, { ReactElement } from "react";
-import styles from "@/styles/legal/Legal.module.css"
+import styles from "@/styles/legal/Legal.module.css";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Jamalyzer | About",
+  description: `Learn about Jamalyzer and its powerful analytics features, 
+                designed to give game developers an edge in the world of 
+                game jams.`,
+};
 
 function About(): ReactElement {
   return (
     <div className={styles.legalContainer}>
-      <title>Jamalyzer | About</title>
       <div className={styles.legalView}>
         <h1>About</h1>
         <h2>About Jamalyzer</h2>

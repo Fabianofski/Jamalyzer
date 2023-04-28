@@ -1,10 +1,17 @@
 import React, { ReactElement } from "react";
-import styles from "@/styles/legal/Legal.module.css"
+import styles from "@/styles/legal/Legal.module.css";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Jamalyzer | Privacy Policy",
+  description: `We take your privacy seriously. Our privacy policy outlines 
+                how we collect, use, and protect your personal data when 
+                using Jamalyzer.`,
+};
 
 function PrivacyPolicy(): ReactElement {
   return (
     <div className={styles.legalContainer}>
-      <title>Jamalyzer | Privacy Policy</title>
       <div className={styles.legalView}>
         <h1>Privacy Policy</h1>
 

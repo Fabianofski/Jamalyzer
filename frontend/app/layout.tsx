@@ -12,6 +12,10 @@ import { setPreferredColorScheme } from "@/utilities/Color/ColorManager";
 export const metadata: Metadata = {
   title: "Jamalyzer",
   icons: "/favicon.png",
+  description: `Jamalyzer - the ultimate game jam analysis tool! Analyze game 
+                jams like never before, see what tools were used, what genres 
+                and tags were most popular, and more. Try it now for free!`,
+  themeColor: "#f55a5b",
 };
 
 export default function RootLayout({

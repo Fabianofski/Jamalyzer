@@ -1,12 +1,17 @@
 import React, { ReactElement } from "react";
 import styles from "@/styles/legal/Legal.module.css";
 import creditsStyles from "@/styles/legal/Credits.module.css";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Jamalyzer | Credits",
+  description: `Learn about the team behind Jamalyzer and check out 
+                their online profiles.`,
+};
 
 function Credits(): ReactElement {
   return (
     <div className={styles.legalContainer} style={{ marginBottom: "5rem" }}>
-      <title>Jamalyzer | Credits</title>
-
       <h1>Credits</h1>
 
       <div className={styles.legalView}>

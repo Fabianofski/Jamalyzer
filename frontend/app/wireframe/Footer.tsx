@@ -52,17 +52,17 @@ function Footer(): ReactElement {
           <div className={styles.category}>
             <p style={{ fontWeight: "bold" }}>Contact</p>
             <a href="mailto:support@jamalyzer.com">support@jamalyzer.com</a>
-            <a href={"https://github.com/Fabianofski/Jamalyzer"}>
+            <a
+              href={"https://github.com/Fabianofski/Jamalyzer"}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               GitHub Repository
             </a>
           </div>
           <div className={styles.category}>
             <p style={{ fontWeight: "bold" }}>Legal</p>
-            <a
-              href="#"
-              onClick={(e) => openCookies(e)}
-              style={{ cursor: "pointer" }}
-            >
+            <a href="#" onClick={(e) => openCookies(e)}>
               Cookies
             </a>
             <Link href={"/privacy-policy"}>Privacy Policy</Link>

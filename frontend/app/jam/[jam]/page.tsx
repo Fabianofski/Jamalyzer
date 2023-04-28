@@ -70,6 +70,10 @@ function JamAnalysis({ jamData }: JamAnalysisProps): ReactElement {
         content={`Analyze the ${jamData.jam.Title} on Jamalyzer.com! Your go to destination for in depth analysis of game jams!`}
         property="og:description"
       />
+      <meta
+        content={`Analyze the ${jamData.jam.Title} on Jamalyzer.com! Your go to destination for in depth analysis of game jams!`}
+        name="description"
+      />
       <meta content={jamData.jam.icon} property="og:image" />
       <meta name="twitter:card" content="summary_large_image" />
       <meta
