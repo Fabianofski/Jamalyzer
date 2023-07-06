@@ -29,6 +29,7 @@ function JamHosts(jamData: jamData): ReactElement {
 }
 
 function JamDate(jam: jam): ReactElement {
+  "use client";
   const timePeriod = differenceInHours(
     parseISO(jam.ended),
     parseISO(jam.started)
