@@ -1,3 +1,5 @@
+"use client";
+
 import React, { ReactElement } from "react";
 import { JsxCard } from "../cards/BasicCard";
 import {
@@ -29,7 +31,6 @@ function JamHosts(jamData: jamData): ReactElement {
 }
 
 function JamDate(jam: jam): ReactElement {
-  "use client";
   const timePeriod = differenceInHours(
     parseISO(jam.ended),
     parseISO(jam.started)
