@@ -157,7 +157,7 @@ function getBarChartData(jamData: jamData): ChartData<"bar", any> {
     });
     if (oldP !== percentage || entryNumber === totalEntries) {
       percentage = entryNumber === totalEntries ? 10 : percentage;
-      labels.push(`<${110 - percentage * 10}%`);
+      labels.push(`${110 - percentage * 10}% - ${100 - percentage * 10}%`);
       solo.push(sums[0]);
       duo.push(sums[1]);
       trio.push(sums[2]);
