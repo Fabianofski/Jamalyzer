@@ -2,7 +2,6 @@ import React, { ReactElement } from "react";
 import { JsxCard } from "../cards/BasicCard";
 import {
   differenceInHours,
-  format,
   formatDuration,
   intervalToDuration,
   parseISO,
@@ -47,8 +46,8 @@ function JamDate(jam: jam): ReactElement {
     <div>
       This Jam ran from{" "}
       <strong>
-        {format(parseISO(jam.started), "dd.MM.yyyy")} to{" "}
-        {format(parseISO(jam.ended), "dd.MM.yyyy")},
+        {parseISO(jam.started).toLocaleDateString()}-
+        {parseISO(jam.ended).toLocaleDateString()},
       </strong>
       <br />
       ended <strong> {formatDuration(endPeriodDuration)} </strong> ago, <br />
