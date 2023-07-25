@@ -1,5 +1,6 @@
 import { entry } from "../model/jamData/entry";
 import { CheerioAPI } from "cheerio";
+import { engineTriggers, engines } from "../model/itch/tools";
 
 const axios = require("axios");
 const cheerio = require("cheerio");
@@ -15,6 +16,7 @@ async function fetchGamePage(entry: entry) {
   if (!response) return;
   const html = response.data;
   const $ = cheerio.load(html);
+
   entry.game_info_panel = {};
   $(".game_info_panel_widget tbody")
     .children()
@@ -26,7 +28,44 @@ async function fetchGamePage(entry: entry) {
         entry.game_info_panel[title] = content.split(", ") || [];
       }
     });
+
+  const engineExists = engines.some(item => entry.game_info_panel["madeWith"]?.includes(item.toLowerCase())) || false;
+  if(engineExists)
+    return entry;
+
+  const engine = await tryGetEngine($, entry.url);
+  if(entry.game_info_panel["madeWith"])
+    entry.game_info_panel["madeWith"].push(engine);
+  else
+    entry.game_info_panel["madeWith"] = [engine];
   return entry;
+}
+
+async function tryGetEngine(gamePage: CheerioAPI, title: string) : Promise<string> {
+  const iFramePlaceholder = gamePage(".iframe_placeholder").attr("data-iframe");
+  if(iFramePlaceholder === undefined) return "unknown";
+  const iFrameCheerio = cheerio.load(iFramePlaceholder);
+  const src = iFrameCheerio("iframe").attr("src");
+
+  if(src === undefined) return "unknown";
+
+  const response = await axios
+    .get(src)
+    .catch((e: any) =>
+      console.error("Error when fetching " + src + "\n" + e)
+    );
+  if (!response) return "unknown";
+  const html = response.data;
+  const htmlText = cheerio.load(html).text();
+
+  for (let engine in engineTriggers) {
+    for (let trigger of engineTriggers[engine]) {
+      if(htmlText.includes(trigger)) {
+        return engine;
+      }
+    }
+  }
+  return "unknown";
 }
 
 function camelCase(str: string) {
@@ -38,4 +77,4 @@ function camelCase(str: string) {
   return splitStr.join("");
 }
 
-module.exports = { fetchGamePage };
+module.exports = { fetchGamePage, tryGetEngine };
